@@ -1,0 +1,178 @@
+<div>
+  <h1>Ontology Classes</h1>
+
+  <div class="controls d-flex align-items-center gap-3">
+    <!-- TTL file selector -->
+    <label class="btn btn-outline-primary btn-sm">
+      <i class="bi bi-upload"></i> Select Turtle File
+      <input
+        type="file"
+        accept=".ttl,.turtle,text/turtle"
+        (change)="onTTLFileSelected($event)"
+        hidden
+      />
+    </label>
+    <small *ngIf="selectedTTLFileName" class="text-muted">
+      <i class="bi bi-file-earmark-text"></i> {{ selectedTTLFileName }}
+    </small>
+
+    <!-- Load Ontology Button -->
+    <button
+      *ngIf="selectedTTLFileName"
+      (click)="loadOntology()"
+      class="btn btn-success btn-sm"
+    >
+      <i class="bi bi-arrow-repeat"></i> Load Ontology
+    </button>
+
+    <!-- Show Details Checkbox -->
+    <label
+      *ngIf="selectedTTLFileName"
+      class="form-check-label d-flex align-items-center gap-2"
+    >
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="showDetails"
+      />
+      <span>Show Details</span>
+    </label>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading ontology...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="class-list" *ngIf="!loading && rootClasses.length > 0">
+    <ng-container *ngFor="let classInfo of rootClasses">
+      <div
+        [class.class-item]="true"
+        [style.margin-left.px]="classInfo.depth * 20"
+      >
+        <div class="class-header" (click)="toggleClass(classInfo)">
+          <span class="expand-icon" *ngIf="classInfo.subClasses.length > 0">
+            {{ expandedClasses.has(classInfo.uri) ? "▼" : "▶" }}
+          </span>
+          <strong>{{ getShortName(classInfo.uri) }}</strong>
+          <span class="label" *ngIf="classInfo.label">
+            - {{ classInfo.label }}</span
+          >
+        </div>
+
+        <div class="class-details" *ngIf="showDetails">
+          <div class="comment" *ngIf="classInfo.comment">
+            <em>{{ classInfo.comment }}</em>
+          </div>
+          <div class="defined-by" *ngIf="classInfo.isDefinedBy">
+            <small>Defined by: {{ classInfo.isDefinedBy }}</small>
+          </div>
+
+          <div class="properties" *ngIf="classInfo.dataProperties.length > 0">
+            <div class="property-section">
+              <strong>Data Properties:</strong>
+              <ul>
+                <li *ngFor="let prop of classInfo.dataProperties">
+                  {{ getShortName(prop.uri) }}
+                  <span *ngIf="prop.label"> - {{ prop.label }}</span>
+                  <div class="prop-comment" *ngIf="prop.comment">
+                    {{ prop.comment }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="properties" *ngIf="classInfo.objectProperties.length > 0">
+            <div class="property-section">
+              <strong>Object Properties:</strong>
+              <ul>
+                <li *ngFor="let prop of classInfo.objectProperties">
+                  {{ getShortName(prop.uri) }}
+                  <span *ngIf="prop.label"> - {{ prop.label }}</span>
+                  <div class="prop-comment" *ngIf="prop.comment">
+                    {{ prop.comment }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="expandedClasses.has(classInfo.uri)">
+          <ng-container
+            *ngTemplateOutlet="
+              classTree;
+              context: { classes: classInfo.subClasses }
+            "
+          ></ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-template #classTree let-classes="classes">
+    <ng-container *ngFor="let subClass of classes">
+      <div
+        [class.class-item]="true"
+        [style.margin-left.px]="subClass.depth * 20"
+      >
+        <div class="class-header" (click)="toggleClass(subClass)">
+          <span class="expand-icon" *ngIf="subClass.subClasses.length > 0">
+            {{ expandedClasses.has(subClass.uri) ? "▼" : "▶" }}
+          </span>
+          <strong>{{ getShortName(subClass.uri) }}</strong>
+          <span class="label" *ngIf="subClass.label">
+            - {{ subClass.label }}</span
+          >
+        </div>
+
+        <div class="class-details" *ngIf="showDetails">
+          <div class="comment" *ngIf="subClass.comment">
+            <em>{{ subClass.comment }}</em>
+          </div>
+          <div class="defined-by" *ngIf="subClass.isDefinedBy">
+            <small>Defined by: {{ subClass.isDefinedBy }}</small>
+          </div>
+
+          <div class="properties" *ngIf="subClass.dataProperties.length > 0">
+            <div class="property-section">
+              <strong>Data Properties:</strong>
+              <ul>
+                <li *ngFor="let prop of subClass.dataProperties">
+                  {{ getShortName(prop.uri) }}
+                  <span *ngIf="prop.label"> - {{ prop.label }}</span>
+                  <div class="prop-comment" *ngIf="prop.comment">
+                    {{ prop.comment }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="properties" *ngIf="subClass.objectProperties.length > 0">
+            <div class="property-section">
+              <strong>Object Properties:</strong>
+              <ul>
+                <li *ngFor="let prop of subClass.objectProperties">
+                  {{ getShortName(prop.uri) }}
+                  <span *ngIf="prop.label"> - {{ prop.label }}</span>
+                  <div class="prop-comment" *ngIf="prop.comment">
+                    {{ prop.comment }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="expandedClasses.has(subClass.uri)">
+          <ng-container
+            *ngTemplateOutlet="
+              classTree;
+              context: { classes: subClass.subClasses }
+            "
+          ></ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-template>
+</div>

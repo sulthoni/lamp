@@ -1,0 +1,54 @@
+.container-fluid {
+  padding: 20px;
+}
+
+.active-class {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+.class-tree-container {
+  max-height: 500px; /* Adjust max height as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.class-tree-container ul {
+  list-style: none;
+  padding-left: 15px;
+}
+.class-tree-container span {
+  cursor: pointer;
+  display: block;
+}
+.class-tree-container li {
+  padding-left: 10px;
+}
+.loading-spinner {
+  display: block;
+  margin: auto;
+}
+.no-data {
+  text-align: center;
+}
+.property-panel-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.property-panel-container h5 {
+  margin-bottom: 10px;
+}
+.property-panel-container .property-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #555;
+}
+.property-panel-container .property-details .cardinality {
+  margin-top: 2px;
+}
+
+.class-details-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+}

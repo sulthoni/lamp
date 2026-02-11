@@ -1,0 +1,9 @@
+.onto/
+.env
+__pycache__/
+*.pyc
+data/chroma_db/
+.env
+ontop/
+data/
+venv/

@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <div class="position-relative">
+    <!-- SVG Container for Connections -->
+    <svg #connectionSvg class="connection-svg"></svg>
+
+    <div class="row">
+      <!-- Left Panel -->
+      <div #leftPanel class="col-md-5 left-panel">
+        <div class="card">
+          <div class="card-header"><i class="fas fa-list"></i>Classes</div>
+          <ul class="list-group list-group-flush">
+            <li
+              *ngFor="let item of leftList; let i = index"
+              class="list-group-item list-group-item-action connection-item left-item"
+              [attr.data-index]="i"
+              [attr.data-value]="item"
+              (dragover)="allowDrop($event)"
+              (drop)="drop($event, i)"
+              draggable="true"
+              (dragstart)="drag($event, i, 'left')"
+              [class.dragging]="
+                isDragging &&
+                currentDraggedItem?.type === 'left' &&
+                currentDraggedItem?.value === item
+              "
+            >
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Center Panel -->
+      <div #leftPanel class="col-md-2 center-panel">
+        <div class="card">
+          <!-- <div class="card-header"><i class="fas fa-list"></i> Center List</div> -->
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <div #rightPanel class="col-md-5 right-panel">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-list-alt"></i> Database Features
+          </div>
+          <ul class="list-group list-group-flush">
+            <li
+              *ngFor="let item of rightList; let i = index"
+              class="list-group-item list-group-item-action connection-item right-item"
+              [attr.data-index]="i"
+              [attr.data-value]="item"
+              (dragover)="allowDrop($event)"
+              (drop)="drop($event, i)"
+              draggable="true"
+              (dragstart)="drag($event, i, 'right')"
+              [class.dragging]="
+                isDragging &&
+                currentDraggedItem?.type === 'right' &&
+                currentDraggedItem?.value === item
+              "
+            >
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connected Pairs Panel -->
+    <div class="row mt-3">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-link"></i> Connected Pairs
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li
+                *ngFor="let pair of connectedPairs; let i = index"
+                class="list-group-item d-flex justify-content-between"
+              >
+                <span>{{ pair.left }} ➡ {{ pair.right }}</span>
+                <button
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="removePair(pair, i)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </li>
+            </ul>
+            <p
+              *ngIf="connectedPairs.length === 0"
+              class="text-muted text-center"
+            >
+              No connections made yet
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

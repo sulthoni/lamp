@@ -1,0 +1,9 @@
+<div class="class-details-container">
+  <div *ngIf="selectedClass">
+    <p><b>Class IRI:</b> {{ selectedClass.uri }}</p>
+    <p><b>Class Label:</b> {{ selectedClass.label }}</p>
+  </div>
+  <div *ngIf="!selectedClass">
+    <p>No class selected.</p>
+  </div>
+</div>

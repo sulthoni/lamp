@@ -1,0 +1,199 @@
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: white;
+  font-weight: 500;
+  border-top: 1px solid #09238d;
+  border-bottom: 1px solid #09238d;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link:hover {
+  color: yellow;
+  border-top: 1px solid yellow;
+  border-bottom: 1px solid yellow;
+}
+
+.nga-navbar {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+    0 11px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 11px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #09238d;
+}
+
+.nga-navbar-logo {
+  font-weight: 700;
+}
+
+.nga-navbar-logo:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.nga-logo {
+  font-weight: 700;
+}
+
+.nga-logo:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.nga-footer {
+  background-color: #212121;
+  color: white;
+}
+
+.nga-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.nga-footer a:hover,
+.nga-footer a:focus {
+  color: yellow;
+  text-decoration: underline;
+}
+
+.nga-footer .hint {
+  background-color: #1976d2;
+}
+
+.nga-footer .hint:hover {
+  opacity: 0.8;
+}
+
+.nga-btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: transparent;
+  border: 0;
+}
+
+.nga-btn-toggle:hover,
+.nga-btn-toggle:focus {
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #cfe2ff;
+}
+
+.nga-btn-toggle::before {
+  width: 1.25em;
+  line-height: 0;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform 0.35s ease;
+  transform-origin: 0.5em 50%;
+}
+
+.nga-btn-toggle[aria-expanded="true"] {
+  color: #0d6efd;
+}
+
+.nga-btn-toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.nga-btn-toggle-nav a {
+  display: inline-flex;
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
+  margin-left: 1.25rem;
+  text-decoration: none;
+}
+
+.nga-btn-toggle-nav a:hover,
+.nga-btn-toggle-nav a:focus {
+  color: #0d6efd;
+  background-color: #cfe2ff;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .nga-container-layout {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 3fr;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .nga-container-layout {
+    grid-template-columns: 1fr 5fr;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.nga-container-sidebar {
+  overflow: auto;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .nga-container-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem;
+    display: block;
+    height: calc(100vh - 7rem);
+    padding-left: 0.25rem;
+    margin-left: -0.25rem;
+    overflow-y: auto;
+  }
+}
+
+.active-class {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+.class-tree-container {
+  max-height: 500px; /* Adjust max height as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.class-tree-container ul {
+  list-style: none;
+  padding-left: 15px;
+}
+.class-tree-container span {
+  cursor: pointer;
+  display: block;
+}
+.class-tree-container li {
+  padding-left: 10px;
+}
+.loading-spinner {
+  display: block;
+  margin: auto;
+}
+.no-data {
+  text-align: center;
+}
+.property-panel-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.property-panel-container h5 {
+  margin-bottom: 10px;
+}
+.property-panel-container .property-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #555;
+}
+.property-panel-container .property-details .cardinality {
+  margin-top: 2px;
+}
+
+.class-details-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Add to your app.component.css or global styles */
+.active-link {
+  background-color: #e3f2fd !important;
+  font-weight: bold;
+}

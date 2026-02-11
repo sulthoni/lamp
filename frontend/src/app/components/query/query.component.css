@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.fa-icon {
+  vertical-align: middle;
+}
+
+.card-header {
+  font-size: 1.25rem;
+}
+
+textarea.form-control {
+  font-size: 0.9rem;
+}

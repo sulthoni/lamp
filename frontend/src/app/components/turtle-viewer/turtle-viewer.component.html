@@ -1,0 +1,300 @@
+<div class="mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="button-row">
+        <div class="button-left">
+          <button
+            (click)="fileInput.click()"
+            class="browse-btn"
+            [disabled]="loadingButtonSelectFile"
+          >
+            <span *ngIf="!loadingButtonSelectFile">Browse Turtle File</span>
+            <span *ngIf="loadingButtonSelectFile">
+              <span
+                class="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Loading...
+            </span>
+          </button>
+          <input
+            type="file"
+            accept=".ttl"
+            (change)="onFileSelected($event)"
+            #fileInput
+            style="display: none"
+            [disabled]="loadingButtonSelectFile"
+          />
+        </div>
+        <div *ngIf="selectedTurtleFileName" class="mt-2 text-secondary">
+          <i class="bi bi-file-earmark-text"></i>
+          File Name : {{ selectedTurtleFileName }}
+        </div>
+        <div class="button-right">
+          <button (click)="exportTurtleSchema()" class="browse-btn">
+            Export Turtle schema
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="tab-container">
+        <div class="tab-header">
+          <button
+            class="tab-btn"
+            [class.active]="activeTab === 'browse'"
+            (click)="activeTab = 'browse'"
+          >
+            Browse Turtle File
+          </button>
+          <button
+            class="tab-btn"
+            [class.active]="activeTab === 'code'"
+            (click)="activeTab = 'code'"
+          >
+            Reduced Schema (save as JSON)
+          </button>
+        </div>
+
+        <!-- Browse Tab -->
+        <div *ngIf="activeTab === 'browse'" class="tab-content">
+          <div class="main-container">
+            <div class="left-panel">
+              <div class="tree-container" *ngIf="ontologyTree.length > 0">
+                <div class="tree-node" *ngFor="let node of ontologyTree">
+                  <ng-container
+                    *ngTemplateOutlet="
+                      treeNodeTemplate;
+                      context: { $implicit: node }
+                    "
+                  >
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="right-panel" *ngIf="selectedNode">
+              <div class="properties-container">
+                <h2>{{ selectedNode.label }}</h2>
+                <div *ngIf="selectedNode" class="node-details-card">
+                  <div class="node-details-header">
+                    <span class="node-id-label">ID:</span>
+                    <span class="node-id-value">{{ selectedNode.id }}</span>
+                  </div>
+                  <div class="node-details-section">
+                    <span class="node-section-label">Description:</span>
+                    <p class="node-section-value">
+                      {{ selectedNode.description || "—" }}
+                    </p>
+                  </div>
+                  <div class="node-details-section">
+                    <span class="node-section-label">Definition:</span>
+                    <p class="node-section-value">
+                      {{ selectedNode.definition || "—" }}
+                    </p>
+                  </div>
+                  <div class="node-details-section">
+                    <span class="node-section-label">Parent Classes:</span>
+                    <p class="node-section-value">
+                      {{ getAncestorLabels() || "—" }}
+                    </p>
+                  </div>
+                </div>
+                <div class="properties-section">
+                  <h3>Data Properties</h3>
+                  <div
+                    class="property-list"
+                    *ngIf="getDataProperties().length > 0"
+                  >
+                    <div
+                      class="property-item"
+                      *ngFor="let prop of getDataProperties()"
+                    >
+                      <div class="property-header">
+                        <span class="property-label">{{ prop.label }}</span>
+                        <div class="property-badges">
+                          <span class="property-badge relationship-badge">
+                            Domain
+                          </span>
+                          <span class="property-badge" *ngIf="prop.functional">
+                            Functional
+                          </span>
+                        </div>
+                      </div>
+                      <div class="property-details">
+                        <span
+                          class="property-range"
+                          *ngIf="prop.ranges.length > 0"
+                        >
+                          Range: {{ prop.ranges }}
+                        </span>
+                        <div
+                          class="cardinality-info"
+                          *ngIf="hasCardinality(prop)"
+                        >
+                          <span *ngIf="prop.exactCardinality !== undefined">
+                            Exactly {{ prop.exactCardinality }}
+                          </span>
+                          <span *ngIf="prop.minCardinality !== undefined">
+                            Min: {{ prop.minCardinality }}
+                          </span>
+                          <span *ngIf="prop.maxCardinality !== undefined">
+                            Max: {{ prop.maxCardinality }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="no-properties"
+                    *ngIf="getDataProperties().length === 0"
+                  >
+                    No data properties found
+                  </div>
+                </div>
+                <div class="properties-section">
+                  <h3>Object Properties</h3>
+                  <div
+                    class="property-list"
+                    *ngIf="getObjectProperties().length > 0"
+                  >
+                    <div
+                      class="property-item"
+                      *ngFor="let prop of getObjectProperties()"
+                    >
+                      <div class="property-header">
+                        <span class="property-label">{{ prop.label }}</span>
+                        <div class="property-badges">
+                          <span class="property-badge relationship-badge">
+                            {{ getPropertyRelationships(prop) }}
+                          </span>
+                          <span class="property-badge" *ngIf="prop.functional">
+                            Functional
+                          </span>
+                        </div>
+                      </div>
+                      <div class="property-details">
+                        <div
+                          class="property-domains"
+                          *ngIf="prop.domains.length > 0"
+                        >
+                          Domain: {{ prop.domains }}
+                        </div>
+                        <div
+                          class="property-ranges"
+                          *ngIf="prop.ranges.length > 0"
+                        >
+                          Range: {{ prop.ranges }}
+                        </div>
+                        <div
+                          class="cardinality-info"
+                          *ngIf="hasCardinality(prop)"
+                        >
+                          <span *ngIf="prop.exactCardinality !== undefined">
+                            Exactly {{ prop.exactCardinality }}
+                          </span>
+                          <span *ngIf="prop.minCardinality !== undefined">
+                            Min: {{ prop.minCardinality }}
+                          </span>
+                          <span *ngIf="prop.maxCardinality !== undefined">
+                            Max: {{ prop.maxCardinality }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="no-properties"
+                    *ngIf="getObjectProperties().length === 0"
+                  >
+                    No object properties found
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Tab -->
+        <div *ngIf="activeTab === 'code'" class="tab-content">
+          <div class="container">
+            <div
+              *ngIf="
+                exportedSchemaData !== null && exportedSchemaData !== undefined;
+                else noExport
+              "
+              class="pretty-code-box"
+            >
+              <div class="card mb-3">
+                <h4>Reduced Turtle Schema - with structure (JSON)</h4>
+                <div class="json-viewer-container">
+                  <ngx-json-viewer
+                    [json]="exportedSchemaData"
+                    [expanded]="false"
+                  ></ngx-json-viewer>
+                </div>
+                <button
+                  (click)="saveExportedSchema()"
+                  class="browse-btn save-btn"
+                >
+                  Save
+                </button>
+              </div>
+              <div class="card mb-3">
+                <h4>Reduced Turtle Schema - without structure (JSON)</h4>
+                <div class="json-viewer-container">
+                  <ngx-json-viewer
+                    *ngIf="
+                      flatExportedSchemaData !== null &&
+                      flatExportedSchemaData !== undefined
+                    "
+                    [json]="flatExportedSchemaData"
+                    [expanded]="false"
+                  ></ngx-json-viewer>
+                </div>
+                <button
+                  (click)="saveFlatExportedSchema()"
+                  class="browse-btn save-btn"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+          <ng-template #noExport>
+            <div class="exported-schema-box">
+              <em>No exported schema available. Please export first.</em>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #treeNodeTemplate let-node>
+  <div
+    class="node-content"
+    [style.padding-left.px]="node.level * 20"
+    [class.selected]="selectedNode?.id === node.id"
+  >
+    <span
+      class="expand-icon"
+      (click)="toggleNode(node)"
+      *ngIf="node.children.length > 0"
+    >
+      {{ node.expanded ? "▼" : "▶" }}
+    </span>
+    <span class="node-label" (click)="selectNode(node)">{{ node.label }}</span>
+  </div>
+  <div *ngIf="node.expanded">
+    <div class="tree-node" *ngFor="let child of node.children">
+      <ng-container
+        *ngTemplateOutlet="treeNodeTemplate; context: { $implicit: child }"
+      >
+      </ng-container>
+    </div>
+  </div>
+</ng-template>

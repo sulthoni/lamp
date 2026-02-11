@@ -1,0 +1,9 @@
+<li *ngFor="let classUri of classes.get(this.classUri)?.subClasses">
+  <span (click)="selectClass(classUri)">
+    <i class="bi bi-caret-right-fill" *ngIf="hasSubclasses(classUri)"></i>
+    {{ classes.get(classUri)?.label }}
+  </span>
+  <ul *ngIf="hasSubclasses(classUri)">
+    <app-class-tree-node [classUri]="classUri"></app-class-tree-node>
+  </ul>
+</li>

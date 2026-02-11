@@ -1,0 +1,67 @@
+<div class="property-panel-container">
+  <div *ngIf="selectedClass">
+    <h3>{{ selectedClass.label }} Properties</h3>
+    <input
+      type="text"
+      class="form-control mb-2"
+      placeholder="Filter properties"
+      [(ngModel)]="propertyFilter"
+    />
+
+    <div *ngIf="selectedClass.properties.data.length > 0">
+      <h5>Data Properties</h5>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let prop of filterProperties(selectedClass.properties.data)"
+        >
+          <div>
+            <strong>{{ prop.label }}</strong>
+          </div>
+          <div class="property-details">
+            <span *ngIf="prop.range.length > 0"
+              >Range: {{ prop.range.join(", ") }}</span
+            >
+            <span *ngIf="prop.cardinality" class="cardinality"
+              >Cardinality: {{ prop.cardinality }}</span
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedClass.properties.object.length > 0">
+      <h5>Object Properties</h5>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let prop of filterProperties(selectedClass.properties.object)"
+        >
+          <div>
+            <strong>{{ prop.label }}</strong>
+          </div>
+          <div class="property-details">
+            <span *ngIf="prop.range.length > 0"
+              >Range: {{ prop.range.join(", ") }}</span
+            >
+            <span *ngIf="prop.cardinality" class="cardinality"
+              >Cardinality: {{ prop.cardinality }}</span
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      *ngIf="
+        selectedClass.properties.data.length === 0 &&
+        selectedClass.properties.object.length === 0
+      "
+    >
+      <p>No properties found for this class.</p>
+    </div>
+  </div>
+  <div *ngIf="!selectedClass">
+    <p>Select a class to see its properties.</p>
+  </div>
+</div>

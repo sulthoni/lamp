@@ -1,0 +1,1739 @@
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-12 mb-4">
+      <h2 class="mb-4 text-center text-md-start">Mapping Suggestion</h2>
+
+      <!-- Enhanced Tab Navigation with click handlers -->
+      <ul class="nav nav-tabs nav-fill mb-4" id="myTab" role="tablist">
+        <li class="nav-item arrow-tab" role="navigation">
+          <button
+            class="nav-link d-flex flex-column flex-sm-row align-items-center justify-content-center"
+            [class.active]="activeTab === 'input'"
+            id="input-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#input"
+            type="button"
+            role="tab"
+            aria-controls="input"
+            [attr.aria-selected]="activeTab === 'input'"
+            (click)="onTabChange('input')"
+          >
+            <i class="bi bi-upload me-sm-2 mb-1 mb-sm-0"></i>
+            <span class="d-none d-sm-inline">1. </span>Input
+            <span class="tab-arrow"></span>
+          </button>
+        </li>
+        <li class="nav-item arrow-tab" role="navigation">
+          <button
+            class="nav-link d-flex flex-column flex-sm-row align-items-center justify-content-center"
+            [class.active]="activeTab === 'preprocessing'"
+            id="preprocessing-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#preprocessing"
+            type="button"
+            role="tab"
+            aria-controls="preprocessing"
+            [attr.aria-selected]="activeTab === 'preprocessing'"
+            (click)="onTabChange('preprocessing')"
+          >
+            <i class="bi bi-gear me-sm-2 mb-1 mb-sm-0"></i>
+            <span class="d-none d-sm-inline">2. </span>Pre-Processing
+            <span class="tab-arrow"></span>
+          </button>
+        </li>
+        <li class="nav-item arrow-tab" role="navigation">
+          <button
+            class="nav-link d-flex flex-column flex-sm-row align-items-center justify-content-center"
+            [class.active]="activeTab === 'mapping'"
+            id="mapping-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#mapping"
+            type="button"
+            role="tab"
+            aria-controls="mapping"
+            [attr.aria-selected]="activeTab === 'mapping'"
+            (click)="onTabChange('mapping')"
+          >
+            <i class="bi bi-diagram-3 me-sm-2 mb-1 mb-sm-0"></i>
+            <span class="d-none d-sm-inline">3. </span>Mapping
+            <span class="tab-arrow"></span>
+          </button>
+        </li>
+        <li class="nav-item arrow-tab" role="navigation">
+          <button
+            class="nav-link d-flex flex-column flex-sm-row align-items-center justify-content-center"
+            [class.active]="activeTab === 'evaluation'"
+            id="evaluation-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#evaluation"
+            type="button"
+            role="tab"
+            aria-controls="evaluation"
+            [attr.aria-selected]="activeTab === 'evaluation'"
+            (click)="onTabChange('evaluation')"
+          >
+            <i class="bi bi-check-circle me-sm-2 mb-1 mb-sm-0"></i>
+            <span class="d-none d-sm-inline">4. </span>Evaluate
+            <span class="tab-arrow"></span>
+          </button>
+        </li>
+        <li class="nav-item arrow-tab" role="navigation">
+          <button
+            class="nav-link d-flex flex-column flex-sm-row align-items-center justify-content-center"
+            [class.active]="activeTab === 'output'"
+            id="output-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#output"
+            type="button"
+            role="tab"
+            aria-controls="output"
+            [attr.aria-selected]="activeTab === 'output'"
+            (click)="onTabChange('output')"
+          >
+            <i class="bi bi-download me-sm-2 mb-1 mb-sm-0"></i>
+            <span class="d-none d-sm-inline">5. </span>Output
+            <span class="tab-arrow"></span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab Content with dynamic active classes -->
+      <div class="tab-content" id="myTabContent">
+        <!-- INPUT TAB -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 'input'"
+          [class.active]="activeTab === 'input'"
+          id="input"
+          role="tabpanel"
+          aria-labelledby="input-tab"
+        >
+          <div class="row g-4">
+            <!-- Target Ontology Card -->
+            <div class="col-12 col-lg-6">
+              <div class="card h-100 shadow-sm border-0">
+                <div
+                  class="card-header bg-primary text-white d-flex align-items-center"
+                >
+                  <i class="bi bi-diagram-2 me-2"></i>
+                  <h5 class="mb-0">Target Ontology</h5>
+                </div>
+                <div class="card-body">
+                  <div class="file-upload-area text-center p-4 mb-3">
+                    <i
+                      class="bi bi-cloud-upload fs-1 text-muted mb-3 d-block"
+                    ></i>
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-lg mb-3"
+                      (click)="ontologyInput.click()"
+                    >
+                      <i class="bi bi-folder2-open me-2"></i>
+                      Select Ontology File
+                    </button>
+                    <input
+                      type="file"
+                      #ontologyInput
+                      class="d-none"
+                      accept=".owl,.ttl,.rdf"
+                      (change)="onOntologyFileSelected($event)"
+                    />
+                    <p class="text-muted small mb-0">
+                      Supported formats: .owl, .ttl, .rdf
+                    </p>
+                  </div>
+
+                  <!-- Selected File Display -->
+                  <div
+                    *ngIf="ontologyFile"
+                    class="selected-file-card p-3 bg-light rounded"
+                  >
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <div class="d-flex align-items-center flex-grow-1 me-2">
+                        <i
+                          class="bi bi-file-earmark-text text-primary me-2"
+                        ></i>
+                        <span
+                          class="file-name text-truncate"
+                          [title]="ontologyFileName"
+                        >
+                          {{ ontologyFileName }}
+                        </span>
+                      </div>
+                      <button
+                        class="btn btn-outline-danger btn-sm"
+                        (click)="deleteOntologyFile()"
+                        [title]="'Remove file'"
+                      >
+                        <i class="bi bi-x-circle"></i>
+                      </button>
+                    </div>
+                    <small class="text-muted d-block mt-1">
+                      Size: {{ (ontologyFile.size / 1024).toFixed(1) }} KB
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table Schema Card -->
+            <div class="col-12 col-lg-6">
+              <div class="card h-100 shadow-sm border-0">
+                <div
+                  class="card-header bg-success text-white d-flex align-items-center"
+                >
+                  <i class="bi bi-table me-2"></i>
+                  <h5 class="mb-0">Data Source Schema</h5>
+                </div>
+                <div class="card-body">
+                  <div class="file-upload-area text-center p-4 mb-3">
+                    <i
+                      class="bi bi-cloud-upload fs-1 text-muted mb-3 d-block"
+                    ></i>
+                    <button
+                      type="button"
+                      class="btn btn-outline-success btn-lg mb-3"
+                      (click)="tableInput.click()"
+                    >
+                      <i class="bi bi-folder2-open me-2"></i>
+                      Select Schema File
+                    </button>
+                    <input
+                      type="file"
+                      #tableInput
+                      class="d-none"
+                      accept=".json"
+                      (change)="onTableFileSelected($event)"
+                    />
+                    <p class="text-muted small mb-0">
+                      Supported formats: .json
+                    </p>
+                  </div>
+
+                  <!-- Selected File Display -->
+                  <div
+                    *ngIf="tableFile"
+                    class="selected-file-card p-3 bg-light rounded"
+                  >
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <div class="d-flex align-items-center flex-grow-1 me-2">
+                        <i
+                          class="bi bi-file-earmark-spreadsheet text-success me-2"
+                        ></i>
+                        <span
+                          class="file-name text-truncate"
+                          [title]="tableFileName"
+                        >
+                          {{ tableFileName }}
+                        </span>
+                      </div>
+                      <button
+                        class="btn btn-outline-danger btn-sm"
+                        (click)="deleteTableFile()"
+                        [title]="'Remove file'"
+                      >
+                        <i class="bi bi-x-circle"></i>
+                      </button>
+                    </div>
+                    <small class="text-muted d-block mt-1">
+                      Size: {{ (tableFile.size / 1024).toFixed(1) }} KB
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PREPROCESSING TAB -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 'preprocessing'"
+          [class.active]="activeTab === 'preprocessing'"
+          id="preprocessing"
+          role="tabpanel"
+          aria-labelledby="preprocessing-tab"
+        >
+          <!-- File Summary -->
+          <div class="row g-3 mb-4" *ngIf="ontologyFileName || tableFileName">
+            <div class="col-12 col-md-6" *ngIf="ontologyFileName">
+              <div class="card border-primary">
+                <div class="card-body text-center">
+                  <i class="bi bi-diagram-2 text-primary fs-2 mb-2"></i>
+                  <h6 class="card-title">Target Ontology</h6>
+                  <p class="card-text text-truncate" [title]="ontologyFileName">
+                    {{ ontologyFileName }}
+                  </p>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm px-3 py-2"
+                    (click)="postOntologyFiles()"
+                    [disabled]="loadingOntology || !ontologyFile"
+                  >
+                    <span *ngIf="!loadingOntology">
+                      <i class="bi bi-play-circle me-2"></i>
+                      Process & Save to Vector DB
+                    </span>
+                    <span *ngIf="loadingOntology">
+                      <span
+                        class="spinner-border spinner-border-sm me-2"
+                        role="status"
+                      ></span>
+                      Processing...
+                    </span>
+                  </button>
+                  <div
+                    *ngIf="successOntology"
+                    class="alert alert-success mt-3"
+                    role="alert"
+                  >
+                    <i class="bi bi-check-circle me-2"></i>
+                    {{ successOntology }}
+                  </div>
+                  <div
+                    *ngIf="errorOntology"
+                    class="alert alert-danger mt-3"
+                    role="alert"
+                  >
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    {{ errorOntology }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6" *ngIf="tableFileName">
+              <div class="card border-success">
+                <div class="card-body text-center">
+                  <i class="bi bi-table text-success fs-2 mb-2"></i>
+                  <h6 class="card-title">Data Source Schema</h6>
+                  <p class="card-text text-truncate" [title]="tableFileName">
+                    {{ tableFileName }}
+                  </p>
+                  <button
+                    type="button"
+                    class="btn btn-success btn-sm px-3 py-2"
+                    (click)="postFilesSchema()"
+                    [disabled]="loadingSchema || !tableFile"
+                  >
+                    <span *ngIf="!loadingSchema">
+                      <i class="bi bi-play-circle me-2"></i>
+                      Get Terms Suggestion (from LLM)
+                    </span>
+                    <span *ngIf="loadingSchema">
+                      <span
+                        class="spinner-border spinner-border-sm me-2"
+                        role="status"
+                      ></span>
+                      Processing...
+                    </span>
+                  </button>
+                  <div
+                    *ngIf="successSchema"
+                    class="alert alert-success mt-3"
+                    role="alert"
+                  >
+                    <i class="bi bi-check-circle me-2"></i>
+                    {{ successSchema }}
+                  </div>
+                  <div
+                    *ngIf="errorSchema"
+                    class="alert alert-danger mt-3"
+                    role="alert"
+                  >
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    {{ errorSchema }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms Suggestion Editable Table -->
+          <div
+            class="row"
+            *ngIf="
+              (termsSuggestion && termsSuggestion.length > 0) ||
+              loadingTermsSuggestion
+            "
+          >
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="mb-0">
+                    <i class="bi bi-table me-2"></i>
+                    Terms Suggestion
+                    <!-- Loading spinner in header -->
+                    <span *ngIf="loadingTermsSuggestion" class="ms-2">
+                      <span
+                        class="spinner-border spinner-border-sm text-primary"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </span>
+                  </h5>
+                  <div class="btn-group" role="group">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      (click)="saveTermsSuggestion()"
+                      title="Save changes"
+                      [disabled]="loadingTermsSuggestion"
+                    >
+                      <i class="bi bi-save me-1"></i>
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary btn-sm"
+                      (click)="resetTermsSuggestion()"
+                      title="Reset table"
+                      [disabled]="loadingTermsSuggestion"
+                    >
+                      <i class="bi bi-arrow-clockwise me-1"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Loading State -->
+                <div
+                  *ngIf="
+                    loadingTermsSuggestion &&
+                    (!termsSuggestion || termsSuggestion.length === 0)
+                  "
+                  class="card-body"
+                >
+                  <div
+                    class="d-flex justify-content-center align-items-center py-5"
+                  >
+                    <div class="text-center">
+                      <div
+                        class="spinner-border text-primary mb-3"
+                        role="status"
+                      >
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <h6 class="text-muted">Loading Terms Suggestion...</h6>
+                      <p class="text-muted small mb-0">
+                        Fetching suggested terms from backend, please wait...
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Table Content -->
+                <div
+                  *ngIf="
+                    !loadingTermsSuggestion ||
+                    (termsSuggestion && termsSuggestion.length > 0)
+                  "
+                  class="card-body p-0"
+                >
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                      <thead class="table-dark">
+                        <tr>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            #
+                          </th>
+                          <th scope="col" style="width: 17%">
+                            <i class="bi bi-database me-1"></i>
+                            Table Name
+                          </th>
+                          <th scope="col" style="width: 17%">
+                            <i class="bi bi-columns me-1"></i>
+                            Column Name
+                          </th>
+                          <th scope="col" style="width: 19%">
+                            <i class="bi bi-arrow-right me-1"></i>
+                            Improved Table Name
+                          </th>
+                          <th scope="col" style="width: 20%">
+                            <i class="bi bi-arrow-right me-1"></i>
+                            Improved Column Name
+                          </th>
+                          <th scope="col" style="width: 17%">
+                            <i class="bi bi-arrow-right me-1"></i>
+                            Related Table
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <i class="bi bi-gear"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Loading rows overlay -->
+                        <tr
+                          *ngIf="
+                            loadingTermsSuggestion &&
+                            termsSuggestion &&
+                            termsSuggestion.length > 0
+                          "
+                        >
+                          <td colspan="7" class="text-center py-3">
+                            <div
+                              class="d-flex justify-content-center align-items-center"
+                            >
+                              <div
+                                class="spinner-border spinner-border-sm text-primary me-2"
+                                role="status"
+                              >
+                                <span class="visually-hidden">Loading...</span>
+                              </div>
+                              <span class="text-muted"
+                                >Updating terms suggestion...</span
+                              >
+                            </div>
+                          </td>
+                        </tr>
+
+                        <!-- Data rows -->
+                        <tr
+                          *ngFor="let term of termsSuggestion; let i = index"
+                          class="editable-row"
+                          [class.opacity-50]="loadingTermsSuggestion"
+                        >
+                          <td class="text-center align-middle">
+                            <span class="badge bg-secondary">{{ i + 1 }}</span>
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="term.table_name"
+                              disabled
+                              placeholder="Enter table name..."
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="term.column_name"
+                              disabled
+                              placeholder="Enter column name..."
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="term.improved_table_name"
+                              (input)="
+                                onTermSuggestionChange(
+                                  i,
+                                  'improved_table_name',
+                                  $event
+                                )
+                              "
+                              placeholder="Enter improved table name..."
+                              [disabled]="loadingTermsSuggestion"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="term.improved_column_name"
+                              (input)="
+                                onTermSuggestionChange(
+                                  i,
+                                  'improved_column_name',
+                                  $event
+                                )
+                              "
+                              placeholder="Enter improved column name..."
+                              [disabled]="loadingTermsSuggestion"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [ngClass]="{
+                                'bg-light-green':
+                                  term.related_table &&
+                                  term.related_table.trim() !== ''
+                              }"
+                              [value]="term.related_table || ''"
+                              (input)="
+                                onTermSuggestionChange(
+                                  i,
+                                  'related_table',
+                                  $event
+                                )
+                              "
+                              placeholder="..."
+                              [disabled]="loadingTermsSuggestion"
+                            />
+                          </td>
+                          <td class="text-center align-middle">
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger btn-sm"
+                              (click)="removeTermSuggestion(i)"
+                              [disabled]="
+                                termsSuggestion.length <= 1 ||
+                                loadingTermsSuggestion
+                              "
+                              title="Remove row"
+                            >
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
+                        </tr>
+
+                        <!-- Empty state when no data and not loading -->
+                        <tr
+                          *ngIf="
+                            !loadingTermsSuggestion &&
+                            (!termsSuggestion || termsSuggestion.length === 0)
+                          "
+                        >
+                          <td colspan="7" class="text-center py-5">
+                            <div class="text-muted">
+                              <i class="bi bi-table fs-2 mb-2"></i>
+                              <p class="mb-0">No terms suggestion available</p>
+                              <small
+                                >Process your data source schema to generate
+                                suggestions</small
+                              >
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Footer -->
+                <div
+                  *ngIf="
+                    !loadingTermsSuggestion ||
+                    (termsSuggestion && termsSuggestion.length > 0)
+                  "
+                  class="card-footer text-muted"
+                >
+                  <small>
+                    <i class="bi bi-info-circle me-1"></i>
+                    <span *ngIf="!loadingTermsSuggestion">
+                      Total terms: {{ termsSuggestion!.length || 0 }} | Click on
+                      any cell to edit the values directly
+                    </span>
+                    <span *ngIf="loadingTermsSuggestion">
+                      Loading terms suggestion from backend...
+                    </span>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Schema Embedding Button -->
+          <div
+            class="row mt-4"
+            *ngIf="termsSuggestion && termsSuggestion.length > 0"
+          >
+            <div class="col-12">
+              <div class="card shadow-sm border-info">
+                <div class="card-body text-center">
+                  <h5 class="card-title mb-4">
+                    <i class="bi bi-vector-pen me-2"></i>
+                    Schema Embedding
+                  </h5>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm px-3 py-2"
+                    (click)="postFilesSchemaEmbedding()"
+                    [disabled]="loadingEmbedding || !tableFile"
+                  >
+                    <span *ngIf="!loadingEmbedding">
+                      <i class="bi bi-play-circle me-2"></i>
+                      Process Schema for Embeddings
+                    </span>
+                    <span *ngIf="loadingEmbedding">
+                      <span
+                        class="spinner-border spinner-border-sm me-2"
+                        role="status"
+                      ></span>
+                      Processing Embeddings...
+                    </span>
+                  </button>
+
+                  <div
+                    *ngIf="successEmbeddings"
+                    class="alert alert-success mt-4"
+                    role="alert"
+                  >
+                    <i class="bi bi-check-circle me-2"></i>
+                    {{ successEmbeddings }}
+                  </div>
+
+                  <div
+                    *ngIf="errorEmbeddings"
+                    class="alert alert-danger mt-4"
+                    role="alert"
+                  >
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    {{ errorEmbeddings }}
+                  </div>
+
+                  <p class="text-muted mt-3 mb-0">
+                    <small>
+                      <i class="bi bi-info-circle me-1"></i>
+                      This will process the selected schema file and generate
+                      embeddings for similarity matching.
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Schema Summary Button -->
+          <div
+            class="row mt-4"
+            *ngIf="
+              termsSuggestion &&
+              termsSuggestion.length > 0 &&
+              flatExportedOntologySchemaData &&
+              flatExportedOntologySchemaData.length > 0
+            "
+          >
+            <div class="col-12">
+              <div class="card shadow-sm border-info">
+                <div class="card-body text-center">
+                  <h5 class="card-title mb-4">
+                    <i class="bi bi-vector-pen me-2"></i>
+                    Global Schema Summary
+                  </h5>
+
+                  <!-- Add button to trigger schema summary -->
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="postFilesSchemaSummary()"
+                    [disabled]="
+                      loadingSummary ||
+                      !termsSuggestion.length ||
+                      !flatExportedOntologySchemaData.length
+                    "
+                  >
+                    <span
+                      *ngIf="loadingSummary"
+                      class="spinner-border spinner-border-sm me-2"
+                    ></span>
+                    <i *ngIf="!loadingSummary" class="bi bi-diagram-3 me-2"></i>
+                    {{
+                      loadingSummary
+                        ? "Generating Schema Summary..."
+                        : "Generate Schema Summary"
+                    }}
+                  </button>
+
+                  <!-- Preview button -->
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary ms-2"
+                    (click)="previewSchemaSummary()"
+                    [disabled]="
+                      !termsSuggestion.length ||
+                      !flatExportedOntologySchemaData.length
+                    "
+                  >
+                    <i class="bi bi-eye me-2"></i>
+                    Preview Summary
+                  </button>
+
+                  <!-- Success/Error messages -->
+                  <div *ngIf="successSchema" class="alert alert-success mt-3">
+                    <i class="bi bi-check-circle me-2"></i>
+                    {{ successSchema }}
+                  </div>
+
+                  <div *ngIf="errorSchema" class="alert alert-danger mt-3">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    {{ errorSchema }}
+                  </div>
+
+                  <!-- Display result -->
+                  <div *ngIf="globalSchemaSummary" class="mt-3">
+                    <h5>Schema Summary Result:</h5>
+                    <pre class="bg-light p-3 rounded text-start">{{
+                      globalSchemaSummary
+                    }}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAPPING TAB -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 'mapping'"
+          [class.active]="activeTab === 'mapping'"
+          id="mapping"
+          role="tabpanel"
+          aria-labelledby="mapping-tab"
+        >
+          <div class="row g-3 mb-4" *ngIf="ontologyFileName || tableFileName">
+            <div class="col-12 col-md-6" *ngIf="ontologyFileName">
+              <div class="card border-primary">
+                <div
+                  class="card-header bg-primary text-white d-flex align-items-center"
+                >
+                  <i class="bi bi-diagram-2 me-2"></i>
+                  <h5 class="mb-0">Target Ontology</h5>
+                </div>
+                <div class="card-body text-center">
+                  <i class="bi bi-diagram-2 text-primary fs-2 mb-2"></i>
+                  <div class="mb-3">
+                    <label
+                      for="chromaDBCollectionSelect"
+                      class="form-label fw-bold"
+                    >
+                      <i class="bi bi-collection me-1"></i>
+                      ChromaDB Collection (Vector Database)
+                    </label>
+                    <select
+                      id="chromaDBCollectionSelect"
+                      class="form-select"
+                      [(ngModel)]="selectedChromaDBCollection"
+                      [disabled]="
+                        !chromaDBCollections || chromaDBCollections.length === 0
+                      "
+                    >
+                      <option
+                        *ngFor="let col of chromaDBCollections"
+                        [value]="col.name"
+                      >
+                        {{ col.name }} ({{ col.count }} items)
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-md-6"
+              *ngIf="
+                termsSuggestion &&
+                termsSuggestion.length > 0 &&
+                embeddingsResult &&
+                embeddingsResult.length > 0
+              "
+            >
+              <div class="card border-success">
+                <div
+                  class="card-header bg-success text-white d-flex align-items-center"
+                >
+                  <i class="bi bi-table me-2"></i>
+                  <h5 class="mb-0">Data Source Schema Embeddings</h5>
+                </div>
+                <div class="card-body text-center">
+                  <i class="bi bi-table text-success fs-2 mb-2"></i>
+                  <h6 class="card-title">Data Source Schema</h6>
+                  <p class="card-text" [title]="tableFileName">
+                    {{ tableFileName }}
+                  </p>
+                  <p class="card-text" [title]="embeddingsResult">
+                    (Processed with
+                    {{ embeddingsResult.length }} embeddings)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <i class="bi bi-diagram-3 me-2"></i>
+                    Mapping Process - Class
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                      <label for="resultBox" class="form-label fw-bold mb-0">
+                        Get Class Candidates (From Vector DB):
+                      </label>
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-sm px-3 py-2"
+                        (click)="retrieveCandidates()"
+                        [disabled]="loadingCandidate"
+                      >
+                        <span *ngIf="!loadingCandidate">
+                          <i class="bi bi-search me-2"></i>
+                          Retrieve Candidates
+                        </span>
+                        <span *ngIf="loadingCandidate">
+                          <span
+                            class="spinner-border spinner-border-sm me-2"
+                            role="status"
+                          ></span>
+                          Retrieving...
+                        </span>
+                      </button>
+                    </div>
+                    <textarea
+                      id="resultBox"
+                      class="form-control"
+                      rows="15"
+                      readonly
+                      wrap="off"
+                      [value]="candidateResultView"
+                      placeholder="Results will appear here after processing..."
+                      style="
+                        font-family: 'Courier New', monospace;
+                        font-size: 14px;
+                        white-space: nowrap;
+                        overflow-x: auto;
+                      "
+                    ></textarea>
+                  </div>
+                  <i class="bi bi-diagram-2 me-2"></i>
+                  <hr class="my-4 border border-secondary border-2 rounded" />
+                  <div class="form-group">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                      <label for="resultBox" class="form-label fw-bold mb-0">
+                        Select a Candidate (Using LLM):
+                      </label>
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-sm px-3 py-2"
+                        (click)="selectCandidatesWithLLM()"
+                        [disabled]="loadingSelectedCandidates"
+                      >
+                        <span *ngIf="!loadingSelectedCandidates">
+                          <i class="bi bi-search me-2"></i>
+                          Select Candidates
+                        </span>
+                        <span *ngIf="loadingSelectedCandidates">
+                          <span
+                            class="spinner-border spinner-border-sm me-2"
+                            role="status"
+                          ></span>
+                          Retrieving...
+                        </span>
+                      </button>
+                    </div>
+                    <textarea
+                      id="resultBox"
+                      class="form-control"
+                      rows="15"
+                      readonly
+                      [value]="selectedCandidateResultView"
+                      placeholder="Results will appear here after processing..."
+                      style="
+                        font-family: 'Courier New', monospace;
+                        font-size: 14px;
+                      "
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Suggested Mapping Table To Class-->
+          <div
+            class="row mt-4"
+            *ngIf="
+              suggestedMappingTableToClass &&
+              suggestedMappingTableToClass.length > 0
+            "
+          >
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="mb-0">
+                    <i class="bi bi-diagram-3 me-2"></i>
+                    Suggested Mapping Table To Class
+                  </h5>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                      <thead class="table-dark">
+                        <tr>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              [checked]="areAllTableToClassMappingsSelected()"
+                              [indeterminate]="
+                                areSomeTableToClassMappingsSelected()
+                              "
+                              (change)="
+                                toggleAllTableToClassMappingsSelection($event)
+                              "
+                              title="Select all"
+                            />
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            #
+                          </th>
+                          <th scope="col" style="width: 25%">
+                            <i class="bi bi-database me-1"></i>
+                            Table Name
+                          </th>
+                          <th scope="col" style="width: 30%">
+                            <i class="bi bi-lightbulb me-1"></i>
+                            Suggested Class
+                          </th>
+                          <th scope="col" style="width: 30%">
+                            <i class="bi bi-link-45deg me-1"></i>
+                            Suggested Class IRI
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <i class="bi bi-gear"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let mappingTable of suggestedMappingTableToClass;
+                            let i = index
+                          "
+                          class="editable-row"
+                          [class.table-warning]="mappingTable.selected"
+                        >
+                          <td class="text-center align-middle">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              [(ngModel)]="mappingTable.selected"
+                              (change)="onMappingTableSelectionChange()"
+                            />
+                          </td>
+                          <td class="text-center align-middle">
+                            <span class="badge bg-secondary">{{ i + 1 }}</span>
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="mappingTable.table_name"
+                              disabled
+                              placeholder="Table name"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="mappingTable.suggestedClass"
+                              (input)="
+                                onSuggestedMappingTableChange(
+                                  i,
+                                  'suggestedClass',
+                                  $event
+                                )
+                              "
+                              placeholder="Enter suggested class..."
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="url"
+                              class="form-control form-control-sm"
+                              [value]="mappingTable.suggestedClassIRI"
+                              (input)="
+                                onSuggestedMappingTableChange(
+                                  i,
+                                  'suggestedClassIRI',
+                                  $event
+                                )
+                              "
+                              placeholder="Enter suggested class IRI..."
+                            />
+                          </td>
+                          <td class="text-center align-middle">
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger btn-sm"
+                              (click)="removeSuggestedMappingTable(i)"
+                              [disabled]="
+                                suggestedMappingTableToClass.length <= 1
+                              "
+                              title="Remove row"
+                            >
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <small class="text-muted">
+                      <i class="bi bi-info-circle me-1"></i>
+                      Total mappings:
+                      {{ suggestedMappingTableToClass.length }} | Selected:
+                      {{ getSelectedTableMappingsCount() }}
+                    </small>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm"
+                      (click)="selectMappingTableToClassByUser()"
+                      [disabled]="
+                        getSelectedTableMappingsCount() === 0 ||
+                        loadingProcessSelectedTableMappings ||
+                        disableProcessSelectedMappingsButton
+                      "
+                    >
+                      <span *ngIf="!loadingProcessSelectedTableMappings">
+                        <i class="bi bi-check-circle me-2"></i>
+                        Process Selected Mappings ({{
+                          getSelectedTableMappingsCount()
+                        }})
+                      </span>
+                      <span *ngIf="loadingProcessSelectedTableMappings">
+                        <span
+                          class="spinner-border spinner-border-sm me-2"
+                          role="status"
+                        ></span>
+                        Processing...
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Suggested Mapping Classes Editable Table (Column to Class) -->
+          <!-- <div
+            class="row mt-4"
+            *ngIf="
+              suggestedMappingClasses && suggestedMappingClasses.length > 0
+            "
+          >
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="mb-0">
+                    <i class="bi bi-diagram-3 me-2"></i>
+                    Suggested Mapping Classes
+                  </h5>
+                  <div class="btn-group" role="group">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      (click)="saveSuggestedMappingClasses()"
+                      title="Save changes"
+                    >
+                      <i class="bi bi-save me-1"></i>
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary btn-sm"
+                      (click)="resetSuggestedMappingClasses()"
+                      title="Reset table"
+                    >
+                      <i class="bi bi-arrow-clockwise me-1"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                      <thead class="table-dark">
+                        <tr>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              [checked]="areAllMappingsSelected()"
+                              [indeterminate]="areSomeMappingsSelected()"
+                              (change)="toggleAllMappingsSelection($event)"
+                              title="Select all"
+                            />
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            #
+                          </th>
+                          <th scope="col" style="width: 20%">
+                            <i class="bi bi-database me-1"></i>
+                            Table Name
+                          </th>
+                          <th scope="col" style="width: 20%">
+                            <i class="bi bi-columns me-1"></i>
+                            Column Name
+                          </th>
+                          <th scope="col" style="width: 20%">
+                            <i class="bi bi-lightbulb me-1"></i>
+                            Suggested Class
+                          </th>
+                          <th scope="col" style="width: 20%">
+                            <i class="bi bi-link-45deg me-1"></i>
+                            Suggested Class IRI
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <i class="bi bi-gear"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let mapping of suggestedMappingClasses;
+                            let i = index
+                          "
+                          class="editable-row"
+                          [class.table-warning]="mapping.selected"
+                        >
+                          <td class="text-center align-middle">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              [(ngModel)]="mapping.selected"
+                              (change)="onMappingSelectionChange()"
+                            />
+                          </td>
+                          <td class="text-center align-middle">
+                            <span class="badge bg-secondary">{{ i + 1 }}</span>
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="mapping.table_name"
+                              disabled
+                              placeholder="Table name"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="mapping.column_name"
+                              disabled
+                              placeholder="Column name"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control form-control-sm"
+                              [value]="mapping.suggestedClass"
+                              (input)="
+                                onSuggestedMappingChange(
+                                  i,
+                                  'suggestedClass',
+                                  $event
+                                )
+                              "
+                              placeholder="Enter suggested class..."
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="url"
+                              class="form-control form-control-sm"
+                              [value]="mapping.suggestedClassIRI"
+                              (input)="
+                                onSuggestedMappingChange(
+                                  i,
+                                  'suggestedClassIRI',
+                                  $event
+                                )
+                              "
+                              placeholder="Enter suggested class IRI..."
+                            />
+                          </td>
+                          <td class="text-center align-middle">
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger btn-sm"
+                              (click)="removeSuggestedMapping(i)"
+                              [disabled]="suggestedMappingClasses.length <= 1"
+                              title="Remove row"
+                            >
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <small class="text-muted">
+                      <i class="bi bi-info-circle me-1"></i>
+                      Total mappings: {{ suggestedMappingClasses.length }} |
+                      Selected: {{ getSelectedMappingsCount() }}
+                    </small>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm"
+                      (click)="selectMappingClassByUser()"
+                      [disabled]="
+                        getSelectedMappingsCount() === 0 ||
+                        loadingProcessSelectedMappings ||
+                        disableProcessSelectedMappingsButton
+                      "
+                    >
+                      <span *ngIf="!loadingProcessSelectedMappings">
+                        <i class="bi bi-check-circle me-2"></i>
+                        Process Selected Mappings ({{
+                          getSelectedMappingsCount()
+                        }})
+                      </span>
+                      <span *ngIf="loadingProcessSelectedMappings">
+                        <span
+                          class="spinner-border spinner-border-sm me-2"
+                          role="status"
+                        ></span>
+                        Processing...
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <i class="bi bi-diagram-2 me-2"></i>
+          <div class="row" *ngIf="suggestedMappingClassProperties.length > 0">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <i class="bi bi-diagram-3 me-2"></i>
+                    Mapping Process - Properties
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                      <label for="resultBox" class="form-label fw-bold mb-0">
+                        Get Properties Candidates:
+                      </label>
+                      <button
+                        type="button"
+                        class="btn btn-success btn-sm"
+                        (click)="suggestPropertiesWithLLM()"
+                        [disabled]="loadingPropertiesSuggestion"
+                      >
+                        <span *ngIf="!loadingPropertiesSuggestion">
+                          <i class="bi bi-magic me-2"></i>
+                          Suggest Properties with LLM
+                        </span>
+                        <span *ngIf="loadingPropertiesSuggestion">
+                          <span
+                            class="spinner-border spinner-border-sm me-2"
+                          ></span>
+                          Processing...
+                        </span>
+                      </button>
+                    </div>
+                    <textarea
+                      id="resultBox"
+                      class="form-control"
+                      rows="15"
+                      readonly
+                      wrap="off"
+                      [value]="selectedSuggestedMappingClassPropertiesView"
+                      placeholder="Results will appear here after processing..."
+                      style="
+                        font-family: 'Courier New', monospace;
+                        font-size: 14px;
+                        white-space: nowrap;
+                        overflow-x: auto;
+                      "
+                    ></textarea>
+                  </div>
+                  <i class="bi bi-diagram-2 me-2"></i>
+                  <hr class="my-4 border border-secondary border-2 rounded" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Properties Suggestion Results Editable Table -->
+          <div
+            class="row mt-4"
+            *ngIf="
+              selectedSuggestedMappingClassProperties &&
+              selectedSuggestedMappingClassProperties.length > 0 &&
+              hasPropertiesSuggestionResults()
+            "
+          >
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="mb-0">
+                    <i class="bi bi-table me-2"></i>
+                    Properties Suggestion Results
+                  </h5>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                      <thead class="table-dark">
+                        <tr>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <input
+                              type="checkbox"
+                              class="form-check-input"
+                              title="Select all"
+                              [checked]="areAllPropertiesMappingsSelected()"
+                              [indeterminate]="
+                                areSomePropertiesMappingsSelected()
+                              "
+                              (change)="
+                                toggleAllPropertiesMappingsSelection($event)
+                              "
+                            />
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            #
+                          </th>
+                          <th scope="col" style="width: 15%">
+                            <i class="bi bi-columns me-1"></i>
+                            Column Name
+                          </th>
+                          <th scope="col" style="width: 15%">
+                            <i class="bi bi-gear me-1"></i>
+                            Properties
+                          </th>
+                          <th scope="col" style="width: 10%">
+                            <i class="bi bi-tag me-1"></i>
+                            Type
+                          </th>
+                          <th scope="col" style="width: 10%">
+                            <i class="bi bi-tag me-1"></i>
+                            New Property?
+                          </th>
+                          <th scope="col" class="text-center" style="width: 5%">
+                            <i class="bi bi-gear"></i>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container
+                          *ngFor="
+                            let classMapping of selectedSuggestedMappingClassProperties;
+                            let i = index
+                          "
+                        >
+                          <tr
+                            class="editable-row"
+                            [class.table-warning]="
+                              classMapping.allSuggestionPropertiesSelected
+                            "
+                          >
+                            <td class="text-center align-middle">
+                              <input
+                                type="checkbox"
+                                class="form-check-input"
+                                [checked]="
+                                  areAllSuggestionPropertiesSelected(i)
+                                "
+                                [indeterminate]="
+                                  areSomeSuggestionPropertiesSelected(i)
+                                "
+                                [(ngModel)]="
+                                  classMapping.allSuggestionPropertiesSelected
+                                "
+                                (change)="
+                                  toggleClassPropertiesSelection(i, $event)
+                                "
+                              />
+                            </td>
+                            <td
+                              class="fw-bold text-start align-middle"
+                              colspan="6"
+                            >
+                              Table:
+                              <span class="text-primary">{{
+                                classMapping.table_name
+                              }}</span>
+                              <span class="mx-2">→</span>
+                              Class:
+                              <span class="text-success">{{
+                                classMapping.suggestedClass
+                              }}</span>
+                            </td>
+                          </tr>
+                          <tr
+                            *ngFor="
+                              let propertyMapping of classMapping.llmPropertiesSuggestionResult;
+                              let j = index
+                            "
+                            class="editable-row"
+                            [class.table-warning]="propertyMapping.selected"
+                          >
+                            <td class="text-center align-middle">
+                              <input
+                                type="checkbox"
+                                class="form-check-input"
+                                [(ngModel)]="propertyMapping.selected"
+                                (change)="onPropertySelectionChange()"
+                              />
+                            </td>
+                            <td class="text-center align-middle">
+                              <span class="badge bg-secondary">{{
+                                j + 1
+                              }}</span>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [value]="propertyMapping.column_name"
+                                disabled
+                                placeholder="Column name"
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [value]="propertyMapping.properties"
+                                [(ngModel)]="propertyMapping.properties"
+                                placeholder="Enter suggested property..."
+                              />
+                            </td>
+                            <td>
+                              <select
+                                class="form-select form-select-sm"
+                                [value]="propertyMapping.type"
+                                [(ngModel)]="propertyMapping.type"
+                              >
+                                <option value="" disabled>Select type</option>
+                                <option value="data">Data Property</option>
+                                <option value="object">Object Property</option>
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [value]="propertyMapping.new_property"
+                                [(ngModel)]="propertyMapping.new_property"
+                                placeholder="Enter suggested property..."
+                                disabled
+                              />
+                            </td>
+                            <td class="text-center align-middle">
+                              <button
+                                type="button"
+                                class="btn btn-outline-danger btn-sm"
+                                (click)="removePropertySuggestion(i, j)"
+                                title="Remove row"
+                              >
+                                <i class="bi bi-trash"></i>
+                              </button>
+                            </td></tr
+                        ></ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <small class="text-muted">
+                      <i class="bi bi-info-circle me-1"></i>
+                      Total mappings: {{ getPropertiesMappingsCount() }} |
+                      Selected: {{ getPropertiesSelectedMappingsCount() }}
+                    </small>
+                    <div
+                      *ngIf="successWriteMapping"
+                      class="alert alert-success mt-3"
+                      role="alert"
+                    >
+                      <i class="bi bi-check-circle me-2"></i>
+                      {{ successWriteMapping }}
+                    </div>
+
+                    <div
+                      *ngIf="errorWriteMapping"
+                      class="alert alert-danger mt-3"
+                      role="alert"
+                    >
+                      <i class="bi bi-exclamation-triangle me-2"></i>
+                      {{ errorWriteMapping }}
+                    </div>
+                    <!-- Add this inside the Table Schema Card body, after the file selector -->
+                    <div class="mt-3">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="csvSourceCheck"
+                          [(ngModel)]="isDataSourceCSV"
+                          (change)="onDataSourceTypeChange($event)"
+                        />
+                        <label class="form-check-label" for="csvSourceCheck">
+                          <i class="bi bi-file-earmark-spreadsheet me-1"></i>
+                          The Data Sources is CSV file
+                        </label>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm"
+                      (click)="writeMappingFile()"
+                      [disabled]="
+                        getPropertiesSelectedMappingsCount() === 0 ||
+                        loadingWriteMapping ||
+                        disablePropertiesProcessSelectedMappingsButton
+                      "
+                    >
+                      <span *ngIf="!loadingWriteMapping">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <span class="d-none d-sm-inline"
+                          >Write Mapping File</span
+                        >
+                        <span class="d-inline d-sm-none">Write</span>
+                        ({{ getPropertiesSelectedMappingsCount() }})
+                      </span>
+                      <span *ngIf="loadingWriteMapping">
+                        <span
+                          class="spinner-border spinner-border-sm me-2"
+                          role="status"
+                        ></span>
+                        Processing...
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- MAPPING RESULT -->
+          <i class="bi bi-diagram-2 me-2"></i>
+          <div class="row" *ngIf="writeMappingResult !== ''">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <i class="bi bi-diagram-3 me-2"></i>
+                    Mapping Result
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                      <label for="resultBox" class="form-label fw-bold mb-0">
+                        R2RML mapping result:
+                      </label>
+                      <button
+                        type="button"
+                        class="btn btn-success btn-sm"
+                        (click)="downloadR2RMLResult()"
+                      >
+                        <span>
+                          <i class="bi bi-magic me-2"></i>
+                          Download Mapping File
+                        </span>
+                      </button>
+                    </div>
+                    <textarea
+                      id="resultBox"
+                      class="form-control"
+                      rows="15"
+                      readonly
+                      wrap="off"
+                      [value]="writeMappingResult"
+                      placeholder="Results will appear here after processing..."
+                      style="
+                        font-family: 'Courier New', monospace;
+                        font-size: 14px;
+                        white-space: nowrap;
+                        overflow-x: auto;
+                      "
+                    ></textarea>
+                  </div>
+                  <i class="bi bi-diagram-2 me-2"></i>
+                  <hr class="my-4 border border-secondary border-2 rounded" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- EVALUATION TAB -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 'evaluation'"
+          [class.active]="activeTab === 'evaluation'"
+          id="evaluation"
+          role="tabpanel"
+          aria-labelledby="evaluation-tab"
+        >
+          <div class="row">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-body text-center">
+                  <i class="bi bi-check-circle text-success fs-1 mb-3"></i>
+                  <h4>Evaluation Module</h4>
+                  <p class="text-muted">
+                    Mapping evaluation features will be implemented here.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTPUT TAB -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 'output'"
+          [class.active]="activeTab === 'output'"
+          id="output"
+          role="tabpanel"
+          aria-labelledby="output-tab"
+        >
+          <div class="row">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-body text-center">
+                  <i class="bi bi-download text-info fs-1 mb-3"></i>
+                  <h4>Output Generation</h4>
+                  <p class="text-muted">
+                    Download and export options will be available here.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

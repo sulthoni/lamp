@@ -1,0 +1,29 @@
+Flask
+flask-cors
+mysql-connector-python
+pyodbc
+rdflib
+# graphdb_client
+typing
+requests
+# json
+python-dotenv
+scikit-learn
+sentence-transformers
+python-dotenv
+dataclasses
+pandas
+chromadb
+google
+pyrml
+langchain
+langchain-google-genai
+langchain-community
+langchain-chroma
+langchain-core
+langsmith
+langgraph
+pydantic
+langchain-openai
+langchain-anthropic
+google-generativeai

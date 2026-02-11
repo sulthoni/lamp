@@ -1,0 +1,10 @@
+<div class="mb-3">
+  <label for="fileInput" class="form-label">Select Turtle File:</label>
+  <input
+    type="file"
+    class="form-control"
+    id="fileInput"
+    (change)="onFileSelected($event)"
+    accept=".ttl,.turtle"
+  />
+</div>

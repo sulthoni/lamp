@@ -1,0 +1,390 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="display-6 mb-4">GraphDB Repository Manager</h2>
+    </div>
+  </div>
+
+  <!-- Alert Messages -->
+  <div
+    *ngIf="successMessage"
+    class="alert alert-success alert-dismissible fade show"
+    role="alert"
+  >
+    {{ successMessage }}
+    <button
+      type="button"
+      class="btn-close"
+      (click)="successMessage = ''"
+    ></button>
+  </div>
+  <div
+    *ngIf="errorMessage"
+    class="alert alert-danger alert-dismissible fade show"
+    role="alert"
+  >
+    {{ errorMessage }}
+    <button
+      type="button"
+      class="btn-close"
+      (click)="errorMessage = ''"
+    ></button>
+  </div>
+
+  <div class="row">
+    <!-- Create Repository Form -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="h5 mb-0">Create New Ontop Virtual SPARQL Repository</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="repositoryForm" (ngSubmit)="createRepository()">
+            <!-- Basic Repository Info -->
+            <div class="mb-3">
+              <label class="form-label">Repository ID</label>
+              <input
+                type="text"
+                formControlName="repositoryId"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    repositoryForm.get('repositoryId')?.invalid &&
+                    repositoryForm.get('repositoryId')?.touched
+                }"
+              />
+              <div class="invalid-feedback">
+                Repository ID is required and must contain only letters,
+                numbers, hyphens, and underscores
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Repository Title</label>
+              <input
+                type="text"
+                formControlName="title"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    repositoryForm.get('title')?.invalid &&
+                    repositoryForm.get('title')?.touched
+                }"
+              />
+              <div class="invalid-feedback">Repository title is required</div>
+            </div>
+
+            <!-- Enhanced dropdown with better connection info display -->
+            <!-- <div class="card mb-3">
+              <div
+                class="card-header bg-light d-flex justify-content-between align-items-center"
+              >
+                <span>
+                  <i class="bi bi-database me-2"></i>
+                  Saved Database Connections
+                </span>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                  (click)="loadSavedConnections()"
+                  [disabled]="loadingConnections"
+                >
+                  <span
+                    *ngIf="loadingConnections"
+                    class="spinner-border spinner-border-sm me-1"
+                  ></span>
+                  <i
+                    *ngIf="!loadingConnections"
+                    class="bi bi-arrow-clockwise me-1"
+                  ></i>
+                  Refresh
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <label class="form-label">Select Saved Connection</label>
+                    <select
+                      class="form-select"
+                      [(ngModel)]="selectedConnectionId"
+                      (change)="onConnectionSelected()"
+                      [disabled]="
+                        loadingConnections || savedConnections.length === 0
+                      "
+                    >
+                      <option value="">-- Select a saved connection --</option>
+                      <option
+                        *ngFor="let connection of savedConnections"
+                        [value]="connection.id"
+                      >
+                        {{ connection.connectionName }} -
+                        {{ connection.databaseName }} ({{ connection.host }}:{{
+                          connection.port
+                        }})
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 d-flex align-items-end">
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger w-100"
+                      (click)="clearConnectionSelection()"
+                      [disabled]="!selectedConnectionId"
+                    >
+                      <i class="bi bi-x-lg me-1"></i>
+                      Clear Selection
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-text mt-2">
+                  Select a previously saved database connection to auto-fill the
+                  connection form below
+                </div>
+
+                <div *ngIf="getSelectedConnection()" class="mt-3">
+                  <div class="alert alert-success">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <strong>Connection:</strong>
+                        {{ getSelectedConnection()?.connectionName }}<br />
+                        <strong>Database:</strong>
+                        {{ getSelectedConnection()?.databaseName }}
+                      </div>
+                      <div class="col-md-6">
+                        <strong>Host:</strong>
+                        {{ getSelectedConnection()?.host }}:{{
+                          getSelectedConnection()?.port
+                        }}<br />
+                        <strong>Driver:</strong>
+                        {{ getSelectedConnection()?.driverClass }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="!loadingConnections && savedConnections.length === 0"
+                  class="alert alert-warning mt-3"
+                >
+                  <i class="bi bi-exclamation-triangle me-2"></i>
+                  No saved connections found. You can create and save
+                  connections in the
+                  <strong>Database Connections</strong> section.
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Database Connection Info -->
+            <div class="card mb-3">
+              <div class="card-header bg-light">Database Connection</div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label">JDBC Driver</label>
+                  <select
+                    formControlName="jdbcDriver"
+                    class="form-select"
+                    (change)="onJdbcDriverChange()"
+                  >
+                    <option value="org.postgresql.Driver">PostgreSQL</option>
+                    <option value="com.mysql.jdbc.Driver">MySQL</option>
+                    <option value="oracle.jdbc.driver.OracleDriver">
+                      Oracle
+                    </option>
+                    <option
+                      value="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                    >
+                      SQL Server
+                    </option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">JDBC URL</label>
+                  <input
+                    type="text"
+                    formControlName="jdbcUrl"
+                    class="form-control"
+                    placeholder="jdbc:postgresql://localhost:5432/dbname"
+                  />
+                  <div class="form-text">
+                    Example: jdbc:postgresql://localhost:5432/dbname
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Database Username</label>
+                  <input
+                    type="text"
+                    formControlName="dbUsername"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Database Password</label>
+                  <input
+                    type="password"
+                    formControlName="dbPassword"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Database Name</label>
+                  <input
+                    type="text"
+                    formControlName="dbName"
+                    class="form-control"
+                    (input)="onJdbcDriverChange()"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary mb-3"
+                  (click)="testConnection()"
+                  [disabled]="
+                    !repositoryForm.get('jdbcDriver')?.value ||
+                    !repositoryForm.get('jdbcUrl')?.value ||
+                    !repositoryForm.get('dbUsername')?.value
+                  "
+                >
+                  <span
+                    *ngIf="testingConnection"
+                    class="spinner-border spinner-border-sm me-2"
+                  ></span>
+                  Test Connection
+                </button>
+                <div
+                  *ngIf="testConnectionResult"
+                  class="alert mt-2"
+                  [ngClass]="{
+                    'alert-success': testConnectionResult.success,
+                    'alert-danger': !testConnectionResult.success
+                  }"
+                >
+                  {{ testConnectionResult.message }}
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3">
+              <div class="card-header bg-light">Ontology Schema (TBox)</div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label"
+                    >Ontology Schema File (Turtle format)</label
+                  >
+                  <div class="input-group">
+                    <input
+                      type="file"
+                      class="form-control"
+                      (change)="onTurtleFileSelected($event)"
+                      accept=".ttl"
+                    />
+                  </div>
+                  <div class="form-text">
+                    Upload your ontology schema in Turtle format (.ttl)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- R2RML Mapping File -->
+            <div class="mb-3">
+              <label class="form-label">R2RML Mapping File</label>
+              <div class="input-group">
+                <input
+                  type="file"
+                  class="form-control"
+                  (change)="onR2RMLFileSelected($event)"
+                  accept=".ttl"
+                />
+              </div>
+              <div class="form-text">
+                Upload your R2RML mapping file in Turtle format
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!repositoryForm.valid || loading"
+            >
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm me-2"
+              ></span>
+              Create Repository
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repository List -->
+    <div class="col-md-7">
+      <div class="card">
+        <div
+          class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        >
+          <h3 class="h5 mb-0">Existing Repositories</h3>
+          <button class="btn btn-sm btn-light" (click)="loadRepositories()">
+            <i class="bi bi-arrow-clockwise"></i> Refresh
+          </button>
+        </div>
+        <div class="card-body">
+          <div *ngIf="loading" class="text-center py-4">
+            <div class="spinner-border text-primary"></div>
+          </div>
+
+          <div
+            *ngIf="!loading && repositories.length === 0"
+            class="alert alert-info"
+          >
+            No repositories found
+          </div>
+
+          <div *ngIf="!loading && repositories.length > 0" class="list-group">
+            <div
+              *ngFor="let repo of repositories"
+              class="list-group-item list-group-item-action"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="mb-1">{{ repo.title }}</h5>
+                  <p class="mb-1 text-muted">ID: {{ repo.id }}</p>
+                </div>
+                <div class="btn-group">
+                  <button
+                    class="btn btn-outline-primary btn-sm"
+                    (click)="editRepository(repo)"
+                  >
+                    <i class="bi bi-pencil"></i> Edit
+                  </button>
+                  <button
+                    class="btn btn-outline-danger btn-sm"
+                    (click)="deleteRepository(repo.id)"
+                  >
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress indicator -->
+  <div *ngIf="loading" class="mb-3">
+    <div class="alert alert-info">
+      <div class="d-flex align-items-center">
+        <div class="spinner-border spinner-border-sm me-2"></div>
+        <span>{{ loadingStep || "Creating repository..." }}</span>
+      </div>
+    </div>
+  </div>
+</div>

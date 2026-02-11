@@ -1,0 +1,117 @@
+<app-header></app-header>
+<main>
+  <div class="nga-container-layout">
+    <div class="nga-container-sidebar">
+      <ul class="list-unstyled p-2">
+        <li class="mb-1">
+          <ul class="nga-btn-toggle-nav list-unstyled fw-normal pb-2">
+            <!-- <li>
+              <a routerLink="/" class="link-dark rounded"
+                ><i class="fas fa-house text-primary mt-1 me-2"></i>Home</a
+              >
+            </li> -->
+            <li>
+              <a
+                routerLink="/db-config"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/db-config' }"
+                ><i class="fas fa-cogs text-primary mt-1 me-2"></i>Setup DB
+                Connection</a
+              >
+            </li>
+            <!-- <li>
+              <a
+                routerLink="/build-local-ontology"
+                class="link-dark rounded"
+                [ngClass]="{
+                  'active-link': router.url === '/build-local-ontology'
+                }"
+                ><i class="fab fa-asymmetrik text-primary mt-1 me-2"></i>Build
+                Local Ontology</a
+              >
+            </li> -->
+            <li>
+              <a
+                routerLink="/turtle-viewer"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/turtle-viewer' }"
+                ><i class="fa-solid fa-code-branch text-primary mt-1 me-2"></i
+                >Turtle Viewer</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/table-structure"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/table-structure' }"
+                ><i class="fab fa-asymmetrik text-primary mt-1 me-2"></i>Extract
+                Table Structure</a
+              >
+            </li>
+            <!-- <li>
+              <a
+                routerLink="/mapping"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/mapping' }"
+                ><i class="fa-solid fa-link text-primary mt-1 me-2"></i
+                >Mapping</a
+              >
+            </li> -->
+            <li>
+              <a
+                routerLink="/auto-mapping"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/auto-mapping' }"
+                ><i class="fa-solid fa-wand-sparkles text-primary mt-1 me-2"></i
+                >Auto Mapping</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/publish"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/publish' }"
+                ><i class="fab fa-edge text-primary mt-1 me-2"></i>Publish</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/query"
+                class="link-dark rounded"
+                [ngClass]="{ 'active-link': router.url === '/query' }"
+                ><i
+                  class="fas fa-balance-scale-right text-primary mt-1 me-2"
+                ></i
+                >Query</a
+              >
+            </li>
+            <!-- <li>
+              <a routerLink="/turtle-browser" class="link-dark rounded"
+                ><i class="fa-solid fa-code-branch text-primary mt-1 me-2"></i
+                >Turtle Browser</a
+              >
+            </li> -->
+            <li>
+              <a
+                routerLink="/ontology-class-parser"
+                class="link-dark rounded"
+                [ngClass]="{
+                  'active-link': router.url === '/ontology-class-parser'
+                }"
+                ><i class="fa-solid fa-link text-primary mt-1 me-2"></i>Ontology
+                Class Parser</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div class="col p-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

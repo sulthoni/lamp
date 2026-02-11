@@ -1,0 +1,26 @@
+<header class="navbar navbar-expand-lg navbar-dark fixed-top nga-navbar">
+  <nav class="container" aria-label="Main navigation">
+    <a
+      routerLink="/"
+      class="navbar-brand"
+      [attr.alt]="'Home - ' + appInfo.name"
+    >
+      <img
+        [src]="'./assets/' + appInfo.logo + '-logo.png'"
+        [srcset]="
+          './assets/' +
+          appInfo.logo +
+          '-logo.png, ./assets/' +
+          appInfo.logo +
+          '-logo.png'
+        "
+        width="25"
+        height="25"
+        [alt]="appInfo.name + ' Logo'"
+      />
+      <span class="nga-logo mx-1" [attr.aria-label]="appInfo.name">{{
+        appInfo.name
+      }}</span>
+    </a>
+  </nav>
+</header>
