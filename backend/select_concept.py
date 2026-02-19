@@ -17,7 +17,7 @@ class ConceptSelectionChain:
         self.config = langchain_manager.config
         self._setup_prompts()
         self._setup_chains()
-    
+
     def _setup_prompts(self):
         """Setup prompt templates"""
         #### CHANGE IN THIS PART FOR EACH EXPERIMENT
@@ -54,7 +54,7 @@ class ConceptSelectionChain:
 
                 Provide your selection with a confidence score (0.0 to 1.0) and clear reasoning."""
         )
-    
+
         #### CHANGE IN THIS PART FOR EACH EXPERIMENT
         #### Scenario 1
         self.prompt_per_table_1 = ChatPromptTemplate.from_template(
@@ -169,7 +169,7 @@ class ConceptSelectionChain:
 
             """
         )
-        
+
         #### Scenario 3
         #### Add Global Schema Summary instructions
         self.prompt_per_table = ChatPromptTemplate.from_template(
@@ -191,6 +191,7 @@ class ConceptSelectionChain:
                 Global_Schema_Summary: {global_schema_summary}
                 Term: {term}
                 Candidates: {candidates_text}
+                Base_URI: {base_uri}
 
             Instructions:
                 Use the following structured reasoning process:
@@ -226,11 +227,11 @@ class ConceptSelectionChain:
 
                 6. **Candidate Analysis**
                     For each candidate ontology class:
-                        • Compare semantic match between label and table term.  
-                        • Evaluate how description, synonyms, and explanatory_text align with table purpose.  
-                        • Check data property alignment (column names ↔ ontology data properties).  
-                        • Check object property alignment (FKs ↔ ontology relationships).  
-                        • Consider cosine similarity but override it if semantic or structural alignment differs.  
+                        • Compare semantic match between label and table term.
+                        • Evaluate how description, synonyms, and explanatory_text align with table purpose.
+                        • Check data property alignment (column names ↔ ontology data properties).
+                        • Check object property alignment (FKs ↔ ontology relationships).
+                        • Consider cosine similarity but override it if semantic or structural alignment differs.
                         • Use the global schema to detect indirect signals — for example, if another table’s mapping implies a class relationship via object properties.
 
                 7. **Global Consistency Check**
@@ -252,17 +253,36 @@ class ConceptSelectionChain:
                             - Property alignment (data + object)
                             - Candidate analysis outcome
                         • Columns associated with the term and selected candidate concept.
+
+                9. **Class URI Instruction (Base URI is provided)**
+                    - You MUST output a recommended class URI for EACH selected ontology class.
+                    - First, choose exactly ONE table column to act as that class's identifier (the "class ID column").
+                      Prefer a true primary key for that entity/class. If multiple classes are selected, each class may use a different ID column.
+                      If only composite keys exist, choose the single most stable/unique column and explain the limitation in the corresponding reason.
+                    - Then construct the class URI using this exact format:
+                        `<Base_URI>/<ClassLabel>/<class_id_column>`
+                      where:
+                        • `Base_URI` is exactly the provided Base_URI (do not invent one)
+                        • `ClassLabel` is exactly the selected candidate label string you output
+                        • `class_id_column` is exactly the chosen table column original name
+                    - Do NOT output any other URI patterns.
+
                     - If no suitable class exists, return empty lists and justify using structural and semantic reasoning (e.g., “table acts as a join table only; no standalone class match”).
 
             Formatting rules:
-                - Return strictly valid JSON that matches  {format_instructions}. 
+                - Return strictly valid JSON that matches  {format_instructions}.
                 - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
                 - Example Output Structure:
                     If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
                     {{
                         "selected_candidates": ["Order", "Customer"],
                         "confidence_scores": [0.85, 0.75],
                         "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
                         "columns": [
                             ["id", "order_date", "amount"],  // Columns for "Order" candidate
                             ["customer_id", "name"]          // Columns for "Customer" candidate
@@ -277,21 +297,21 @@ class ConceptSelectionChain:
 
             """
         )
-    
+
     def _setup_chains(self):
         """Setup LangChain chains"""
         self.chain_row = (
-            self.prompt_per_row 
-            | self.llm 
+            self.prompt_per_row
+            | self.llm
             | self.row_parser
         )
 
         self.chain_table = (
             self.prompt_per_table
-            | self.llm 
+            | self.llm
             | self.table_parser
         )
-    
+
     def _format_candidates(self, candidates: List[SimilarConcept]) -> str:
         """Format candidates for prompt"""
         candidates_text = []
@@ -305,26 +325,26 @@ class ConceptSelectionChain:
                 - Synonyms: {', '.join(candidate.synonyms) if candidate.synonyms else 'None'}
                 - Similarity Score: {candidate.similarity:.4f}
                 - Data Properties: {json.dumps(candidate.data_properties) if candidate.data_properties else 'None'}
-                - Object Properties: {json.dumps(candidate.object_properties) if candidate.object_properties else 'None'}   
+                - Object Properties: {json.dumps(candidate.object_properties) if candidate.object_properties else 'None'}
                 """
             candidates_text.append(candidate_text)
-        
+
         return "\n".join(candidates_text)
-    
+
     def select_concept_row(self, candidate: Candidate, provider: str = None) -> Dict[str, Any]:
         """Select the best concept for a given term"""
         provider = provider or langchain_manager.config.LLM_PROVIDER
         langchain_manager.rate_limit_check(provider, embeddings=False)
-        
+
         try:
             candidates_text = self._format_candidates(candidate.candidates)
-            
+
             result = self.chain_row.invoke({
                 "term": candidate.term,
                 "candidates_text": candidates_text,
                 "format_instructions": self.row_parser.get_format_instructions()
             })
-            
+
             return {
                 "term": candidate.term,
                 "selected_candidate": result.selected_candidate,
@@ -339,27 +359,29 @@ class ConceptSelectionChain:
                 "confidence_score": 0.0,
                 "reason": f"Error: {str(e)}"
             }
-    
-    def select_concept_table(self, candidate: Candidate, global_schema_summary: str, provider: str = None) -> Dict[str, Any]:
+
+    def select_concept_table(self, candidate: Candidate, global_schema_summary: str, provider: str = None, base_uri: str = "http://example.com/") -> Dict[str, Any]:
         """Select the best concept for a given term"""
         provider = provider or langchain_manager.config.LLM_PROVIDER
         langchain_manager.rate_limit_check(provider, embeddings=False)
-        
+
         try:
             candidates_text = self._format_candidates(candidate.candidates)
-            
+
             result = self.chain_table.invoke({
                 "term": candidate.term,
                 "candidates_text": candidates_text,
                 "global_schema_summary": global_schema_summary,
-                "format_instructions": self.table_parser.get_format_instructions()
+                "format_instructions": self.table_parser.get_format_instructions(),
+                "base_uri": base_uri,
             })
-            
+
             return {
                 "term": candidate.term,
                 "selected_candidate": result.selected_candidates,  # This is now a list
                 "confidence_score": result.confidence_scores,      # This is now a list
                 "reason": result.reasons,                          # This is now a list
+                "class_uris": result.class_uris,                    # This is now a list
                 "columns": result.columns,                         # List of lists
                 "related_columns": result.related_columns          # List of lists
             }
@@ -370,6 +392,7 @@ class ConceptSelectionChain:
                 "selected_candidate": [],
                 "confidence_score": [],
                 "reason": [f"Error: {str(e)}"],
+                "class_uris": [],
                 "columns": [],      # Empty list of lists
                 "related_columns": []  # Empty list of lists
             }
@@ -378,7 +401,7 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
     """
     Handle LLM concept selection logic using LangChain - refactored version
     """
-        
+
     # Initialize the selection chain
     selection_chain = ConceptSelectionChain()
     llm_selected_file = selection_chain.config.LLM_SELECTED_CONCEPTS_FILE or './data/llm_selected_concepts.txt'
@@ -399,9 +422,9 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
         # Check if both files exist and have content
         if (os.path.exists(llm_selected_table_file) and os.path.getsize(llm_selected_table_file) > 0 and
             os.path.exists(llm_selected_log_file) and os.path.getsize(llm_selected_log_file) > 0):
-            
+
             print(f"Using existing LLM selected concepts from files")
-            
+
             try:
                 # with open(llm_selected_file, 'r') as f:
                 #     file_content = f.read().strip()
@@ -413,7 +436,7 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
                 #                 results.append(result)
                 #             except:
                 #                 pass
-                
+
                 with open(llm_selected_table_file, 'r') as f:
                     file_content_table = f.read().strip()
                     results_table = []
@@ -424,10 +447,10 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
                                 results_table.append(result)
                             except:
                                 pass
-                
+
                 with open(llm_selected_log_file, 'r') as log_file:
                     log = log_file.read()
-                
+
                 # Format the response
                 # formatted_results = _format_selection_results(results, candidates)
                 formatted_results_table = _format_selection_results_table(results_table, candidates_table) if selection_table_json else []
@@ -439,15 +462,15 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
                     'results': [],
                     'results_table': formatted_results_table
                 }
-                
+
             except Exception as e:
                 print(f"Error reading existing files: {e}. Proceeding with LLM processing.")
-    
+
     # Process each candidate
     results = []
     results_table = []
     print(f"Processing {len(candidates)} candidates with LLM...")
-    
+
     #### CHANGE IN THIS PART FOR EACH EXPERIMENT
     #candidate class from row
     # for i, candidate in enumerate(candidates, 1):
@@ -460,7 +483,7 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
         print(f"Processing candidate {i} of {len(candidates_table)}: {candidate.term}")
         result = selection_chain.select_concept_table(candidate, global_schema_summary)
         results_table.append(result)
-    
+
     # Generate log using appropriate functions
     log = ""
     if results:
@@ -469,12 +492,12 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
         if log:
             log += "\n\nTable Candidates Selection Log:\n"
         log += _generate_selection_log_table(results_table)
-    
+
     # Save results to files
     # with open(llm_selected_file, 'w') as f:
     #     for result in results:
     #         f.write(f"{result}\n")
-    
+
     with open(llm_selected_table_file, 'w') as f:
         for result in results_table:
             f.write(f"{result}\n")
@@ -497,7 +520,7 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
 def _convert_to_candidate_objects(candidates_data: List[Dict]) -> List[Candidate]:
     """Convert JSON data to Candidate objects"""
     candidates = []
-    
+
     for candidate_item in candidates_data:
         similar_concepts = []
         for concept_data in candidate_item.get('candidates', []):
@@ -512,13 +535,13 @@ def _convert_to_candidate_objects(candidates_data: List[Dict]) -> List[Candidate
                 object_properties=concept_data.get('object_properties', [])
             )
             similar_concepts.append(similar_concept)
-        
+
         candidate = Candidate(
             term=candidate_item.get('term', ''),
             candidates=similar_concepts
         )
         candidates.append(candidate)
-    
+
     return candidates
 
 def _generate_selection_log(results: List[Dict]) -> str:
@@ -530,7 +553,7 @@ def _generate_selection_log(results: List[Dict]) -> str:
         log += f"Term: {result['term']}\n"
         log += f"  Selected Candidate: {result['selected_candidate']} | Confidence: {result['confidence_score']:.4f}\n"
         log += f"  Reason: {result['reason']}\n"
-    
+
     return log
 
 def _format_selection_results(results: List[Dict], candidates_data: List[Dict]) -> List[Dict]:
@@ -540,7 +563,7 @@ def _format_selection_results(results: List[Dict], candidates_data: List[Dict]) 
         selected_candidate_uri = ''
         term = result.get('term', '')
         selected_candidate = result.get('selected_candidate', '')
-        
+
         # Find the corresponding URI
         for candidate_item in candidates_data:
             if candidate_item.term == term:
@@ -550,7 +573,7 @@ def _format_selection_results(results: List[Dict], candidates_data: List[Dict]) 
                         selected_candidate_uri = concept_data.id
                         break
                 break
-        
+
         formatted_results.append({
             'term': result.get('term', ''),
             'selected_candidate': result.get('selected_candidate', ''),
@@ -558,21 +581,22 @@ def _format_selection_results(results: List[Dict], candidates_data: List[Dict]) 
             'confidence_score': result.get('confidence_score', 0.0),
             'reason': result.get('reason', '')
         })
-    
+
     return formatted_results
 
 def _format_selection_results_table(results: List[Dict], candidates_data: List[Dict]) -> List[Dict]:
     """Format selection results with URIs for table-level concept selection"""
     formatted_results = []
-    
+
     for result in results:
         term = result.get('term', '')
         selected_candidates = result.get('selected_candidate', [])
         confidence_scores = result.get('confidence_score', [])
         reasons = result.get('reason', [])
+        class_uris = result.get('class_uris', [])
         columns = result.get('columns', [])  # Now a list of lists
         related_columns = result.get('related_columns', [])  # Now a list of lists
-        
+
         # Handle the case where selected_candidate might be a single value or list
         if not isinstance(selected_candidates, list):
             selected_candidates = [selected_candidates] if selected_candidates else []
@@ -580,22 +604,22 @@ def _format_selection_results_table(results: List[Dict], candidates_data: List[D
             confidence_scores = [confidence_scores] if confidence_scores is not None else []
         if not isinstance(reasons, list):
             reasons = [reasons] if reasons else []
-        
+
         # Handle columns - ensure it's a list of lists
         if columns and not isinstance(columns[0], list) if columns else False:
             # If columns is a flat list, wrap it as a single candidate's columns
             columns = [columns]
-        
+
         # Handle related_columns - ensure it's a list of lists
         if related_columns and not isinstance(related_columns[0], list) if related_columns else False:
             # If related_columns is a flat list, wrap it as a single candidate's related columns
             related_columns = [related_columns]
-        
+
         # Find corresponding URIs for each selected candidate
         selected_candidate_uris = []
         for selected_candidate in selected_candidates:
             selected_candidate_uri = ''
-            
+
             # Find the corresponding URI
             for candidate_item in candidates_data:
                 if candidate_item.term == term:
@@ -606,22 +630,23 @@ def _format_selection_results_table(results: List[Dict], candidates_data: List[D
                             break
                     if selected_candidate_uri:
                         break
-            
+
             selected_candidate_uris.append(selected_candidate_uri)
-        
+
         # Create formatted result with nested lists
         formatted_result = {
             'term': term,
             'selected_candidates': selected_candidates,
-            'selected_candidate_URIs': selected_candidate_uris,
+            'selected_candidate_URIs': class_uris,
             'confidence_scores': confidence_scores,
+            'class_uris': class_uris,
             'reasons': reasons,
             'columns': columns,  # List of lists
             'related_columns': related_columns  # List of lists
         }
-        
+
         formatted_results.append(formatted_result)
-    
+
     return formatted_results
 
 def _generate_selection_log_table(results: List[Dict]) -> str:
@@ -630,14 +655,15 @@ def _generate_selection_log_table(results: List[Dict]) -> str:
     for i, result in enumerate(results):
         if i > 0:
             log += "\n"
-        
+
         term = result.get('term', '')
         selected_candidates = result.get('selected_candidate', [])
         confidence_scores = result.get('confidence_score', [])
         reasons = result.get('reason', [])
+        class_uris = result.get('class_uris', [])
         columns = result.get('columns', [])
         related_columns = result.get('related_columns', [])
-        
+
         # Handle single values vs lists
         if not isinstance(selected_candidates, list):
             selected_candidates = [selected_candidates] if selected_candidates else []
@@ -645,30 +671,31 @@ def _generate_selection_log_table(results: List[Dict]) -> str:
             confidence_scores = [confidence_scores] if confidence_scores is not None else []
         if not isinstance(reasons, list):
             reasons = [reasons] if reasons else []
-        
+
         # Handle columns - ensure it's a list of lists
         if columns and not isinstance(columns[0], list) if columns else False:
             columns = [columns]
-        
+
         # Handle related_columns - ensure it's a list of lists
         if related_columns and not isinstance(related_columns[0], list) if related_columns else False:
             related_columns = [related_columns]
-        
+
         log += f"Term: {term}\n"
-        
+
         if selected_candidates:
             for j, (candidate, confidence, reason) in enumerate(zip(selected_candidates, confidence_scores, reasons)):
                 log += f"\n  Selected Candidate {j+1}: {candidate} | Confidence: {confidence:.4f}\n"
                 log += f"  Reason {j+1}: {reason}\n"
-                
+                log += f"  Class URI {j+1}: {class_uris[j] if j < len(class_uris) else 'N/A'}\n"
+
                 # Add columns for this candidate
                 if j < len(columns) and columns[j]:
                     log += f"  Columns for Candidate {j+1}: {', '.join(columns[j])}\n"
-                
+
                 # Add related columns for this candidate
                 if j < len(related_columns) and related_columns[j]:
                     log += f"  Related Columns for Candidate {j+1}: {', '.join(related_columns[j])}\n"
         else:
             log += "  No candidates selected\n"
-    
+
     return log

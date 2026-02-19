@@ -35,7 +35,7 @@ export class AutoMappingService {
     formData.append('metadata_file', tableFile);
     return this.http.post(
       `${environment.application.backendAdminUrl}/mapping-suggestion`,
-      formData
+      formData,
     );
   }
 
@@ -44,36 +44,36 @@ export class AutoMappingService {
     formData.append('flatExportedSchemaJson', ontologyFile);
     return this.http.post(
       `${environment.application.backendAdminUrl}/save-to-chromadb`,
-      formData
+      formData,
     );
   }
 
   embeddingsAndSaveAsTextFile(
     sourceSchemaJson: any[],
-    termSuggestionAsTable: TermTable[]
+    termSuggestionAsTable: TermTable[],
   ): Observable<any> {
     const formData = new FormData();
     formData.append('sourceSchemaJson', JSON.stringify(sourceSchemaJson));
     formData.append(
       'sourceSchemaTableJson',
-      JSON.stringify(termSuggestionAsTable)
+      JSON.stringify(termSuggestionAsTable),
     );
     return this.http.post(
       `${environment.application.backendAdminUrl}/embeddings-and-save-as-text-file`,
-      formData
+      formData,
     );
   }
 
   termsSuggestion(
     sourceSchemaJson: any[],
-    listOfSourceTables: string[]
+    listOfSourceTables: string[],
   ): Observable<any> {
     const formData = new FormData();
     formData.append('terms', JSON.stringify(sourceSchemaJson));
     formData.append('tables', JSON.stringify(listOfSourceTables));
     return this.http.post(
       `${environment.application.backendAdminUrl}/terms-suggestion`,
-      formData
+      formData,
     );
   }
 
@@ -83,7 +83,7 @@ export class AutoMappingService {
    */
   checkSuggestedTerms(): Observable<SuggestedTermsResponse> {
     return this.http.get<SuggestedTermsResponse>(
-      `${environment.application.backendAdminUrl}/check-suggested-terms`
+      `${environment.application.backendAdminUrl}/check-suggested-terms`,
     );
   }
 
@@ -111,7 +111,7 @@ export class AutoMappingService {
     }
 
     return this.http.get<SuggestedTermsResponse>(
-      `${environment.application.backendAdminUrl}/check-suggested-terms${queryParams}`
+      `${environment.application.backendAdminUrl}/check-suggested-terms${queryParams}`,
     );
   }
 
@@ -121,7 +121,7 @@ export class AutoMappingService {
    */
   checkEmbeddingTerms(): Observable<EmbeddingTermsResponse> {
     return this.http.get<EmbeddingTermsResponse>(
-      `${environment.application.backendAdminUrl}/check-embeddings`
+      `${environment.application.backendAdminUrl}/check-embeddings`,
     );
   }
 
@@ -147,7 +147,7 @@ export class AutoMappingService {
       if (params.similarity_threshold)
         searchParams.append(
           'similarity_threshold',
-          params.similarity_threshold.toString()
+          params.similarity_threshold.toString(),
         );
       queryParams = searchParams.toString()
         ? `?${searchParams.toString()}`
@@ -155,7 +155,7 @@ export class AutoMappingService {
     }
 
     return this.http.get<EmbeddingTermsResponse>(
-      `${environment.application.backendAdminUrl}/check-embeddings${queryParams}`
+      `${environment.application.backendAdminUrl}/check-embeddings${queryParams}`,
     );
   }
 
@@ -170,7 +170,7 @@ export class AutoMappingService {
 
     return this.http.post<EmbeddingTermsResponse>(
       `${environment.application.backendAdminUrl}/check-embeddings`,
-      formData
+      formData,
     );
   }
 
@@ -180,7 +180,7 @@ export class AutoMappingService {
    */
   getChromaDBCollections(): Observable<ChromaDBCollectionsResponse> {
     return this.http.get<ChromaDBCollectionsResponse>(
-      `${environment.application.backendAdminUrl}/chromadb-collections`
+      `${environment.application.backendAdminUrl}/chromadb-collections`,
     );
   }
 
@@ -208,7 +208,7 @@ export class AutoMappingService {
       if (params.include_metadata !== undefined)
         searchParams.append(
           'include_metadata',
-          params.include_metadata.toString()
+          params.include_metadata.toString(),
         );
       if (params.sort_by) searchParams.append('sort_by', params.sort_by);
       if (params.sort_order)
@@ -220,7 +220,7 @@ export class AutoMappingService {
     }
 
     return this.http.get<ChromaDBCollectionsResponse>(
-      `${environment.application.backendAdminUrl}/chromadb-collections${queryParams}`
+      `${environment.application.backendAdminUrl}/chromadb-collections${queryParams}`,
     );
   }
 
@@ -230,12 +230,12 @@ export class AutoMappingService {
    * @returns Observable with the ChromaDB collection response
    */
   getChromaDBCollection(
-    collectionName: string
+    collectionName: string,
   ): Observable<ChromaDBCollectionsResponse> {
     return this.http.get<ChromaDBCollectionsResponse>(
       `${
         environment.application.backendAdminUrl
-      }/chromadb-collections/${encodeURIComponent(collectionName)}`
+      }/chromadb-collections/${encodeURIComponent(collectionName)}`,
     );
   }
 
@@ -248,7 +248,7 @@ export class AutoMappingService {
     count: number;
   }> {
     return this.http.get<{ exists: boolean; count: number }>(
-      `${environment.application.backendAdminUrl}/chromadb-collections/check`
+      `${environment.application.backendAdminUrl}/chromadb-collections/check`,
     );
   }
 
@@ -261,7 +261,7 @@ export class AutoMappingService {
     message: string;
   }> {
     return this.http.get<{ count: number; message: string }>(
-      `${environment.application.backendAdminUrl}/chromadb-collections/count`
+      `${environment.application.backendAdminUrl}/chromadb-collections/count`,
     );
   }
 
@@ -271,14 +271,14 @@ export class AutoMappingService {
    * @returns Observable with the candidates response
    */
   retrieveCandidates(
-    queryData: RetrieveCandidatesQuery
+    queryData: RetrieveCandidatesQuery,
   ): Observable<RetrieveCandidatesResponse> {
     const formData = new FormData();
     formData.append('queryData', JSON.stringify(queryData));
 
     return this.http.post<RetrieveCandidatesResponse>(
       `${environment.application.backendAdminUrl}/retrieve-candidates`,
-      formData
+      formData,
     );
   }
 
@@ -293,7 +293,7 @@ export class AutoMappingService {
   retrieveCandidatesSimple(
     collectionName: string,
     queries: any[],
-    nResults: number = 7
+    nResults: number = 7,
   ): Observable<RetrieveCandidatesResponse> {
     const queryData: RetrieveCandidatesQuery = {
       collection_name: collectionName,
@@ -315,7 +315,7 @@ export class AutoMappingService {
   retrieveCandidatesForTerms(
     termsSuggestion: any[],
     collectionName: string,
-    nResults: number = 7
+    nResults: number = 7,
   ): Observable<RetrieveCandidatesResponse> {
     // Convert terms suggestion to query strings
     const queries = termsSuggestion
@@ -356,7 +356,7 @@ export class AutoMappingService {
    * @returns Observable with the LLM selection response
    */
   llmSelectConcepts(
-    selectionData: LLMSelectionQuery
+    selectionData: LLMSelectionQuery,
   ): Observable<LLMSelectionResponse> {
     const requestBody = {
       selectionData: selectionData.candidates,
@@ -366,7 +366,7 @@ export class AutoMappingService {
 
     return this.postJSON<LLMSelectionResponse>(
       `${environment.application.backendAdminUrl}/llm-select-concepts`,
-      requestBody
+      requestBody,
     );
   }
 
@@ -379,7 +379,7 @@ export class AutoMappingService {
    */
   llmSelectConceptsSimple(
     candidates: Candidate[],
-    candidates_table: Candidate[]
+    candidates_table: Candidate[],
   ): Observable<LLMSelectionResponse> {
     const selectionData: LLMSelectionQuery = {
       candidates: candidates,
@@ -397,11 +397,11 @@ export class AutoMappingService {
    * @returns Observable with the LLM selection response
    */
   llmSelectConceptsFromRetrieveResponse(
-    retrieveResponse: RetrieveCandidatesResponse
+    retrieveResponse: RetrieveCandidatesResponse,
   ): Observable<LLMSelectionResponse> {
     return this.llmSelectConceptsSimple(
       retrieveResponse.results,
-      retrieveResponse.results_table
+      retrieveResponse.results_table,
     );
   }
 
@@ -415,14 +415,14 @@ export class AutoMappingService {
   retrieveAndSelectWithLLM(
     queryData: RetrieveCandidatesQuery,
     provider: string = 'gemini',
-    model: string = 'gemini-2.5-flash'
+    model: string = 'gemini-2.5-flash',
   ): Observable<LLMSelectionResponse> {
     return new Observable((observer) => {
       this.retrieveCandidates(queryData).subscribe({
         next: (retrieveResponse) => {
           if (retrieveResponse.results && retrieveResponse.results.length > 0) {
             this.llmSelectConceptsFromRetrieveResponse(
-              retrieveResponse
+              retrieveResponse,
             ).subscribe({
               next: (selectionResponse) => observer.next(selectionResponse),
               error: (error) => observer.error(error),
@@ -442,14 +442,14 @@ export class AutoMappingService {
    * @returns Observable with the LLM properties suggestion response
    */
   llmSuggestProperties_Old(
-    propertiesData: LLMPropertiesSuggestionQuery
+    propertiesData: LLMPropertiesSuggestionQuery,
   ): Observable<LLMPropertiesSuggestionResponse> {
     const formData = new FormData();
     formData.append('propertiesData', JSON.stringify(propertiesData));
 
     return this.http.post<LLMPropertiesSuggestionResponse>(
       `${environment.application.backendAdminUrl}/llm-suggest-properties`,
-      formData
+      formData,
     );
   }
 
@@ -463,7 +463,7 @@ export class AutoMappingService {
   llmSuggestPropertiesSimple(
     candidateProperties: SuggestedMappingClassProperties,
     provider: string = 'gemini',
-    model: string = 'gemini-2.5-flash'
+    model: string = 'gemini-2.5-flash',
   ): Observable<LLMPropertiesSuggestionResponse> {
     const propertiesData: LLMPropertiesSuggestionQuery = {
       candidate_properties: candidateProperties,
@@ -478,7 +478,7 @@ export class AutoMappingService {
    * @returns Observable with combined results
    */
   llmSuggestPropertiesForSelected(
-    selectedProperties: SuggestedMappingClassProperties[]
+    selectedProperties: SuggestedMappingClassProperties[],
   ): Observable<{
     success: LLMPropertiesSuggestionResponse[];
     errors: any[];
@@ -502,7 +502,7 @@ export class AutoMappingService {
             completed++;
 
             console.log(
-              `Processed ${completed}/${selectedProperties.length}: ${property.table_name}`
+              `Processed ${completed}/${selectedProperties.length}: ${property.table_name}`,
             );
 
             if (completed === selectedProperties.length) {
@@ -543,7 +543,7 @@ export class AutoMappingService {
    */
   llmSuggestProperties(
     selectedTableForMappingProperties: SuggestedMappingClassProperties[],
-    globalSchemaSummary: string | null
+    globalSchemaSummary: string | null,
   ): Observable<{
     success: boolean;
     message: string;
@@ -561,7 +561,7 @@ export class AutoMappingService {
         acc[tableName].push(prop);
         return acc;
       },
-      {} as { [key: string]: SuggestedMappingClassProperties[] }
+      {} as { [key: string]: SuggestedMappingClassProperties[] },
     );
 
     // Feed the grouped result into tableForMappingProperties
@@ -584,7 +584,7 @@ export class AutoMappingService {
       log: any[];
     }>(
       `${environment.application.backendAdminUrl}/llm-suggest-properties`,
-      requestBody
+      requestBody,
     );
   }
 
@@ -597,7 +597,7 @@ export class AutoMappingService {
   writeMappingData(
     mappingData: SuggestedMappingClassProperties[],
     ontologyFile: File,
-    isDataSourceCSV: boolean = false
+    isDataSourceCSV: boolean = false,
   ): Observable<{
     message: string;
     ontology_file_path: File;
@@ -624,7 +624,7 @@ export class AutoMappingService {
   writeMappingDataEnhanced(
     mappingData: SuggestedMappingClassProperties[],
     ontologyFile: File,
-    isDataSourceCSV: boolean = false
+    isDataSourceCSV: boolean = false,
   ): Observable<{
     success: boolean;
     message: string;
@@ -659,14 +659,14 @@ export class AutoMappingService {
           ...item,
           llmPropertiesSuggestionResult:
             item.llmPropertiesSuggestionResult?.filter(
-              (prop) => prop.selected
+              (prop) => prop.selected,
             ) || [],
         }))
         .filter((item) => item.llmPropertiesSuggestionResult.length > 0);
 
       if (selectedMappingData.length === 0) {
         observer.error(
-          new Error('No selected properties found in mapping data')
+          new Error('No selected properties found in mapping data'),
         );
         return;
       }
@@ -674,7 +674,7 @@ export class AutoMappingService {
       this.writeMappingData(
         selectedMappingData,
         ontologyFile,
-        isDataSourceCSV
+        isDataSourceCSV,
       ).subscribe({
         next: (response) => {
           observer.next({
@@ -685,7 +685,7 @@ export class AutoMappingService {
             mappingCount: selectedMappingData.reduce(
               (count, item) =>
                 count + (item.llmPropertiesSuggestionResult?.length || 0),
-              0
+              0,
             ),
           });
           observer.complete();
@@ -713,7 +713,7 @@ export class AutoMappingService {
 
       if (!validExtensions.includes(fileExtension)) {
         reject(
-          new Error('Invalid file extension. Expected .ttl, .turtle, or .n3')
+          new Error('Invalid file extension. Expected .ttl, .turtle, or .n3'),
         );
         return;
       }
@@ -741,7 +741,7 @@ export class AutoMappingService {
           // Basic TTL syntax check
           const hasPrefixes = /@prefix|PREFIX/i.test(trimmedContent);
           const hasTriples = /\s+[a-zA-Z:_]\w*\s+[a-zA-Z:_<"]/i.test(
-            trimmedContent
+            trimmedContent,
           );
           const hasValidSyntax = /[.;]/.test(trimmedContent);
 
@@ -749,7 +749,7 @@ export class AutoMappingService {
             resolve(true);
           } else {
             reject(
-              new Error('File does not appear to contain valid TTL content')
+              new Error('File does not appear to contain valid TTL content'),
             );
           }
         } else {
@@ -774,7 +774,7 @@ export class AutoMappingService {
    */
   writeMappingDataWithValidation(
     mappingData: SuggestedMappingClassProperties[],
-    ontologyFile: File
+    ontologyFile: File,
   ): Observable<{
     success: boolean;
     message: string;
@@ -804,8 +804,8 @@ export class AutoMappingService {
           console.error('Ontology file validation failed:', validationError);
           observer.error(
             new Error(
-              `Ontology file validation failed: ${validationError.message}`
-            )
+              `Ontology file validation failed: ${validationError.message}`,
+            ),
           );
         });
     });
@@ -819,13 +819,13 @@ export class AutoMappingService {
    */
   sendSchemaSummary(
     termsSuggestion: Term[],
-    flatExportedOntologySchema: FlatOntologySchema[]
+    flatExportedOntologySchema: FlatOntologySchema[],
   ): Observable<SchemaSummaryResponse> {
     // Transform terms suggestion into table structure
     const tables: TableSummaryStructure = {};
 
     termsSuggestion.forEach((term) => {
-      const tableName = term.improved_table_name || term.table_name;
+      const tableName = term.table_name;
       const columnDesc = this.formatColumnDescription(term);
 
       if (!tables[tableName]) {
@@ -864,7 +864,7 @@ export class AutoMappingService {
 
     return this.postJSON<SchemaSummaryResponse>(
       `${environment.application.backendAdminUrl}/schema-summary`,
-      requestBody
+      requestBody,
     );
   }
 
@@ -874,7 +874,7 @@ export class AutoMappingService {
    * @returns Formatted column description string
    */
   private formatColumnDescription(term: Term): string {
-    const columnName = term.improved_column_name || term.column_name;
+    const columnName = term.column_name;
     const parts: string[] = [columnName];
 
     // Add data type if available
@@ -898,7 +898,7 @@ export class AutoMappingService {
    */
   sendSchemaSummaryEnhanced(
     termsSuggestion: Term[],
-    flatExportedOntologySchema: FlatOntologySchema[]
+    flatExportedOntologySchema: FlatOntologySchema[],
   ): Observable<{
     success: boolean;
     message: string;
@@ -920,18 +920,18 @@ export class AutoMappingService {
 
       this.sendSchemaSummary(
         termsSuggestion,
-        flatExportedOntologySchema
+        flatExportedOntologySchema,
       ).subscribe({
         next: (response) => {
           // Calculate additional statistics
           const tablesWithFK = Object.values(response.summary.tables).filter(
-            (columns) => columns.some((col) => col.includes('FK ->'))
+            (columns) => columns.some((col) => col.includes('FK ->')),
           ).length;
 
           const classesWithObjProps = Object.values(
-            response.summary.ontology
+            response.summary.ontology,
           ).filter((props) =>
-            props.some((prop) => prop.includes(' -> '))
+            props.some((prop) => prop.includes(' -> ')),
           ).length;
 
           observer.next({

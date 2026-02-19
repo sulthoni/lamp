@@ -127,16 +127,17 @@ class BatchTermImprovement(BaseModel):
 class ConceptSelection(BaseModel):
     """Structured output for concept selection."""
     term: str = Field(description="The original term")
-    selected_candidate: str = Field(description="Label of the selected candidate concept")
+    selected_candidate: str = Field(description="The class name of the selected candidate concept")
     confidence_score: float = Field(description="Confidence score between 0.0 and 1.0")
     reason: str = Field(description="Explanation for the selection")
-    
+
 class ConceptSelectionTable(BaseModel):
     """Structured output for concept selection."""
     term: str = Field(description="The original term")
-    selected_candidates: List[str] = Field(description="Label of the selected candidate(s) concept")
+    selected_candidates: List[str] = Field(description="The class names of the selected candidate(s) concept")
     confidence_scores: List[float] = Field(description="Confidence score between 0.0 and 1.0")
     reasons: List[str] = Field(description="Explanation for the selections")
+    class_uris: List[str] = Field(default_factory=list)
     columns: List[List[str]] = Field(
         description="List of column lists, where each inner list contains columns associated with the corresponding selected candidate concept. "
                    "For example, if there are 2 selected candidates, this should be [[columns_for_candidate_1], [columns_for_candidate_2]]. "
@@ -152,9 +153,9 @@ class ConceptSelectionTable(BaseModel):
 class PropertySuggestion(BaseModel):
     """Structured output for property suggestion."""
     table_name: str = Field(description="Original table name")
-    column_name: str = Field(description="Name of the column")
-    class_name: str = Field(description="Suggested class name")
-    properties: str = Field(description="Suggested property name")
+    column_name: str = Field(description="Original name of the column")
+    class_name: str = Field(description="Suggested mapping class name")
+    properties: str = Field(description="Suggested mapping property name")
     type: str = Field(description="Type of property: 'data' or 'object'")
     new_property: bool = Field(description="Whether this is a new property to be created")
 

@@ -17,10 +17,10 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
         # Read the ontology file to extract prefixes
         prefixes = {}
         base_uri = ""
-        
+
         with open(ontology_file_path, 'r', encoding='utf-8') as f:
             ontology_content = f.readlines()
-        
+
         # Extract prefixes and base URI from ontology file
         for line in ontology_content:
             line = line.strip()
@@ -42,10 +42,10 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
         # If no base URI found, use a default one
         if not base_uri:
             base_uri = "http://example.com/"
-        
+
         # Start writing the R2RML file
         r2rml_content = ''
-        
+
         # Write prefixes
         for prefix, uri in prefixes.items():
             r2rml_content += f"@prefix {prefix}: <{uri}> .\n"
@@ -75,7 +75,7 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
 
             # Replace spaces with underscores in suggested_class
             suggested_class_formatted = suggested_class.replace(' ', '_')
-            
+
             # Find the ID column (look for columns with 'id' in the name or first column as fallback)
             id_column = None
             for column in mapping.columns:
@@ -89,13 +89,13 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
                     if 'name' in column.column_name.lower():
                         id_column = column.column_name
                         break
-            
+
             # If no ID column found, use the first column or 'id' as default
             if not id_column and mapping.columns:
                 id_column = mapping.columns[0].column_name
             elif not id_column:
                 id_column = "id"
-            
+
             # Write logical table
             r2rml_content += f"<#LogicalTable_{table_name}_{suggested_class_formatted}>\n"
             if isDataSourceCSV:
@@ -106,7 +106,7 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
 
             # Write subject map
             r2rml_content += "  rr:subjectMap [\n"
-            r2rml_content += f'    rr:template "{base_uri}{table_name}/{{{id_column}}}" ;\n'
+            r2rml_content += f'    rr:template "{base_uri}{suggested_class_formatted}/{table_name}/{{{id_column}}}" ;\n'
 
             # Use the suggested class IRI if available, otherwise use the class name
             if suggested_class_iri:
@@ -121,7 +121,7 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
                 column_name = llm_result.column_name
                 properties = llm_result.properties
                 prop_type = llm_result.type  # "data" or "object"
-                
+
                 # Find corresponding data type from DataProperties
                 data_type = "string"  # default
                 for data_prop in mapping.data_properties:
@@ -137,10 +137,18 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
                         else:
                             data_type = data_prop.dataType or "string"
                         break
-                
+
+                # Find corresponding range class from ObjectProperties if it's an object property
+                range_class = None
+                if prop_type == "object":
+                    for obj_prop in mapping.object_properties:
+                        if obj_prop.name == properties:
+                            range_class = obj_prop.range
+                            break
+
                 # Write predicate-object map
                 r2rml_content += "  rr:predicateObjectMap [\n"
-                
+
                 # Handle property prefix (check if it contains a colon for prefix:property format)
                 if ':' in properties:
                     r2rml_content += f"    rr:predicate {properties} ;\n"
@@ -159,7 +167,7 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
                 else:  # object property
                     # For object properties, create a template or reference
                     r2rml_content += "    rr:objectMap [\n"
-                    r2rml_content += f'      rr:template "{base_uri}object/{{{column_name}}}" ;\n'
+                    r2rml_content += f'      rr:template "{base_uri}{range_class}/{{{column_name}}}" ;\n'
                     # Find the range class from ObjectProperties
                     for obj_prop in mapping.object_properties:
                         if obj_prop.name == properties:
@@ -180,7 +188,7 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
             # Add extra spacing between mappings
             if i < len(mapping_data) - 1:
                 r2rml_content += "\n"
-        
+
         # Write the R2RML content to file
         output_file = f"./data/{filename}"
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -192,7 +200,7 @@ def write_mapping_file(mapping_data: List[MappingProperties], ontology_file_path
         print(validation_result)
 
         return r2rml_content, output_file
-        
+
     except Exception as e:
         print(f"Error writing mapping file: {e}")
         raise e
@@ -214,48 +222,48 @@ def validate_r2rml_file(r2rml_file_path: str) -> dict:
         try:
             # Create a new RDF graph
             g = Graph()
-            
+
             # Parse the R2RML file (Turtle format)
             g.parse(r2rml_file_path, format="turtle")
-            
+
             # Define R2RML namespace
             RR = Namespace("http://www.w3.org/ns/r2rml#")
-            
+
             # Basic R2RML validation checks
             triples_maps = list(g.subjects(RR.logicalTable, None))
-            
+
             if not triples_maps:
                 return {
-                    "valid": False, 
+                    "valid": False,
                     "message": "No R2RML triples maps found. File may not be a valid R2RML mapping."
                 }
-            
+
             return {
                 "valid": True,
                 "message": "R2RML file is syntactically valid.",
                 "triples_maps_count": len(triples_maps),
                 "total_triples": len(g)
             }
-            
+
         except ParserError as parse_err:
             return {
-                "valid": False, 
+                "valid": False,
                 "message": f"R2RML parsing error: {str(parse_err)}"
             }
         except Exception as e:
             return {
-                "valid": False, 
+                "valid": False,
                 "message": f"R2RML validation error: {str(e)}"
             }
-            
+
     except ImportError as import_err:
         return {
-            "valid": False, 
+            "valid": False,
             "message": f"Required library not available: {str(import_err)}"
         }
     except Exception as e:
         return {
-            "valid": False, 
+            "valid": False,
             "message": f"Unexpected error during validation: {str(e)}"
         }
 
@@ -265,7 +273,7 @@ def write_mapping_route_logic(request_data, request_files, content_type):
     Handle write mapping logic - moved from Flask route
     """
     from interface import MappingProperties, DataProperties, ObjectProperties, Column, LLMPropertiesSuggestionResult
-    
+
     # Validate and process the incoming mapping data
     try:
         ontology_file_path = None
@@ -328,8 +336,8 @@ def write_mapping_route_logic(request_data, request_files, content_type):
             json.dump(result, f, indent=2)
 
         return {
-            'message': 'Mapping data and ontology file received and processed successfully', 
-            'ontology_file': ontology_file_path, 
+            'message': 'Mapping data and ontology file received and processed successfully',
+            'ontology_file': ontology_file_path,
             'result': result
         }, 200
 
