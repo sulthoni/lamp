@@ -59,25 +59,25 @@ def get_connections():
 def save_connection():
     connection = request.json
     connections = load_connections()
-    
+
     # Generate simple ID
     connection['id'] = str(len(connections) + 1)
     connections.append(connection)
     save_connections(connections)
-    
+
     return jsonify(connection)
 
 @app.route('/api/connections/<connection_id>', methods=['PUT'])
 def update_connection(connection_id):
     connection = request.json
     connections = load_connections()
-    
+
     for i, conn in enumerate(connections):
         if conn['id'] == connection_id:
             connections[i] = connection
             save_connections(connections)
             return jsonify(connection)
-    
+
     return jsonify({'error': 'Connection not found'}), 404
 
 @app.route('/api/test-connection', methods=['POST'])
@@ -91,7 +91,7 @@ def test_connection():
             test_mssql_connection(params)
         else:
             return jsonify({'error': 'Unsupported database type'}), 400
-        
+
         return jsonify({'message': 'Connection successful'})
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -157,23 +157,23 @@ def get_sample_data(connection_id, table_name):
     try:
         # Get limit parameter from query string (default: 10)
         limit = request.args.get('limit', 10, type=int)
-        
+
         # Validate limit
         if limit <= 0 or limit > 1000:
             return jsonify({'error': 'Limit must be between 1 and 1000'}), 400
-        
+
         # Find the connection
         connections = load_connections()
         selected_connection = None
-        
+
         for conn in connections:
             if conn['id'] == connection_id:
                 selected_connection = conn
                 break
-        
+
         if not selected_connection:
             return jsonify({'error': 'Connection not found'}), 404
-        
+
         # Get sample data based on database type
         if selected_connection['type'] == 'mysql':
             sample_data = get_sample_data_mysql(selected_connection, table_name, limit)
@@ -181,9 +181,9 @@ def get_sample_data(connection_id, table_name):
             sample_data = get_sample_data_mssql(selected_connection, table_name, limit)
         else:
             return jsonify({'error': 'Unsupported database type'}), 400
-        
+
         return jsonify(sample_data), 200
-        
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -194,15 +194,15 @@ def get_foreign_keys(connection_id, table_name):
         # Find the connection
         connections = load_connections()
         selected_connection = None
-        
+
         for conn in connections:
             if conn['id'] == connection_id:
                 selected_connection = conn
                 break
-        
+
         if not selected_connection:
             return jsonify({'error': 'Connection not found'}), 404
-        
+
         # Get foreign keys based on database type
         if selected_connection['type'] == 'mysql':
             foreign_keys = get_foreign_keys_mysql(selected_connection, table_name)
@@ -210,9 +210,9 @@ def get_foreign_keys(connection_id, table_name):
             foreign_keys = get_foreign_keys_mssql(selected_connection, table_name)
         else:
             return jsonify({'error': 'Unsupported database type'}), 400
-        
+
         return jsonify(foreign_keys), 200
-        
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -243,7 +243,7 @@ def get_collections():
             return jsonify(result), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-                
+
 @app.route('/api/terms-suggestion', methods=['POST'])
 def terms_suggestion():
     try:
@@ -259,16 +259,16 @@ def terms_suggestion():
             request_json = request.get_json()
             if not request_json:
                 return jsonify({'error': 'JSON data is required.'}), 400
-            
+
             terms_str = request_json.get('terms')
             tables_str = request_json.get('tables')
-            
+
             # For JSON requests, convert to string if they're already objects
             if isinstance(terms_str, (dict, list)):
                 terms_str = json.dumps(terms_str)
             if isinstance(tables_str, (dict, list)):
                 tables_str = json.dumps(tables_str)
-                
+
             if not terms_str or not tables_str:
                 return jsonify({'error': 'terms and tables are required in JSON data.'}), 400
         else:
@@ -304,19 +304,19 @@ def embedding_and_save_as_text_file():
             request_json = request.get_json()
             if not request_json:
                 return jsonify({'error': 'JSON data is required.'}), 400
-            
+
             embedding_json_str = request_json.get('sourceSchemaJson')
             embedding_table_json_str = request_json.get('sourceSchemaTableJson')
-            
+
             # For JSON requests, convert to string if they're already objects
             if isinstance(embedding_json_str, (dict, list)):
                 embedding_json_str = json.dumps(embedding_json_str)
             if isinstance(embedding_table_json_str, (dict, list)):
                 embedding_table_json_str = json.dumps(embedding_table_json_str)
-                
+
             if not embedding_json_str or not embedding_table_json_str:
                 return jsonify({'error': 'sourceSchemaJson and sourceSchemaTableJson are required in JSON data.'}), 400
-        
+
         result = pre_processing.embedding_and_save_as_text_file_logic(embedding_json_str, embedding_table_json_str, config.EMBEDDING_MODEL)
         return jsonify(result), 200 if 'message' in result else 400
     except Exception as e:
@@ -353,19 +353,19 @@ def schema_summary():
             ontology_json = request_json.get('ontology')
         else:
             return jsonify({'error': 'Content-Type must be application/json or multipart/form-data'}), 415
-        
+
         # Save to file if successful
         if schema_json and ontology_json:
             schema_summary_file = config.SCHEMA_SUMMARY_FILE
-            
+
             # Ensure data directory exists
             os.makedirs(os.path.dirname(schema_summary_file), exist_ok=True)
-            
+
             # Save the schema summary to file
             with open(schema_summary_file, 'w', encoding='utf-8') as f:
                 # Write the entire result as JSON
                 json.dump(request_json, f, indent=2, ensure_ascii=False)
-            
+
             print(f"Schema summary saved to {schema_summary_file}")
 
         return jsonify({'success': True, 'message': 'Global schema summary saved successfully', 'summary': request_json}), 200 if schema_json and ontology_json else 400
@@ -377,14 +377,14 @@ def check_schema_summary():
     """API endpoint to check and get schema_summary.txt content"""
     try:
         schema_summary_file = config.SCHEMA_SUMMARY_FILE
-        
+
         # Check if file exists
         if not os.path.exists(schema_summary_file):
             return jsonify({
                 'success': False,
                 'message': 'Global schema summary file not found. Please generate schema summary first.'
             }), 404
-        
+
         # Check if file has content
         file_size = os.path.getsize(schema_summary_file)
         if file_size == 0:
@@ -392,17 +392,17 @@ def check_schema_summary():
                 'success': False,
                 'message': 'Global schema summary file is empty.'
             }), 200
-        
+
         # Read and return file content
         with open(schema_summary_file, 'r', encoding='utf-8') as f:
             content = json.load(f)
-        
+
         return jsonify({
             'success': True,
             'message': 'Schema summary file loaded successfully.',
             'summary': content
         }), 200
-        
+
     except json.JSONDecodeError as e:
         return jsonify({
             'exists': True,
@@ -439,7 +439,7 @@ def retrieve_candidates_route():
         result = retrieve_candidates.retrieve_candidates_logic(
             query_json, collection_name
         )
-        
+
         if 'error' in result:
             return jsonify(result), 400
         else:
@@ -476,7 +476,7 @@ def llm_select_concepts():
             return jsonify({'error': 'Content-Type must be application/json or multipart/form-data'}), 415
 
         result = select_concept.llm_select_concepts_logic(selection_json, selection_table_json, global_schema_summary)
-        
+
         if 'error' in result:
             return jsonify(result), 400
         else:
@@ -509,7 +509,7 @@ def llm_suggest_properties_route():
         else:
             return jsonify({'error': 'Content-Type must be application/json or multipart/form-data'}), 415
 
-        finalResults = []    
+        finalResults = []
         previous_mapping = []
         global_schema_summary_json['previous_mappings'] = []
         for i, properties in enumerate(properties_json):
@@ -533,7 +533,7 @@ def llm_suggest_properties_route():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+
 @app.route('/api/write-mapping', methods=['POST'])
 def write_mapping_route():
     try:
@@ -550,7 +550,7 @@ def write_mapping_route():
         result, status_code = write_mapping.write_mapping_route_logic(
             request_data, request_files, request.content_type
         )
-        
+
         return jsonify(result), status_code
 
     except Exception as e:
@@ -559,5 +559,52 @@ def write_mapping_route():
     # Process the mapping data (e.g., save to database)
     return jsonify({'message': 'Mapping written successfully'}), 200
 
-if __name__ == '__main__':    
+#### Handle Model Configuration ####
+@app.route('/api/model-config', methods=['GET'])
+def get_model_config():
+    """Get current LLM and embedding model configuration"""
+    try:
+        current = langchain_manager.get_current_config()
+        available = langchain_manager.get_available_models()
+        return jsonify({
+            'current': current,
+            'available': available
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/model-config', methods=['PUT'])
+def update_model_config():
+    """Update LLM provider and/or model configuration at runtime"""
+    try:
+        request_json = request.get_json()
+        if not request_json:
+            return jsonify({'error': 'JSON data is required.'}), 400
+
+        provider = request_json.get('provider')
+        llm_model = request_json.get('llm_model')
+        embedding_model = request_json.get('embedding_model')
+
+        if not any([provider, llm_model, embedding_model]):
+            return jsonify({'error': 'At least one of provider, llm_model, or embedding_model is required.'}), 400
+
+        # Validate provider if given
+        available = langchain_manager.get_available_models()
+        if provider and provider not in available:
+            return jsonify({'error': f'Unsupported provider: {provider}. Available: {list(available.keys())}'}), 400
+
+        changed = langchain_manager.update_model_config(
+            provider=provider,
+            llm_model=llm_model,
+            embedding_model=embedding_model
+        )
+
+        return jsonify({
+            'message': 'Model configuration updated successfully' if changed else 'No changes made',
+            'current': langchain_manager.get_current_config()
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
     app.run(debug=True, port=5000)
