@@ -1,22 +1,26 @@
 """
 Module for selecting similar concepts using LangChain.
 """
+import os
+import json
 from typing import List, Dict, Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_config import langchain_manager
 from interface import Candidate, SimilarConcept, ConceptSelection, ConceptSelectionTable
-import os
-import json
+from prompt_logger import format_prompt_log, append_prompt_log, init_prompt_log
 
 class ConceptSelectionChain:
     def __init__(self):
         self.llm = langchain_manager.get_llm()
         self.row_parser = PydanticOutputParser(pydantic_object=ConceptSelection)
-        self.table_parser = PydanticOutputParser(pydantic_object=ConceptSelectionTable) # temporary
+        self.table_parser = PydanticOutputParser(pydantic_object=ConceptSelectionTable)
         self.config = langchain_manager.config
         self._setup_prompts()
         self._setup_chains()
+
+        # Prompt log file for this process
+        self.prompt_log_file = getattr(self.config, 'PROMPT_LOG_CONCEPTS_FILE', './data/prompt_log_concepts.txt')
 
     def _setup_prompts(self):
         """Setup prompt templates"""
@@ -300,13 +304,13 @@ class ConceptSelectionChain:
 
     def _setup_chains(self):
         """Setup LangChain chains"""
-        self.chain_row = (
+        self.row_chain = (
             self.prompt_per_row
             | self.llm
             | self.row_parser
         )
 
-        self.chain_table = (
+        self.table_chain = (
             self.prompt_per_table
             | self.llm
             | self.table_parser
@@ -331,50 +335,74 @@ class ConceptSelectionChain:
 
         return "\n".join(candidates_text)
 
-    def select_concept_row(self, candidate: Candidate, provider: str = None) -> Dict[str, Any]:
-        """Select the best concept for a given term"""
-        provider = provider or langchain_manager.config.LLM_PROVIDER
-        langchain_manager.rate_limit_check(provider, embeddings=False)
+    # def select_concept_row(self, candidate: Candidate, provider: str = None) -> Dict[str, Any]:
+    #     """Select the best concept for a given term"""
+    #     provider = provider or langchain_manager.config.LLM_PROVIDER
+    #     langchain_manager.rate_limit_check(provider, embeddings=False)
 
-        try:
-            candidates_text = self._format_candidates(candidate.candidates)
+    #     try:
+    #         candidates_text = self._format_candidates(candidate.candidates)
 
-            result = self.chain_row.invoke({
-                "term": candidate.term,
-                "candidates_text": candidates_text,
-                "format_instructions": self.row_parser.get_format_instructions()
-            })
+    #         result = self.row_chain.invoke({
+    #             "term": candidate.term,
+    #             "candidates_text": candidates_text,
+    #             "format_instructions": self.row_parser.get_format_instructions()
+    #         })
 
-            return {
-                "term": candidate.term,
-                "selected_candidate": result.selected_candidate,
-                "confidence_score": result.confidence_score,
-                "reason": result.reason
-            }
-        except Exception as e:
-            print(f"Error selecting concept for term '{candidate.term}': {e}")
-            return {
-                "term": candidate.term,
-                "selected_candidate": None,
-                "confidence_score": 0.0,
-                "reason": f"Error: {str(e)}"
-            }
+    #         return {
+    #             "term": candidate.term,
+    #             "selected_candidate": result.selected_candidate,
+    #             "confidence_score": result.confidence_score,
+    #             "reason": result.reason
+    #         }
+    #     except Exception as e:
+    #         print(f"Error selecting concept for term '{candidate.term}': {e}")
+    #         return {
+    #             "term": candidate.term,
+    #             "selected_candidate": None,
+    #             "confidence_score": 0.0,
+    #             "reason": f"Error: {str(e)}"
+    #         }
 
     def select_concept_table(self, candidate: Candidate, global_schema_summary: str, provider: str = None, base_uri: str = "http://example.com/") -> Dict[str, Any]:
         """Select the best concept for a given term"""
         provider = provider or langchain_manager.config.LLM_PROVIDER
+        model = self.config.LLM_MODEL
         langchain_manager.rate_limit_check(provider, embeddings=False)
 
         try:
             candidates_text = self._format_candidates(candidate.candidates)
 
-            result = self.chain_table.invoke({
+            prompt_input = {
                 "term": candidate.term,
                 "candidates_text": candidates_text,
                 "global_schema_summary": global_schema_summary,
-                "format_instructions": self.table_parser.get_format_instructions(),
                 "base_uri": base_uri,
+            }
+
+            formatted_prompt = self.prompt_per_table.format_messages(
+                **prompt_input,
+                format_instructions=self.table_parser.get_format_instructions()
+            )
+            prompt_text = "\n".join([m.content for m in formatted_prompt])
+
+            result = self.table_chain.invoke({
+                **prompt_input,
+                "format_instructions": self.table_parser.get_format_instructions()
             })
+
+            log_entry = format_prompt_log(
+                process_name="ConceptSelection - Table",
+                step=1,
+                total_steps=1,
+                prompt_input=prompt_input,
+                prompt_text=prompt_text,
+                response=result,
+                provider=provider,
+                model=model,
+                extra_info={"term": candidate.term, "candidate_count": len(candidate.candidates)}
+            )
+            append_prompt_log(self.prompt_log_file, log_entry)
 
             return {
                 "term": candidate.term,
@@ -408,15 +436,21 @@ def llm_select_concepts_logic(selection_json: Dict[str, Any], selection_table_js
     llm_selected_table_file = selection_chain.config.LLM_SELECTED_CONCEPTS_TABLE_FILE or './data/llm_selected_concepts_table.txt'
     llm_selected_log_file = selection_chain.config.LLM_SELECTED_CONCEPTS_LOG_FILE or './data/llm_selected_concepts_log.txt'
 
+    # Initialize prompt log at start of process
+    init_prompt_log(
+        selection_chain.prompt_log_file,
+        process_name="LLM Concept Selection",
+        metadata={
+            "Provider": selection_chain.config.LLM_PROVIDER,
+            "Model": selection_chain.config.LLM_MODEL,
+            "Total Candidates": len(selection_json) if selection_json else 0,
+        }
+    )
+
     # Extract parameters
     # Convert candidates_data to Candidate objects
     candidates = _convert_to_candidate_objects(selection_json)
     candidates_table = _convert_to_candidate_objects(selection_table_json) if selection_table_json else []
-    # candidates_data = selection_json.get('candidates', [])
-    # candidates_data_table = selection_table_json.get('candidates', []) if selection_table_json else []
-
-    # if not candidates_data:
-    #     return {'error': 'candidates array is required and cannot be empty.'}
 
     if(selection_chain.config.SAVE_OUTPUT):
         # Check if both files exist and have content

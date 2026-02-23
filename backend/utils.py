@@ -56,6 +56,11 @@ class Config:
         self.TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
         self.GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
+        # Prompt Log Files
+        self.PROMPT_LOG_TERMS_FILE = os.getenv('PROMPT_LOG_TERMS_FILE', './data/prompt_log_terms.txt')
+        self.PROMPT_LOG_CONCEPTS_FILE = os.getenv('PROMPT_LOG_CONCEPTS_FILE', './data/prompt_log_concepts.txt')
+        self.PROMPT_LOG_PROPERTIES_FILE = os.getenv('PROMPT_LOG_PROPERTIES_FILE', './data/prompt_log_properties.txt')
+
     def __repr__(self):
         return f"<Config GRAPHDB_URL={self.GRAPHDB_URL}, EMBEDDING_MODEL={self.EMBEDDING_MODEL}>"
 
