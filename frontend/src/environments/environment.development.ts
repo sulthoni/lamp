@@ -1,9 +1,9 @@
 export const appVersion = '1.0.0';
 
 export const appInfo = {
-  name: 'MetaStat',
-  nameUC: 'METASTAT',
-  logo: 'MetaStat',
+  name: 'LAMP (An LLM-Assisted Mapping Pipeline)',
+  nameUC: 'LAMP (An LLM-Assisted Mapping Pipeline)',
+  logo: 'lamp',
   website: 'www.metastat.com',
 };
 
