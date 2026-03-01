@@ -376,10 +376,141 @@ class PropertySelectionChain:
             """
         )
 
+        #without global schema summary
+        self.prompt_no_global = ChatPromptTemplate.from_template(
+            """
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology.
+
+            Task:
+                Your job is to map each database column to the most semantically relevant available **data property** or **object property**
+                from the provided ontology.
+                You must rely strictly on the local table context, suggested classes, and provided ontology properties
+                to ensure semantically precise and non-redundant mappings.
+
+            ---
+
+            ### Input Context
+                **Table:** {table_name}
+
+                **Improved Table Name:** {improved_table_name}
+
+                **Columns:**
+                {columns_text}
+
+                **Additional Context of table:**
+                {term}
+
+                **Total Classes Suggested for This Table:**
+                {suggested_classes_count}
+
+                **Suggested Classes:**
+                {suggested_classes_from_first_step}
+
+                **Suggested Classes IRI:**
+                {suggested_classes_iri_from_first_step}
+
+                **Suggested Columns for Each Class (from step 1):**
+                {suggested_columns_text}
+
+                **Available Data Properties:**
+                {data_properties_text}
+
+                **Available Object Properties:**
+                {object_properties_text}
+
+                **Related Columns (cross-table relationships):**
+                {related_columns_text}
+
+            ---
+
+            ### 1. Mapping Principles
+
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Use the table name and additional table context to determine semantic intent.
+
+            2. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` to guide class-property assignment..
+                - Explain clearly which class each property belongs to and why.
+
+            3. **Property Selection**
+                - Map each column to **either** available ontology property:
+                    - a `data property` (for intrinsic attributes), or
+                    - an `object property` (for relational or reference columns)
+                - Map when there is clear semantic correlation — do **not** force weak mappings.
+
+            4. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`), explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+
+            5. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+
+            ---
+
+            ### 2. Mapping Logic Details
+
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.).
+            - Use related columns (related_columns_text) to infer possible relational semantics.
+            - For each potential object property:
+                - Verify semantic alignment between column meaning and property intent.
+                - Validate domain–range consistency using the suggested classes.
+            - Consider possible bidirectional interpretation only when semantically justified.
+            - Confirm object property mappings with evidence from:
+                - column naming,
+                - related column hints,
+                - ontology property descriptions.
+
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Ensure property assignment aligns with the ontology definitions provided.
+
+            ---
+
+            ### 3. Completeness Validation
+
+            1. Ensure every column (except pure technical identifier columns such as standalone PK IDs) is evaluated.
+            2. Validate that:
+                - Object properties follow valid domain–range semantics.
+                - No conflicting or circular mappings exist.
+                - Composite mappings are logically justified.
+
+            If any column cannot be mapped meaningfully, include it in the result with `"mapped": false` and a reason.
+
+            ---
+
+            ### 4. Output Format
+
+            Follow these output formatting rules exactly:
+
+            {format_instructions}
+
+            ---
+
+            ### 5. Final Instructions
+
+            - Ensure reasoning references:
+                - FK pattern detection
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+            - Only include valid JSON output, following `{format_instructions}`.
+            - Maintain semantic precision and avoid speculative or weak mappings.
+            - Base all decisions strictly on the provided local context and ontology properties.
+
+
+            """
+        )
+
     def _setup_chain(self):
-        """Setup LangChain chain"""
+        """Setup LangChain chain. Change for ablation experiments - with or without global schema summary"""
         self.chain = (
-            self.prompt
+            self.prompt_no_global
             | self.llm
             | self.parser
         )
@@ -501,9 +632,10 @@ class PropertySelectionChain:
             }
 
             # Render full prompt before invoking
-            formatted_prompt = self.prompt.format_messages(**prompt_input)
+            formatted_prompt = self.prompt_no_global.format_messages(**prompt_input)
             prompt_text = "\n".join([m.content for m in formatted_prompt])
 
+            print(f"Invoking LLM for property suggestion with prompt:\n{prompt_text}\n")
             result = self.chain.invoke(prompt_input)
 
             # Log the prompt and response — use per-table log file

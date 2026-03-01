@@ -513,6 +513,7 @@ def llm_suggest_properties_route():
         previous_mapping = []
         global_schema_summary_json['previous_mappings'] = []
         for i, properties in enumerate(properties_json):
+            print(f"Processing property {i+1}/{len(properties_json)}: {properties.get('column_name', 'N/A')}")
             expected_column_count = f'{i+1} of {len(properties_json)}'
             result = select_properties.llm_suggest_properties_logic(properties, global_schema_summary_json)
             if 'success'==False in result:

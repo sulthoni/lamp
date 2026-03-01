@@ -302,6 +302,114 @@ class ConceptSelectionChain:
             """
         )
 
+        self.prompt_per_table_no_global = ChatPromptTemplate.from_template(
+            """
+            Role:
+                You are an expert in ontology engineering and semantic data integration.
+
+            Goal:
+                Your task is to map a single database table to one or more ontology classes.
+                ou must analyze the table using only the provided table-level information and candidate ontology descriptions, applying careful structural and semantic reasoning.
+
+            Input:
+                Term: {term}
+                Candidates: {candidates_text}
+                Base_URI: {base_uri}
+
+            Instructions:
+                Use the following structured reasoning process:
+
+                1. **Quick Overview**
+                    - Read the Term and Candidates carefully.
+                    - Treat similarity scores as a useful prior, but validate using semantic and structural evidence.
+                    - Note any global clues that help refine interpretation (e.g., FK links to another table already mapped to a specific ontology class).
+
+                2. **Data-Model Signals**
+                    - Infer likely primary key(s) and foreign key(s) using column patterns.
+                    - Explicitly mention detected PK(s) and FK(s) and how they indicate entity identity or relationships.
+                    - If a table has multiple FKs or composite PKs, consider multi-entity mapping or join-table semantics.
+
+                3. **Column Clustering**
+                    - Group columns by semantic themes (e.g., personal_info, transaction_info, reference_info).
+                    - Name each cluster and list its columns.
+                    - Identify how these clusters correspond to ontology data or object properties.
+
+                4. **Class-Mapping Logic**
+                    - Decide whether the table maps to a single ontology class or multiple classes.
+                    - If multiple, determine and justify the bridge columns (e.g., FK columns) connecting them.
+                    - Explain how this bridging aligns with ontology object properties.
+
+                5. **Candidate Analysis**
+                    For each candidate ontology class:
+                        • Compare semantic match between label and table term.
+                        • Evaluate how description, synonyms, and explanatory_text align with table purpose.
+                        • Check data property alignment (column names ↔ ontology data properties).
+                        • Check object property alignment (FKs ↔ ontology relationships).
+                        • Consider cosine similarity but override it if semantic or structural alignment differs.
+
+                6. **Global Consistency Check**
+                    - Before final selection, ensure mappings are globally coherent:
+                        • Do not map two related tables to ontology classes with incompatible relationships.
+                        • If table A → class A, and this table references A, prefer mapping to a class related to A via ontology object properties.
+                        • Maintain naming and relationship consistency across the entire schema.
+
+                7. **Selection and Output**
+                    - Select the most appropriate ontology class(es).
+                    - For each selected candidate, provide:
+                        • Confidence score (0.00–1.00, two decimals)
+                        • Detailed reasoning with references to:
+                            - PK/FK detection
+                            - Column clusters
+                            - Mixed-entity findings (if any)
+                            - Bridge columns (if applicable)
+                            - Property alignment (data + object)
+                            - Candidate analysis outcome
+                        • Columns associated with the term and selected candidate concept.
+
+                8. **Class URI Instruction (Base URI is provided)**
+                    - You MUST output a recommended class URI for EACH selected ontology class.
+                    - First, choose exactly ONE table column to act as that class's identifier (the "class ID column").
+                      Prefer a true primary key for that entity/class. If multiple classes are selected, each class may use a different ID column.
+                      If only composite keys exist, choose the single most stable/unique column and explain the limitation in the corresponding reason.
+                    - Then construct the class URI using this exact format:
+                        `<Base_URI>/<ClassLabel>/<class_id_column>`
+                      where:
+                        • `Base_URI` is exactly the provided Base_URI (do not invent one)
+                        • `ClassLabel` is exactly the selected candidate label string you output
+                        • `class_id_column` is exactly the chosen table column original name
+                    - Do NOT output any other URI patterns.
+
+                    - If no suitable class exists, return empty lists and justify using structural and semantic reasoning (e.g., “table acts as a join table only; no standalone class match”).
+
+            Formatting rules:
+                - Return strictly valid JSON that matches  {format_instructions}.
+                - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
+                - Example Output Structure:
+                    If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
+                    {{
+                        "selected_candidates": ["Order", "Customer"],
+                        "confidence_scores": [0.85, 0.75],
+                        "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
+                        "columns": [
+                            ["id", "order_date", "amount"],  // Columns for "Order" candidate
+                            ["customer_id", "name"]          // Columns for "Customer" candidate
+                        ],
+                        "related_columns": [
+                            ["customer_id"],  // Related columns for "Order" candidate
+                            []                // Related columns for "Customer" candidate
+                        ]
+                    }}
+
+            Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
+
+            """
+        )
+
     def _setup_chains(self):
         """Setup LangChain chains"""
         self.row_chain = (
@@ -310,8 +418,9 @@ class ConceptSelectionChain:
             | self.row_parser
         )
 
+        """Change for ablation experiments - with or without global schema summary"""
         self.table_chain = (
-            self.prompt_per_table
+            self.prompt_per_table_no_global
             | self.llm
             | self.table_parser
         )
@@ -335,35 +444,6 @@ class ConceptSelectionChain:
 
         return "\n".join(candidates_text)
 
-    # def select_concept_row(self, candidate: Candidate, provider: str = None) -> Dict[str, Any]:
-    #     """Select the best concept for a given term"""
-    #     provider = provider or langchain_manager.config.LLM_PROVIDER
-    #     langchain_manager.rate_limit_check(provider, embeddings=False)
-
-    #     try:
-    #         candidates_text = self._format_candidates(candidate.candidates)
-
-    #         result = self.row_chain.invoke({
-    #             "term": candidate.term,
-    #             "candidates_text": candidates_text,
-    #             "format_instructions": self.row_parser.get_format_instructions()
-    #         })
-
-    #         return {
-    #             "term": candidate.term,
-    #             "selected_candidate": result.selected_candidate,
-    #             "confidence_score": result.confidence_score,
-    #             "reason": result.reason
-    #         }
-    #     except Exception as e:
-    #         print(f"Error selecting concept for term '{candidate.term}': {e}")
-    #         return {
-    #             "term": candidate.term,
-    #             "selected_candidate": None,
-    #             "confidence_score": 0.0,
-    #             "reason": f"Error: {str(e)}"
-    #         }
-
     def select_concept_table(self, candidate: Candidate, global_schema_summary: str, provider: str = None, base_uri: str = "http://example.com/") -> Dict[str, Any]:
         """Select the best concept for a given term"""
         provider = provider or langchain_manager.config.LLM_PROVIDER
@@ -380,7 +460,7 @@ class ConceptSelectionChain:
                 "base_uri": base_uri,
             }
 
-            formatted_prompt = self.prompt_per_table.format_messages(
+            formatted_prompt = self.prompt_per_table_no_global.format_messages(
                 **prompt_input,
                 format_instructions=self.table_parser.get_format_instructions()
             )
