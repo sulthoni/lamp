@@ -276,12 +276,23 @@ def terms_suggestion_logic(terms_str: str, tables_str: str) -> Dict[str, Any]:
         print(f"Processing table {i} of {len(terms)}: {table_name}")
 
         # Use batch processing for better efficiency
-        improvements = improvement_chain.improve_batch_terms(
-            table_name=table_name,
-            column_names=column_names,
-            related_tables=related_tables,
-            provider=llm_provider
-        )
+        # improvements = improvement_chain.improve_batch_terms(
+        #     table_name=table_name,
+        #     column_names=column_names,
+        #     related_tables=related_tables,
+        #     provider=llm_provider
+        # )
+
+        # ablation - term refine: replace the LLM suggestion with the original term to test the impact of term refinement
+        improvements = []
+        for col in column_names:
+            improvements.append({
+                "table_name": table_name,
+                "column_name": col,
+                "improved_table_name": table_name,  # Use original table name
+                "improved_column_name": col,
+                "related_table": None
+            })
 
         suggested_result.extend(improvements)
 
