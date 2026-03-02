@@ -763,16 +763,16 @@ def _convert_to_candidate_properties(candidate_properties_data: List[Dict[str, A
     return CandidateProperties(
         term=term,
         table_name=table_name,
-        improved_table_name=improved_table_name,
+        improved_table_name='',
         columns=columns,
         total_candidates=total_candidates,
         suggestedClass=suggestedClass,
         suggestedClassIRI=suggestedClassIRI,
         data_properties=data_properties_list,
         object_properties=object_properties_list,
-        suggestedColumns=suggestedColumns_list,
-        related_columns=related_columns_list,
-        reason=reason_list,
+        suggestedColumns='',
+        related_columns='',
+        reason='',
     )
 
 def _generate_properties_log(result: List[Dict]) -> str:

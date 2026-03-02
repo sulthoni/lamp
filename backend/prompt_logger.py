@@ -40,8 +40,8 @@ def format_prompt_log(
     for key, value in prompt_input.items():
         # Truncate very long values for readability
         val_str = str(value)
-        if len(val_str) > 500:
-            val_str = val_str[:500] + f"... [truncated, total {len(val_str)} chars]"
+        if len(val_str) > 5000:
+            val_str = val_str[:5000] + f"... [truncated, total {len(val_str)} chars]"
         log_parts.append(f"  [{key}]: {val_str}")
 
     log_parts += [
