@@ -365,7 +365,7 @@ export class AutoMappingService {
     };
 
     return this.postJSON<LLMSelectionResponse>(
-      `${environment.application.backendAdminUrl}/llm-select-concepts`,
+      `${environment.application.backendAdminUrl}/llm-combined-mapping`,
       requestBody,
     );
   }

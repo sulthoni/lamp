@@ -162,3 +162,62 @@ class PropertySuggestion(BaseModel):
 class PropertyMappingList(BaseModel):
     """Schema for list of property mappings"""
     mappings: List[PropertySuggestion] = Field(description="List of property mappings")
+
+
+# ------------------------------
+# Ablation Study Models
+# — Combined class + property mapping in a single LLM call for the whole data source
+# ------------------------------
+
+class AblationPropertyMapping(BaseModel):
+    """Single column-to-property mapping within the ablation combined output."""
+    column_name: str = Field(description="Original database column name")
+    class_name: str = Field(description="Ontology class this column is mapped to")
+    properties: str = Field(description="Ontology property name (data or object)")
+    type: str = Field(description="'data' for data properties, 'object' for object properties")
+    new_property: bool = Field(description="True if this property does not exist in ontology and must be created")
+    reason: str = Field(description="Short semantic justification for this mapping")
+
+class AblationClassMapping(BaseModel):
+    """Single table-to-class mapping within the ablation combined output."""
+    class_name: str = Field(description="Ontology class label/name (e.g. 'Author', 'Book')")
+    class_uri: str = Field(
+        description=(
+            "Full IRI for this class instance, constructed as: "
+            "<base_uri>/<ClassLabel>/<id_column_name>. "
+            "Use the table's primary key column as id_column_name."
+        )
+    )
+    confidence_score: float = Field(description="Confidence score 0.0–1.0 for this class mapping")
+    reason: str = Field(
+        description=(
+            "Detailed justification referencing: PK/FK detection, column clusters, "
+            "bridge columns (if multi-class), global schema consistency, and property alignment."
+        )
+    )
+    suggested_columns: List[str] = Field(
+        description="Columns that are intrinsic attributes of this class (non-FK columns)"
+    )
+    related_columns: List[str] = Field(
+        description="FK columns that link this class to other classes via object properties"
+    )
+    property_mappings: List[AblationPropertyMapping] = Field(
+        description="All column-to-property mappings for columns belonging to this class"
+    )
+
+class AblationTableMapping(BaseModel):
+    """Full mapping result for one database table (classes + properties combined)."""
+    table_name: str = Field(description="Original database table name")
+    improved_table_name: str = Field(description="Improved/normalized table name")
+    class_mappings: List[AblationClassMapping] = Field(
+        description="One or more ontology class mappings for this table"
+    )
+
+class AblationFullMappingResult(BaseModel):
+    """
+    Top-level output for the ablation combined mapping.
+    Contains mappings for ALL tables in the data source in a single LLM response.
+    """
+    table_mappings: List[AblationTableMapping] = Field(
+        description="Complete class + property mappings for every table in the data source"
+    )

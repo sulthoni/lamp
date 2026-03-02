@@ -36,6 +36,7 @@ from interface import TermImprovement, Candidate, SimilarConcept
 import time
 import select_properties
 import write_mapping
+import select_combined_ablation          # ← add this import
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_chroma import Chroma
@@ -603,6 +604,55 @@ def update_model_config():
             'message': 'Model configuration updated successfully' if changed else 'No changes made',
             'current': langchain_manager.get_current_config()
         }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/llm-combined-mapping', methods=['POST'])
+def llm_combined_mapping_route():
+    """
+    Ablation study endpoint.
+
+    Single LLM call that maps ALL tables + columns to ontology classes AND
+    properties in one shot.
+
+    Input  : identical to /api/llm-select-concepts
+    Output : union of /api/llm-select-concepts  (results_table)
+                  and /api/llm-suggest-properties (property_results per table)
+    """
+    try:
+        if request.content_type.startswith('multipart/form-data'):
+            selection_data_table = request.form.get('selectionDataTable')
+            global_schema_summary = request.form.get('globalSchemaSummary')
+            base_uri = request.form.get('baseUri', 'http://example.com/')
+            if not selection_data_table:
+                return jsonify({'error': 'selectionDataTable is required.'}), 400
+            selection_table_json = json.loads(selection_data_table)
+            global_schema_summary_json = json.loads(global_schema_summary) if global_schema_summary else {}
+
+        elif request.content_type == 'application/json':
+            request_json = request.get_json()
+            if not request_json:
+                return jsonify({'error': 'JSON body is required.'}), 400
+            selection_table_json = request_json.get('selectionDataTable')
+            global_schema_summary_json = request_json.get('globalSchemaSummary', {})
+            base_uri = request_json.get('baseUri', 'http://example.com/')
+            if not selection_table_json:
+                return jsonify({'error': 'selectionDataTable is required.'}), 400
+
+        else:
+            return jsonify({'error': 'Content-Type must be application/json or multipart/form-data'}), 415
+
+        result = select_combined_ablation.llm_combined_full_mapping_logic(
+            selection_table_json=selection_table_json,
+            global_schema_summary=global_schema_summary_json,
+            base_uri=base_uri,
+        )
+
+        if not result.get('success', False):
+            return jsonify(result), 400
+
+        return jsonify(result), 200
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
