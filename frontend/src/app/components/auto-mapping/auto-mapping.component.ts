@@ -100,7 +100,7 @@ export class AutoMappingComponent implements OnInit {
     private autoMappingService: AutoMappingService,
     private ontologyMappingService: MappingService, // Inject the mapping service
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   async ngOnInit() {
@@ -130,7 +130,7 @@ export class AutoMappingComponent implements OnInit {
       this.flatExportedOntologySchemaData = data;
       console.log(
         'Flat exported ontology schema data updated:',
-        this.flatExportedOntologySchemaData
+        this.flatExportedOntologySchemaData,
       );
     });
 
@@ -202,7 +202,7 @@ export class AutoMappingComponent implements OnInit {
       if (!this.flatExportedOntologySchemaJson) {
         console.log('No exported schema found, reading original file...');
         this.flatExportedOntologySchemaJson = await this.readFile(
-          this.flatExportedOntologySchemaFile!
+          this.flatExportedOntologySchemaFile!,
         );
       }
 
@@ -218,7 +218,7 @@ export class AutoMappingComponent implements OnInit {
               typeof res === 'string' ? res : JSON.stringify(res, null, 2);
             console.log(
               'Ontology process completed successfully!',
-              this.result
+              this.result,
             );
             this.successOntology = res.message;
             this.loadingOntology = false;
@@ -261,7 +261,7 @@ export class AutoMappingComponent implements OnInit {
       this.listOfSourceTables = [];
       this.sourceSchemaData = JSON.parse(this.sourceSchemaJson || '[]');
       this.sourceSchemaDataReformated = Object.entries(
-        this.sourceSchemaData!
+        this.sourceSchemaData!,
       ).map(([tableName, columns]) => {
         this.listOfSourceTables.push(tableName);
         return {
@@ -275,7 +275,7 @@ export class AutoMappingComponent implements OnInit {
       });
       console.log(
         'Reformatted source schema data:',
-        this.sourceSchemaDataReformated
+        this.sourceSchemaDataReformated,
       );
 
       //send to backend then embeddings
@@ -283,7 +283,7 @@ export class AutoMappingComponent implements OnInit {
       this.autoMappingService
         .termsSuggestion(
           this.sourceSchemaDataReformated,
-          this.listOfSourceTables
+          this.listOfSourceTables,
         )
         .subscribe({
           next: (res) => {
@@ -306,7 +306,7 @@ export class AutoMappingComponent implements OnInit {
     } catch (error) {
       console.error(
         'Error during processing embedding table schema files:',
-        error
+        error,
       );
       this.errorSchema = 'An error occurred while processing the files.';
       this.loadingSchema = false;
@@ -348,7 +348,7 @@ export class AutoMappingComponent implements OnInit {
           if (table && Array.isArray(table)) {
             // Find the column by name in the table array
             const column = table.find(
-              (col: any) => col.name === term.column_name
+              (col: any) => col.name === term.column_name,
             );
 
             if (column) {
@@ -361,14 +361,14 @@ export class AutoMappingComponent implements OnInit {
                 {
                   data: term.data,
                   data_type: term.data_type,
-                }
+                },
               );
             } else {
               // Column not found in table
               term.data = [];
               term.data_type = null;
               console.warn(
-                `Column ${term.column_name} not found in table ${term.table_name}`
+                `Column ${term.column_name} not found in table ${term.table_name}`,
               );
             }
           } else {
@@ -376,56 +376,60 @@ export class AutoMappingComponent implements OnInit {
             term.data = [];
             term.data_type = null;
             console.warn(
-              `Table ${term.table_name} not found in sourceSchemaJson`
+              `Table ${term.table_name} not found in sourceSchemaJson`,
             );
           }
         });
 
         console.log(
           'Updated termsSuggestion with data and data_type:',
-          this.termsSuggestion
+          this.termsSuggestion,
         );
       }
 
       this.termSuggestionAsTable = Object.values(
-        this.termsSuggestion.reduce((acc, term) => {
-          if (!acc[term.table_name]) {
-            acc[term.table_name] = {
-              table_name: term.table_name,
-              column_names: [],
-              improved_table_name: term.improved_table_name,
-              improved_column_names: [],
-              related_tables: [],
-              data: {}, // Initialize data object for column sample data
-              data_types: {}, // Initialize data_types object for column data types
-            };
-          }
+        this.termsSuggestion.reduce(
+          (acc, term) => {
+            if (!acc[term.table_name]) {
+              acc[term.table_name] = {
+                table_name: term.table_name,
+                column_names: [],
+                improved_table_name: term.improved_table_name,
+                improved_column_names: [],
+                related_tables: [],
+                data: {}, // Initialize data object for column sample data
+                data_types: {}, // Initialize data_types object for column data types
+              };
+            }
 
-          // Add column names and improved column names
-          acc[term.table_name].column_names.push(term.column_name);
-          acc[term.table_name].improved_column_names.push(
-            term.improved_column_name
-          );
+            // Add column names and improved column names
+            acc[term.table_name].column_names.push(term.column_name);
+            acc[term.table_name].improved_column_names.push(
+              term.improved_column_name,
+            );
 
-          // Add data and data_type for each column
-          if (term.data) {
-            acc[term.table_name].data![term.column_name] = term.data;
-          }
+            // Add data and data_type for each column
+            if (term.data) {
+              acc[term.table_name].data![term.column_name] = term.data;
+            }
 
-          if (term.data_type) {
-            acc[term.table_name].data_types![term.column_name] = term.data_type;
-          }
+            if (term.data_type) {
+              acc[term.table_name].data_types![term.column_name] =
+                term.data_type;
+            }
 
-          // Add related_table as a pair of column_name and related_table if related_table is not empty or null
-          if (term.related_table && term.related_table.trim() !== '') {
-            acc[term.table_name].related_tables!.push({
-              column_name: term.column_name,
-              related_table: term.related_table,
-            });
-          }
+            // Add related_table as a pair of column_name and related_table if related_table is not empty or null
+            if (term.related_table && term.related_table.trim() !== '') {
+              acc[term.table_name].related_tables!.push({
+                column_name: term.column_name,
+                related_table: term.related_table,
+              });
+            }
 
-          return acc;
-        }, {} as { [key: string]: TermTable })
+            return acc;
+          },
+          {} as { [key: string]: TermTable },
+        ),
       );
 
       //send to backend then embeddings
@@ -433,7 +437,7 @@ export class AutoMappingComponent implements OnInit {
       this.autoMappingService
         .embeddingsAndSaveAsTextFile(
           this.termsSuggestion,
-          this.termSuggestionAsTable
+          this.termSuggestionAsTable,
         )
         .subscribe({
           next: (res) => {
@@ -501,7 +505,7 @@ export class AutoMappingComponent implements OnInit {
         [this.flatExportedOntologySchemaJson],
         {
           type: 'application/json',
-        }
+        },
       );
 
       this.flatExportedOntologySchemaFile = flatExportedSchemaJson_file as File;
@@ -561,7 +565,7 @@ export class AutoMappingComponent implements OnInit {
 
       // Use promisifyRequest to wait for the result
       const ontologyResult = await this.promisifyRequest(
-        store.get('ontologyFile')
+        store.get('ontologyFile'),
       );
 
       if (ontologyResult) {
@@ -750,7 +754,7 @@ export class AutoMappingComponent implements OnInit {
       const store = transaction.objectStore(this.storeName);
 
       const ontologyRequest = await this.promisifyRequest(
-        store.get('ontologyFile')
+        store.get('ontologyFile'),
       );
 
       return !!ontologyRequest;
@@ -879,7 +883,7 @@ export class AutoMappingComponent implements OnInit {
 
     console.log(
       'Updated suggestedMappingClasses:',
-      this.suggestedMappingClasses
+      this.suggestedMappingClasses,
     );
   }
 
@@ -903,7 +907,7 @@ export class AutoMappingComponent implements OnInit {
 
     console.log(
       'Updated suggestedMappingTableToClass:',
-      this.suggestedMappingTableToClass
+      this.suggestedMappingTableToClass,
     );
   }
 
@@ -937,7 +941,7 @@ export class AutoMappingComponent implements OnInit {
   saveSuggestedMappingClasses() {
     console.log(
       'Saving suggested mapping classes:',
-      this.suggestedMappingClasses
+      this.suggestedMappingClasses,
     );
     // Add your save logic here
     alert('Suggested mapping classes saved successfully!');
@@ -971,7 +975,7 @@ export class AutoMappingComponent implements OnInit {
           // Process each collection
           response.collections.forEach((collection) => {
             console.log(
-              `Collection: ${collection.name}, Count: ${collection.count}`
+              `Collection: ${collection.name}, Count: ${collection.count}`,
             );
           });
         } else {
@@ -1178,7 +1182,7 @@ export class AutoMappingComponent implements OnInit {
 
                 // Scenario 3
                 c.term ===
-                term.improved_table_name + ' - ' + term.improved_column_name
+                term.improved_table_name + ' - ' + term.improved_column_name,
             );
             return {
               ...term,
@@ -1197,7 +1201,7 @@ export class AutoMappingComponent implements OnInit {
 
           this.embeddingsTableResult.forEach((embeddings) => {
             const candidate = this.selectedCandidatesResult?.results_table.find(
-              (c) => c.term === embeddings.text_embedding
+              (c) => c.term === embeddings.text_embedding,
             );
 
             if (
@@ -1240,7 +1244,7 @@ export class AutoMappingComponent implements OnInit {
                     total_candidates: candidate.selected_candidates.length, // Track total number of candidates
                     selected: index === 0, // Select first candidate by default, others unselected
                   });
-                }
+                },
               );
             } else {
               // No candidate found or empty candidates - create single entry with empty values
@@ -1263,7 +1267,7 @@ export class AutoMappingComponent implements OnInit {
           });
           console.log(
             'suggestedMappingTableToClass',
-            this.suggestedMappingTableToClass
+            this.suggestedMappingTableToClass,
           );
         },
         error: (err) => {
@@ -1285,7 +1289,7 @@ export class AutoMappingComponent implements OnInit {
     this.disableProcessSelectedMappingsButton = false; // Re-enable button when selection changes
     console.log(
       'Selection changed. Selected count:',
-      this.getSelectedMappingsCount()
+      this.getSelectedMappingsCount(),
     );
   }
 
@@ -1294,7 +1298,7 @@ export class AutoMappingComponent implements OnInit {
     this.disableProcessSelectedTableMappingsButton = false; // Re-enable button when selection changes
     console.log(
       'Table to Class Selection changed. Selected count:',
-      this.getSelectedTableMappingsCount()
+      this.getSelectedTableMappingsCount(),
     );
   }
 
@@ -1317,7 +1321,7 @@ export class AutoMappingComponent implements OnInit {
       return false;
     }
     return this.suggestedMappingTableToClass.every(
-      (mappingTable) => mappingTable.selected
+      (mappingTable) => mappingTable.selected,
     );
   }
 
@@ -1330,7 +1334,7 @@ export class AutoMappingComponent implements OnInit {
       return false;
     }
     const selectedCount = this.suggestedMappingClasses.filter(
-      (mapping) => mapping.selected
+      (mapping) => mapping.selected,
     ).length;
     return (
       selectedCount > 0 && selectedCount < this.suggestedMappingClasses.length
@@ -1345,7 +1349,7 @@ export class AutoMappingComponent implements OnInit {
       return false;
     }
     const selectedCount = this.suggestedMappingTableToClass.filter(
-      (mappingTable) => mappingTable.selected
+      (mappingTable) => mappingTable.selected,
     ).length;
     return (
       selectedCount > 0 &&
@@ -1384,7 +1388,7 @@ export class AutoMappingComponent implements OnInit {
       return 0;
     }
     return this.suggestedMappingTableToClass.filter(
-      (mappingTable) => mappingTable.selected
+      (mappingTable) => mappingTable.selected,
     ).length;
   }
 
@@ -1412,21 +1416,23 @@ export class AutoMappingComponent implements OnInit {
 
       if (this.flatExportedOntologySchemaFile) {
         this.flatExportedOntologySchemaJson = await this.readFile(
-          this.flatExportedOntologySchemaFile
+          this.flatExportedOntologySchemaFile,
         );
         console.log(
           'Flat Exported Ontology Schema JSON:',
-          this.flatExportedOntologySchemaJson
+          this.flatExportedOntologySchemaJson,
         );
         this.flatExportedOntologySchemaData = JSON.parse(
-          this.flatExportedOntologySchemaJson
+          this.flatExportedOntologySchemaJson,
         );
 
         //find properties of selected classes and update the flatExportedOntologySchemaData
         this.suggestedMappingClassProperties = selectedMappings.map(
           (mapping) => {
             const classData = this.flatExportedOntologySchemaData.find(
-              (item) => item.URI === mapping.suggestedClassIRI
+              (item) =>
+                item.URI === mapping.suggestedClassIRI ||
+                item.label == mapping.suggestedClass,
             );
             const columns: any[] = this.suggestedMappingClasses
               .filter((col) => col.table_name === mapping.table_name)
@@ -1446,15 +1452,15 @@ export class AutoMappingComponent implements OnInit {
               objectProperties: classData ? classData.objectProperties : [],
               columns: columns,
             };
-          }
+          },
         );
         console.log(
           'Suggested Mapping Class Properties:',
-          this.suggestedMappingClassProperties
+          this.suggestedMappingClassProperties,
         );
         console.log(
           'Suggested Mapping Class Properties:',
-          JSON.stringify(this.suggestedMappingClassProperties, null, 2)
+          JSON.stringify(this.suggestedMappingClassProperties, null, 2),
         );
       }
     } catch (error) {
@@ -1469,7 +1475,7 @@ export class AutoMappingComponent implements OnInit {
   // Method to process selected table-to-class mappings by user
   async selectMappingTableToClassByUser() {
     const selectedTableMappings = this.suggestedMappingTableToClass.filter(
-      (mapping) => mapping.selected
+      (mapping) => mapping.selected,
     );
 
     if (selectedTableMappings.length === 0) {
@@ -1482,26 +1488,28 @@ export class AutoMappingComponent implements OnInit {
     try {
       console.log(
         'Processing selected table-to-class mappings:',
-        selectedTableMappings
+        selectedTableMappings,
       );
 
       if (this.flatExportedOntologySchemaFile) {
         this.flatExportedOntologySchemaJson = await this.readFile(
-          this.flatExportedOntologySchemaFile
+          this.flatExportedOntologySchemaFile,
         );
         console.log(
           'Flat Exported Ontology Schema JSON:',
-          this.flatExportedOntologySchemaJson
+          this.flatExportedOntologySchemaJson,
         );
         this.flatExportedOntologySchemaData = JSON.parse(
-          this.flatExportedOntologySchemaJson
+          this.flatExportedOntologySchemaJson,
         );
 
         // Find properties of selected classes and update the data structure
         this.suggestedMappingClassProperties = selectedTableMappings.map(
           (mapping) => {
             const classData = this.flatExportedOntologySchemaData.find(
-              (item) => item.URI === mapping.suggestedClassIRI
+              (item) =>
+                item.URI === mapping.suggestedClassIRI ||
+                item.label == mapping.suggestedClass,
             );
 
             return {
@@ -1528,15 +1536,15 @@ export class AutoMappingComponent implements OnInit {
                 improved_column_name: mapping.improved_column_names[index],
               })),
             };
-          }
+          },
         );
         console.log(
           'Updated Suggested Mapping Class Properties:',
-          this.suggestedMappingClassProperties
+          this.suggestedMappingClassProperties,
         );
         console.log(
           'Suggested Mapping Class Properties (formatted):',
-          JSON.stringify(this.suggestedMappingClassProperties, null, 2)
+          JSON.stringify(this.suggestedMappingClassProperties, null, 2),
         );
       }
     } catch (error) {
@@ -1556,21 +1564,21 @@ export class AutoMappingComponent implements OnInit {
 
     console.log(
       'Updated flattened data from service:',
-      this.flatExportedOntologySchemaData
+      this.flatExportedOntologySchemaData,
     );
   }
 
   async getPropertiesOfSelectedClass() {
     if (this.flatExportedOntologySchemaFile) {
       this.flatExportedOntologySchemaJson = await this.readFile(
-        this.flatExportedOntologySchemaFile
+        this.flatExportedOntologySchemaFile,
       );
       console.log(
         'Flat Exported Ontology Schema JSON:',
-        this.flatExportedOntologySchemaJson
+        this.flatExportedOntologySchemaJson,
       );
       this.flatExportedOntologySchemaData = JSON.parse(
-        this.flatExportedOntologySchemaJson
+        this.flatExportedOntologySchemaJson,
       );
     }
   }
@@ -1606,7 +1614,7 @@ export class AutoMappingComponent implements OnInit {
       this.autoMappingService
         .llmSuggestProperties(
           this.selectedSuggestedMappingClassProperties,
-          this.globalSchemaSummary
+          this.globalSchemaSummary,
         )
         .subscribe({
           next: (result) => {
@@ -1615,7 +1623,7 @@ export class AutoMappingComponent implements OnInit {
               this.propertiesSuggestionResults = result.results;
               console.log(
                 'Updated propertiesSuggestionResults:',
-                this.propertiesSuggestionResults
+                this.propertiesSuggestionResults,
               );
               // Map propertiesSuggestionResults to selectedSuggestedMappingClassProperties using table_name
               this.selectedSuggestedMappingClassProperties.forEach(
@@ -1627,9 +1635,9 @@ export class AutoMappingComponent implements OnInit {
                       return suggestionResult.results?.some(
                         (result) =>
                           result.table_name === classProperty.table_name &&
-                          result.class_name === classProperty.suggestedClass
+                          result.class_name === classProperty.suggestedClass,
                       );
-                    }
+                    },
                   );
                   if (
                     matchingResult &&
@@ -1640,14 +1648,14 @@ export class AutoMappingComponent implements OnInit {
                     const filteredResults = matchingResult.results.filter(
                       (result) =>
                         result.table_name === classProperty.table_name &&
-                        result.class_name === classProperty.suggestedClass
+                        result.class_name === classProperty.suggestedClass,
                     );
                     classProperty.llmPropertiesSuggestionResult =
                       filteredResults;
                   } else {
                     classProperty.llmPropertiesSuggestionResult = [];
                   }
-                }
+                },
               );
               // Set selected to true for existing (non-new) properties
               this.selectedSuggestedMappingClassProperties.forEach((item) => {
@@ -1661,7 +1669,7 @@ export class AutoMappingComponent implements OnInit {
               });
               console.log(
                 'Updated selectedSuggestedMappingClassProperties with mapped results:',
-                this.selectedSuggestedMappingClassProperties
+                this.selectedSuggestedMappingClassProperties,
               );
               // Concatenate all logs from propertiesSuggestionResults
               this.selectedSuggestedMappingClassPropertiesView =
@@ -1702,14 +1710,14 @@ export class AutoMappingComponent implements OnInit {
     return this.selectedSuggestedMappingClassProperties.some(
       (item) =>
         item.llmPropertiesSuggestionResult &&
-        item.llmPropertiesSuggestionResult.length > 0
+        item.llmPropertiesSuggestionResult.length > 0,
     );
   }
 
   onPropertySelectionChange(): void {
     console.log(
       'Property selection changed',
-      this.selectedSuggestedMappingClassProperties
+      this.selectedSuggestedMappingClassProperties,
     );
   }
 
@@ -1717,7 +1725,7 @@ export class AutoMappingComponent implements OnInit {
     indexI: number,
     indexJ: number,
     properties: any,
-    event: any
+    event: any,
   ): void {}
 
   removePropertySuggestion(indexI: number, indexJ: number): void {}
@@ -1744,7 +1752,7 @@ export class AutoMappingComponent implements OnInit {
     }
     console.log(
       'Property selection changed',
-      this.selectedSuggestedMappingClassProperties
+      this.selectedSuggestedMappingClassProperties,
     );
   }
 
@@ -1753,7 +1761,7 @@ export class AutoMappingComponent implements OnInit {
       this.selectedSuggestedMappingClassProperties.every((item) => {
         if (item.llmPropertiesSuggestionResult) {
           return item.llmPropertiesSuggestionResult.every(
-            (result) => result.selected
+            (result) => result.selected,
           );
         }
         return false;
@@ -1770,8 +1778,8 @@ export class AutoMappingComponent implements OnInit {
     return this.selectedSuggestedMappingClassProperties.every(
       (mappingProperties) =>
         mappingProperties.llmPropertiesSuggestionResult!.every(
-          (prop) => prop.selected
-        )
+          (prop) => prop.selected,
+        ),
     );
   }
 
@@ -1781,7 +1789,7 @@ export class AutoMappingComponent implements OnInit {
       return false;
     }
     return classMapping.llmPropertiesSuggestionResult.every(
-      (prop) => prop.selected
+      (prop) => prop.selected,
     );
   }
 
@@ -1795,8 +1803,8 @@ export class AutoMappingComponent implements OnInit {
     const selectedCount = this.selectedSuggestedMappingClassProperties.filter(
       (mappingProperties) =>
         mappingProperties.llmPropertiesSuggestionResult!.some(
-          (prop) => prop.selected
-        )
+          (prop) => prop.selected,
+        ),
     ).length;
     return (
       selectedCount > 0 &&
@@ -1810,7 +1818,7 @@ export class AutoMappingComponent implements OnInit {
       return false;
     }
     const selectedCount = classMapping.llmPropertiesSuggestionResult!.filter(
-      (prop) => prop.selected
+      (prop) => prop.selected,
     ).length;
     return (
       selectedCount > 0 &&
@@ -1831,7 +1839,7 @@ export class AutoMappingComponent implements OnInit {
         count +
         mapping.llmPropertiesSuggestionResult!.filter((prop) => prop.selected)
           .length,
-      0
+      0,
     );
   }
 
@@ -1845,7 +1853,7 @@ export class AutoMappingComponent implements OnInit {
     }
     return this.selectedSuggestedMappingClassProperties.reduce(
       (count, mapping) => count + mapping.llmPropertiesSuggestionResult!.length,
-      0
+      0,
     );
   }
 
@@ -1866,7 +1874,7 @@ export class AutoMappingComponent implements OnInit {
     // Check if any properties are selected
     const hasSelectedProperties =
       this.selectedSuggestedMappingClassProperties.some((item) =>
-        item.llmPropertiesSuggestionResult?.some((prop) => prop.selected)
+        item.llmPropertiesSuggestionResult?.some((prop) => prop.selected),
       );
 
     if (!hasSelectedProperties) {
@@ -1890,7 +1898,7 @@ export class AutoMappingComponent implements OnInit {
         .writeMappingDataEnhanced(
           this.selectedSuggestedMappingClassProperties,
           this.ontologyFile!,
-          this.isDataSourceCSV
+          this.isDataSourceCSV,
         )
         .subscribe({
           next: (response) => {
@@ -1901,7 +1909,7 @@ export class AutoMappingComponent implements OnInit {
 
             console.log('R2RML Result:', response.result);
             console.log(
-              `Successfully processed ${response.mappingCount} property mappings`
+              `Successfully processed ${response.mappingCount} property mappings`,
             );
 
             // Optional: Save result to local storage or display in UI
@@ -1939,7 +1947,7 @@ export class AutoMappingComponent implements OnInit {
         localStorage.setItem('latest-r2rml-mapping', r2rmlResult);
         localStorage.setItem(
           'latest-r2rml-timestamp',
-          new Date().toISOString()
+          new Date().toISOString(),
         );
       }
     } catch (error) {
@@ -2039,7 +2047,7 @@ export class AutoMappingComponent implements OnInit {
       this.autoMappingService
         .sendSchemaSummaryEnhanced(
           this.termsSuggestion,
-          this.flatExportedOntologySchemaData
+          this.flatExportedOntologySchemaData,
         )
         .subscribe({
           next: (response) => {
@@ -2049,7 +2057,7 @@ export class AutoMappingComponent implements OnInit {
             this.globalSchemaSummary = JSON.stringify(
               response.summary,
               null,
-              2
+              2,
             );
 
             // Display statistics
@@ -2167,7 +2175,7 @@ export class AutoMappingComponent implements OnInit {
     this.isDataSourceCSV = event.target.checked;
     console.log(
       'Data source type changed:',
-      this.isDataSourceCSV ? 'CSV' : 'RDBMS'
+      this.isDataSourceCSV ? 'CSV' : 'RDBMS',
     );
 
     // Optional: Save to localStorage
@@ -2175,7 +2183,7 @@ export class AutoMappingComponent implements OnInit {
       try {
         localStorage.setItem(
           'isDataSourceCSV',
-          JSON.stringify(this.isDataSourceCSV)
+          JSON.stringify(this.isDataSourceCSV),
         );
       } catch (error) {
         console.warn('Failed to save data source type preference:', error);
