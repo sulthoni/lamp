@@ -55,6 +55,8 @@ class Config:
         self.OLLAMA_HOST = os.getenv("OLLAMA_HOST")
         self.TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
         self.GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+        self.OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+        self.OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
         # Prompt Log Files
         self.PROMPT_LOG_TERMS_FILE = os.getenv('PROMPT_LOG_TERMS_FILE', './data/prompt_log_terms.txt')
@@ -130,17 +132,17 @@ def encode_text_gemini(text, model_name)-> List[float]:
     import google.generativeai as genai
     import time
     from collections import deque
-    
+
     # Rate limiting: 90 requests per minute
     if not hasattr(encode_text_gemini, 'request_times'):
         encode_text_gemini.request_times = deque()
-    
+
     current_time = time.time()
-    
+
     # Remove timestamps older than 60 seconds
     while encode_text_gemini.request_times and current_time - encode_text_gemini.request_times[0] > 60:
         encode_text_gemini.request_times.popleft()
-    
+
     # If we have 90 or more requests in the last minute, wait
     if len(encode_text_gemini.request_times) >= 90:
         sleep_time = 60 - (current_time - encode_text_gemini.request_times[0]) + 1
@@ -150,32 +152,32 @@ def encode_text_gemini(text, model_name)-> List[float]:
         current_time = time.time()
         while encode_text_gemini.request_times and current_time - encode_text_gemini.request_times[0] > 60:
             encode_text_gemini.request_times.popleft()
-    
+
     # Record this request
     encode_text_gemini.request_times.append(current_time)
-    
+
     try:
         genai.configure(api_key=get_env_variable("GOOGLE_API_KEY"))
     except KeyError:
         print("Error: GOOGLE_API_KEY environment variable not set.")
         print("Please set it using: export GOOGLE_API_KEY='YOUR_API_KEY'")
         exit(1)
-    
+
     try:
         response = genai.embed_content(
             model=model_name,
             content=text,
-            task_type="SEMANTIC_SIMILARITY" 
+            task_type="SEMANTIC_SIMILARITY"
         )
         return response['embedding']
     except Exception as e:
         print(f"Error getting embedding for text: '{text[:50]}...' - {e}")
         print("Retrying in 5 seconds...")
         time.sleep(5) # Wait before retrying
-        
+
         # Record retry request
         encode_text_gemini.request_times.append(time.time())
-        
+
         try:
             response = genai.embed_content(
                 model=model_name,
@@ -230,3 +232,85 @@ def init_vectorstore(collection_name: str, persist_directory: str = "./data/chro
         embedding_function=embeddings,
         persist_directory=persist_directory
     )
+
+def count_tokens(text: str, provider: str = None, model: str = None) -> int:
+    """
+    Count tokens in text based on LLM provider and model.
+
+    Args:
+        text: The text to count tokens for
+        provider: LLM provider (gemini, openai, anthropic, ollama). Defaults to config.LLM_PROVIDER
+        model: LLM model name. Defaults to config.LLM_MODEL
+
+    Returns:
+        Integer token count estimate
+    """
+    # Get defaults from config if not provided
+    config = Config()
+    provider = provider or config.LLM_PROVIDER
+    model = model or config.LLM_MODEL
+
+    # Remove empty strings and None
+    if not text:
+        return 0
+
+    try:
+        # For OpenAI models, use tiktoken if available
+        if provider == "openai":
+            try:
+                import tiktoken
+                # Map model names to tiktoken encoding
+                encoding_map = {
+                    "gpt-4o": "o200k_base",
+                    "gpt-4o-mini": "o200k_base",
+                    "gpt-4-turbo": "cl100k_base",
+                    "gpt-3.5-turbo": "cl100k_base",
+                    "chatgpt-4o-latest": "o200k_base",
+                }
+                encoding_name = encoding_map.get(model, "cl100k_base")
+                encoding = tiktoken.get_encoding(encoding_name)
+                token_count = len(encoding.encode(text))
+                return token_count
+            except ImportError:
+                # Fallback if tiktoken not installed
+                print("Warning: tiktoken not installed, using word-based approximation for OpenAI")
+                return _estimate_tokens_word_based(text)
+
+        # For Gemini models
+        elif provider == "gemini":
+            return _estimate_tokens_word_based(text)
+
+        # For Anthropic models
+        elif provider == "anthropic":
+            return _estimate_tokens_word_based(text)
+
+        # For Ollama models
+        elif provider == "ollama":
+            return _estimate_tokens_word_based(text)
+
+        # For OpenRouter models
+        elif provider == "openrouter":
+            return _estimate_tokens_word_based(text)
+
+        else:
+            print(f"Unknown provider: {provider}. Using word-based approximation.")
+            return _estimate_tokens_word_based(text)
+
+    except Exception as e:
+        print(f"Error counting tokens: {e}. Using word-based approximation.")
+        return _estimate_tokens_word_based(text)
+
+
+def _estimate_tokens_word_based(text: str) -> int:
+    """
+    Estimate token count using word-based approximation.
+    Most LLMs average ~1.3 tokens per word for general English text.
+    """
+    if not text:
+        return 0
+
+    # Split by whitespace and punctuation
+    words = text.split()
+    # Rough approximation: 1.3 tokens per word
+    return max(1, int(len(words) * 1.3))
+

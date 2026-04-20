@@ -11,6 +11,7 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_config import langchain_manager
 from interface import TermImprovement, BatchTermImprovement
 from prompt_logger import format_prompt_log, append_prompt_log, init_prompt_log
+from utils import count_tokens
 
 class TermImprovementChain:
     def __init__(self):
@@ -176,6 +177,10 @@ class TermImprovementChain:
             })
 
             # Log the prompt and response
+            prompt_tokens = count_tokens(prompt_text, provider, model)
+            response_text = result.model_dump_json() if hasattr(result, "model_dump_json") else str(result)
+            response_tokens = count_tokens(response_text, provider, model)
+
             log_entry = format_prompt_log(
                 process_name="TermImprovement - Batch",
                 step=1,
@@ -185,7 +190,13 @@ class TermImprovementChain:
                 response=result,
                 provider=provider,
                 model=model,
-                extra_info={"table_name": table_name, "column_count": len(column_names)}
+                extra_info={
+                    "table_name": table_name,
+                    "column_count": len(column_names),
+                    "prompt_tokens": prompt_tokens,
+                    "response_tokens": response_tokens,
+                    "total_tokens": prompt_tokens + response_tokens,
+                },
             )
             append_prompt_log(self.prompt_log_file, log_entry)
 

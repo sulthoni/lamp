@@ -27,3 +27,4 @@ pydantic
 langchain-openai
 langchain-anthropic
 google-generativeai
+tiktoken
