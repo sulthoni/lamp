@@ -317,11 +317,20 @@ class LangChainManager:
             )
 
         # OpenAI-hosted embeddings
-        elif model.startswith("text-embedding-"):
+        elif model.startswith("text-embedding-") or model.startswith("openai/text-embedding"):
             embeddings = OpenAIEmbeddings(
                 model=model,
                 api_key=self.config.OPENAI_API_KEY,
             )
+
+        # # Google Gemini embeddings via OpenRouter
+        # elif model == "google/gemini-embedding-001":
+        #     embeddings = OpenAIEmbeddings(
+        #         model=model,
+        #         api_key=self.config.OPENROUTER_API_KEY,
+        #         base_url=self.config.OPENROUTER_BASE_URL,
+        #         request_timeout=60,
+        #     )
 
         # Qwen via OpenRouter - works with LangChain OpenAIEmbeddings
         elif model == "qwen/qwen3-embedding-8b":
@@ -336,6 +345,7 @@ class LangChainManager:
         elif model in {
             "mistralai/mistral-embed-2312",
             "perplexity/pplx-embed-v1-4b",
+            "google/gemini-embedding-001"
         }:
             print(f"Using custom HTTP wrapper for {model}")
             embeddings = OpenRouterCustomEmbeddings(
