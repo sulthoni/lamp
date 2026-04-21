@@ -208,6 +208,11 @@ class PropertySelectionChain:
                 from the provided ontology.
                 You must consider both local table context and the global schema-level relationships
                 to ensure globally consistent, complete, and non-redundant mappings.
+                IMPORTANT CONSTRAINT:
+                - ONLY include columns that have a valid mapping in the final output.
+                - DO NOT include any column that cannot be mapped.
+                - DO NOT output unmapped columns with null, empty, or placeholder values.
+                - If a column has no suitable property, simply EXCLUDE it from the result.
 
             ---
 
@@ -303,7 +308,13 @@ class PropertySelectionChain:
                 - Map each column to **either**:
                     - a `data property` (for intrinsic attributes)
                     - an `object property` (for relational or reference columns)
-                - If no suitable property exists, propose a new one with `new_property = true`.
+                - You MUST ONLY use properties from:
+                    - `Available Data Properties`
+                    - `Available Object Properties`
+                - DO NOT create, infer, or propose any new properties under any circumstances.
+                - If no suitable property exists:
+                    - DO NOT include the column in the output
+                    - Provide a clear and concise justification explaining why no existing property is semantically appropriate.
                 - Only map when there is clear semantic correlation — do **not** force weak mappings.
 
             5. **Composite / Combined Columns**
@@ -340,16 +351,16 @@ class PropertySelectionChain:
 
             ### 4. Completeness and Global Validation
 
-            1. Ensure every column (except PK-only identity columns) has a mapping to either a property or a newly proposed property.
-            2. Compare your mappings against `previous_mapping_summary` to avoid duplication.
-            3. Check total number of mappings equals the `expected_column_count`.
-            4. Validate that:
-            - Each mapping is globally consistent.
-            - Relationships between tables (via FKs) align with ontology object properties.
-            - No conflicting or circular mappings exist.
-            - Cross-class mappings maintain ontology domain-range correctness.
+            1. Compare your mappings against `previous_mapping_summary` to avoid duplication..
+            2. Validate that:
+                - Each mapping is globally consistent.
+                - Relationships between tables (via FKs) align with ontology object properties.
+                - No conflicting or circular mappings exist.
+                - Cross-class mappings maintain ontology domain-range correctness.
+            3. FINAL FILTERING STEP (MANDATORY):
+                - Remove ALL unmapped columns before producing output.
+                - Ensure every column in the output has a valid mapped property.
 
-            If any column cannot be mapped meaningfully, include it in the result with `"mapped": false` and a reason.
 
             ---
 
@@ -358,6 +369,12 @@ class PropertySelectionChain:
             Follow these output formatting rules exactly:
 
             {format_instructions}
+
+            STRICT OUTPUT RULES:
+            - Output MUST contain ONLY mapped columns.
+            - Every column MUST have a valid property mapping.
+            - DO NOT include any column without a mapping.
+            - DO NOT include empty fields.
 
             ---
 
@@ -371,6 +388,9 @@ class PropertySelectionChain:
                 - Global schema and previous mappings for consistency
             - Only include valid JSON output, following `{format_instructions}`.
             - Be globally coherent, semantically precise, and avoid over-mapping.
+            - Be semantically precise and avoid weak mappings.
+            - Prefer excluding a column rather than forcing incorrect mappings.
+            - NEVER include unmapped columns in the output under any condition.
 
 
             """
@@ -627,7 +647,7 @@ def llm_suggest_properties_logic(properties_json: Dict[str, Any], global_schema_
     global_schema_summary_str = json.dumps(global_schema_summary, indent=2)
 
     # Process properties suggestion
-    print(f"Processing properties suggestion with {provider}")
+    print(f"Processing {table_names} properties suggestion with {provider}")
     results = property_chain.suggest_properties(candidate_properties, global_schema_summary_str, provider)
 
     # Update global schema summary with new mappings
