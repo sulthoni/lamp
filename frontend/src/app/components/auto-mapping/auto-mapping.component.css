@@ -193,7 +193,9 @@
 
 .editable-row input.form-control-sm {
   border: 1px solid #dee2e6;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 .editable-row input.form-control-sm:focus {
@@ -202,12 +204,16 @@
 }
 
 .table-responsive {
-  max-height: 400px;
-  overflow-y: auto;
+  overflow-x: auto;
+  overflow-y: visible; /* Allow vertical growth */
 }
 
-.card-header .btn-group .btn {
-  font-size: 0.875rem;
+.card-body {
+  overflow: visible; /* Don't constrain parent */
+}
+
+.table {
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
@@ -238,7 +244,7 @@
 }
 
 .loading-overlay::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -261,4 +267,10 @@
   100% {
     background-position: 200% 0;
   }
+}
+
+.properties-table-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  max-height: none; /* Remove any max-height constraint */
 }

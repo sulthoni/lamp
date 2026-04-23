@@ -559,7 +559,7 @@
                               [ngClass]="{
                                 'bg-light-green':
                                   term.related_table &&
-                                  term.related_table.trim() !== ''
+                                  term.related_table.trim() !== '',
                               }"
                               [value]="term.related_table || ''"
                               (input)="
@@ -896,7 +896,7 @@
                       [value]="candidateResultView"
                       placeholder="Results will appear here after processing..."
                       style="
-                        font-family: 'Courier New', monospace;
+                        font-family: &quot;Courier New&quot;, monospace;
                         font-size: 14px;
                         white-space: nowrap;
                         overflow-x: auto;
@@ -939,7 +939,7 @@
                       [value]="selectedCandidateResultView"
                       placeholder="Results will appear here after processing..."
                       style="
-                        font-family: 'Courier New', monospace;
+                        font-family: &quot;Courier New&quot;, monospace;
                         font-size: 14px;
                       "
                     ></textarea>
@@ -1364,7 +1364,7 @@
                       [value]="selectedSuggestedMappingClassPropertiesView"
                       placeholder="Results will appear here after processing..."
                       style="
-                        font-family: 'Courier New', monospace;
+                        font-family: &quot;Courier New&quot;, monospace;
                         font-size: 14px;
                         white-space: nowrap;
                         overflow-x: auto;
@@ -1397,7 +1397,7 @@
                   </h5>
                 </div>
                 <div class="card-body p-0">
-                  <div class="table-responsive">
+                  <div class="properties-table-wrapper">
                     <table class="table table-striped table-hover mb-0">
                       <thead class="table-dark">
                         <tr>
@@ -1672,7 +1672,7 @@
                       [value]="writeMappingResult"
                       placeholder="Results will appear here after processing..."
                       style="
-                        font-family: 'Courier New', monospace;
+                        font-family: &quot;Courier New&quot;, monospace;
                         font-size: 14px;
                         white-space: nowrap;
                         overflow-x: auto;
