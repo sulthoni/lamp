@@ -176,7 +176,7 @@ class ConceptSelectionChain:
 
         #### Scenario 3
         #### Add Global Schema Summary instructions
-        self.prompt_per_table = ChatPromptTemplate.from_template(
+        self.prompt_per_table_3 = ChatPromptTemplate.from_template(
             """
             Role:
                 You are an expert in ontology engineering and semantic data integration.
@@ -298,6 +298,213 @@ class ConceptSelectionChain:
                     }}
 
             Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
+
+            """
+        )
+
+        # Prompt 4 : fix join table detection
+        self.prompt_per_table_4 = ChatPromptTemplate.from_template(
+            """
+            Role:
+                You are an expert in ontology engineering and semantic data integration.
+
+            Goal:
+                Your task is to determine whether the table represents:
+                    1. An entity (→ ontology class)
+                    OR
+                    2. A relationship (→ ontology object property)
+                You MUST decide which is more appropriate.
+                You must analyze this table in the context of the entire database schema and ontology,
+                using both local (table-level) and global (schema-level) reasoning.
+
+            Global Context:
+                You are provided with a global schema summary that includes:
+                - All tables in the data source, with their columns and relationships (PK/FK)
+                - All ontology classes, with their data properties and object properties
+
+            Input:
+                Global_Schema_Summary: {global_schema_summary}
+                Term: {term}
+                Candidates: {candidates_text}
+                Base_URI: {base_uri}
+
+            Instructions:
+                Use the following structured reasoning process:
+
+                1. **Global Awareness & Contextualization**
+                    - Study the Global_Schema_Summary first.
+                    - Identify how the current table ({term}) connects to other tables (via PK/FK).
+                    - Identify which ontology classes might already align with related tables.
+                    - Use this context to maintain semantic and structural consistency with the global mapping logic.
+                    - If the table references another table, consider how object properties in ontology express this relationship.
+
+                2. **Quick Overview**
+                    - Read the Term and Candidates carefully.
+                    - Treat similarity scores as a useful prior, but validate using semantic and structural evidence.
+                    - Note any global clues that help refine interpretation (e.g., FK links to another table already mapped to a specific ontology class).
+
+                3. **Data-Model Signals**
+                    - Infer likely primary key(s) and foreign key(s) using column patterns and the global schema.
+                    - Explicitly mention detected PK(s) and FK(s) and how they indicate entity identity or relationships.
+                    - If a table has multiple FKs or composite PKs, consider multi-entity mapping or join-table semantics.
+
+                4. **Column Clustering**
+                    - Group columns by semantic themes (e.g., personal_info, transaction_info, reference_info).
+                    - Name each cluster and list its columns.
+                    - Identify how these clusters correspond to ontology data or object properties.
+                    - Use global schema information to validate whether similar clusters in other tables are mapped consistently.
+
+                5. **Class-Mapping Logic**
+                    - Decide whether the table maps to a single ontology class or multiple classes.
+                    - If multiple, determine and justify the bridge columns (e.g., FK columns) connecting them.
+                    - Explain how this bridging aligns with ontology object properties.
+                    - Reference global schema context to maintain consistency: if related tables are mapped to certain classes, ensure logical alignment (e.g., “order” table mapped to `Order` → “customer_id” FK implies mapping to `Customer`).
+
+                6. **Candidate Analysis**
+                    For each candidate ontology class:
+                        • Compare semantic match between label and table term.
+                        • Evaluate how description, synonyms, and explanatory_text align with table purpose.
+                        • Check data property alignment (column names ↔ ontology data properties).
+                        • Check object property alignment (FKs ↔ ontology relationships).
+                        • Consider cosine similarity but override it if semantic or structural alignment differs.
+                        • Use the global schema to detect indirect signals — for example, if another table’s mapping implies a class relationship via object properties.
+
+                7. **Global Consistency Check**
+                    - Before final selection, ensure mappings are globally coherent:
+                        • Do not map two related tables to ontology classes with incompatible relationships.
+                        • If table A → class A, and this table references A, prefer mapping to a class related to A via ontology object properties.
+                        • Maintain naming and relationship consistency across the entire schema.
+
+                8. **Selection and Output**
+                    - Select the most appropriate ontology class(es).
+                    - For each selected candidate, provide:
+                        • Confidence score (0.00–1.00, two decimals)
+                        • Detailed reasoning with references to:
+                            - PK/FK detection
+                            - Column clusters
+                            - Mixed-entity findings (if any)
+                            - Bridge columns (if applicable)
+                            - Global schema consistency
+                            - Property alignment (data + object)
+                            - Candidate analysis outcome
+                        • Columns associated with the term and selected candidate concept.
+
+                9. **Class URI Instruction (Base URI is provided)**
+                    - You MUST output a recommended class URI for EACH selected ontology class.
+                    - First, choose exactly ONE table column to act as that class's identifier (the "class ID column").
+                      Prefer a true primary key for that entity/class. If multiple classes are selected, each class may use a different ID column.
+                      If only composite keys exist, choose the single most stable/unique column and explain the limitation in the corresponding reason.
+                    - Then construct the class URI using this exact format:
+                        `<Base_URI>/<ClassLabel>/<class_id_column>`
+                      where:
+                        • `Base_URI` is exactly the provided Base_URI (do not invent one)
+                        • `ClassLabel` is exactly the selected candidate label string you output
+                        • `class_id_column` is exactly the chosen table column original name
+                    - Do NOT output any other URI patterns.
+
+                    - If no suitable class exists, return empty lists and justify using structural and semantic reasoning (e.g., “table acts as a join table only; no standalone class match”).
+
+                10. **Join Table Detection and Handling**
+                    - If a table:
+                        - contains primarily or only foreign keys
+                        - and each foreign key references another table
+                        - and has no strong descriptive attributes
+                    THEN:
+                        - classify it as a RELATIONSHIP TABLE (join table)
+                        - DO NOT map it to an ontology class
+                        - instead, map it to an OBJECT PROPERTY between the referenced classes
+                    You MUST prioritize this interpretation over class mapping.
+                    For a detected join table:
+                        1. Identify referenced classes via FK relationships
+                        2. Search ontology object properties where:
+                            - domain matches class A
+                            - range matches class B
+                        3. If a match exists:
+                            → map the table to that object property
+
+            Formatting rules:
+                - Return strictly valid JSON that matches  {format_instructions}.
+                - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
+                - Example Output Structure:
+                    If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
+                    {{
+                        "selected_candidates": ["Order", "Customer"],
+                        "confidence_scores": [0.85, 0.75],
+                        "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
+                        "columns": [
+                            ["id", "order_date", "amount"],  // Columns for "Order" candidate
+                            ["customer_id", "name"]          // Columns for "Customer" candidate
+                        ],
+                        "related_columns": [
+                            ["customer_id"],  // Related columns for "Order" candidate
+                            []                // Related columns for "Customer" candidate
+                        ]
+                    }}
+
+            Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
+
+            """
+        )
+
+        #### Scenario 5
+        #### Simple
+        self.prompt_per_table = ChatPromptTemplate.from_template(
+            """
+            Role:
+                You are an expert in ontology engineering and semantic data integration.
+
+            Goal:
+                Your task is to map a table to one or more ontology classes.
+                You must analyze the source table in the context of the entire database schema and ontology, using both local (table-level) and global (schema-level) reasoning.
+
+            Global Context:
+               You are provided with a global schema summary that includes:
+                - All ontology classes, with their data properties and object properties
+                - All tables in the data source
+
+            Input:
+                Global_Schema_Summary:
+                    {global_schema_summary}
+
+                Table (source):
+                    {term}
+
+                Candidates:
+                    {candidates_text}
+
+                Base_URI:
+                    {base_uri}
+
+            Formatting rules:
+                - Return strictly valid JSON that matches  {format_instructions}.
+                - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
+                - Example Output Structure:
+                    If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
+                    {{
+                        "selected_candidates": ["Order", "Customer"],
+                        "confidence_scores": [0.85, 0.75],
+                        "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
+                        "columns": [
+                            ["id", "order_date", "amount"],  // Columns for "Order" candidate
+                            ["customer_id", "name"]          // Columns for "Customer" candidate
+                        ],
+                        "related_columns": [
+                            ["customer_id"],  // Related columns for "Order" candidate
+                            []                // Related columns for "Customer" candidate
+                        ]
+                    }}
+
+             Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
 
             """
         )
