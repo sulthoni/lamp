@@ -1,0 +1,96 @@
+{
+  "lives": [
+    {
+      "name": "lives/fname",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Bob",
+        "Sue",
+        "Bob"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "lives/lname",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Smith",
+        "Jones",
+        "Smith"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "lives/city",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "London\r",
+        "Madrid\r",
+        "London\r"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "persons": [
+    {
+      "name": "persons/fname",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Bob",
+        "Sue",
+        "Bob"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "persons/lname",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Smith",
+        "Jones",
+        "Smith"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "persons/amount",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "30\r",
+        "20\r",
+        "30\r"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

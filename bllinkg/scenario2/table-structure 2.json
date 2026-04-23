@@ -1,0 +1,1424 @@
+{
+  "agency": [
+    {
+      "name": "agency_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "CRTM"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Consorcio Regional de Transportes de Madrid"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_url",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "http://www.crtm.es"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_timezone",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Europe/Madrid"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_lang",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "es"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_phone",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "012"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_fare_url",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "https://www.crtm.es/billetes-y-tarifas"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "calendar_dates": [
+    {
+      "name": "service_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "date",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2017-01-06",
+        "2017-03-20",
+        "2017-04-13",
+        "2017-04-14",
+        "2017-05-01",
+        "2017-05-02",
+        "2017-05-15",
+        "2017-08-15",
+        "2017-10-12",
+        "2017-11-01"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "exception_type",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "calendar": [
+    {
+      "name": "service_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4_I12",
+        "4_I13",
+        "4_I14",
+        "4_I15",
+        "4_I16"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "monday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "tuesday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "wednesday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "thursday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "friday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "saturday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "sunday",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "start_date",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2017-06-29",
+        "2017-06-29",
+        "2017-06-29",
+        "2017-06-29",
+        "2017-06-29"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "end_date",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2018-06-29",
+        "2018-06-29",
+        "2018-06-29",
+        "2018-06-29",
+        "2018-06-29"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "feed_info": [
+    {
+      "name": "feed_publisher_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Consorcio Regional de Transportes de Madrid"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "feed_publisher_url",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "http://www.crtm.es"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "feed_lang",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "es"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "feed_start_date",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "feed_end_date",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "feed_version",
+      "type": "INT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "20170629"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "frequencies": [
+    {
+      "name": "trip_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_2_1_4__1___",
+        "4_I12-001_2016I12_2_1_4__1___"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "start_time",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "00:00:00",
+        "01:00:00",
+        "06:05:00",
+        "07:00:00",
+        "09:00:00",
+        "18:00:00",
+        "21:30:00",
+        "23:00:00",
+        "00:00:00",
+        "01:00:00"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "end_time",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "01:00:00",
+        "02:00:00",
+        "07:00:00",
+        "09:00:00",
+        "18:00:00",
+        "21:30:00",
+        "23:00:00",
+        "24:00:00",
+        "01:00:00",
+        "02:00:00"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "headway_secs",
+      "type": "SMALLINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "600",
+        "900",
+        "540",
+        "480",
+        "480",
+        "360",
+        "390",
+        "450",
+        "600",
+        "900"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "exact_times",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    }
+  ],
+  "routes": [
+    {
+      "name": "route_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4__1___",
+        "4__10___",
+        "4__11___",
+        "4__12___",
+        "4__2___",
+        "4__3___",
+        "4__4___",
+        "4__5___",
+        "4__6___",
+        "4__7___"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "agency_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM",
+        "CRTM"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "route_short_name",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "10",
+        "11",
+        "12",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "route_long_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Pinar de Chamart\u00edn-Valdecarros",
+        "Hospital del Norte-Puerta del Sur",
+        "Plaza El\u00edptica-La Fortuna",
+        "MetroSur",
+        "Las Rosas-Cuatro Caminos",
+        "Villaverde Alto-Moncloa",
+        "Pinar de Chamart\u00edn-Arg\u00fcelles",
+        "Alameda de Osuna-Casa de Campo",
+        "Circular",
+        "Hospital del Henares-Pitis"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "route_desc",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "route_type",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "route_url",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__1___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__10___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__11___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__12___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__2___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__3___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__4___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__5___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__6___.aspx",
+        "http://www.crtm.es/tu-transporte-publico/metro/lineas/4__7___.aspx"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "route_color",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2DBEF0",
+        "005AA9",
+        "009B3A",
+        "A49800",
+        "ED1C24",
+        "FFD000",
+        "B65518",
+        "8FD400",
+        "98989B",
+        "EE7518"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "route_text_color",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "FFFFFF",
+        "FFFFFF",
+        "FFFFFF",
+        "FFFFFF",
+        "FFFFFF",
+        "000000",
+        "FFFFFF",
+        "FFFFFF",
+        "FFFFFF",
+        "FFFFFF"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "shapes": [
+    {
+      "name": "shape_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1",
+        "4__1____1__IT_1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "shape_pt_lat",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "40.4802624278576",
+        "40.4803769678597",
+        "40.4804232925184",
+        "40.4803737351212",
+        "40.4786176954147",
+        "40.4784807907417",
+        "40.4781477727093",
+        "40.4774847386702",
+        "40.4755396581926",
+        "40.4755396581926"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "shape_pt_lon",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "-3.66723744236574",
+        "-3.66777650933287",
+        "-3.66820786216953",
+        "-3.66865010482233",
+        "-3.67410451070911",
+        "-3.67479908876806",
+        "-3.67542282929535",
+        "-3.67595016802278",
+        "-3.67673753695526",
+        "-3.67673753695526"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "shape_pt_sequence",
+      "type": "INT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1000001",
+        "1000002",
+        "1000003",
+        "1000004",
+        "1000005",
+        "1000006",
+        "1000007",
+        "1000008",
+        "1000009",
+        "2000001"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "shape_dist_traveled",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0.0",
+        "0.047428346568",
+        "0.131778797501",
+        "0.254016056954",
+        "0.877997732961",
+        "1.562784496877",
+        "2.312083733168",
+        "3.147493089197",
+        "4.208894398759",
+        "4.208894398759"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "stop_times": [
+    {
+      "name": "trip_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_1_1_4__1___"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "arrival_time",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "00:08:19",
+        "00:22:04",
+        "00:23:53",
+        "00:24:44",
+        "00:26:30",
+        "00:27:47",
+        "00:29:34",
+        "00:30:22",
+        "00:32:13",
+        "00:33:38"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "departure_time",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "00:08:19",
+        "00:22:04",
+        "00:23:53",
+        "00:24:44",
+        "00:26:30",
+        "00:27:47",
+        "00:29:34",
+        "00:30:22",
+        "00:32:13",
+        "00:33:38"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "par_4_1",
+        "par_4_10",
+        "par_4_11",
+        "par_4_12",
+        "par_4_13",
+        "par_4_14",
+        "par_4_15",
+        "par_4_16",
+        "par_4_17",
+        "par_4_18"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_sequence",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "3.0",
+        "12.0",
+        "13.0",
+        "14.0",
+        "15.0",
+        "16.0",
+        "17.0",
+        "18.0",
+        "19.0",
+        "20.0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_headsign",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "pickup_type",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "drop_off_type",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "shape_dist_traveled",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    }
+  ],
+  "stops": [
+    {
+      "name": "stop_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "acc_4_1_1",
+        "acc_4_1_1040",
+        "acc_4_1_1043",
+        "acc_4_1_1044",
+        "acc_4_1_2",
+        "acc_4_1_3",
+        "acc_4_1_4",
+        "acc_4_1_773",
+        "acc_4_10_34",
+        "acc_4_10_35"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "10",
+        "10"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Plaza de Castilla",
+        "Ascensor",
+        "Intercambiador Superficie",
+        "Ascensor",
+        "Castellana impares",
+        "Bravo Murillo",
+        "Paseo Castellana pares",
+        "Intercambiador",
+        "Barcel\u00f3",
+        "Fuencarral"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_desc",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Paseo de la Castellana 189",
+        "Plaza de Castilla 9",
+        "Paseo de la Castellana 191 B",
+        "Paseo de la Castellana 189",
+        "Paseo de la Castellana 189",
+        "Calle de Bravo Murillo 377",
+        "Plaza de Castilla 9",
+        "Plaza de Castilla 3",
+        "Calle de Barcel\u00f3 2",
+        "Calle de Fuencarral 78"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_lat",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "40.46682",
+        "40.46555",
+        "40.46728",
+        "40.46702",
+        "40.46722",
+        "40.46629",
+        "40.46546",
+        "40.46621",
+        "40.42628",
+        "40.4262"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_lon",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "-3.68918",
+        "-3.68877",
+        "-3.68915",
+        "-3.68918",
+        "-3.68952",
+        "-3.69036",
+        "-3.68891",
+        "-3.69028",
+        "-3.70082",
+        "-3.70103"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "zone_id",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_url",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es",
+        "http://www.crtm.es"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "location_type",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "parent_station",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "est_90_21",
+        "est_90_21",
+        "est_90_21",
+        "est_90_21",
+        "est_90_21",
+        "est_90_21",
+        "est_90_21",
+        "est_90_21",
+        "est_4_10",
+        "est_4_10"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "stop_timezone",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "wheelchair_boarding",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "trips": [
+    {
+      "name": "route_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4__1___",
+        "4__1___",
+        "4__2___",
+        "4__2___",
+        "4__3___",
+        "4__3___",
+        "4__4___",
+        "4__4___",
+        "4__5___",
+        "4__5___"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "service_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12",
+        "4_I12"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "trip_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4_I12-001_2016I12_1_1_4__1___",
+        "4_I12-001_2016I12_2_1_4__1___",
+        "4_I12-002_2016I12_1_1_4__2___",
+        "4_I12-002_2016I12_2_1_4__2___",
+        "4_I12-003_2016I12_1_1_4__3___",
+        "4_I12-003_2016I12_2_1_4__3___",
+        "4_I12-004_2016I12_1_1_4__4___",
+        "4_I12-004_2016I12_2_1_4__4___",
+        "4_I12-005_2016I12_1_1_4__5___",
+        "4_I12-005_2016I12_2_1_4__5___"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "trip_headsign",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "VALDECARROS",
+        "PINAR DE CHAMARTIN",
+        "CUATRO CAMINOS",
+        "LAS ROSAS",
+        "MONCLOA",
+        "VILLAVERDE ALTO",
+        "PINAR DE CHAMARTIN",
+        "ARG\u00dcELLES",
+        "CASA DE CAMPO",
+        "ALAMEDA DE OSUNA"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "trip_short_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "PINAR DE CHAMARTIN-VALDECARROS",
+        "VALDECARROS-PINAR DE CHAMARTIN",
+        "LA ELIPA-CUATRO CAMINOS",
+        "CUATRO CAMINOS-LA ELIPA",
+        "VILLAVERDE ALTO-MONCLOA",
+        "MONCLOA-VILLAVERDE ALTO",
+        "ARG\u00dcELLES-PINAR DE CHAMARTIN",
+        "PINAR DE CHAMARTIN-ARG\u00dcELLES",
+        "ALAMEDA DE OSUNA-CASA DE CAMPO",
+        "CASA DE CAMPO-ALAMEDA DE OSUNA"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "direction_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "1",
+        "0",
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "block_id",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [],
+      "relatedTable": []
+    },
+    {
+      "name": "shape_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "4__1____1__IT_1",
+        "4__1____2__IT_1",
+        "4__2____1__IT_1",
+        "4__2____2__IT_1",
+        "4__3____1__IT_1",
+        "4__3____2__IT_1",
+        "4__4____1__IT_1",
+        "4__4____2__IT_1",
+        "4__5____1__IT_1",
+        "4__5____2__IT_1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "wheelchair_accessible",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

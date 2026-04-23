@@ -1,0 +1,73 @@
+{
+  "sport": [
+    {
+      "name": "sports/ID",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "100"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "sports/Name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Tennis\r"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "student": [
+    {
+      "name": "students/ID",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "10",
+        "20"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "students/Sport",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "100"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "students/Name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Venus Williams\r",
+        "Demi Moore\r"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

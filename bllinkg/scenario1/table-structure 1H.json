@@ -1,0 +1,62 @@
+{
+  "city_en": [
+    {
+      "name": "cities/ID",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "cities/Name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "London",
+        "Madrid"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "city_es": [
+    {
+      "name": "cities/ID",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "cities/Name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Londres",
+        "Madrid"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

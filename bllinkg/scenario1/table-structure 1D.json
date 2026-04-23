@@ -1,0 +1,49 @@
+{
+  "ious": [
+    {
+      "name": "persons/fname",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Bob",
+        "Sue",
+        "Bob"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "persons/lname",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Smith",
+        "Jones",
+        "Smith"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "persons/amount",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "30.0E0\r",
+        "20.0E0\r",
+        "30.0E0\r"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

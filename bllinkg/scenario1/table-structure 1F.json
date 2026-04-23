@@ -1,0 +1,115 @@
+{
+  "sport": [
+    {
+      "name": "sports/ID",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "110",
+        "111",
+        "112"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "sports/Description",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Tennis\r",
+        "Football\r",
+        "Formula1\r"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "student_sport": [
+    {
+      "name": "links/ID_Student",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "10",
+        "11",
+        "11",
+        "12"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "links/ID_Sport",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "110\r",
+        "111\r",
+        "112\r",
+        "111\r"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "student": [
+    {
+      "name": "students/ID",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "10",
+        "11",
+        "12"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "students/FirstName",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Venus",
+        "Fernando",
+        "David"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "students/LastName",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Williams\r",
+        "Alonso\r",
+        "Villa\r"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "student_sport": [
+    {
+      "name": "students/Student",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Venus"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "students/Sport",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Tennis\r"
+      ],
+      "relatedTable": []
+    }
+  ]
+}

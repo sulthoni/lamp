@@ -1,0 +1,1012 @@
+{
+  "BudgetAmounts": [
+    {
+      "name": "budget_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "estimated_overall_amount",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "115989.14"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "total_amount",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "116955.72"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "tax_exclusive_amount",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "96657.62"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "currency",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "EUR"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "Classifications": [
+    {
+      "name": "classification_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "classification_code",
+      "type": "INT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "31681000"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "classification_system",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "CPV2007"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "ContractingParty": [
+    {
+      "name": "party_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "A07000029"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "party_type_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "5"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Gerencia de EMAYA"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "website",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        " Empresa Municipal d'Aig\ufffdes i Clavegueram"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "city",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        " S.A."
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "postal_code",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "http://www.emaya.es"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "address_line",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Palma"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "country_code",
+      "type": "SMALLINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "7010"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "country_name",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Camino de los Reyes 400"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "telephone",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        " Edificio Central de Son Pacs"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "telefax",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "ES"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "email",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Espa\ufffda"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "Contracts": [
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "entry_id",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/6854467"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "link",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fol9j9H4t%2F0BPRBxZ4nJ%2Fg%3D%3D"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "title",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Suministro de piezas de recambio originales para equipos mec\ufffdnicos y el\ufffdctricos de EMAYA."
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "status_code",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "RES"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "updated",
+      "type": "DATETIME",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2021-01-07T10:47:01.782+01:00"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_type_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_subtype_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "duration_years",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "procedure_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "urgency_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contracting_system_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "3"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "submission_method_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "legislation",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "2014/24/EU"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "language",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "es"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "Locations": [
+    {
+      "name": "location_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "country_subentity",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Mallorca"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "country_subentity_code",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "ES532"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "country_code",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "ES"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "country_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Espa\ufffda"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "ParentOrganizations": [
+    {
+      "name": "parent_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "party_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "A07000029",
+        "A07000029",
+        "A07000029",
+        "A07000029",
+        "A07000029",
+        "A07000029"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2",
+        "942P LOTE 2",
+        "942P LOTE 2",
+        "942P LOTE 2",
+        "942P LOTE 2",
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "level",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "EMAYA",
+        "Palma",
+        "Baleares",
+        "SOCIEDADES",
+        "OTRAS ENTIDADES DEL SECTOR P\ufffdBLICO",
+        "Sector P\ufffdblico"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "TenderResults": [
+    {
+      "name": "result_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "result_code",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "8"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "description",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Se prorroga el contrato inicial con ID 1715"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "award_date",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "04/01/21"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "received_tender_quantity",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_issue_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "ID 2534"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_issue_date",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "07/01/21"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "awarded_tax_exclusive",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "96657.62"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "awarded_payable_amount",
+      "type": "DECIMAL(10,2)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "116955.72"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "currency",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "EUR"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "ValidNotices": [
+    {
+      "name": "notice_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1",
+        "2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2",
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "notice_type_code",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "DOC_CAN_ADJ",
+        "DOC_FORM"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "publication_media",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Perfil del Contratante",
+        "Perfil del Contratante"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "issue_date",
+      "type": "DATE",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "07/01/21",
+        "07/01/21"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "document_type_code",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "ACTA_ADJ"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "document_type_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Documento de Acta de Adjudicaci\ufffdn"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "document_uri",
+      "type": "VARCHAR(255)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "https://contrataciondelestado.es/wps/wcm/connect/PLACE_es/Site/area/docAccCmpnt?srv=cmpnt&cmpntname=GetDocumentsById&source=library&DocumentIdParam=fb481d3e-9aa4-4032-bebf-33912ffaaeaf"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "file_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Resolucion prorroga exp 942.pdf"
+      ],
+      "relatedTable": []
+    }
+  ],
+  "WinningParty": [
+    {
+      "name": "winning_party_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "result_id",
+      "type": "TINYINT",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "1"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "contract_id",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "942P LOTE 2"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "party_nif",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "A28388023"
+      ],
+      "relatedTable": []
+    },
+    {
+      "name": "party_name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "SULZER PUMPS WASTEWATER SPAIN S.A."
+      ],
+      "relatedTable": []
+    }
+  ]
+}

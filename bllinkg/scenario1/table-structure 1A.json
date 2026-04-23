@@ -1,0 +1,17 @@
+{
+  "student": [
+    {
+      "name": "students/Name",
+      "type": "VARCHAR(50)",
+      "null": "YES",
+      "key": "",
+      "default": null,
+      "extra": "",
+      "selected": false,
+      "data": [
+        "Venus\r"
+      ],
+      "relatedTable": []
+    }
+  ]
+}
