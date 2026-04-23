@@ -79,6 +79,7 @@ AVAILABLE_MODELS = {
             {"id": "mistralai/mistral-embed-2312", "name": "Mistral Embed 2312"},
             {"id": "perplexity/pplx-embed-v1-4b", "name": "Perplexity Embed (via OpenRouter)"},
             {"id": "google/gemini-embedding-001", "name": "Gemini Embedding 001"},
+            {"id": "nvidia/llama-nemotron-embed-vl-1b-v2:free", "name": "NVIDIA LLaMA Nemotron Embed VL 1B v2"},
         ]  # OpenRouter doesn't provide embeddings through their API
     }
 }
@@ -345,7 +346,8 @@ class LangChainManager:
         elif model in {
             "mistralai/mistral-embed-2312",
             "perplexity/pplx-embed-v1-4b",
-            "google/gemini-embedding-001"
+            "google/gemini-embedding-001",
+            "nvidia/llama-nemotron-embed-vl-1b-v2:free",
         }:
             print(f"Using custom HTTP wrapper for {model}")
             embeddings = OpenRouterCustomEmbeddings(
@@ -376,7 +378,8 @@ class LangChainManager:
         vectorstore = Chroma(
             collection_name=collection_name,
             embedding_function=embeddings,
-            persist_directory=persist_directory
+            persist_directory=persist_directory,
+            collection_metadata={"hnsw:space": "cosine"}
         )
 
         self.vectorstore_cache[cache_key] = vectorstore
