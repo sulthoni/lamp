@@ -196,8 +196,9 @@ class PropertySelectionChain:
                 - Return structured output **only**, following the exact JSON schema specified by `{format_instructions}`.
             """
         )
-        # version 3
-        self.prompt = ChatPromptTemplate.from_template(
+
+        # version 3 => not allow new properties
+        self.prompt_3 = ChatPromptTemplate.from_template(
             """
             Role:
                 You are an expert in ontology engineering and ontology-based data integration (OBDI).
@@ -321,6 +322,356 @@ class PropertySelectionChain:
                 - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
                 explicitly identify the columns involved and justify the composition.
                 - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+
+            ---
+
+            ### 3. Mapping Logic Details
+
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+
+            ---
+
+            ### 4. Completeness and Global Validation
+
+            1. Compare your mappings against `previous_mapping_summary` to avoid duplication..
+            2. Validate that:
+                - Each mapping is globally consistent.
+                - Relationships between tables (via FKs) align with ontology object properties.
+                - No conflicting or circular mappings exist.
+                - Cross-class mappings maintain ontology domain-range correctness.
+            3. FINAL FILTERING STEP (MANDATORY):
+                - Remove ALL unmapped columns before producing output.
+                - Ensure every column in the output has a valid mapped property.
+
+
+            ---
+
+            ### 5. Output Format
+
+            Follow these output formatting rules exactly:
+
+            {format_instructions}
+
+            STRICT OUTPUT RULES:
+            - Output MUST contain ONLY mapped columns.
+            - Every column MUST have a valid property mapping.
+            - DO NOT include any column without a mapping.
+            - DO NOT include empty fields.
+
+            ---
+
+            ### 6. Final Instructions
+
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `{format_instructions}`.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+            - Be semantically precise and avoid weak mappings.
+            - Prefer excluding a column rather than forcing incorrect mappings.
+            - NEVER include unmapped columns in the output under any condition.
+
+
+            """
+        )
+
+        # Prompt 4 => allow new properties
+        self.prompt_4 = ChatPromptTemplate.from_template(
+            """
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+            ---
+            ### Input Context
+                **Global_Schema_Summary:**
+                {global_schema_summary}
+                **Table:** {table_name}
+                **Improved Table Name:** {improved_table_name}
+                **Columns:**
+                {columns_text}
+                **Additional Context of table:**
+                {term}
+                **Total Classes Suggested for This Table:**
+                {suggested_classes_count}
+                **Suggested Classes:**
+                {suggested_classes_from_first_step}
+                **Suggested Classes IRI:**
+                {suggested_classes_iri_from_first_step}
+                **Suggested Columns for Each Class (from step 1):**
+                {suggested_columns_text}
+                **Available Data Properties:**
+                {data_properties_text}
+                **Available Object Properties:**
+                {object_properties_text}
+                **Related Columns (cross-table relationships):**
+                {related_columns_text}
+            ---
+            ### 1. Global Context Awareness
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+            Example format:
+            {{
+                "tables": {{
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                }},
+                "ontology": {{
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                }},
+                "previous_mappings": [{{
+                    "author": {{
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    }},
+                    "book": {{
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }}]
+                }}
+            }}
+            ---
+            ### 2. Mapping Principles
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - If no suitable property exists, propose a new one with `new_property = true`.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+            ---
+            ### 3. Mapping Logic Details
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+            ---
+            ### 4. Completeness and Global Validation
+            1. Ensure every column (except PK-only identity columns) has a mapping to either a property or a newly proposed property.
+            2. Compare your mappings against `previous_mapping_summary` to avoid duplication.
+            3. Check total number of mappings equals the `expected_column_count`.
+            4. Validate that:
+            - Each mapping is globally consistent.
+            - Relationships between tables (via FKs) align with ontology object properties.
+            - No conflicting or circular mappings exist.
+            - Cross-class mappings maintain ontology domain-range correctness.
+            If any column cannot be mapped meaningfully, include it in the result with `"mapped": false` and a reason.
+            ---
+            ### 5. Output Format
+            Follow these output formatting rules exactly:
+            {format_instructions}
+            ---
+            ### 6. Final Instructions
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `{format_instructions}`.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+
+            """
+        )
+
+        # Prompt 5 => refine composite columns
+        self.prompt = ChatPromptTemplate.from_template(
+            """
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+
+            Task:
+                Your goal is to map the SEMANTIC CONTENT of the table (not just individual columns) to ontology properties.
+                Columns may:
+                - map individually
+                - OR be combined to form a higher-level semantic property
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+                It is allowed to produce BOTH:
+                    - atomic mappings
+                    - AND composite mappings
+                if they are semantically valid and non-conflicting.
+                IMPORTANT CONSTRAINT:
+                - ONLY include columns that have a valid mapping in the final output.
+                - DO NOT include any column that cannot be mapped.
+                - DO NOT output unmapped columns with null, empty, or placeholder values.
+                - If a column has no suitable property, simply EXCLUDE it from the result.
+                PRIORITY RULE:
+                - Before mapping columns individually, check whether multiple columns together semantically correspond to a SINGLE ontology property.
+                - If such a property exists (e.g., fullname), you MUST prioritize the composite mapping over separate mappings.
+
+            ---
+
+            ### Input Context
+                **Global_Schema_Summary:**
+                {global_schema_summary}
+
+                **Table:** {table_name}
+
+                **Improved Table Name:** {improved_table_name}
+
+                **Columns:**
+                {columns_text}
+
+                **Additional Context of table:**
+                {term}
+
+                **Total Classes Suggested for This Table:**
+                {suggested_classes_count}
+
+                **Suggested Classes:**
+                {suggested_classes_from_first_step}
+
+                **Suggested Classes IRI:**
+                {suggested_classes_iri_from_first_step}
+
+                **Suggested Columns for Each Class (from step 1):**
+                {suggested_columns_text}
+
+                **Available Data Properties:**
+                {data_properties_text}
+
+                **Available Object Properties:**
+                {object_properties_text}
+
+                **Related Columns (cross-table relationships):**
+                {related_columns_text}
+
+            ---
+
+            ### 1. Global Context Awareness
+
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+
+            Example format:
+            {{
+                "tables": {{
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                }},
+                "ontology": {{
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                }},
+                "previous_mappings": [{{
+                    "author": {{
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    }},
+                    "book": {{
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }}]
+                }}
+            }}
+
+            ---
+
+            ### 2. Mapping Principles
+
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+
+            4. **Property Selection**
+                - Map a column or combination of columns to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - You MUST ONLY use properties from:
+                    - `Available Data Properties`
+                    - `Available Object Properties`
+                - DO NOT create, infer, or propose any new properties under any circumstances.
+                - If no suitable property exists:
+                    - DO NOT include the column in the output
+                    - Provide a clear and concise justification explaining why no existing property is semantically appropriate.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+
+            5. **Composite / Combined Columns**
+                If multiple columns together describe a well-known real-world concept (e.g., person name, address, coordinates), and the ontology contains a matching property,
+                you MUST create a composite mapping.
+
+                Examples:
+                - fname + lname → fullname
+                - street + city + zip → address
+                - first_name + middle_name + last_name → fullName
 
             6. **Reusing Columns**
                 - A single column may participate in multiple mappings if semantically justified
