@@ -71,6 +71,7 @@ AVAILABLE_MODELS = {
             {"id": "openai/gpt-4o", "name": "OpenAI GPT-4o (via OpenRouter)"},
             {"id": "openai/o3", "name": "OpenAI o3(via OpenRouter)"},
             {"id": "google/gemini-2.5-pro", "name": "Google Gemini 2.5 Pro (via OpenRouter)"},
+            {"id": "openai/gpt-oss-120b:free", "name": "OpenAI GPT-OSS 120B (via OpenRouter)"},
         ],
         "embedding": [
             {"id": "models/gemini-embedding-001", "name": "Gemini Embedding 001"},
