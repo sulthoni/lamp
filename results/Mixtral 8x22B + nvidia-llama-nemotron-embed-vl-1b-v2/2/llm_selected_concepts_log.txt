@@ -1,0 +1,246 @@
+Term: # Table: transportation agency
+**Original Name**: agency
+**Description**: This table represents transportation agency
+**Column Count**: 7
+## Columns
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM
+- **agency name** (original: agency_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **agency website URL** (original: agency_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **agency timezone** (original: agency_timezone) - Type: VARCHAR(50) - Examples: Europe/Madrid
+- **agency language** (original: agency_lang) - Type: VARCHAR(50) - Examples: es
+- **agency contact phone** (original: agency_phone) - Type: TINYINT - Examples: 012 (numeric pattern)
+- **agency fare URL** (original: agency_fare_url) - Type: VARCHAR(50) - Examples: https://www.crtm.es/billetes-y-tarifas (identifier pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: agency_id (all unique), agency_name (all unique), agency_url (all unique), agency_timezone (all unique), agency_lang (all unique), agency_phone (all unique), agency_fare_url (all unique)
+**Domain**: transportation service
+
+  Selected Candidate 1: Agency | Confidence: 0.9800
+  Reason 1: The table 'agency' directly corresponds to the ontology class 'Agency' (Candidate 1) with a high similarity score (0.5107) and perfect semantic alignment. All columns in the table map directly to data properties of the 'Agency' class:
+  Class URI 1: http://example.com/Agency/agency_id
+  Columns for Candidate 1: agency_id, agency_name, agency_url, agency_timezone, agency_lang, agency_phone, agency_fare_url
+
+Term: # Table: calendar dates
+**Original Name**: calendar_dates
+**Description**: This table represents calendar dates
+**Column Count**: 3
+## Columns
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **date** - Type: DATE - Examples: 2017-01-06, 2017-03-20, 2017-04-13 (date pattern)
+- **exception type** (original: exception_type) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **service identifier** references **trips** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), date (all unique), exception_type (constant)
+**Domain**: temporal data
+
+  Selected Candidate 1: Calendar date rule | Confidence: 0.9500
+  Reason 1: The table 'calendar_dates' contains columns that directly align with the 'Calendar date rule' ontology class:
+  Class URI 1: http://example.com/Calendar date rule/date
+  Columns for Candidate 1: date, exception_type
+  Related Columns for Candidate 1: service_id
+
+Term: # Table: service calendar
+**Original Name**: calendar
+**Description**: This table represents service calendar
+**Column Count**: 10
+## Columns
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I13, 4_I14 (identifier pattern)
+- **is service available on monday** (original: monday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **is service available on tuesday** (original: tuesday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **is service available on wednesday** (original: wednesday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **is service available on thursday** (original: thursday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **is service available on friday** (original: friday) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **is service available on saturday** (original: saturday) - Type: TINYINT - Examples: 1, 0, 0 (numeric pattern)
+- **is service available on sunday** (original: sunday) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **start date of service period** (original: start_date) - Type: DATE - Examples: 2017-06-29, 2017-06-29, 2017-06-29 (date pattern)
+- **end date of service period** (original: end_date) - Type: DATE - Examples: 2018-06-29, 2018-06-29, 2018-06-29 (date pattern)
+## Relationships
+- **service identifier** references **trips** table
+## Data Characteristics
+**Sample Size**: 5 rows
+**Uniqueness**: service_id (all unique), start_date (constant), end_date (constant)
+**Domain**: temporal data, transportation service
+
+  Selected Candidate 1: CalendarRule | Confidence: 0.9500
+  Reason 1: The table 'calendar' contains columns that directly align with the 'CalendarRule' ontology class:
+  Class URI 1: http://example.com/CalendarRule/service_id
+  Columns for Candidate 1: service_id, monday, tuesday, wednesday, thursday, friday, saturday, sunday, start_date, end_date
+  Related Columns for Candidate 1: service_id
+
+Term: # Table: feed information
+**Original Name**: feed_info
+**Description**: This table represents feed information
+**Column Count**: 6
+## Columns
+- **name of feed publisher** (original: feed_publisher_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **URL of feed publisher** (original: feed_publisher_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **language of feed** (original: feed_lang) - Type: VARCHAR(50) - Examples: es
+- **start date of feed** (original: feed_start_date) - Type: VARCHAR(255)
+- **end date of feed** (original: feed_end_date) - Type: VARCHAR(255)
+- **version of feed** (original: feed_version) - Type: INT - Examples: 20170629 (numeric pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: feed_publisher_name (all unique), feed_publisher_url (all unique), feed_lang (all unique), feed_version (all unique)
+
+  Selected Candidate 1: GTFS Feed | Confidence: 0.9500
+  Reason 1: The table 'feed_info' contains metadata about a GTFS feed, including publisher information, URL, language, date range, and version. This directly matches the ontology class 'GTFS Feed' (Candidate 1), which is designed to represent a linked GTFS feed complying with the specification.
+  Class URI 1: http://example.com/GTFS Feed/feed_publisher_name
+  Columns for Candidate 1: feed_publisher_name, feed_publisher_url, feed_lang, feed_start_date, feed_end_date, feed_version
+
+Term: # Table: trip frequencies
+**Original Name**: frequencies
+**Description**: This table represents trip frequencies
+**Column Count**: 5
+## Columns
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___ (identifier pattern)
+- **start time** (original: start_time) - Type: VARCHAR(50) - Examples: 00:00:00, 01:00:00, 06:05:00
+- **end time** (original: end_time) - Type: VARCHAR(50) - Examples: 01:00:00, 02:00:00, 07:00:00
+- **headway in seconds** (original: headway_secs) - Type: SMALLINT - Examples: 600, 900, 540 (numeric pattern)
+- **exact times flag** (original: exact_times) - Type: VARCHAR(255)
+## Relationships
+- **trip identifier** references **trips** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Domain**: transportation service
+
+  Selected Candidate 1: Frequency | Confidence: 0.9200
+  Reason 1: The table 'frequencies' contains columns that directly align with the ontology class 'Frequency' candidate's data properties: 'start_time' matches 'Start Time', 'end_time' matches 'End Time', and 'headway_secs' matches 'Headway Seconds'.
+  Class URI 1: http://example.com/Frequency/trip_id
+  Columns for Candidate 1: trip_id, start_time, end_time, headway_secs, exact_times
+  Related Columns for Candidate 1: trip_id
+
+Term: # Table: list of transit routes
+**Original Name**: routes
+**Description**: This table represents list of transit routes
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__10___, 4__11___ (identifier pattern)
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM, CRTM, CRTM
+- **route short name** (original: route_short_name) - Type: TINYINT - Examples: 1, 10, 11 (numeric pattern)
+- **route full name** (original: route_long_name) - Type: VARCHAR(50) - Examples: Pinar de Chamartín-Valdecarros, Hospital del Norte-Puerta del Sur, Plaza Elíptica-La Fortuna (identifier pattern)
+- **route description** (original: route_desc) - Type: VARCHAR(255)
+- **route type** (original: route_type) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+- **route URL** (original: route_url) - Type: VARCHAR(255) - Examples: http://www.crtm.es/tu-transporte-publico/metro/lineas/4__1___.aspx, http://www.crtm.es/tu-transporte-publico/metro/lineas/4__10___.aspx, http://www.crtm.es/tu-transporte-publico/metro/lineas/4__11___.aspx (identifier pattern)
+- **route color** (original: route_color) - Type: VARCHAR(50) - Examples: 2DBEF0, 005AA9, 009B3A
+- **route text color** (original: route_text_color) - Type: VARCHAR(50) - Examples: FFFFFF, FFFFFF, FFFFFF
+## Relationships
+- **agency identifier** references **agency** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: route_id (all unique), agency_id (constant), route_short_name (all unique), route_long_name (all unique), route_type (constant), route_url (all unique), route_color (all unique)
+**Domain**: transportation service
+
+  Selected Candidate 1: Route | Confidence: 0.9500
+  Reason 1: The table 'routes' contains columns that directly align with the GTFS Route ontology class properties:
+  Class URI 1: http://example.com/Route/route_id
+  Columns for Candidate 1: route_id, agency_id, route_short_name, route_long_name, route_desc, route_type, route_url, route_color, route_text_color
+  Related Columns for Candidate 1: agency_id
+
+Term: # Table: list of geometric shapes
+**Original Name**: shapes
+**Description**: This table represents list of geometric shapes
+**Column Count**: 5
+## Columns
+- **shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____1__IT_1, 4__1____1__IT_1 (identifier pattern)
+- **shape point latitude** (original: shape_pt_lat) - Type: DECIMAL(10,2) - Examples: 40.4802624278576, 40.4803769678597, 40.4804232925184
+- **shape point longitude** (original: shape_pt_lon) - Type: DECIMAL(10,2) - Examples: -3.66723744236574, -3.66777650933287, -3.66820786216953
+- **shape point sequence number** (original: shape_pt_sequence) - Type: INT - Examples: 1000001, 1000002, 1000003 (numeric pattern)
+- **distance traveled along shape** (original: shape_dist_traveled) - Type: DECIMAL(10,2) - Examples: 0.0, 0.047428346568, 0.131778797501
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: shape_id (constant), shape_pt_sequence (all unique)
+
+  Selected Candidate 1: Shape Point | Confidence: 0.9500
+  Reason 1: The table 'shapes' contains columns that directly correspond to the properties of the 'Shape Point' ontology class (http://vocab.gtfs.org/terms#ShapePoint).
+  Class URI 1: http://example.com/ShapePoint/shape_id
+  Columns for Candidate 1: shape_id, shape_pt_lat, shape_pt_lon, shape_pt_sequence, shape_dist_traveled
+  Related Columns for Candidate 1: shape_id
+
+Term: # Table: stop times for trips
+**Original Name**: stop_times
+**Description**: This table represents stop times for trips
+**Column Count**: 9
+## Columns
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___ (identifier pattern)
+- **arrival time at stop** (original: arrival_time) - Type: VARCHAR(50) - Examples: 00:08:19, 00:22:04, 00:23:53
+- **departure time from stop** (original: departure_time) - Type: VARCHAR(50) - Examples: 00:08:19, 00:22:04, 00:23:53
+- **stop identifier** (original: stop_id) - Type: VARCHAR(50) - Examples: par_4_1, par_4_10, par_4_11 (identifier pattern)
+- **sequence number of stop in trip** (original: stop_sequence) - Type: DECIMAL(10,2) - Examples: 3.0, 12.0, 13.0
+- **destination displayed on headsign** (original: stop_headsign) - Type: VARCHAR(255)
+- **type of pickup available** (original: pickup_type) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **type of drop-off available** (original: drop_off_type) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **distance traveled along shape from start of trip** (original: shape_dist_traveled) - Type: VARCHAR(255)
+## Relationships
+- **trip identifier** references **trips** table
+- **stop identifier** references **stops** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: trip_id (constant), arrival_time (all unique), departure_time (all unique), stop_id (all unique), stop_sequence (all unique), pickup_type (constant), drop_off_type (constant)
+**Domain**: temporal data, transportation service
+
+  Selected Candidate 1: Stop time | Confidence: 0.9500
+  Reason 1: The table 'stop_times' directly corresponds to the ontology class 'Stop time' (http://vocab.gtfs.org/terms#StopTime) with a high semantic match. The class description explicitly mentions it describes a stop time as part of a trip, which aligns perfectly with the table's purpose of representing stop times for trips.
+  Class URI 1: http://example.com/StopTime/trip_id
+  Columns for Candidate 1: trip_id, arrival_time, departure_time, stop_id, stop_sequence, stop_headsign, pickup_type, drop_off_type, shape_dist_traveled
+  Related Columns for Candidate 1: trip_id, stop_id
+
+Term: # Table: public transit stops
+**Original Name**: stops
+**Description**: This table represents public transit stops
+**Column Count**: 12
+## Columns
+- **stop identifier** (original: stop_id) - Type: VARCHAR(50) - Examples: acc_4_1_1, acc_4_1_1040, acc_4_1_1043 (identifier pattern)
+- **stop code** (original: stop_code) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+- **stop name** (original: stop_name) - Type: VARCHAR(50) - Examples: Plaza de Castilla, Ascensor, Intercambiador Superficie (identifier pattern)
+- **stop description** (original: stop_desc) - Type: VARCHAR(50) - Examples: Paseo de la Castellana 189, Plaza de Castilla 9, Paseo de la Castellana 191 B (identifier pattern)
+- **stop latitude** (original: stop_lat) - Type: DECIMAL(10,2) - Examples: 40.46682, 40.46555, 40.46728
+- **stop longitude** (original: stop_lon) - Type: DECIMAL(10,2) - Examples: -3.68918, -3.68877, -3.68915
+- **zone identifier** (original: zone_id) - Type: VARCHAR(255)
+- **stop URL** (original: stop_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es, http://www.crtm.es, http://www.crtm.es
+- **location type** (original: location_type) - Type: TINYINT - Examples: 2, 2, 2 (numeric pattern)
+- **parent station identifier** (original: parent_station) - Type: VARCHAR(50) - Examples: est_90_21, est_90_21, est_90_21 (identifier pattern)
+- **stop timezone** (original: stop_timezone) - Type: VARCHAR(255)
+- **wheelchair boarding availability** (original: wheelchair_boarding) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+## Relationships
+- **zone identifier** references **fare_zones** table
+- **parent station identifier** references **stops** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: stop_id (all unique), stop_lat (all unique), stop_url (constant), location_type (constant), wheelchair_boarding (constant)
+
+  Selected Candidate 1: Stop | Confidence: 0.9500
+  Reason 1: The table 'stops' contains core attributes of a transit stop including identifier (stop_id), name (stop_name), geographic coordinates (stop_lat, stop_lon), URL, timezone, and accessibility information (wheelchair_boarding), which directly align with the GTFS 'Stop' class properties. The presence of 'parent_station' as a foreign key referencing another stop (self-referencing FK) matches the ontology's object property 'Parent Station' with range 'Station'. The 'location_type' column corresponds to the ontology's 'Location Type' object property. The similarity score (0.5756) is moderate but the structural and semantic alignment is strong when considering the global schema context where related tables like 'stop_times' reference this table. The table does not contain attributes of a 'Station' (which implies a larger structure with platforms) or 'StationEntrance' (which is specifically for entrances/exits), making 'Stop' the most appropriate single-class mapping. The wheelchair accessibility and location type properties further confirm this mapping as these are explicitly defined in the ontology for 'Stop' and related classes.
+  Class URI 1: http://example.com/Stop/stop_id
+  Columns for Candidate 1: stop_id, stop_code, stop_name, stop_desc, stop_lat, stop_lon, zone_id, stop_url, location_type, parent_station, stop_timezone, wheelchair_boarding
+  Related Columns for Candidate 1: parent_station
+
+Term: # Table: list of transit trips
+**Original Name**: trips
+**Description**: This table represents list of transit trips
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__1___, 4__2___ (identifier pattern)
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_2_1_4__1___, 4_I12-002_2016I12_1_1_4__2___ (identifier pattern)
+- **trip destination sign** (original: trip_headsign) - Type: VARCHAR(50) - Examples: VALDECARROS, PINAR DE CHAMARTIN, CUATRO CAMINOS
+- **trip short name** (original: trip_short_name) - Type: VARCHAR(50) - Examples: PINAR DE CHAMARTIN-VALDECARROS, VALDECARROS-PINAR DE CHAMARTIN, LA ELIPA-CUATRO CAMINOS (identifier pattern)
+- **direction indicator** (original: direction_id) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **block identifier** (original: block_id) - Type: VARCHAR(255)
+- **shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____2__IT_1, 4__2____1__IT_1 (identifier pattern)
+- **wheelchair accessibility status** (original: wheelchair_accessible) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **route identifier** references **routes** table
+- **service identifier** references **calendar** table
+- **shape identifier** references **shapes** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), trip_id (all unique), trip_short_name (all unique), shape_id (all unique), wheelchair_accessible (constant)
+**Domain**: transportation service
+
+  Selected Candidate 1: Trip | Confidence: 0.9800
+  Reason 1: The table 'trips' directly corresponds to the GTFS ontology class 'Trip' (http://vocab.gtfs.org/terms#Trip) with a high confidence score (0.98). The table's primary purpose is to represent transit trips, which aligns perfectly with the ontology's definition of a Trip as 'A collection of gtfs:StopTimes followed by a transit vehicle'.
+  Class URI 1: http://example.com/Trip/trip_id
+  Columns for Candidate 1: route identifier, service identifier, trip identifier, trip destination sign, trip short name, direction indicator, block identifier, shape identifier, wheelchair accessibility status
+  Related Columns for Candidate 1: route identifier, service identifier, shape identifier

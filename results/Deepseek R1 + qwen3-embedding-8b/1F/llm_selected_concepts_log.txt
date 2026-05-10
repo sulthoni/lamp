@@ -1,0 +1,46 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9500
+  Reason 1: The table 'sport' is a standalone entity table representing sports, with a clear primary key (sports/ID) and descriptive attribute (sports/Description). It maps directly to the ontology class 'Sport', which has matching data properties (sportid integer, sportname string). The global schema shows a linking table 'student_sport' connecting 'student' (likely Person) to 'sport' via foreign keys, aligning with the ontology's object property 'practises' from Person to Sport. This confirms the table's role as a Sport entity repository, consistent with the global mapping logic.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Description
+
+Term: # Table: student sport associations
+**Original Name**: student_sport
+**Description**: This table represents student sport associations
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+  No candidates selected
+
+Term: # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The student table maps to the Person ontology class with high confidence due to: 1) Primary key detection: students/ID is the unique identifier, matching the id data property of Person, 2) Column clustering: All columns form a personal information cluster (students/ID, students/FirstName, students/LastName) aligning with Person's data properties (id, firstname, lastname), 3) Global consistency: The student_sport join table links student to sport, which corresponds to the practises object property from Person to Sport in the ontology, maintaining semantic coherence across the schema, 4) Candidate analysis: Person has the highest semantic match (students are persons) and property alignment, while Sport and City are mismatched based on table purpose and columns.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/FirstName, students/LastName

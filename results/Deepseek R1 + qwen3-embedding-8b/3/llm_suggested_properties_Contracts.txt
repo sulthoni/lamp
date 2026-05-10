@@ -1,0 +1,15 @@
+{'table_name': 'Contracts', 'column_name': 'contract_id', 'class_name': 'Document', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'entry_id', 'class_name': 'Document', 'properties': 'hasEntryIdentifier', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'link', 'class_name': 'Document', 'properties': 'hasDocumentURI', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'title', 'class_name': 'Document', 'properties': 'hasTitle', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'status_code', 'class_name': 'Document', 'properties': 'hasStatus', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'updated', 'class_name': 'Document', 'properties': 'hasLastUpdatedTimestamp', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'contract_type_code', 'class_name': 'Document', 'properties': 'hasContractType', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'contract_subtype_code', 'class_name': 'Document', 'properties': 'hasContractSubtype', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'duration_years', 'class_name': 'Document', 'properties': 'hasDurationInYears', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'procedure_code', 'class_name': 'Procedure', 'properties': 'Has procedure type', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'urgency_code', 'class_name': 'Document', 'properties': 'hasUrgencyLevel', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'contracting_system_code', 'class_name': 'Document', 'properties': 'hasContractingSystem', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'submission_method_code', 'class_name': 'Document', 'properties': 'hasSubmissionMethod', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'legislation', 'class_name': 'Document', 'properties': 'hasApplicableLegislation', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'language', 'class_name': 'Document', 'properties': 'hasLanguage', 'type': 'data', 'new_property': True}

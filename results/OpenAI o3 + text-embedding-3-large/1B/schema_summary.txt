@@ -1,0 +1,29 @@
+{
+  "tables": {
+    "student": [
+      "students/ID (TINYINT)",
+      "students/Name (VARCHAR(50))"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

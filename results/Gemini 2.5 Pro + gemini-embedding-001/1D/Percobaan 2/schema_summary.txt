@@ -1,0 +1,30 @@
+{
+  "tables": {
+    "ious": [
+      "persons/fname",
+      "persons/lname",
+      "persons/amount"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

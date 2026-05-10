@@ -1,0 +1,1 @@
+{'table_name': 'Contracting Party', 'column_name': 'party_id', 'class_name': 'Organization', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

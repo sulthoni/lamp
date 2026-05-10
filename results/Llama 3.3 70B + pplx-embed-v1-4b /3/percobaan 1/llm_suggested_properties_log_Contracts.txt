@@ -1,0 +1,123 @@
+Properties Suggestion Results:
+Total columns processed: 15
+
+Column 1:
+  Table Name: Contracts
+  Column Name: contract_id
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracts
+  Column Name: entry_id
+  Class: Procedure
+  Properties: entryIdentifier
+  Type: data
+  New Property: True
+
+Column 3:
+  Table Name: Contracts
+  Column Name: link
+  Class: Procedure
+  Properties: contractLink
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Contracts
+  Column Name: title
+  Class: Procedure
+  Properties: contractTitle
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Contracts
+  Column Name: status_code
+  Class: Procedure
+  Properties: contractStatus
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Contracts
+  Column Name: updated
+  Class: Procedure
+  Properties: lastUpdated
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Contracts
+  Column Name: contract_type_code
+  Class: Procedure
+  Properties: contractType
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Contracts
+  Column Name: contract_subtype_code
+  Class: Procedure
+  Properties: contractSubtype
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Contracts
+  Column Name: duration_years
+  Class: Procedure
+  Properties: contractDurationInYears
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Contracts
+  Column Name: procedure_code
+  Class: Procedure
+  Properties: procedureCode
+  Type: data
+  New Property: True
+
+Column 11:
+  Table Name: Contracts
+  Column Name: urgency_code
+  Class: Procedure
+  Properties: urgencyLevel
+  Type: data
+  New Property: True
+
+Column 12:
+  Table Name: Contracts
+  Column Name: contracting_system_code
+  Class: Procedure
+  Properties: contractingSystem
+  Type: data
+  New Property: True
+
+Column 13:
+  Table Name: Contracts
+  Column Name: submission_method_code
+  Class: Procedure
+  Properties: submissionMethod
+  Type: data
+  New Property: True
+
+Column 14:
+  Table Name: Contracts
+  Column Name: legislation
+  Class: Procedure
+  Properties: governingLegislation
+  Type: data
+  New Property: True
+
+Column 15:
+  Table Name: Contracts
+  Column Name: language
+  Class: Procedure
+  Properties: languageOfContract
+  Type: data
+  New Property: True
+

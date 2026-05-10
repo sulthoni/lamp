@@ -1,0 +1,74 @@
+{'table_name': 'Budget Amounts', 'column_name': 'budget_id', 'improved_table_name': 'Detailed Budget Amounts', 'improved_column_name': 'Budget Identifier', 'related_table': None}
+{'table_name': 'Budget Amounts', 'column_name': 'contract_id', 'improved_table_name': 'Detailed Budget Amounts', 'improved_column_name': 'Contract Identifier', 'related_table': 'Contracts'}
+{'table_name': 'Budget Amounts', 'column_name': 'estimated_overall_amount', 'improved_table_name': 'Detailed Budget Amounts', 'improved_column_name': 'Estimated Overall Amount', 'related_table': None}
+{'table_name': 'Budget Amounts', 'column_name': 'total_amount', 'improved_table_name': 'Detailed Budget Amounts', 'improved_column_name': 'Total Amount', 'related_table': None}
+{'table_name': 'Budget Amounts', 'column_name': 'tax_exclusive_amount', 'improved_table_name': 'Detailed Budget Amounts', 'improved_column_name': 'Tax Exclusive Amount', 'related_table': None}
+{'table_name': 'Budget Amounts', 'column_name': 'currency', 'improved_table_name': 'Detailed Budget Amounts', 'improved_column_name': 'Currency', 'related_table': None}
+{'table_name': 'Classifications', 'column_name': 'classification_id', 'improved_table_name': 'List of Classifications', 'improved_column_name': 'Classification Identifier', 'related_table': None}
+{'table_name': 'Classifications', 'column_name': 'contract_id', 'improved_table_name': 'List of Classifications', 'improved_column_name': 'Contract Identifier', 'related_table': 'Contracts'}
+{'table_name': 'Classifications', 'column_name': 'classification_code', 'improved_table_name': 'List of Classifications', 'improved_column_name': 'Classification Code', 'related_table': None}
+{'table_name': 'Classifications', 'column_name': 'classification_system', 'improved_table_name': 'List of Classifications', 'improved_column_name': 'Classification System', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'party_id', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'party identifier', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'contract_id', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'contract identifier', 'related_table': 'Contracts'}
+{'table_name': 'Contracting Party', 'column_name': 'party_type_code', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'party type code', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'name', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'name', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'website', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'website', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'city', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'city', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'postal_code', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'postal code', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'address_line', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'address line', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'country_code', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'country code', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'country_name', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'country name', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'telephone', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'telephone', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'telefax', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'telefax', 'related_table': None}
+{'table_name': 'Contracting Party', 'column_name': 'email', 'improved_table_name': 'List of Contracting Parties', 'improved_column_name': 'email', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'contract_id', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Contract Identifier', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'entry_id', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Entry Identifier', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'link', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Link', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'title', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Title', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'status_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Status Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'updated', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Last Updated', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'contract_type_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Contract Type Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'contract_subtype_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Contract Subtype Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'duration_years', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Duration in Years', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'procedure_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Procedure Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'urgency_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Urgency Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'contracting_system_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Contracting System Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'submission_method_code', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Submission Method Code', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'legislation', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Legislation', 'related_table': None}
+{'table_name': 'Contracts', 'column_name': 'language', 'improved_table_name': 'Contract Details', 'improved_column_name': 'Language', 'related_table': None}
+{'table_name': 'Locations', 'column_name': 'location_id', 'improved_table_name': 'Geographical Locations', 'improved_column_name': 'Location Identifier', 'related_table': None}
+{'table_name': 'Locations', 'column_name': 'contract_id', 'improved_table_name': 'Geographical Locations', 'improved_column_name': 'Contract Identifier', 'related_table': 'Contracts'}
+{'table_name': 'Locations', 'column_name': 'country_subentity', 'improved_table_name': 'Geographical Locations', 'improved_column_name': 'Country Subentity', 'related_table': None}
+{'table_name': 'Locations', 'column_name': 'country_subentity_code', 'improved_table_name': 'Geographical Locations', 'improved_column_name': 'Country Subentity Code', 'related_table': None}
+{'table_name': 'Locations', 'column_name': 'country_code', 'improved_table_name': 'Geographical Locations', 'improved_column_name': 'Country Code', 'related_table': None}
+{'table_name': 'Locations', 'column_name': 'country_name', 'improved_table_name': 'Geographical Locations', 'improved_column_name': 'Country Name', 'related_table': None}
+{'table_name': 'Parent Organizations', 'column_name': 'parent_id', 'improved_table_name': 'List of Parent Organizations', 'improved_column_name': 'Parent Organization Identifier', 'related_table': None}
+{'table_name': 'Parent Organizations', 'column_name': 'party_id', 'improved_table_name': 'List of Parent Organizations', 'improved_column_name': 'Party Identifier', 'related_table': 'Contracting Party'}
+{'table_name': 'Parent Organizations', 'column_name': 'contract_id', 'improved_table_name': 'List of Parent Organizations', 'improved_column_name': 'Contract Identifier', 'related_table': 'Contracts'}
+{'table_name': 'Parent Organizations', 'column_name': 'level', 'improved_table_name': 'List of Parent Organizations', 'improved_column_name': 'Organizational Level', 'related_table': None}
+{'table_name': 'Parent Organizations', 'column_name': 'name', 'improved_table_name': 'List of Parent Organizations', 'improved_column_name': 'Organization Name', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'result_id', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'result identifier', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'contract_id', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'contract identifier', 'related_table': 'Contracts'}
+{'table_name': 'Tender Results', 'column_name': 'result_code', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'result code', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'description', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'detailed description', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'date of award', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'received_tender_quantity', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'quantity of tenders received', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_id', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'contract issue identifier', 'related_table': 'Contracts'}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_date', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'date of contract issue', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'awarded_tax_exclusive', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'awarded amount excluding tax', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'awarded_payable_amount', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'awarded payable amount', 'related_table': None}
+{'table_name': 'Tender Results', 'column_name': 'currency', 'improved_table_name': 'Tender Outcome Details', 'improved_column_name': 'currency type', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'notice_id', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Notice Identifier', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'contract_id', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Contract Identifier', 'related_table': 'Contracts'}
+{'table_name': 'Valid Notices', 'column_name': 'notice_type_code', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Notice Type Code', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'publication_media', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Publication Media', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'issue_date', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Issue Date', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'document_type_code', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Document Type Code', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'document_type_name', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Document Type Name', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'document_uri', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'Document URI', 'related_table': None}
+{'table_name': 'Valid Notices', 'column_name': 'file_name', 'improved_table_name': 'List of Valid Notices', 'improved_column_name': 'File Name', 'related_table': None}
+{'table_name': 'Winning Party', 'column_name': 'winning_party_id', 'improved_table_name': 'List of Winning Parties', 'improved_column_name': 'Winning Party Identifier', 'related_table': None}
+{'table_name': 'Winning Party', 'column_name': 'result_id', 'improved_table_name': 'List of Winning Parties', 'improved_column_name': 'Result Identifier', 'related_table': 'Tender Results'}
+{'table_name': 'Winning Party', 'column_name': 'contract_id', 'improved_table_name': 'List of Winning Parties', 'improved_column_name': 'Contract Identifier', 'related_table': 'Contracts'}
+{'table_name': 'Winning Party', 'column_name': 'party_nif', 'improved_table_name': 'List of Winning Parties', 'improved_column_name': 'Party National Identification Number', 'related_table': None}
+{'table_name': 'Winning Party', 'column_name': 'party_name', 'improved_table_name': 'List of Winning Parties', 'improved_column_name': 'Party Name', 'related_table': None}

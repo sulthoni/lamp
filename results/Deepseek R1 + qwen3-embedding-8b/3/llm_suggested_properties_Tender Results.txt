@@ -1,0 +1,11 @@
+{'table_name': 'Tender Results', 'column_name': 'result_id', 'class_name': 'Submission statistical information', 'properties': 'hasResultIdentifier', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'contract_id', 'class_name': 'Submission statistical information', 'properties': 'relatedToContract', 'type': 'object', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'result_code', 'class_name': 'Submission statistical information', 'properties': 'hasResultType', 'type': 'object', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'description', 'class_name': 'Submission statistical information', 'properties': 'hasDescription', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'class_name': 'Submission statistical information', 'properties': 'hasAwardDate', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'received_tender_quantity', 'class_name': 'Submission statistical information', 'properties': 'Has received tenders', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_id', 'class_name': 'Submission statistical information', 'properties': 'referencesValidNotice', 'type': 'object', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_date', 'class_name': 'Submission statistical information', 'properties': 'hasContractIssueDate', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'awarded_tax_exclusive', 'class_name': 'Submission statistical information', 'properties': 'hasAwardedTaxExclusiveAmount', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'awarded_payable_amount', 'class_name': 'Submission statistical information', 'properties': 'hasAwardedPayableAmount', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'currency', 'class_name': 'Submission statistical information', 'properties': 'hasCurrency', 'type': 'data', 'new_property': True}

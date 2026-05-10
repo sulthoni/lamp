@@ -1,0 +1,46 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9900
+  Reason 1: The table 'sport' represents a list of distinct sport entities, making it a clear candidate for an ontology class. The column 'sport identifier' (original: sports/ID) is a unique identifier and serves as the primary key for the entity. The column 'sport description' is a descriptive attribute. This structure, containing a primary key and descriptive attributes, is characteristic of an entity table, not a relationship (join) table. The candidate class 'Sport' is a perfect semantic match for the table's name ('sport') and description ('list of sports'). Furthermore, the data properties of the 'Sport' candidate, 'sportid' (integer) and 'sportname' (string), align perfectly with the table's columns 'sport identifier' (TINYINT) and 'sport description' (VARCHAR). The ontology's object property 'practises' (domain: Person, range: Sport) confirms that 'Sport' is intended to be an entity class that can be referenced by other classes, which is consistent with the role of this table as a reference/lookup table.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Description
+
+Term: # Table: student sport relationship
+**Original Name**: student_sport
+**Description**: This table represents student sport relationship
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+  No candidates selected
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9800
+  Reason 1: The table 'student' represents a list of students, which are entities. The table structure supports this, as it has a clear primary key, 'student identifier' (original: students/ID), which uniquely identifies each student instance. The remaining columns, 'student first name' and 'student last name', are descriptive attributes of a student. There are no foreign keys, indicating this is not a join table but a core entity table. The candidate class 'Person' is an excellent semantic match, as a student is a type of person. The table's columns align perfectly with the data properties of the 'Person' class: 'student identifier' maps to 'id', 'student first name' to 'firstname', and 'student last name' to 'lastname'. The other candidates, 'Sport' and 'City', are semantically and structurally irrelevant. Therefore, the table should be mapped to the 'Person' class.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: student identifier, student first name, student last name

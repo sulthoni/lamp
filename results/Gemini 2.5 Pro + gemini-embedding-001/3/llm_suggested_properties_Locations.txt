@@ -1,0 +1,1 @@
+{'table_name': 'Locations', 'column_name': 'contract_id', 'class_name': 'Lot', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

@@ -1,0 +1,5 @@
+{'table_name': 'sport', 'column_name': 'sports/ID', 'improved_table_name': 'Sports Information', 'improved_column_name': 'Sport Identifier', 'related_table': None}
+{'table_name': 'sport', 'column_name': 'sports/Name', 'improved_table_name': 'Sports Information', 'improved_column_name': 'Sport Name', 'related_table': None}
+{'table_name': 'student', 'column_name': 'students/ID', 'improved_table_name': 'Student Information', 'improved_column_name': 'Student Identifier', 'related_table': None}
+{'table_name': 'student', 'column_name': 'students/Sport', 'improved_table_name': 'Student Information', 'improved_column_name': 'Sport Reference', 'related_table': 'sport'}
+{'table_name': 'student', 'column_name': 'students/Name', 'improved_table_name': 'Student Information', 'improved_column_name': 'Student Name', 'related_table': None}

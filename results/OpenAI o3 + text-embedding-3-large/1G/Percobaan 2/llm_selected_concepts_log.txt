@@ -1,0 +1,37 @@
+Term: # Table: list of residents
+**Original Name**: lives
+**Description**: This table represents list of residents
+**Column Count**: 3
+## Columns
+- **first name** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city of residence** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.7500
+  Reason 1: The table stores attributes that describe a human individual (first name, last name) and the ontology already defines a Person class with matching data properties (firstname, lastname).  Each row therefore most naturally represents one Person instance.  The column "city" expresses the Person→City object property named "lives" that the ontology already contains, providing strong structural alignment.  No separate primary-key column exists, so the least-bad single identifier is lives/fname (acknowledging it is not globally unique).  The city column is treated as a related (object-property) column, not a Person data attribute.
+  Class URI 1: http://example.com/Person/lives/fname
+  Columns for Candidate 1: lives/fname, lives/lname
+  Related Columns for Candidate 1: lives/city
+
+  Selected Candidate 2: City | Confidence: 0.4000
+  Reason 2: The ontology’s Person.lives object property requires target City individuals.  Because the database has no standalone City table, the city literal in this table must be converted into City resources.  Mapping the same column to the City class therefore completes the relationship chain and keeps the global model consistent with any other tables that may reference City later.  The column "lives/city" matches the ontology data property "cityname".  Confidence is lower because City is inferred indirectly and duplicate rows may occur, but the mapping is still semantically justified.
+  Class URI 2: http://example.com/City/lives/city
+  Columns for Candidate 2: lives/city
+
+Term: # Table: person details
+**Original Name**: persons
+**Description**: This table represents person details
+**Column Count**: 3
+## Columns
+- **first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **monetary amount** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9200
+  Reason 1: Global schema shows a complementary table (lives) that uses the columns fname/lname to link each record to a City through the ontology object property Person→lives→City. This indicates that the current table represents the core Person entity. Column-to-property alignment is strong: persons/fname ↔ Person.firstname, persons/lname ↔ Person.lastname, and persons/amount ↔ Person.owes. No other ontology class matches all three columns. There are no foreign-key columns inside this table itself, so the table is not a pure join table. Although there is no declared single-column primary key, the composite (fname,lname) is treated as the logical identifier across the schema; we choose persons/fname as the URI key acknowledging this limitation. Mapping therefore keeps global consistency with the ‘lives’ table mapping and with ontology property expectations.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

@@ -1,0 +1,4 @@
+{'table_name': 'frequencies', 'column_name': 'trip identifier', 'class_name': 'Frequency', 'properties': 'Trip', 'type': 'object', 'new_property': False}
+{'table_name': 'frequencies', 'column_name': 'start time of trip', 'class_name': 'Frequency', 'properties': 'Start Time', 'type': 'data', 'new_property': False}
+{'table_name': 'frequencies', 'column_name': 'end time of trip', 'class_name': 'Frequency', 'properties': 'End Time', 'type': 'data', 'new_property': False}
+{'table_name': 'frequencies', 'column_name': 'time interval between trips in seconds', 'class_name': 'Frequency', 'properties': 'Headway Seconds', 'type': 'data', 'new_property': False}

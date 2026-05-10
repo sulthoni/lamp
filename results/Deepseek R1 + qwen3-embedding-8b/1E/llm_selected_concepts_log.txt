@@ -1,0 +1,35 @@
+Term: # Table: Sports Information
+**Original Name**: sport
+**Description**: This table represents sports information
+**Column Count**: 2
+## Columns
+- **Sport Identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **Sport Name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9500
+  Reason 1: The table 'sport' maps directly to the ontology class 'Sport' based on strong semantic and structural alignment. The primary key 'sports/ID' (detected from uniqueness) corresponds to the data property 'sportid', and 'sports/Name' aligns with 'sportname'. Column clustering shows a single sport information theme. Globally, the 'student' table references 'sport' via FK, matching the ontology object property 'practises' from Person to Sport, ensuring consistency. Candidate analysis confirms Sport as the best fit, overriding lower similarity scores due to precise property matching and contextual clues.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Name
+
+Term: # Table: Student Information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 3
+## Columns
+- **Student Identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **Sport Reference** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **Student Name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **Sport Reference** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9000
+  Reason 1: The table maps to the Person ontology class due to strong semantic and structural alignment: it represents student information with a primary key (students/ID) for entity identity, matching Person's data property 'id'; the Student Name column aligns with Person's 'fullname' data property; and the foreign key students/Sport references the sport table, which corresponds to Person's object property 'practises' with range Sport, ensuring global consistency with the sport table likely mapping to Sport class. Column clustering shows personal info (ID, Name) and reference info (Sport), with the latter handled via object property. The similarity score (0.5153) is supported by this evidence, and other candidates (Sport, City) are mismatched semantically or lack relationship alignment.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/Name
+  Related Columns for Candidate 1: students/Sport

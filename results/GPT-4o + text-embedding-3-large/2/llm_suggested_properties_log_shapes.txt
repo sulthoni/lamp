@@ -1,0 +1,43 @@
+Properties Suggestion Results:
+Total columns processed: 5
+
+Column 1:
+  Table Name: shapes
+  Column Name: shape_id
+  Class: Shape
+  Properties: ID
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: shapes
+  Column Name: shape_pt_lat
+  Class: Shape Point
+  Properties: Latitude
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: shapes
+  Column Name: shape_pt_lon
+  Class: Shape Point
+  Properties: Longitude
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: shapes
+  Column Name: shape_pt_sequence
+  Class: Shape Point
+  Properties: Point Sequence
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: shapes
+  Column Name: shape_dist_traveled
+  Class: Shape Point
+  Properties: Distance Traveled
+  Type: data
+  New Property: False
+

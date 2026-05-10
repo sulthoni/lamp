@@ -1,0 +1,43 @@
+Properties Suggestion Results:
+Total columns processed: 5
+
+Column 1:
+  Table Name: Parent Organizations
+  Column Name: parent_id
+  Class: Organization
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Parent Organizations
+  Column Name: name
+  Class: Organization
+  Properties: hasName
+  Type: data
+  New Property: True
+
+Column 3:
+  Table Name: Parent Organizations
+  Column Name: level
+  Class: Organization
+  Properties: hasHierarchyLevel
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Parent Organizations
+  Column Name: party_id
+  Class: Organization
+  Properties: hasParentOrganizationForParty
+  Type: object
+  New Property: True
+
+Column 5:
+  Table Name: Parent Organizations
+  Column Name: contract_id
+  Class: Organization
+  Properties: hasParentOrganizationInContract
+  Type: object
+  New Property: True
+

@@ -1,0 +1,43 @@
+Properties Suggestion Results:
+Total columns processed: 5
+
+Column 1:
+  Table Name: frequencies
+  Column Name: trip_id
+  Class: Frequency
+  Properties: Trip
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: frequencies
+  Column Name: start_time
+  Class: Frequency
+  Properties: Start Time
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: frequencies
+  Column Name: end_time
+  Class: Frequency
+  Properties: End Time
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: frequencies
+  Column Name: headway_secs
+  Class: Frequency
+  Properties: Headway Seconds
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: frequencies
+  Column Name: exact_times
+  Class: Frequency
+  Properties: Frecuency type
+  Type: object
+  New Property: False
+

@@ -1,0 +1,27 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+
+Term: # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **student sport** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **student sport** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)

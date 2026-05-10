@@ -1,0 +1,15 @@
+Term: # Table: list of I owe yous
+**Original Name**: ious
+**Description**: This table represents list of i owe yous
+**Column Count**: 3
+## Columns
+- **person's first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **person's last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount owed** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The table 'ious' describes amounts owed by individuals. Its columns 'persons/fname', 'persons/lname', and 'persons/amount' map directly to the data properties 'firstname', 'lastname', and 'owes' of the 'Person' ontology class. The table's purpose, representing 'I owe yous', aligns perfectly with the semantics of the 'Person' class having an 'owes' property. The global schema shows no other tables, making this a straightforward mapping. The other candidates, 'Sport' and 'City', are semantically and structurally irrelevant as their properties do not match the table's columns. The table lacks a formal primary key; the combination of 'persons/fname' and 'persons/lname' acts as a composite identifier for a person in this context. All columns in the table describe attributes of a Person.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

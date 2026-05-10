@@ -1,0 +1,3 @@
+{'table_name': 'ious', 'column_name': 'persons/fname', 'improved_table_name': 'list of IOU debt records', 'improved_column_name': 'person first name', 'related_table': None}
+{'table_name': 'ious', 'column_name': 'persons/lname', 'improved_table_name': 'list of IOU debt records', 'improved_column_name': 'person last name', 'related_table': None}
+{'table_name': 'ious', 'column_name': 'persons/amount', 'improved_table_name': 'list of IOU debt records', 'improved_column_name': 'amount owed', 'related_table': None}

@@ -1,0 +1,2 @@
+{'table_name': 'Winning Party', 'column_name': 'party_nif, party_name', 'class_name': 'Buyer', 'properties': 'Played by', 'type': 'object', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'result_id', 'class_name': 'ResultNotice', 'properties': 'Refers to role', 'type': 'object', 'new_property': False}

@@ -1,0 +1,1 @@
+{'table_name': 'Parent Organizations', 'column_name': 'parent_id', 'class_name': 'Organization', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

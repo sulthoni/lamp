@@ -1,0 +1,24 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.org/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix : <http://example.com/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@base <http://example.com/> .
+
+<#LogicalTable_student_Person>
+  rml:logicalSource [ rml:source "student.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://example.com/Person/student/{students/Name}" ;
+    rr:class <http://example.com/Person/full name>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :fullname ;
+    rr:objectMap [
+      rml:reference "students/Name" ;
+      rr:datatype xsd:string
+    ]  ] .

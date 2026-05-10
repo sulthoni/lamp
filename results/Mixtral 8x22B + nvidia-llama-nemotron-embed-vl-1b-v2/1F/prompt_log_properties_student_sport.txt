@@ -1,0 +1,340 @@
+################################################################################
+# PROMPT LOG - Property Suggestion - student_sport
+# Started: 2026-04-22 09:27:23
+# Provider: openrouter
+# Model: mistralai/mixtral-8x22b-instruct
+# Table: student_sport
+################################################################################
+
+================================================================================
+[2026-04-22 09uman:27:25] PROCESS: PropertySuggestion - student_sport | Step 1/1
+Provider: openrouter | Model: mistralai/mixtral-8x22b-instruct
+table_name: student_sport
+column_count: 2
+suggested_classes: ['Person', 'Sport']
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [global_schema_summary]: {
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  },
+  "tables": {
+    "sport": [
+      "sports/ID (TINYINT)",
+      "sports/Description (VARCHAR(50))"
+    ],
+    "student": [
+      "students/ID (TINYINT)",
+      "s... [truncated, total 879 chars]
+  [table_name]: student_sport
+  [improved_table_name]: student sports participation
+  [columns_text]: 1. Column: links/ID_Student (improved: student identifier)
+2. Column: links/ID_Sport (improved: sport identifier)
+  [term]: # Table: student sports participation
+**Original Name**: student_sport
+**Description**: This table represents student sports participation
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## ... [truncated, total 544 chars]
+  [suggested_classes_count]: 2
+  [suggested_classes_from_first_step]: 1. Class: Person
+2. Class: Sport
+  [suggested_classes_iri_from_first_step]: 1. Class IRI: http://example.com/Person/ID_Student
+2. Class IRI: http://example.com/Sport/ID_Sport
+  [suggested_columns_text]: Suggested Columns for Class - Person:
+1. Column: student identifier
+
+
+Suggested Columns for Class - Sport:
+1. Column: sport identifier
+
+
+  [data_properties_text]: Person - Data Properties:
+  1. id (Type: integer, URI: http://www.w3.org/2001/XMLSchema#integer)
+  2. firstname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  3. lastname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  4. fullname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  5. owes (Type: double, URI: http://www.w3.org/2001/XMLSchema#double)
+
+Sport - Data Properties:
+  1. sportid (Type: integer, URI: http://www.w3.org/2001/XMLSchema#integer)
+  2.... [truncated, total 571 chars]
+  [object_properties_text]: Person - Object Properties:
+  1. practises (Domain: Person [http://example.org/Person], Range: Sport [http://example.org/Sport])
+  2. lives (Domain: Person [http://example.org/Person], Range: City [http://example.org/City])
+
+Sport - Object Properties:
+  1. practises (Domain: Person [http://example.org/Person], Range: Sport [http://example.org/Sport])
+  [related_columns_text]: Related Columns for Class - Person:
+1. Column: sport identifier
+
+
+Related Columns for Class - Sport:
+1. Column: student identifier
+
+
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+            ---
+            ### Input Context
+                **Global_Schema_Summary:**
+                {
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  },
+  "tables": {
+    "sport": [
+      "sports/ID (TINYINT)",
+      "sports/Description (VARCHAR(50))"
+    ],
+    "student": [
+      "students/ID (TINYINT)",
+      "students/FirstName (VARCHAR(50))",
+      "students/LastName (VARCHAR(50))"
+    ],
+    "student_sport": [
+      "links/ID_Student (TINYINT) (FK -> student)",
+      "links/ID_Sport (TINYINT) (FK -> sport)"
+    ]
+  },
+  "previous_mappings": [
+    {
+      "sport": {
+        "sport.sports/ID": "Sport.sportid",
+        "sport.sports/Description": "Sport.sportname"
+      }
+    }
+  ]
+}
+                **Table:** student_sport
+                **Improved Table Name:** student sports participation
+                **Columns:**
+                1. Column: links/ID_Student (improved: student identifier)
+2. Column: links/ID_Sport (improved: sport identifier)
+                **Additional Context of table:**
+                # Table: student sports participation
+**Original Name**: student_sport
+**Description**: This table represents student sports participation
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+                **Total Classes Suggested for This Table:**
+                2
+                **Suggested Classes:**
+                1. Class: Person
+2. Class: Sport
+                **Suggested Classes IRI:**
+                1. Class IRI: http://example.com/Person/ID_Student
+2. Class IRI: http://example.com/Sport/ID_Sport
+                **Suggested Columns for Each Class (from step 1):**
+                Suggested Columns for Class - Person:
+1. Column: student identifier
+
+
+Suggested Columns for Class - Sport:
+1. Column: sport identifier
+
+
+                **Available Data Properties:**
+                Person - Data Properties:
+  1. id (Type: integer, URI: http://www.w3.org/2001/XMLSchema#integer)
+  2. firstname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  3. lastname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  4. fullname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  5. owes (Type: double, URI: http://www.w3.org/2001/XMLSchema#double)
+
+Sport - Data Properties:
+  1. sportid (Type: integer, URI: http://www.w3.org/2001/XMLSchema#integer)
+  2. sportname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+                **Available Object Properties:**
+                Person - Object Properties:
+  1. practises (Domain: Person [http://example.org/Person], Range: Sport [http://example.org/Sport])
+  2. lives (Domain: Person [http://example.org/Person], Range: City [http://example.org/City])
+
+Sport - Object Properties:
+  1. practises (Domain: Person [http://example.org/Person], Range: Sport [http://example.org/Sport])
+                **Related Columns (cross-table relationships):**
+                Related Columns for Class - Person:
+1. Column: sport identifier
+
+
+Related Columns for Class - Sport:
+1. Column: student identifier
+
+
+            ---
+            ### 1. Global Context Awareness
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+            Example format:
+            {
+                "tables": {
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                },
+                "ontology": {
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                },
+                "previous_mappings": [{
+                    "author": {
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    },
+                    "book": {
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }]
+                }
+            }
+            ---
+            ### 2. Mapping Principles
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - If no suitable property exists, propose a new one with `new_property = true`.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+            ---
+            ### 3. Mapping Logic Details
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+            ---
+            ### 4. Completeness and Global Validation
+            1. Ensure every column (except PK-only identity columns) has a mapping to either a property or a newly proposed property.
+            2. Compare your mappings against `previous_mapping_summary` to avoid duplication.
+            3. Check total number of mappings equals the `expected_column_count`.
+            4. Validate that:
+            - Each mapping is globally consistent.
+            - Relationships between tables (via FKs) align with ontology object properties.
+            - No conflicting or circular mappings exist.
+            - Cross-class mappings maintain ontology domain-range correctness.
+            If any column cannot be mapped meaningfully, include it in the result with `"mapped": false` and a reason.
+            ---
+            ### 5. Output Format
+            Follow these output formatting rules exactly:
+            The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+```
+            ---
+            ### 6. Final Instructions
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+````.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+mappings=[PropertySuggestion(table_name='student_sport', column_name='links/ID_Student', class_name='Person', properties='practises', type='object', new_property=False), PropertySuggestion(table_name='student_sport', column_name='links/ID_Sport', class_name='Sport', properties='practisedBy', type='object', new_property=True)]
+================================================================================

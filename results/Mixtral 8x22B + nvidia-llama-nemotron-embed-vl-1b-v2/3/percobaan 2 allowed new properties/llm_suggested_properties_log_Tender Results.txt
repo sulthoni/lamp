@@ -1,0 +1,91 @@
+Properties Suggestion Results:
+Total columns processed: 11
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: tender award identifier
+  Class: LotAwardOutcome
+  Properties: hasAwardOutcomeId
+  Type: data
+  New Property: True
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: contract identifier
+  Class: LotAwardOutcome
+  Properties: refersToContract
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: award result code
+  Class: LotAwardOutcome
+  Properties: hasAwardResultCode
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Tender Results
+  Column Name: detailed description of the award outcome
+  Class: LotAwardOutcome
+  Properties: hasAwardOutcomeDescription
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Tender Results
+  Column Name: date when the award was granted
+  Class: LotAwardOutcome
+  Properties: hasAwardDecisionDate
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: Tender Results
+  Column Name: quantity of tenders received
+  Class: LotAwardOutcome
+  Properties: hasReceivedTenders
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: Tender Results
+  Column Name: contract issuance identifier
+  Class: LotAwardOutcome
+  Properties: refersToContractIssuance
+  Type: object
+  New Property: True
+
+Column 8:
+  Table Name: Tender Results
+  Column Name: date when the contract was issued
+  Class: LotAwardOutcome
+  Properties: hasContractIssueDate
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Tender Results
+  Column Name: awarded amount excluding tax
+  Class: LotAwardOutcome
+  Properties: hasAwardedAmountExcludingTax
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Tender Results
+  Column Name: total awarded amount payable
+  Class: LotAwardOutcome
+  Properties: hasTotalAwardedAmountPayable
+  Type: data
+  New Property: True
+
+Column 11:
+  Table Name: Tender Results
+  Column Name: currency of the awarded amount
+  Class: LotAwardOutcome
+  Properties: hasCurrency
+  Type: object
+  New Property: False
+

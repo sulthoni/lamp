@@ -1,0 +1,34 @@
+{
+  "tables": {
+    "sport": [
+      "sports/ID (TINYINT)",
+      "sports/Name (VARCHAR(50))"
+    ],
+    "student": [
+      "students/ID (TINYINT)",
+      "students/Sport (TINYINT) (FK -> sport)",
+      "students/Name (VARCHAR(50))"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

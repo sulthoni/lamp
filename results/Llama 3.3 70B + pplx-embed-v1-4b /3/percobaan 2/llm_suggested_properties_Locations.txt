@@ -1,0 +1,6 @@
+{'table_name': 'Locations', 'column_name': 'unique location identifier', 'class_name': 'Location', 'properties': 'No direct property available', 'type': 'data', 'new_property': False}
+{'table_name': 'Locations', 'column_name': 'contract reference identifier', 'class_name': 'Location', 'properties': 'No direct property available', 'type': 'object', 'new_property': False}
+{'table_name': 'Locations', 'column_name': 'country sub-entity name', 'class_name': 'Location', 'properties': 'No direct property available', 'type': 'data', 'new_property': False}
+{'table_name': 'Locations', 'column_name': 'country sub-entity code', 'class_name': 'Location', 'properties': 'No direct property available', 'type': 'data', 'new_property': False}
+{'table_name': 'Locations', 'column_name': 'country code', 'class_name': 'Location', 'properties': 'No direct property available', 'type': 'data', 'new_property': False}
+{'table_name': 'Locations', 'column_name': 'country name', 'class_name': 'Location', 'properties': 'No direct property available', 'type': 'data', 'new_property': False}

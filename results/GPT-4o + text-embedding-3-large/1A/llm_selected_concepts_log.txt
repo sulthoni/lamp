@@ -1,0 +1,14 @@
+Term: # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 1
+## Columns
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.7000
+  Reason 1: The 'student' table contains a single column 'student name', which aligns with the 'fullname' data property of the 'Person' ontology class. The similarity score for 'Person' is the highest among the candidates, indicating a better semantic match. Additionally, the concept of a 'student' is more closely related to a 'Person' than to 'Sport' or 'City'. The global schema does not provide any foreign key relationships for this table, suggesting it represents standalone entities, which aligns with the 'Person' class.
+  Class URI 1: http://example.com/Person/students/Name
+  Columns for Candidate 1: students/Name

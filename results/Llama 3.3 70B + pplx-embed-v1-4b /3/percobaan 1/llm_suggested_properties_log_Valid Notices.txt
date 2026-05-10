@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: Valid Notices
+  Column Name: notice_id
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 2:
+  Table Name: Valid Notices
+  Column Name: contract_id
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 3:
+  Table Name: Valid Notices
+  Column Name: notice_type_code
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 4:
+  Table Name: Valid Notices
+  Column Name: publication_media
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 5:
+  Table Name: Valid Notices
+  Column Name: issue_date
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 6:
+  Table Name: Valid Notices
+  Column Name: document_type_code
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 7:
+  Table Name: Valid Notices
+  Column Name: document_type_name
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 8:
+  Table Name: Valid Notices
+  Column Name: document_uri
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 9:
+  Table Name: Valid Notices
+  Column Name: file_name
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+

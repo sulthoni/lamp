@@ -1,0 +1,16 @@
+
+
+===================== Table Results ====================
+Term: # Table: Debt Records
+**Original Name**: ious
+**Description**: This table represents debt records
+**Column Count**: 3
+## Columns
+- **Debtor First Name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **Debtor Last Name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **Amount Owed** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.3334
+  Candidate 2: Sport (ID: http://example.org/Sport) | Similarity: 0.2748
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.2369

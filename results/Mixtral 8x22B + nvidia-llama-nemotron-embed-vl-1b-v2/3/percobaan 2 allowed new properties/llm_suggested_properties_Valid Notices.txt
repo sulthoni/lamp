@@ -1,0 +1,9 @@
+{'table_name': 'Valid Notices', 'column_name': 'notice identifier', 'class_name': 'Notice', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'contract identifier', 'class_name': 'Notice', 'properties': 'Refers to contract -> Contract', 'type': 'object', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'notice type code', 'class_name': 'Notice', 'properties': 'Has notice type code', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'publication medium', 'class_name': 'Notice', 'properties': 'Has publication medium', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'issue date', 'class_name': 'Notice', 'properties': 'Has issue date', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'document type code', 'class_name': 'Notice', 'properties': 'Has document type code', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'document type name', 'class_name': 'Notice', 'properties': 'Has document type name', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'document uniform resource identifier', 'class_name': 'Document', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'file name', 'class_name': 'Document', 'properties': 'Has file name', 'type': 'data', 'new_property': True}

@@ -1,0 +1,10 @@
+{'table_name': 'calendar', 'column_name': 'service_id', 'class_name': 'CalendarRule', 'properties': 'Service rule', 'type': 'object', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'monday', 'class_name': 'CalendarRule', 'properties': 'Monday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'tuesday', 'class_name': 'CalendarRule', 'properties': 'Tuesday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'wednesday', 'class_name': 'CalendarRule', 'properties': 'Wednesday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'thursday', 'class_name': 'CalendarRule', 'properties': 'Thursday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'friday', 'class_name': 'CalendarRule', 'properties': 'Friday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'saturday', 'class_name': 'CalendarRule', 'properties': 'Saturday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'sunday', 'class_name': 'CalendarRule', 'properties': 'Sunday', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'start_date', 'class_name': 'CalendarRule', 'properties': 'StartDate', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'end_date', 'class_name': 'CalendarRule', 'properties': 'EndDate', 'type': 'data', 'new_property': False}

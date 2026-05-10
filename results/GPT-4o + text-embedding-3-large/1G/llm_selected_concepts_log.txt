@@ -1,0 +1,37 @@
+Term: # Table: residences
+**Original Name**: lives
+**Description**: This table represents residences
+**Column Count**: 3
+## Columns
+- **first name of resident** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name of resident** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city of residence** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9000
+  Reason 1: The 'residences' table, originally named 'lives', contains columns that align with the 'Person' ontology class, specifically the 'firstname' and 'lastname' columns, which correspond to 'firstname' and 'lastname' data properties in the 'Person' class. The presence of a 'city of residence' column suggests a relationship to the 'City' class, aligning with the 'lives -> City' object property in the ontology.
+  Class URI 1: http://example.com/Person/lives/fname
+  Columns for Candidate 1: lives/fname, lives/lname
+  Related Columns for Candidate 1: lives/city
+
+  Selected Candidate 2: City | Confidence: 0.8500
+  Reason 2: The 'city of residence' column in the 'residences' table directly corresponds to the 'City' ontology class, as it represents the city where a person resides. This aligns with the 'lives -> City' object property, indicating a relationship between 'Person' and 'City'.
+  Class URI 2: http://example.com/City/lives/city
+  Columns for Candidate 2: lives/city
+
+Term: # Table: list of individuals
+**Original Name**: persons
+**Description**: This table represents list of individuals
+**Column Count**: 3
+## Columns
+- **first name of person** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name of person** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount associated with person** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9000
+  Reason 1: The 'persons' table aligns well with the 'Person' ontology class due to the presence of personal information columns such as 'first name of person' and 'last name of person', which correspond to the 'firstname' and 'lastname' data properties in the 'Person' class. The 'amount associated with person' column could potentially relate to the 'owes' property, indicating a financial aspect associated with the person. There are no foreign keys in this table, suggesting it represents standalone individuals rather than a join table. The global schema context shows that the 'Person' class is a central entity with relationships to 'City' and 'Sport', but this table does not directly reference those entities, supporting its mapping to 'Person'.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

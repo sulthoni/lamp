@@ -1,0 +1,5 @@
+{'table_name': 'lives', 'column_name': 'lives/fname, lives/lname', 'class_name': 'Person', 'properties': 'fullname', 'type': 'data', 'new_property': False}
+{'table_name': 'lives', 'column_name': 'lives/fname', 'class_name': 'Person', 'properties': 'firstname', 'type': 'data', 'new_property': False}
+{'table_name': 'lives', 'column_name': 'lives/lname', 'class_name': 'Person', 'properties': 'lastname', 'type': 'data', 'new_property': False}
+{'table_name': 'lives', 'column_name': 'lives/city', 'class_name': 'City', 'properties': 'cityname', 'type': 'data', 'new_property': False}
+{'table_name': 'lives', 'column_name': 'lives/city', 'class_name': 'Person', 'properties': 'lives', 'type': 'object', 'new_property': False}

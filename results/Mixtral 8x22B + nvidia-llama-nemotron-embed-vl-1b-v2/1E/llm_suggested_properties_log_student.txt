@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: student
+  Column Name: students/ID
+  Class: Person
+  Properties: id
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: student
+  Column Name: students/Sport
+  Class: Person
+  Properties: practises
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: student
+  Column Name: students/Name
+  Class: Person
+  Properties: fullname
+  Type: data
+  New Property: False
+

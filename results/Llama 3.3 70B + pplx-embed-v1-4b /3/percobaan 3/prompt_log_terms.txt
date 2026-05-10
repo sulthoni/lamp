@@ -1,0 +1,630 @@
+################################################################################
+# PROMPT LOG - Terms Suggestion (TermImprovement)
+# Started: 2026-04-15 23:46:19
+# Provider: openrouter
+# Model: meta-llama/llama-3.3-70b-instruct
+################################################################################
+
+================================================================================
+[2026-04-15 23uman:46:22] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Budget Amounts
+column_count: 6
+prompt_tokens: 656
+response_tokens: 26
+total_tokens: 682
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Budget Amounts
+  [column_names]: ['budget_id', 'contract_id', 'estimated_overall_amount', 'total_amount', 'tax_exclusive_amount', 'currency']
+  [related_tables]: ['Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Budget Amounts
+                Column names: ['budget_id', 'contract_id', 'estimated_overall_amount', 'total_amount', 'tax_exclusive_amount', 'currency']
+                Related tables: ['Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Budget Amounts' column_names=['budget_id', 'contract_id', 'estimated_overall_amount', 'total_amount', 'tax_exclusive_amount', 'currency'] improved_table_name='Detailed Budget Amounts Breakdown' improved_column_names=['unique budget identifier', 'contract reference identifier', 'estimated overall budget amount', 'total budget amount', 'tax exclusive budget amount', 'currency of budget amount'] related_tables=[('budget_id', 'Classifications'), ('contract_id', 'Contracts')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:46:36] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Classifications
+column_count: 4
+prompt_tokens: 653
+response_tokens: 10
+total_tokens: 663
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Classifications
+  [column_names]: ['classification_id', 'contract_id', 'classification_code', 'classification_system']
+  [related_tables]: ['Budget Amounts', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Classifications
+                Column names: ['classification_id', 'contract_id', 'classification_code', 'classification_system']
+                Related tables: ['Budget Amounts', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Classifications' column_names=['classification_id', 'contract_id', 'classification_code', 'classification_system'] improved_table_name='Classification Categories' improved_column_names=['unique classification identifier', 'associated contract identifier', 'classification code', 'classification system'] related_tables=[('contract_id', 'Contracts')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:46:41] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Contracting Party
+column_count: 13
+prompt_tokens: 665
+response_tokens: 46
+total_tokens: 711
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Contracting Party
+  [column_names]: ['party_id', 'contract_id', 'party_type_code', 'name', 'website', 'city', 'postal_code', 'address_line', 'country_code', 'country_name', 'telephone', 'telefax', 'email']
+  [related_tables]: ['Budget Amounts', 'Classifications', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Contracting Party
+                Column names: ['party_id', 'contract_id', 'party_type_code', 'name', 'website', 'city', 'postal_code', 'address_line', 'country_code', 'country_name', 'telephone', 'telefax', 'email']
+                Related tables: ['Budget Amounts', 'Classifications', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Contracting Party' column_names=['party_id', 'contract_id', 'party_type_code', 'name', 'website', 'city', 'postal_code', 'address_line', 'country_code', 'country_name', 'telephone', 'telefax', 'email'] improved_table_name='Contracting Party Information' improved_column_names=['unique party identifier', 'associated contract identifier', 'party type classification code', 'party name', 'party website', 'city of party location', 'postal code of party location', 'address line of party location', 'country code of party location', 'country name of party location', 'telephone number', 'telefax number', 'email address'] related_tables=[('contract_id', 'Contracts'), ('party_id', 'Parent Organizations'), ('party_type_code', 'Classifications')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:46:57] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Locations
+column_count: 6
+prompt_tokens: 656
+response_tokens: 16
+total_tokens: 672
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Locations
+  [column_names]: ['location_id', 'contract_id', 'country_subentity', 'country_subentity_code', 'country_code', 'country_name']
+  [related_tables]: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Locations
+                Column names: ['location_id', 'contract_id', 'country_subentity', 'country_subentity_code', 'country_code', 'country_name']
+                Related tables: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Parent Organizations', 'Tender Results', 'Valid Notices', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Locations' column_names=['location_id', 'contract_id', 'country_subentity', 'country_subentity_code', 'country_code', 'country_name'] improved_table_name='Geographic Location Details' improved_column_names=['unique location identifier', 'contract reference identifier', 'country sub-entity name', 'country sub-entity code', 'country code', 'country name'] related_tables=[('contract_id', 'Contracts')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:47:00] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Parent Organizations
+column_count: 5
+prompt_tokens: 655
+response_tokens: 14
+total_tokens: 669
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Parent Organizations
+  [column_names]: ['parent_id', 'party_id', 'contract_id', 'level', 'name']
+  [related_tables]: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Tender Results', 'Valid Notices', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Parent Organizations
+                Column names: ['parent_id', 'party_id', 'contract_id', 'level', 'name']
+                Related tables: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Tender Results', 'Valid Notices', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Parent Organizations' column_names=['parent_id', 'party_id', 'contract_id', 'level', 'name'] improved_table_name='Parent Organization Details' improved_column_names=['Parent Identifier', 'Party Identifier', 'Contract Reference', 'Organizational Level', 'Organization Name'] related_tables=[('parent_id', 'Parent Organizations'), ('party_id', 'Contracting Party'), ('contract_id', 'Contracts')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:47:11] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Tender Results
+column_count: 11
+prompt_tokens: 663
+response_tokens: 33
+total_tokens: 696
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Tender Results
+  [column_names]: ['result_id', 'contract_id', 'result_code', 'description', 'award_date', 'received_tender_quantity', 'contract_issue_id', 'contract_issue_date', 'awarded_tax_exclusive', 'awarded_payable_amount', 'currency']
+  [related_tables]: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Valid Notices', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Tender Results
+                Column names: ['result_id', 'contract_id', 'result_code', 'description', 'award_date', 'received_tender_quantity', 'contract_issue_id', 'contract_issue_date', 'awarded_tax_exclusive', 'awarded_payable_amount', 'currency']
+                Related tables: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Valid Notices', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Tender Results' column_names=['result_id', 'contract_id', 'result_code', 'description', 'award_date', 'received_tender_quantity', 'contract_issue_id', 'contract_issue_date', 'awarded_tax_exclusive', 'awarded_payable_amount', 'currency'] improved_table_name='Tender Outcome Details' improved_column_names=['unique result identifier', 'contract identifier', 'result status code', 'detailed description', 'date of award', 'quantity of tenders received', 'contract issuance identifier', 'contract issuance date', 'awarded amount excluding tax', 'awarded payable amount', 'currency of transaction'] related_tables=[('contract_id', 'Contracts'), ('contract_issue_id', 'Contracts')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:47:15] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Valid Notices
+column_count: 9
+prompt_tokens: 660
+response_tokens: 33
+total_tokens: 693
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Valid Notices
+  [column_names]: ['notice_id', 'contract_id', 'notice_type_code', 'publication_media', 'issue_date', 'document_type_code', 'document_type_name', 'document_uri', 'file_name']
+  [related_tables]: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Winning Party']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Valid Notices
+                Column names: ['notice_id', 'contract_id', 'notice_type_code', 'publication_media', 'issue_date', 'document_type_code', 'document_type_name', 'document_uri', 'file_name']
+                Related tables: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Winning Party']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Valid Notices' column_names=['notice_id', 'contract_id', 'notice_type_code', 'publication_media', 'issue_date', 'document_type_code', 'document_type_name', 'document_uri', 'file_name'] improved_table_name='List of Official Notifications' improved_column_names=['unique notice identifier', 'contract identifier', 'notice type classification code', 'medium of publication', 'date of issue', 'document type classification code', 'document type name', 'uniform resource identifier of the document', 'file name'] related_tables=[('contract_id', 'Contracts')]
+================================================================================
+
+================================================================================
+[2026-04-15 23uman:47:25] PROCESS: TermImprovement - Batch | Step 1/1
+Provider: openrouter | Model: meta-llama/llama-3.3-70b-instruct
+table_name: Winning Party
+column_count: 5
+prompt_tokens: 655
+response_tokens: 29
+total_tokens: 684
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [table_name]: Winning Party
+  [column_names]: ['winning_party_id', 'result_id', 'contract_id', 'party_nif', 'party_name']
+  [related_tables]: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices']
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+Role:
+                You are an Ontology Engineer and Domain Expert specializing in semantic data integration.
+                You have extensive experience in understanding database schemas, interpreting domain-specific abbreviations,
+                and mapping data source structures to ontology concepts.
+
+                Instruction:
+                You are given a table name and column names. Your task is to:
+                1. Expand any abbreviations or acronyms into their full, meaningful forms.
+                2. Suggest clearer and more descriptive names for both tables and columns that accurately reflect their intended meaning.
+                3. Translate the names into natural, grammatically correct English suitable for metadata documentation or ontology annotation.
+                4. Maintain consistency in style and formatting across the outputs.
+                5. Identify foreign key relationships, analyze each column to identify potential foreign key relationships with other tables:
+                   - Identify columns that contain table names or references to other entities
+                   - Consider semantic relationships where column names suggest references to other tables
+                   - Only suggest relationships where the referenced table exists in the provided related_tables list
+                   - For each identified foreign key column, provide a tuple of (column_name, referenced_table_name)
+
+                Foreign Key Pattern Examples:
+                - 'customer_id' → 'customers' table
+                - 'product_code' → 'products' table
+                - 'category_ref' → 'categories' table
+
+                Example:
+                Input:
+                {
+                    "table_name": "master_indikators",
+                    "column_names": ["produsen_data_name", "pj_jabatan", "id_mskeg", "product_code", "category_ref"],
+                    "related_tables": ["master_kegiatan", "products", "categories"]
+                }
+                Output:
+                {
+                    "improved_table_name": "list of basic indicators",
+                    "improved_column_names": [
+                        "name of data producer",
+                        "person in charge position",
+                        "activity identity",
+                        "product code",
+                        "category reference"
+                    ],
+                    "related_tables": [("id_mskeg", "master_kegiatan"), ("product_code", "products"), ("category_ref", "categories")]
+                }
+
+                Process this input:
+                Table name: Winning Party
+                Column names: ['winning_party_id', 'result_id', 'contract_id', 'party_nif', 'party_name']
+                Related tables: ['Budget Amounts', 'Classifications', 'Contracting Party', 'Contracts', 'Locations', 'Parent Organizations', 'Tender Results', 'Valid Notices']
+
+                The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for batch term improvement.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_names": {"description": "List of original column names", "items": {"type": "string"}, "title": "Column Names", "type": "array"}, "improved_table_name": {"description": "Improved, more descriptive table name", "title": "Improved Table Name", "type": "string"}, "improved_column_names": {"description": "List of improved column names", "items": {"type": "string"}, "title": "Improved Column Names", "type": "array"}, "related_tables": {"description": "List of (column_name, related_table_name) pairs for columns that reference other tables. For CSV data sources, identify columns that appear to be foreign keys or references to other tables based on naming conventions (e.g., 'customer_id', 'user_id', 'product_code', etc.) or data patterns. Match each foreign key column with its most likely referenced table from the available tables. Only include columns that have clear relationships to other tables in the dataset. Example: [('customer_id', 'customers'), ('product_id', 'products'), ('category_code', 'categories')]", "items": {"maxItems": 2, "minItems": 2, "prefixItems": [{"type": "string"}, {"type": "string"}], "type": "array"}, "title": "Related Tables", "type": "array"}}, "required": ["table_name", "column_names", "improved_table_name", "improved_column_names", "related_tables"]}
+```
+
+                Provide your response in the exact JSON format specified above.
+----------------------------------------
+>>> LLM RESPONSE:
+table_name='Winning Party' column_names=['winning_party_id', 'result_id', 'contract_id', 'party_nif', 'party_name'] improved_table_name='Successful Bidding Party Information' improved_column_names=['unique identifier of the winning party', 'tender result identifier', 'contract identifier', 'tax identification number of the party', 'name of the winning party'] related_tables=[('result_id', 'Tender Results'), ('contract_id', 'Contracts')]
+================================================================================

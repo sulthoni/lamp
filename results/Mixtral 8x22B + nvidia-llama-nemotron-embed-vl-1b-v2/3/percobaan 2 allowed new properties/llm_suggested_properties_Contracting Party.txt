@@ -1,0 +1,14 @@
+{'table_name': 'Contracting Party', 'column_name': 'party identifier', 'class_name': 'Agent', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracting Party', 'column_name': 'party type code', 'class_name': 'Agent', 'properties': 'partyTypeCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'full name', 'class_name': 'Organization', 'properties': 'name', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'website URL', 'class_name': 'Organization', 'properties': 'mbox', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'city', 'class_name': 'Organization', 'properties': 'city', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'postal code', 'class_name': 'Organization', 'properties': 'postalCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'address line', 'class_name': 'Organization', 'properties': 'address', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'country code', 'class_name': 'Organization', 'properties': 'countryCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'country name', 'class_name': 'Organization', 'properties': 'countryName', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'telephone number', 'class_name': 'Organization', 'properties': 'telephone', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'telefax number', 'class_name': 'Organization', 'properties': 'telefax', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'email address', 'class_name': 'Organization', 'properties': 'email', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'contract identifier', 'class_name': 'Organization', 'properties': 'refers to contract -> Contract', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracting Party', 'column_name': 'contract identifier', 'class_name': 'Agent', 'properties': 'refers to contract -> Contract', 'type': 'object', 'new_property': False}

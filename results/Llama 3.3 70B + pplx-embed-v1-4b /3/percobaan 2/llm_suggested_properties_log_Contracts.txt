@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: Contracts
+  Column Name: contract_id
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracts
+  Column Name: contract_type_code
+  Class: Procedure
+  Properties: Has procedure type
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Contracts
+  Column Name: procedure_code
+  Class: Procedure
+  Properties: Has procedure type
+  Type: object
+  New Property: False
+

@@ -1,0 +1,4 @@
+{'table_name': 'Classifications', 'column_name': 'unique identifier of the classification', 'class_name': 'Identifier', 'properties': 'Has identifier value', 'type': 'data', 'new_property': False}
+{'table_name': 'Classifications', 'column_name': 'code representing the classification', 'class_name': 'Identifier', 'properties': 'Has identifier value', 'type': 'data', 'new_property': False}
+{'table_name': 'Classifications', 'column_name': 'system or framework used for classification', 'class_name': 'Identifier', 'properties': 'Has identifier value', 'type': 'data', 'new_property': False}
+{'table_name': 'Classifications', 'column_name': 'unique identifier of the associated contract', 'class_name': 'Identifier', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

@@ -1,0 +1,675 @@
+################################################################################
+# PROMPT LOG - Property Suggestion - trips
+# Started: 2026-04-22 09:16:15
+# Provider: openrouter
+# Model: mistralai/mixtral-8x22b-instruct
+# Table: trips
+################################################################################
+
+================================================================================
+[2026-04-22 09uman:16:18] PROCESS: PropertySuggestion - trips | Step 1/1
+Provider: openrouter | Model: mistralai/mixtral-8x22b-instruct
+table_name: trips
+column_count: 9
+suggested_classes: ['Trip']
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [global_schema_summary]: {
+  "ontology": {
+    "Agency": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "Language",
+      "PhoneNumber",
+      "fare URL",
+      "agency -> Agency"
+    ],
+    "Boarding Area": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-91"
+    ],
+    "Calendar date rule": [
+      "Date",
+      "Exception Type -> Concept, n3-83"
+    ],
+    "Calendar rule": [
+   ... [truncated, total 10535 chars]
+  [table_name]: trips
+  [improved_table_name]: list of transit trips
+  [columns_text]: 1. Column: route_id (improved: route identifier)
+2. Column: service_id (improved: service identifier)
+3. Column: trip_id (improved: trip identifier)
+4. Column: trip_headsign (improved: trip destination sign)
+5. Column: trip_short_name (improved: trip short name)
+6. Column: direction_id (improved: direction indicator)
+7. Column: block_id (improved: block identifier)
+8. Column: shape_id (improved: shape identifier)
+9. Column: wheelchair_accessible (improved: wheelchair accessibility status)
+  [term]: # Table: list of transit trips
+**Original Name**: trips
+**Description**: This table represents list of transit trips
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__1___, 4__2___ (identifier pattern)
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I... [truncated, total 1751 chars]
+  [suggested_classes_count]: 1
+  [suggested_classes_from_first_step]: 1. Class: Trip
+  [suggested_classes_iri_from_first_step]: 1. Class IRI: http://example.com/Trip/trip_id
+  [suggested_columns_text]: Suggested Columns for Class - Trip:
+1. Column: route identifier
+2. Column: service identifier
+3. Column: trip identifier
+4. Column: trip destination sign
+5. Column: trip short name
+6. Column: direction indicator
+7. Column: block identifier
+8. Column: shape identifier
+9. Column: wheelchair accessibility status
+
+
+  [data_properties_text]: Trip - Data Properties:
+  1. ID (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  2. Short name (Type: n3-137, URI: n3-137)
+  3. Headsign (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  4. Block (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  [object_properties_text]: Trip - Object Properties:
+  1. Route (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Route [http://vocab.gtfs.org/terms#Route])
+  2. Service (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Service [http://vocab.gtfs.org/terms#Service])
+  3. Shape (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Shape [http://vocab.gtfs.org/terms#Shape])
+  4. Trip (Domain: StopTime, Frequency [http://vocab.gtfs.org/terms#StopTime, http://vocab.gtfs.org/terms#Frequency], Range: Trip [http... [truncated, total 1122 chars]
+  [related_columns_text]: Related Columns for Class - Trip:
+1. Column: route identifier
+2. Column: service identifier
+3. Column: shape identifier
+
+
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+            ---
+            ### Input Context
+                **Global_Schema_Summary:**
+                {
+  "ontology": {
+    "Agency": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "Language",
+      "PhoneNumber",
+      "fare URL",
+      "agency -> Agency"
+    ],
+    "Boarding Area": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-91"
+    ],
+    "Calendar date rule": [
+      "Date",
+      "Exception Type -> Concept, n3-83"
+    ],
+    "Calendar rule": [
+      "StartDate",
+      "EndDate",
+      "Service rule -> ServiceRule",
+      "Monday -> Concept, n3-55",
+      "Tuesday -> Concept, n3-59",
+      "Wednesday -> Concept, n3-63",
+      "Thursday -> Concept, n3-67",
+      "Friday -> Concept, n3-71",
+      "Saturday -> Concept, n3-75",
+      "Sunday -> Concept, n3-79"
+    ],
+    "Frequency": [
+      "Start Time",
+      "End Time",
+      "Headway Seconds",
+      "Trip -> Trip",
+      "Frecuency type -> Concept, n3-87"
+    ],
+    "GTFS Feed": [
+      "URL",
+      "Language",
+      "StartDate",
+      "EndDate",
+      "Publisher",
+      "Version"
+    ],
+    "Generic Node": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-91"
+    ],
+    "Location": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Location Type -> Concept, n3-91"
+    ],
+    "Route": [
+      "ID",
+      "URL",
+      "Long name",
+      "Short name",
+      "RouteDesc",
+      "Color",
+      "Text color",
+      "Sort Order",
+      "agency -> Agency",
+      "Continuous Drop Off -> Concept, n3-27",
+      "Continuous Pickup -> Concept, n3-31",
+      "Route -> Route",
+      "Route type -> Concept, n3-48"
+    ],
+    "Service": [
+      "ID",
+      "Service -> Service",
+      "Service rule -> ServiceRule"
+    ],
+    "Service rule": [
+      "Service rule -> ServiceRule"
+    ],
+    "Shape": [
+      "ID",
+      "Shape -> Shape",
+      "Shape Point -> ShapePoint"
+    ],
+    "Shape Point": [
+      "Distance Traveled",
+      "Latitude",
+      "Longitude",
+      "Point Sequence",
+      "Shape Point -> ShapePoint"
+    ],
+    "Station": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-91",
+      "Wheelchair accesible -> Concept, n3-100"
+    ],
+    "Station Entrance": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-91",
+      "Wheelchair accesible -> Concept, n3-100"
+    ],
+    "Stop": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Latitude",
+      "Longitude",
+      "Location Code",
+      "Parent Station -> Station",
+      "Stop -> Stop",
+      "Location Type -> Concept, n3-91",
+      "Wheelchair accesible -> Concept, n3-100"
+    ],
+    "Stop time": [
+      "Distance Traveled",
+      "Arrival time",
+      "Departure time",
+      "Stop sequence",
+      "Headsign",
+      "Drop off type -> Concept, n3-35",
+      "Pickup type -> Concept, n3-44",
+      "Stop -> Stop",
+      "Trip -> Trip",
+      "Timepoint -> Concept, n3-104"
+    ],
+    "Trip": [
+      "ID",
+      "Short name",
+      "Headsign",
+      "Block",
+      "Route -> Route",
+      "Service -> Service",
+      "Shape -> Shape",
+      "Trip -> Trip",
+      "Wheelchair accesible -> Concept, n3-100",
+      "Direction -> Concept, n3-108",
+      "Bikes allowed -> Concept, n3-112"
+    ]
+  },
+  "tables": {
+    "agency": [
+      "agency_id (VARCHAR(50))",
+      "agency_name (VARCHAR(50))",
+      "agency_url (VARCHAR(50))",
+      "agency_timezone (VARCHAR(50))",
+      "agency_lang (VARCHAR(50))",
+      "agency_phone (TINYINT)",
+      "agency_fare_url (VARCHAR(50))"
+    ],
+    "calendar": [
+      "service_id (VARCHAR(50)) (FK -> trips)",
+      "monday (TINYINT)",
+      "tuesday (TINYINT)",
+      "wednesday (TINYINT)",
+      "thursday (TINYINT)",
+      "friday (TINYINT)",
+      "saturday (TINYINT)",
+      "sunday (TINYINT)",
+      "start_date (DATE)",
+      "end_date (DATE)"
+    ],
+    "calendar_dates": [
+      "service_id (VARCHAR(50)) (FK -> trips)",
+      "date (DATE)",
+      "exception_type (TINYINT)"
+    ],
+    "feed_info": [
+      "feed_publisher_name (VARCHAR(50))",
+      "feed_publisher_url (VARCHAR(50))",
+      "feed_lang (VARCHAR(50))",
+      "feed_start_date (VARCHAR(255))",
+      "feed_end_date (VARCHAR(255))",
+      "feed_version (INT)"
+    ],
+    "frequencies": [
+      "trip_id (VARCHAR(50)) (FK -> trips)",
+      "start_time (VARCHAR(50))",
+      "end_time (VARCHAR(50))",
+      "headway_secs (SMALLINT)",
+      "exact_times (VARCHAR(255))"
+    ],
+    "routes": [
+      "route_id (VARCHAR(50))",
+      "agency_id (VARCHAR(50)) (FK -> agency)",
+      "route_short_name (TINYINT)",
+      "route_long_name (VARCHAR(50))",
+      "route_desc (VARCHAR(255))",
+      "route_type (TINYINT)",
+      "route_url (VARCHAR(255))",
+      "route_color (VARCHAR(50))",
+      "route_text_color (VARCHAR(50))"
+    ],
+    "shapes": [
+      "shape_id (VARCHAR(50))",
+      "shape_pt_lat (DECIMAL(10,2))",
+      "shape_pt_lon (DECIMAL(10,2))",
+      "shape_pt_sequence (INT)",
+      "shape_dist_traveled (DECIMAL(10,2))"
+    ],
+    "stop_times": [
+      "trip_id (VARCHAR(50)) (FK -> trips)",
+      "arrival_time (VARCHAR(50))",
+      "departure_time (VARCHAR(50))",
+      "stop_id (VARCHAR(50)) (FK -> stops)",
+      "stop_sequence (DECIMAL(10,2))",
+      "stop_headsign (VARCHAR(255))",
+      "pickup_type (TINYINT)",
+      "drop_off_type (TINYINT)",
+      "shape_dist_traveled (VARCHAR(255))"
+    ],
+    "stops": [
+      "stop_id (VARCHAR(50))",
+      "stop_code (TINYINT)",
+      "stop_name (VARCHAR(50))",
+      "stop_desc (VARCHAR(50))",
+      "stop_lat (DECIMAL(10,2))",
+      "stop_lon (DECIMAL(10,2))",
+      "zone_id (VARCHAR(255)) (FK -> fare_zones)",
+      "stop_url (VARCHAR(50))",
+      "location_type (TINYINT)",
+      "parent_station (VARCHAR(50)) (FK -> stops)",
+      "stop_timezone (VARCHAR(255))",
+      "wheelchair_boarding (TINYINT)"
+    ],
+    "trips": [
+      "route_id (VARCHAR(50)) (FK -> routes)",
+      "service_id (VARCHAR(50)) (FK -> calendar)",
+      "trip_id (VARCHAR(50))",
+      "trip_headsign (VARCHAR(50))",
+      "trip_short_name (VARCHAR(50))",
+      "direction_id (TINYINT)",
+      "block_id (VARCHAR(255))",
+      "shape_id (VARCHAR(50)) (FK -> shapes)",
+      "wheelchair_accessible (TINYINT)"
+    ]
+  },
+  "previous_mappings": [
+    {
+      "agency": {
+        "agency.agency_id": "Agency.ID",
+        "agency.agency_name": "Agency.Name",
+        "agency.agency_url": "Agency.URL",
+        "agency.agency_timezone": "Agency.Timezone",
+        "agency.agency_lang": "Agency.Language",
+        "agency.agency_phone": "Agency.PhoneNumber",
+        "agency.agency_fare_url": "Agency.fare URL"
+      }
+    },
+    {
+      "calendar_dates": {
+        "calendar_dates.date": "Calendar date rule.Date",
+        "calendar_dates.exception_type": "Calendar date rule.Exception Type",
+        "calendar_dates.service_id": "Calendar date rule.Service rule"
+      }
+    },
+    {
+      "calendar": {
+        "calendar.service_id": "CalendarRule.Service rule",
+        "calendar.monday": "CalendarRule.Monday",
+        "calendar.tuesday": "CalendarRule.Tuesday",
+        "calendar.wednesday": "CalendarRule.Wednesday",
+        "calendar.thursday": "CalendarRule.Thursday",
+        "calendar.friday": "CalendarRule.Friday",
+        "calendar.saturday": "CalendarRule.Saturday",
+        "calendar.sunday": "CalendarRule.Sunday",
+        "calendar.start_date": "CalendarRule.StartDate",
+        "calendar.end_date": "CalendarRule.EndDate"
+      }
+    },
+    {
+      "feed_info": {
+        "feed_info.feed_publisher_name": "GTFS Feed.Publisher",
+        "feed_info.feed_publisher_url": "GTFS Feed.URL",
+        "feed_info.feed_lang": "GTFS Feed.Language",
+        "feed_info.feed_start_date": "GTFS Feed.StartDate",
+        "feed_info.feed_end_date": "GTFS Feed.EndDate",
+        "feed_info.feed_version": "GTFS Feed.Version"
+      }
+    },
+    {
+      "frequencies": {
+        "frequencies.trip_id": "Frequency.Trip",
+        "frequencies.start_time": "Frequency.Start Time",
+        "frequencies.end_time": "Frequency.End Time",
+        "frequencies.headway_secs": "Frequency.Headway Seconds",
+        "frequencies.exact_times": "Frequency.Frecuency type"
+      }
+    },
+    {
+      "routes": {
+        "routes.route_id": "Route.ID",
+        "routes.agency_id": "Route.agency",
+        "routes.route_short_name": "Route.Short name",
+        "routes.route_long_name": "Route.Long name",
+        "routes.route_desc": "Route.RouteDesc",
+        "routes.route_type": "Route.Route type",
+        "routes.route_url": "Route.URL",
+        "routes.route_color": "Route.Color",
+        "routes.route_text_color": "Route.Text color"
+      }
+    },
+    {
+      "shapes": {
+        "shapes.shape_id": "Shape Point.Shape Point",
+        "shapes.shape_pt_lat": "Shape Point.Latitude",
+        "shapes.shape_pt_lon": "Shape Point.Longitude",
+        "shapes.shape_pt_sequence": "Shape Point.Point Sequence",
+        "shapes.shape_dist_traveled": "Shape Point.Distance Traveled"
+      }
+    },
+    {
+      "stop_times": {
+        "stop_times.trip_id": "Stop time.Trip",
+        "stop_times.arrival_time": "Stop time.Arrival time",
+        "stop_times.departure_time": "Stop time.Departure time",
+        "stop_times.stop_id": "Stop time.Stop",
+        "stop_times.stop_sequence": "Stop time.Stop sequence",
+        "stop_times.stop_headsign": "Stop time.Headsign",
+        "stop_times.pickup_type": "Stop time.Pickup type",
+        "stop_times.drop_off_type": "Stop time.Drop off type",
+        "stop_times.shape_dist_traveled": "Stop time.Distance Traveled"
+      }
+    },
+    {
+      "stops": {
+        "stops.stop_id": "Stop.ID",
+        "stops.stop_code": "Stop.Location Code",
+        "stops.stop_name": "Stop.Name",
+        "stops.stop_desc": "Stop.RouteDesc",
+        "stops.stop_lat": "Stop.Latitude",
+        "stops.stop_lon": "Stop.Longitude",
+        "stops.zone_id": "Stop.zone_id",
+        "stops.stop_url": "Stop.URL",
+        "stops.location_type": "Stop.Location Type",
+        "stops.parent_station": "Stop.Parent Station",
+        "stops.stop_timezone": "Stop.Timezone",
+        "stops.wheelchair_boarding": "Stop.Wheelchair accesible"
+      }
+    }
+  ]
+}
+                **Table:** trips
+                **Improved Table Name:** list of transit trips
+                **Columns:**
+                1. Column: route_id (improved: route identifier)
+2. Column: service_id (improved: service identifier)
+3. Column: trip_id (improved: trip identifier)
+4. Column: trip_headsign (improved: trip destination sign)
+5. Column: trip_short_name (improved: trip short name)
+6. Column: direction_id (improved: direction indicator)
+7. Column: block_id (improved: block identifier)
+8. Column: shape_id (improved: shape identifier)
+9. Column: wheelchair_accessible (improved: wheelchair accessibility status)
+                **Additional Context of table:**
+                # Table: list of transit trips
+**Original Name**: trips
+**Description**: This table represents list of transit trips
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__1___, 4__2___ (identifier pattern)
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_2_1_4__1___, 4_I12-002_2016I12_1_1_4__2___ (identifier pattern)
+- **trip destination sign** (original: trip_headsign) - Type: VARCHAR(50) - Examples: VALDECARROS, PINAR DE CHAMARTIN, CUATRO CAMINOS
+- **trip short name** (original: trip_short_name) - Type: VARCHAR(50) - Examples: PINAR DE CHAMARTIN-VALDECARROS, VALDECARROS-PINAR DE CHAMARTIN, LA ELIPA-CUATRO CAMINOS (identifier pattern)
+- **direction indicator** (original: direction_id) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **block identifier** (original: block_id) - Type: VARCHAR(255)
+- **shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____2__IT_1, 4__2____1__IT_1 (identifier pattern)
+- **wheelchair accessibility status** (original: wheelchair_accessible) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **route identifier** references **routes** table
+- **service identifier** references **calendar** table
+- **shape identifier** references **shapes** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), trip_id (all unique), trip_short_name (all unique), shape_id (all unique), wheelchair_accessible (constant)
+**Domain**: transportation service
+                **Total Classes Suggested for This Table:**
+                1
+                **Suggested Classes:**
+                1. Class: Trip
+                **Suggested Classes IRI:**
+                1. Class IRI: http://example.com/Trip/trip_id
+                **Suggested Columns for Each Class (from step 1):**
+                Suggested Columns for Class - Trip:
+1. Column: route identifier
+2. Column: service identifier
+3. Column: trip identifier
+4. Column: trip destination sign
+5. Column: trip short name
+6. Column: direction indicator
+7. Column: block identifier
+8. Column: shape identifier
+9. Column: wheelchair accessibility status
+
+
+                **Available Data Properties:**
+                Trip - Data Properties:
+  1. ID (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  2. Short name (Type: n3-137, URI: n3-137)
+  3. Headsign (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  4. Block (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+                **Available Object Properties:**
+                Trip - Object Properties:
+  1. Route (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Route [http://vocab.gtfs.org/terms#Route])
+  2. Service (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Service [http://vocab.gtfs.org/terms#Service])
+  3. Shape (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Shape [http://vocab.gtfs.org/terms#Shape])
+  4. Trip (Domain: StopTime, Frequency [http://vocab.gtfs.org/terms#StopTime, http://vocab.gtfs.org/terms#Frequency], Range: Trip [http://vocab.gtfs.org/terms#Trip])
+  5. Wheelchair accesible (Domain: Station, Trip, Stop, StationEntrance [http://vocab.gtfs.org/terms#Station, http://vocab.gtfs.org/terms#Trip, http://vocab.gtfs.org/terms#Stop, http://vocab.gtfs.org/terms#StationEntrance], Range: Concept, n3-100 [http://www.w3.org/2004/02/skos/core#Concept, n3-100])
+  6. Direction (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Concept, n3-108 [http://www.w3.org/2004/02/skos/core#Concept, n3-108])
+  7. Bikes allowed (Domain: Trip [http://vocab.gtfs.org/terms#Trip], Range: Concept, n3-112 [http://www.w3.org/2004/02/skos/core#Concept, n3-112])
+                **Related Columns (cross-table relationships):**
+                Related Columns for Class - Trip:
+1. Column: route identifier
+2. Column: service identifier
+3. Column: shape identifier
+
+
+            ---
+            ### 1. Global Context Awareness
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+            Example format:
+            {
+                "tables": {
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                },
+                "ontology": {
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                },
+                "previous_mappings": [{
+                    "author": {
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    },
+                    "book": {
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }]
+                }
+            }
+            ---
+            ### 2. Mapping Principles
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - If no suitable property exists, propose a new one with `new_property = true`.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+            ---
+            ### 3. Mapping Logic Details
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+            ---
+            ### 4. Completeness and Global Validation
+            1. Ensure every column (except PK-only identity columns) has a mapping to either a property or a newly proposed property.
+            2. Compare your mappings against `previous_mapping_summary` to avoid duplication.
+            3. Check total number of mappings equals the `expected_column_count`.
+            4. Validate that:
+            - Each mapping is globally consistent.
+            - Relationships between tables (via FKs) align with ontology object properties.
+            - No conflicting or circular mappings exist.
+            - Cross-class mappings maintain ontology domain-range correctness.
+            If any column cannot be mapped meaningfully, include it in the result with `"mapped": false` and a reason.
+            ---
+            ### 5. Output Format
+            Follow these output formatting rules exactly:
+            The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+```
+            ---
+            ### 6. Final Instructions
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+````.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+mappings=[PropertySuggestion(table_name='trips', column_name='route_id', class_name='Trip', properties='Route', type='object', new_property=False), PropertySuggestion(table_name='trips', column_name='service_id', class_name='Trip', properties='Service', type='object', new_property=False), PropertySuggestion(table_name='trips', column_name='trip_id', class_name='Trip', properties='ID', type='data', new_property=False), PropertySuggestion(table_name='trips', column_name='trip_headsign', class_name='Trip', properties='Headsign', type='data', new_property=False), PropertySuggestion(table_name='trips', column_name='trip_short_name', class_name='Trip', properties='Short name', type='data', new_property=False), PropertySuggestion(table_name='trips', column_name='direction_id', class_name='Trip', properties='Direction', type='object', new_property=False), PropertySuggestion(table_name='trips', column_name='block_id', class_name='Trip', properties='Block', type='data', new_property=False), PropertySuggestion(table_name='trips', column_name='shape_id', class_name='Trip', properties='Shape', type='object', new_property=False), PropertySuggestion(table_name='trips', column_name='wheelchair_accessible', class_name='Trip', properties='Wheelchair accesible', type='object', new_property=False)]
+================================================================================

@@ -1,0 +1,51 @@
+Properties Suggestion Results:
+Total columns processed: 6
+
+Column 1:
+  Table Name: Budget Amounts
+  Column Name: budget_id
+  Class: Procedure
+  Properties: hasBudgetId
+  Type: data
+  New Property: True
+
+Column 2:
+  Table Name: Budget Amounts
+  Column Name: contract_id
+  Class: Procedure
+  Properties: hasContract
+  Type: object
+  New Property: True
+
+Column 3:
+  Table Name: Budget Amounts
+  Column Name: estimated_overall_amount
+  Class: Procedure
+  Properties: estimatedOverallBudgetAmount
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Budget Amounts
+  Column Name: total_amount
+  Class: Procedure
+  Properties: totalBudgetAmount
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Budget Amounts
+  Column Name: tax_exclusive_amount
+  Class: Procedure
+  Properties: taxExclusiveBudgetAmount
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Budget Amounts
+  Column Name: currency
+  Class: Procedure
+  Properties: budgetCurrency
+  Type: data
+  New Property: True
+

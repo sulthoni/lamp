@@ -1,0 +1,11 @@
+{'table_name': 'Tender Results', 'column_name': 'result_id', 'class_name': 'LotAwardOutcome', 'properties': 'Has i d', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract_id', 'class_name': 'LotAwardOutcome', 'properties': 'Describes lot -> Lot', 'type': 'object', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'result_code', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'description', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'received_tender_quantity', 'class_name': 'LotAwardOutcome', 'properties': 'Has received tenders', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_id', 'class_name': 'LotAwardOutcome', 'properties': 'Describes lot -> Lot', 'type': 'object', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_date', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'awarded_tax_exclusive', 'class_name': 'LotAwardOutcome', 'properties': 'Has received tenders', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'awarded_payable_amount', 'class_name': 'LotAwardOutcome', 'properties': 'Has received tenders', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'currency', 'class_name': 'LotAwardOutcome', 'properties': 'Has received tenders', 'type': 'data', 'new_property': False}

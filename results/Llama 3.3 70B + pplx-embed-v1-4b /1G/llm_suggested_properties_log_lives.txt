@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: lives
+  Column Name: lives/fname
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 2:
+  Table Name: lives
+  Column Name: lives/lname
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+
+Column 3:
+  Table Name: lives
+  Column Name: lives/city
+  Class: None
+  Properties: None
+  Type: None
+  New Property: None
+

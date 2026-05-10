@@ -1,0 +1,16 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of individual obligations
+**Original Name**: ious
+**Description**: This table represents list of individual obligations
+**Column Count**: 3
+## Columns
+- **first name of person** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name of person** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount owed** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.3649
+  Candidate 2: City (ID: http://example.org/City) | Similarity: 0.2509
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.2394

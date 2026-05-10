@@ -1,0 +1,255 @@
+
+
+===================== Table Results ====================
+Term: # Table: budgeted monetary amounts
+**Original Name**: Budget Amounts
+**Description**: This table represents budgeted monetary amounts
+**Column Count**: 6
+## Columns
+- **budget identifier** (original: budget_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **estimated overall amount** (original: estimated_overall_amount) - Type: DECIMAL(10,2) - Examples: 115989.14
+- **total amount** (original: total_amount) - Type: DECIMAL(10,2) - Examples: 116955.72
+- **amount excluding taxes** (original: tax_exclusive_amount) - Type: DECIMAL(10,2) - Examples: 96657.62
+- **currency code** (original: currency) - Type: VARCHAR(50) - Examples: EUR
+## Relationships
+- **contract identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: budget_id (all unique), contract_id (all unique), estimated_overall_amount (all unique), total_amount (all unique), tax_exclusive_amount (all unique), currency (all unique)
+  Candidate 1: Fund (ID: http://data.europa.eu/a4g/ontology#Fund) | Similarity: -0.3481
+  Candidate 2: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.3836
+  Candidate 3: Batch (ID: http://data.europa.eu/a4g/ontology#Batch) | Similarity: -0.3905
+  Candidate 4: Identifier (ID: http://data.europa.eu/a4g/ontology#Identifier) | Similarity: -0.4059
+  Candidate 5: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.4093
+  Candidate 6: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.4109
+  Candidate 7: Document (ID: http://data.europa.eu/a4g/ontology#Document) | Similarity: -0.4238
+
+Term: # Table: list of contract classifications
+**Original Name**: Classifications
+**Description**: This table represents list of contract classifications
+**Column Count**: 4
+## Columns
+- **classification identifier** (original: classification_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **classification code** (original: classification_code) - Type: INT - Examples: 31681000 (numeric pattern)
+- **classification system name** (original: classification_system) - Type: VARCHAR(50) - Examples: CPV2007
+## Relationships
+- **contract identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: classification_id (all unique), contract_id (all unique), classification_code (all unique), classification_system (all unique)
+  Candidate 1: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.2697
+  Candidate 2: Identifier (ID: http://data.europa.eu/a4g/ontology#Identifier) | Similarity: -0.2700
+  Candidate 3: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.2872
+  Candidate 4: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.2886
+  Candidate 5: Batch (ID: http://data.europa.eu/a4g/ontology#Batch) | Similarity: -0.3305
+  Candidate 6: Notice (ID: http://data.europa.eu/a4g/ontology#Notice) | Similarity: -0.3308
+  Candidate 7: InformationConcept (ID: http://data.europa.eu/m8g/InformationConcept) | Similarity: -0.3330
+
+Term: # Table: Contracting Party Details
+**Original Name**: Contracting Party
+**Description**: This table represents contracting party details
+**Column Count**: 13
+## Columns
+- **contracting party identifier** (original: party_id) - Type: VARCHAR(50) - Examples: A07000029
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **contracting party type code** (original: party_type_code) - Type: TINYINT - Examples: 5 (numeric pattern)
+- **contracting party name** (original: name) - Type: VARCHAR(50) - Examples: Gerencia de EMAYA
+- **website URL** (original: website) - Type: VARCHAR(50) - Examples:  Empresa Municipal d'Aig�es i Clavegueram (identifier pattern)
+- **city** - Type: VARCHAR(50) - Examples:  S.A.
+- **postal code** (original: postal_code) - Type: VARCHAR(50) - Examples: http://www.emaya.es
+- **street address line** (original: address_line) - Type: VARCHAR(50) - Examples: Palma
+- **ISO country code** (original: country_code) - Type: SMALLINT - Examples: 7010 (numeric pattern)
+- **country name** (original: country_name) - Type: DATE - Examples: Camino de los Reyes 400 (identifier pattern)
+- **telephone number** (original: telephone) - Type: VARCHAR(50) - Examples:  Edificio Central de Son Pacs (identifier pattern)
+- **fax number** (original: telefax) - Type: VARCHAR(50) - Examples: ES
+- **email address** (original: email) - Type: VARCHAR(50) - Examples: Espa�a
+## Relationships
+- **contract identifier** references **Contracts** table
+- **contracting party type code** references **Classifications** table
+- **ISO country code** references **Locations** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: party_id (all unique), contract_id (all unique), party_type_code (all unique), name (all unique), website (all unique), city (all unique), postal_code (all unique), address_line (all unique), country_code (all unique), country_name (all unique), telephone (all unique), telefax (all unique), email (all unique)
+  Candidate 1: Identifier (ID: http://data.europa.eu/a4g/ontology#Identifier) | Similarity: -0.2711
+  Candidate 2: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.2891
+  Candidate 3: Primary role (ID: http://data.europa.eu/a4g/ontology#PrimaryRole) | Similarity: -0.3123
+  Candidate 4: Organization (ID: http://www.w3.org/ns/org#Organization) | Similarity: -0.3198
+  Candidate 5: Buyer (ID: http://data.europa.eu/a4g/ontology#Buyer) | Similarity: -0.3206
+  Candidate 6: Result notice (ID: http://data.europa.eu/a4g/ontology#ResultNotice) | Similarity: -0.3352
+  Candidate 7: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.3516
+
+Term: # Table: procurement contract records
+**Original Name**: Contracts
+**Description**: This table represents procurement contract records
+**Column Count**: 15
+## Columns
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **notice entry identifier** (original: entry_id) - Type: VARCHAR(255) - Examples: https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/6854467 (identifier pattern)
+- **contract hyperlink** (original: link) - Type: VARCHAR(255) - Examples: https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fol9j9H4t%2F0BPRBxZ4nJ%2Fg%3D%3D (identifier pattern)
+- **contract title** (original: title) - Type: VARCHAR(255) - Examples: Suministro de piezas de recambio originales para equipos mec�nicos y el�ctricos de EMAYA. (identifier pattern)
+- **status classification code** (original: status_code) - Type: VARCHAR(50) - Examples: RES
+- **last updated timestamp** (original: updated) - Type: DATETIME - Examples: 2021-01-07T10:47:01.782+01:00 (identifier pattern)
+- **contract type classification code** (original: contract_type_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract subtype classification code** (original: contract_subtype_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract duration in years** (original: duration_years) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **procurement procedure classification code** (original: procedure_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **urgency level classification code** (original: urgency_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contracting system classification code** (original: contracting_system_code) - Type: TINYINT - Examples: 3 (numeric pattern)
+- **submission method classification code** (original: submission_method_code) - Type: TINYINT - Examples: 2 (numeric pattern)
+- **applicable legislation** (original: legislation) - Type: VARCHAR(50) - Examples: 2014/24/EU
+- **document language** (original: language) - Type: VARCHAR(50) - Examples: es
+## Relationships
+- **notice entry identifier** references **Valid Notices** table
+- **status classification code** references **Classifications** table
+- **contract type classification code** references **Classifications** table
+- **contract subtype classification code** references **Classifications** table
+- **procurement procedure classification code** references **Classifications** table
+- **urgency level classification code** references **Classifications** table
+- **contracting system classification code** references **Classifications** table
+- **submission method classification code** references **Classifications** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: contract_id (all unique), entry_id (all unique), link (all unique), title (all unique), status_code (all unique), updated (all unique), contract_type_code (all unique), contract_subtype_code (all unique), duration_years (all unique), procedure_code (all unique), urgency_code (all unique), contracting_system_code (all unique), submission_method_code (all unique), legislation (all unique), language (all unique)
+  Candidate 1: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.0420
+  Candidate 2: Result notice (ID: http://data.europa.eu/a4g/ontology#ResultNotice) | Similarity: -0.0715
+  Candidate 3: Procurement object (ID: http://data.europa.eu/a4g/ontology#ProcurementObject) | Similarity: -0.0827
+  Candidate 4: Notice (ID: http://data.europa.eu/a4g/ontology#Notice) | Similarity: -0.1027
+  Candidate 5: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.1749
+  Candidate 6: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.2012
+  Candidate 7: Document (ID: http://data.europa.eu/a4g/ontology#Document) | Similarity: -0.2703
+
+Term: # Table: contract locations
+**Original Name**: Locations
+**Description**: This table represents contract locations
+**Column Count**: 6
+## Columns
+- **location identifier** (original: location_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **administrative subdivision name** (original: country_subentity) - Type: VARCHAR(50) - Examples: Mallorca
+- **administrative subdivision code** (original: country_subentity_code) - Type: VARCHAR(50) - Examples: ES532
+- **country code** (original: country_code) - Type: VARCHAR(50) - Examples: ES
+- **country name** (original: country_name) - Type: VARCHAR(50) - Examples: Espa�a
+## Relationships
+- **contract identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: location_id (all unique), contract_id (all unique), country_subentity (all unique), country_subentity_code (all unique), country_code (all unique), country_name (all unique)
+  Candidate 1: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.3237
+  Candidate 2: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.3627
+  Candidate 3: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.3686
+  Candidate 4: Identifier (ID: http://data.europa.eu/a4g/ontology#Identifier) | Similarity: -0.3768
+  Candidate 5: InformationConcept (ID: http://data.europa.eu/m8g/InformationConcept) | Similarity: -0.4249
+  Candidate 6: Notice (ID: http://data.europa.eu/a4g/ontology#Notice) | Similarity: -0.4294
+  Candidate 7: Document (ID: http://data.europa.eu/a4g/ontology#Document) | Similarity: -0.4321
+
+Term: # Table: Parent Organization Hierarchy
+**Original Name**: Parent Organizations
+**Description**: This table represents parent organization hierarchy
+**Column Count**: 5
+## Columns
+- **parent organization ID** (original: parent_id) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **contracting party ID** (original: party_id) - Type: VARCHAR(50) - Examples: A07000029, A07000029, A07000029
+- **contract ID** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2, 942P LOTE 2, 942P LOTE 2
+- **hierarchy level** (original: level) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **organization name** (original: name) - Type: VARCHAR(50) - Examples: EMAYA, Palma, Baleares
+## Relationships
+- **contracting party ID** references **Contracting Party** table
+- **contract ID** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 6 rows
+**Uniqueness**: parent_id (all unique), party_id (constant), contract_id (constant), level (all unique), name (all unique)
+  Candidate 1: Organization (ID: http://www.w3.org/ns/org#Organization) | Similarity: -0.1290
+  Candidate 2: Primary role (ID: http://data.europa.eu/a4g/ontology#PrimaryRole) | Similarity: -0.3349
+  Candidate 3: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.3364
+  Candidate 4: Fund (ID: http://data.europa.eu/a4g/ontology#Fund) | Similarity: -0.3677
+  Candidate 5: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.3691
+  Candidate 6: Procurement object (ID: http://data.europa.eu/a4g/ontology#ProcurementObject) | Similarity: -0.3915
+  Candidate 7: Document (ID: http://data.europa.eu/a4g/ontology#Document) | Similarity: -0.3942
+
+Term: # Table: tender award results
+**Original Name**: Tender Results
+**Description**: This table represents tender award results
+**Column Count**: 11
+## Columns
+- **tender result identifier** (original: result_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **related contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **tender result classification code** (original: result_code) - Type: TINYINT - Examples: 8 (numeric pattern)
+- **result description** (original: description) - Type: DATE - Examples: Se prorroga el contrato inicial con ID 1715 (identifier pattern)
+- **award date** (original: award_date) - Type: DATE - Examples: 04/01/21
+- **number of tenders received** (original: received_tender_quantity) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract issuance notice identifier** (original: contract_issue_id) - Type: VARCHAR(50) - Examples: ID 2534
+- **contract issuance date** (original: contract_issue_date) - Type: DATE - Examples: 07/01/21
+- **awarded amount excluding tax** (original: awarded_tax_exclusive) - Type: DECIMAL(10,2) - Examples: 96657.62
+- **awarded payable amount** (original: awarded_payable_amount) - Type: DECIMAL(10,2) - Examples: 116955.72
+- **transaction currency code** (original: currency) - Type: VARCHAR(50) - Examples: EUR
+## Relationships
+- **related contract identifier** references **Contracts** table
+- **tender result classification code** references **Classifications** table
+- **contract issuance notice identifier** references **Valid Notices** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: result_id (all unique), contract_id (all unique), result_code (all unique), description (all unique), award_date (all unique), received_tender_quantity (all unique), contract_issue_id (all unique), contract_issue_date (all unique), awarded_tax_exclusive (all unique), awarded_payable_amount (all unique), currency (all unique)
+  Candidate 1: Result notice (ID: http://data.europa.eu/a4g/ontology#ResultNotice) | Similarity: -0.0059
+  Candidate 2: Lot award outcome (ID: http://data.europa.eu/a4g/ontology#LotAwardOutcome) | Similarity: -0.1330
+  Candidate 3: Submission statistical information (ID: http://data.europa.eu/a4g/ontology#SubmissionStatisticalInformation) | Similarity: -0.2598
+  Candidate 4: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.2789
+  Candidate 5: Notice (ID: http://data.europa.eu/a4g/ontology#Notice) | Similarity: -0.3090
+  Candidate 6: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.3362
+  Candidate 7: Buyer (ID: http://data.europa.eu/a4g/ontology#Buyer) | Similarity: -0.3662
+
+Term: # Table: validated procurement notices
+**Original Name**: Valid Notices
+**Description**: This table represents validated procurement notices
+**Column Count**: 9
+## Columns
+- **notice identifier** (original: notice_id) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2, 942P LOTE 2
+- **notice type code** (original: notice_type_code) - Type: VARCHAR(50) - Examples: DOC_CAN_ADJ, DOC_FORM (identifier pattern)
+- **publication medium** (original: publication_media) - Type: VARCHAR(50) - Examples: Perfil del Contratante, Perfil del Contratante (identifier pattern)
+- **date issued** (original: issue_date) - Type: DATE - Examples: 07/01/21, 07/01/21
+- **document type code** (original: document_type_code) - Type: VARCHAR(50) - Examples: ACTA_ADJ (identifier pattern)
+- **document type name** (original: document_type_name) - Type: VARCHAR(50) - Examples: Documento de Acta de Adjudicaci�n (identifier pattern)
+- **document URI** (original: document_uri) - Type: VARCHAR(255) - Examples: https://contrataciondelestado.es/wps/wcm/connect/PLACE_es/Site/area/docAccCmpnt?srv=cmpnt&cmpntname=GetDocumentsById&source=library&DocumentIdParam=fb481d3e-9aa4-4032-bebf-33912ffaaeaf (identifier pattern)
+- **file name** (original: file_name) - Type: VARCHAR(50) - Examples: Resolucion prorroga exp 942.pdf (identifier pattern)
+## Relationships
+- **contract identifier** references **Contracts** table
+- **notice type code** references **Classifications** table
+- **document type code** references **Classifications** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: notice_id (all unique), contract_id (constant), notice_type_code (all unique), publication_media (constant), issue_date (constant), document_type_code (all unique), document_type_name (all unique), document_uri (all unique), file_name (all unique)
+**Domain**: temporal data
+  Candidate 1: Notice (ID: http://data.europa.eu/a4g/ontology#Notice) | Similarity: 0.0978
+  Candidate 2: Result notice (ID: http://data.europa.eu/a4g/ontology#ResultNotice) | Similarity: 0.0214
+  Candidate 3: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.1631
+  Candidate 4: Procurement object (ID: http://data.europa.eu/a4g/ontology#ProcurementObject) | Similarity: -0.1871
+  Candidate 5: Document (ID: http://data.europa.eu/a4g/ontology#Document) | Similarity: -0.2754
+  Candidate 6: CatalogueLine (ID: http://data.europa.eu/a4g/ontology#CatalogueLine) | Similarity: -0.2772
+  Candidate 7: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.2797
+
+Term: # Table: awarded contracting parties
+**Original Name**: Winning Party
+**Description**: This table represents awarded contracting parties
+**Column Count**: 5
+## Columns
+- **winning party identifier** (original: winning_party_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **tender result identifier** (original: result_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **party tax identification number** (original: party_nif) - Type: VARCHAR(50) - Examples: A28388023
+- **party legal name** (original: party_name) - Type: VARCHAR(50) - Examples: SULZER PUMPS WASTEWATER SPAIN S.A. (identifier pattern)
+## Relationships
+- **tender result identifier** references **Tender Results** table
+- **contract identifier** references **Contracts** table
+- **party tax identification number** references **Contracting Party** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: winning_party_id (all unique), result_id (all unique), contract_id (all unique), party_nif (all unique), party_name (all unique)
+  Candidate 1: Result notice (ID: http://data.europa.eu/a4g/ontology#ResultNotice) | Similarity: -0.1163
+  Candidate 2: Lot award outcome (ID: http://data.europa.eu/a4g/ontology#LotAwardOutcome) | Similarity: -0.1574
+  Candidate 3: Buyer (ID: http://data.europa.eu/a4g/ontology#Buyer) | Similarity: -0.2707
+  Candidate 4: Lot (ID: http://data.europa.eu/a4g/ontology#Lot) | Similarity: -0.3017
+  Candidate 5: Procedure (ID: http://data.europa.eu/a4g/ontology#Procedure) | Similarity: -0.3168
+  Candidate 6: Submission statistical information (ID: http://data.europa.eu/a4g/ontology#SubmissionStatisticalInformation) | Similarity: -0.3204
+  Candidate 7: Primary role (ID: http://data.europa.eu/a4g/ontology#PrimaryRole) | Similarity: -0.3297

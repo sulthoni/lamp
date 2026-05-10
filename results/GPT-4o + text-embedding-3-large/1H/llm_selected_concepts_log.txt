@@ -1,0 +1,31 @@
+Term: # Table: list of cities in English
+**Original Name**: city_en
+**Description**: This table represents list of cities in english
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.9000
+  Reason 1: The table 'city_en' represents a list of cities in English, which aligns semantically with the ontology class 'City'. The columns 'cities/ID' and 'cities/Name' correspond to the data properties 'cityid' and 'cityname' of the 'City' class. The uniqueness of 'cities/ID' suggests it is a primary key, aligning with the 'cityid' data property. The similarity score of 0.4320, while not the highest possible, is supported by strong semantic and structural alignment. No foreign keys are present, indicating this table is standalone and directly maps to the 'City' class without needing to consider object properties.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name
+
+Term: # Table: list of cities in Spanish
+**Original Name**: city_es
+**Description**: This table represents list of cities in spanish
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name in Spanish** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.9000
+  Reason 1: The table 'city_es' represents a list of cities in Spanish, which aligns semantically with the ontology class 'City'. The columns 'cities/ID' and 'cities/Name' correspond to the data properties 'cityid' and 'cityname' of the 'City' class. The uniqueness of 'cities/ID' suggests it is a primary key, aligning with the 'cityid' data property. The similarity score of 0.4127 supports this alignment, and there are no foreign keys indicating relationships with other tables, reinforcing the standalone nature of this mapping.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name

@@ -1,0 +1,22 @@
+Term: # Table: student sports
+**Original Name**: student_sport
+**Description**: This table represents student sports
+**Column Count**: 2
+## Columns
+- **student** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The 'student_sport' table acts as a linking table. It contains the column 'students/Student' (e.g., 'Venus'), which represents instances of people. The global ontology confirms this relationship with a 'Person' class that is connected to the 'Sport' class via the 'practises' object property, perfectly matching the table's structure.
+  Class URI 1: http://example.com/Person/students/Student
+  Columns for Candidate 1: students/Student
+  Related Columns for Candidate 1: students/Sport
+
+  Selected Candidate 2: Sport | Confidence: 0.9500
+  Reason 2: The 'student_sport' table is a join table connecting students to sports. The column 'students/Sport' (e.g., 'Tennis') clearly represents instances of sports. This aligns with the global ontology, which has a 'Sport' class and an object property 'practises' linking 'Person' to 'Sport', which this table materializes.
+  Class URI 2: http://example.com/Sport/students/Sport
+  Columns for Candidate 2: students/Sport
+  Related Columns for Candidate 2: students/Student

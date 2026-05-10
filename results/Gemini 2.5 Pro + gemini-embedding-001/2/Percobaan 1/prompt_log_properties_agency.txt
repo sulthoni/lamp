@@ -1,0 +1,612 @@
+################################################################################
+# PROMPT LOG - Property Suggestion - agency
+# Started: 2026-04-21 20:11:14
+# Provider: openrouter
+# Model: google/gemini-2.5-pro
+# Table: agency
+################################################################################
+
+================================================================================
+[2026-04-21 20uman:11:30] PROCESS: PropertySuggestion - agency | Step 1/1
+Provider: openrouter | Model: google/gemini-2.5-pro
+table_name: agency
+column_count: 7
+suggested_classes: ['Agency']
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [global_schema_summary]: {
+  "ontology": {
+    "Agency": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "Language",
+      "PhoneNumber",
+      "fare URL",
+      "agency -> Agency"
+    ],
+    "Boarding Area": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Calendar date rule": [
+      "Date",
+      "Exception Type -> Concept, n3-221"
+    ],
+    "Calendar rule": [
+ ... [truncated, total 6627 chars]
+  [table_name]: agency
+  [improved_table_name]: transit agencies
+  [columns_text]: 1. Column: agency_id (improved: agency identifier)
+2. Column: agency_name (improved: agency name)
+3. Column: agency_url (improved: agency website URL)
+4. Column: agency_timezone (improved: agency timezone)
+5. Column: agency_lang (improved: agency language)
+6. Column: agency_phone (improved: agency phone number)
+7. Column: agency_fare_url (improved: agency fare information URL)
+  [term]: # Table: transit agencies
+**Original Name**: agency
+**Description**: This table represents transit agencies
+**Column Count**: 7
+## Columns
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM
+- **agency name** (original: agency_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **agency website URL** (original: agency_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **agency timezone** (original: agency_... [truncated, total 1142 chars]
+  [suggested_classes_count]: 1
+  [suggested_classes_from_first_step]: 1. Class: Agency
+  [suggested_classes_iri_from_first_step]: 1. Class IRI: http://example.com/Agency/agency_id
+  [suggested_columns_text]: Suggested Columns for Class - Agency:
+1. Column: agency_id
+2. Column: agency_name
+3. Column: agency_url
+4. Column: agency_timezone
+5. Column: agency_lang
+6. Column: agency_phone
+7. Column: agency_fare_url
+
+
+  [data_properties_text]: Agency - Data Properties:
+  1. ID (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  2. Name (Type: name, URI: http://xmlns.com/foaf/0.1/name)
+  3. URL (Type: page, URI: http://xmlns.com/foaf/0.1/page)
+  4. Timezone (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  5. Language (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  6. PhoneNumber (Type: phone, URI: http://xmlns.com/foaf/0.1/phone)
+  7. fare URL (Type: page, URI: http://xmlns.com/foaf/0.1/page)
+  [object_properties_text]: Agency - Object Properties:
+  1. agency (Domain: Route [http://vocab.gtfs.org/terms#Route], Range: Agency [http://vocab.gtfs.org/terms#Agency])
+  [related_columns_text]: Related Columns for Class - Agency:
+
+
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+                IMPORTANT CONSTRAINT:
+                - ONLY include columns that have a valid mapping in the final output.
+                - DO NOT include any column that cannot be mapped.
+                - DO NOT output unmapped columns with null, empty, or placeholder values.
+                - If a column has no suitable property, simply EXCLUDE it from the result.
+
+            ---
+
+            ### Input Context
+                **Global_Schema_Summary:**
+                {
+  "ontology": {
+    "Agency": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "Language",
+      "PhoneNumber",
+      "fare URL",
+      "agency -> Agency"
+    ],
+    "Boarding Area": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Calendar date rule": [
+      "Date",
+      "Exception Type -> Concept, n3-221"
+    ],
+    "Calendar rule": [
+      "StartDate",
+      "EndDate",
+      "Service rule -> ServiceRule",
+      "Monday -> Concept, n3-193",
+      "Tuesday -> Concept, n3-197",
+      "Wednesday -> Concept, n3-201",
+      "Thursday -> Concept, n3-205",
+      "Friday -> Concept, n3-209",
+      "Saturday -> Concept, n3-213",
+      "Sunday -> Concept, n3-217"
+    ],
+    "Frequency": [
+      "Start Time",
+      "End Time",
+      "Headway Seconds",
+      "Trip -> Trip",
+      "Frecuency type -> Concept, n3-225"
+    ],
+    "GTFS Feed": [
+      "URL",
+      "Language",
+      "StartDate",
+      "EndDate",
+      "Publisher",
+      "Version"
+    ],
+    "Generic Node": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Location": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Route": [
+      "ID",
+      "URL",
+      "Long name",
+      "Short name",
+      "RouteDesc",
+      "Color",
+      "Text color",
+      "Sort Order",
+      "agency -> Agency",
+      "Continuous Drop Off -> Concept, n3-165",
+      "Continuous Pickup -> Concept, n3-169",
+      "Route -> Route",
+      "Route type -> Concept, n3-186"
+    ],
+    "Service": [
+      "ID",
+      "Service -> Service",
+      "Service rule -> ServiceRule"
+    ],
+    "Service rule": [
+      "Service rule -> ServiceRule"
+    ],
+    "Shape": [
+      "ID",
+      "Shape -> Shape",
+      "Shape Point -> ShapePoint"
+    ],
+    "Shape Point": [
+      "Distance Traveled",
+      "Latitude",
+      "Longitude",
+      "Point Sequence",
+      "Shape Point -> ShapePoint"
+    ],
+    "Station": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229",
+      "Wheelchair accesible -> Concept, n3-238"
+    ],
+    "Station Entrance": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229",
+      "Wheelchair accesible -> Concept, n3-238"
+    ],
+    "Stop": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Latitude",
+      "Longitude",
+      "Location Code",
+      "Parent Station -> Station",
+      "Stop -> Stop",
+      "Location Type -> Concept, n3-229",
+      "Wheelchair accesible -> Concept, n3-238"
+    ],
+    "Stop time": [
+      "Distance Traveled",
+      "Arrival time",
+      "Departure time",
+      "Stop sequence",
+      "Headsign",
+      "Drop off type -> Concept, n3-173",
+      "Pickup type -> Concept, n3-182",
+      "Stop -> Stop",
+      "Trip -> Trip",
+      "Timepoint -> Concept, n3-242"
+    ],
+    "Trip": [
+      "ID",
+      "Short name",
+      "Headsign",
+      "Block",
+      "Route -> Route",
+      "Service -> Service",
+      "Shape -> Shape",
+      "Trip -> Trip",
+      "Wheelchair accesible -> Concept, n3-238",
+      "Direction -> Concept, n3-246",
+      "Bikes allowed -> Concept, n3-250"
+    ]
+  },
+  "tables": {
+    "agency": [
+      "agency_id (VARCHAR(50))",
+      "agency_name (VARCHAR(50))",
+      "agency_url (VARCHAR(50))",
+      "agency_timezone (VARCHAR(50))",
+      "agency_lang (VARCHAR(50))",
+      "agency_phone (TINYINT)",
+      "agency_fare_url (VARCHAR(50))"
+    ],
+    "calendar": [
+      "service_id (VARCHAR(50)) (FK -> calendar_dates)",
+      "monday (TINYINT)",
+      "tuesday (TINYINT)",
+      "wednesday (TINYINT)",
+      "thursday (TINYINT)",
+      "friday (TINYINT)",
+      "saturday (TINYINT)",
+      "sunday (TINYINT)",
+      "start_date (DATE)",
+      "end_date (DATE)"
+    ],
+    "calendar_dates": [
+      "service_id (VARCHAR(50)) (FK -> calendar)",
+      "date (DATE)",
+      "exception_type (TINYINT)"
+    ],
+    "feed_info": [
+      "feed_publisher_name (VARCHAR(50))",
+      "feed_publisher_url (VARCHAR(50))",
+      "feed_lang (VARCHAR(50))",
+      "feed_start_date (VARCHAR(255))",
+      "feed_end_date (VARCHAR(255))",
+      "feed_version (INT)"
+    ],
+    "frequencies": [
+      "trip_id (VARCHAR(50)) (FK -> trips)",
+      "start_time (VARCHAR(50))",
+      "end_time (VARCHAR(50))",
+      "headway_secs (SMALLINT)",
+      "exact_times (VARCHAR(255))"
+    ],
+    "routes": [
+      "route_id (VARCHAR(50))",
+      "agency_id (VARCHAR(50)) (FK -> agency)",
+      "route_short_name (TINYINT)",
+      "route_long_name (VARCHAR(50))",
+      "route_desc (VARCHAR(255))",
+      "route_type (TINYINT)",
+      "route_url (VARCHAR(255))",
+      "route_color (VARCHAR(50))",
+      "route_text_color (VARCHAR(50))"
+    ],
+    "shapes": [
+      "shape_id (VARCHAR(50))",
+      "shape_pt_lat (DECIMAL(10,2))",
+      "shape_pt_lon (DECIMAL(10,2))",
+      "shape_pt_sequence (INT)",
+      "shape_dist_traveled (DECIMAL(10,2))"
+    ],
+    "stop_times": [
+      "trip_id (VARCHAR(50)) (FK -> trips)",
+      "arrival_time (VARCHAR(50))",
+      "departure_time (VARCHAR(50))",
+      "stop_id (VARCHAR(50)) (FK -> stops)",
+      "stop_sequence (DECIMAL(10,2))",
+      "stop_headsign (VARCHAR(255))",
+      "pickup_type (TINYINT)",
+      "drop_off_type (TINYINT)",
+      "shape_dist_traveled (VARCHAR(255))"
+    ],
+    "stops": [
+      "stop_id (VARCHAR(50))",
+      "stop_code (TINYINT)",
+      "stop_name (VARCHAR(50))",
+      "stop_desc (VARCHAR(50))",
+      "stop_lat (DECIMAL(10,2))",
+      "stop_lon (DECIMAL(10,2))",
+      "zone_id (VARCHAR(255))",
+      "stop_url (VARCHAR(50))",
+      "location_type (TINYINT)",
+      "parent_station (VARCHAR(50))",
+      "stop_timezone (VARCHAR(255))",
+      "wheelchair_boarding (TINYINT)"
+    ],
+    "trips": [
+      "route_id (VARCHAR(50)) (FK -> routes)",
+      "service_id (VARCHAR(50)) (FK -> calendar)",
+      "trip_id (VARCHAR(50))",
+      "trip_headsign (VARCHAR(50))",
+      "trip_short_name (VARCHAR(50))",
+      "direction_id (TINYINT)",
+      "block_id (VARCHAR(255))",
+      "shape_id (VARCHAR(50)) (FK -> shapes)",
+      "wheelchair_accessible (TINYINT)"
+    ]
+  },
+  "previous_mappings": []
+}
+
+                **Table:** agency
+
+                **Improved Table Name:** transit agencies
+
+                **Columns:**
+                1. Column: agency_id (improved: agency identifier)
+2. Column: agency_name (improved: agency name)
+3. Column: agency_url (improved: agency website URL)
+4. Column: agency_timezone (improved: agency timezone)
+5. Column: agency_lang (improved: agency language)
+6. Column: agency_phone (improved: agency phone number)
+7. Column: agency_fare_url (improved: agency fare information URL)
+
+                **Additional Context of table:**
+                # Table: transit agencies
+**Original Name**: agency
+**Description**: This table represents transit agencies
+**Column Count**: 7
+## Columns
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM
+- **agency name** (original: agency_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **agency website URL** (original: agency_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **agency timezone** (original: agency_timezone) - Type: VARCHAR(50) - Examples: Europe/Madrid
+- **agency language** (original: agency_lang) - Type: VARCHAR(50) - Examples: es
+- **agency phone number** (original: agency_phone) - Type: TINYINT - Examples: 012 (numeric pattern)
+- **agency fare information URL** (original: agency_fare_url) - Type: VARCHAR(50) - Examples: https://www.crtm.es/billetes-y-tarifas (identifier pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: agency_id (all unique), agency_name (all unique), agency_url (all unique), agency_timezone (all unique), agency_lang (all unique), agency_phone (all unique), agency_fare_url (all unique)
+
+                **Total Classes Suggested for This Table:**
+                1
+
+                **Suggested Classes:**
+                1. Class: Agency
+
+                **Suggested Classes IRI:**
+                1. Class IRI: http://example.com/Agency/agency_id
+
+                **Suggested Columns for Each Class (from step 1):**
+                Suggested Columns for Class - Agency:
+1. Column: agency_id
+2. Column: agency_name
+3. Column: agency_url
+4. Column: agency_timezone
+5. Column: agency_lang
+6. Column: agency_phone
+7. Column: agency_fare_url
+
+
+
+                **Available Data Properties:**
+                Agency - Data Properties:
+  1. ID (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  2. Name (Type: name, URI: http://xmlns.com/foaf/0.1/name)
+  3. URL (Type: page, URI: http://xmlns.com/foaf/0.1/page)
+  4. Timezone (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  5. Language (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  6. PhoneNumber (Type: phone, URI: http://xmlns.com/foaf/0.1/phone)
+  7. fare URL (Type: page, URI: http://xmlns.com/foaf/0.1/page)
+
+                **Available Object Properties:**
+                Agency - Object Properties:
+  1. agency (Domain: Route [http://vocab.gtfs.org/terms#Route], Range: Agency [http://vocab.gtfs.org/terms#Agency])
+
+                **Related Columns (cross-table relationships):**
+                Related Columns for Class - Agency:
+
+
+
+            ---
+
+            ### 1. Global Context Awareness
+
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+
+            Example format:
+            {
+                "tables": {
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                },
+                "ontology": {
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                },
+                "previous_mappings": [{
+                    "author": {
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    },
+                    "book": {
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }]
+                }
+            }
+
+            ---
+
+            ### 2. Mapping Principles
+
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - You MUST ONLY use properties from:
+                    - `Available Data Properties`
+                    - `Available Object Properties`
+                - DO NOT create, infer, or propose any new properties under any circumstances.
+                - If no suitable property exists:
+                    - DO NOT include the column in the output
+                    - Provide a clear and concise justification explaining why no existing property is semantically appropriate.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+
+            ---
+
+            ### 3. Mapping Logic Details
+
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+
+            ---
+
+            ### 4. Completeness and Global Validation
+
+            1. Compare your mappings against `previous_mapping_summary` to avoid duplication..
+            2. Validate that:
+                - Each mapping is globally consistent.
+                - Relationships between tables (via FKs) align with ontology object properties.
+                - No conflicting or circular mappings exist.
+                - Cross-class mappings maintain ontology domain-range correctness.
+            3. FINAL FILTERING STEP (MANDATORY):
+                - Remove ALL unmapped columns before producing output.
+                - Ensure every column in the output has a valid mapped property.
+
+
+            ---
+
+            ### 5. Output Format
+
+            Follow these output formatting rules exactly:
+
+            The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+```
+
+            STRICT OUTPUT RULES:
+            - Output MUST contain ONLY mapped columns.
+            - Every column MUST have a valid property mapping.
+            - DO NOT include any column without a mapping.
+            - DO NOT include empty fields.
+
+            ---
+
+            ### 6. Final Instructions
+
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+````.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+            - Be semantically precise and avoid weak mappings.
+            - Prefer excluding a column rather than forcing incorrect mappings.
+            - NEVER include unmapped columns in the output under any condition.
+
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+mappings=[PropertySuggestion(table_name='agency', column_name='agency_id', class_name='Agency', properties='ID', type='data', new_property=False), PropertySuggestion(table_name='agency', column_name='agency_name', class_name='Agency', properties='Name', type='data', new_property=False), PropertySuggestion(table_name='agency', column_name='agency_url', class_name='Agency', properties='URL', type='data', new_property=False), PropertySuggestion(table_name='agency', column_name='agency_timezone', class_name='Agency', properties='Timezone', type='data', new_property=False), PropertySuggestion(table_name='agency', column_name='agency_lang', class_name='Agency', properties='Language', type='data', new_property=False), PropertySuggestion(table_name='agency', column_name='agency_phone', class_name='Agency', properties='PhoneNumber', type='data', new_property=False), PropertySuggestion(table_name='agency', column_name='agency_fare_url', class_name='Agency', properties='fare URL', type='data', new_property=False)]
+================================================================================

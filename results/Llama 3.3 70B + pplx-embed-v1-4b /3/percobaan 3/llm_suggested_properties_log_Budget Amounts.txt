@@ -1,0 +1,43 @@
+Properties Suggestion Results:
+Total columns processed: 5
+
+Column 1:
+  Table Name: Budget Amounts
+  Column Name: estimated_overall_amount
+  Class: Procedure
+  Properties: Has budget amount
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Budget Amounts
+  Column Name: total_amount
+  Class: Procedure
+  Properties: Total budget amount
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: Budget Amounts
+  Column Name: tax_exclusive_amount
+  Class: Procedure
+  Properties: Tax exclusive budget amount
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: Budget Amounts
+  Column Name: currency
+  Class: Procedure
+  Properties: Budget currency
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: Budget Amounts
+  Column Name: contract_id
+  Class: Lot
+  Properties: Concerns submissions for lot
+  Type: object
+  New Property: False
+

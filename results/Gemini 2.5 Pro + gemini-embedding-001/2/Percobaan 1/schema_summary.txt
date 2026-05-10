@@ -1,0 +1,267 @@
+{
+  "tables": {
+    "agency": [
+      "agency_id (VARCHAR(50))",
+      "agency_name (VARCHAR(50))",
+      "agency_url (VARCHAR(50))",
+      "agency_timezone (VARCHAR(50))",
+      "agency_lang (VARCHAR(50))",
+      "agency_phone (TINYINT)",
+      "agency_fare_url (VARCHAR(50))"
+    ],
+    "calendar_dates": [
+      "service_id (VARCHAR(50)) (FK -> calendar)",
+      "date (DATE)",
+      "exception_type (TINYINT)"
+    ],
+    "calendar": [
+      "service_id (VARCHAR(50)) (FK -> calendar_dates)",
+      "monday (TINYINT)",
+      "tuesday (TINYINT)",
+      "wednesday (TINYINT)",
+      "thursday (TINYINT)",
+      "friday (TINYINT)",
+      "saturday (TINYINT)",
+      "sunday (TINYINT)",
+      "start_date (DATE)",
+      "end_date (DATE)"
+    ],
+    "feed_info": [
+      "feed_publisher_name (VARCHAR(50))",
+      "feed_publisher_url (VARCHAR(50))",
+      "feed_lang (VARCHAR(50))",
+      "feed_start_date (VARCHAR(255))",
+      "feed_end_date (VARCHAR(255))",
+      "feed_version (INT)"
+    ],
+    "frequencies": [
+      "trip_id (VARCHAR(50)) (FK -> trips)",
+      "start_time (VARCHAR(50))",
+      "end_time (VARCHAR(50))",
+      "headway_secs (SMALLINT)",
+      "exact_times (VARCHAR(255))"
+    ],
+    "routes": [
+      "route_id (VARCHAR(50))",
+      "agency_id (VARCHAR(50)) (FK -> agency)",
+      "route_short_name (TINYINT)",
+      "route_long_name (VARCHAR(50))",
+      "route_desc (VARCHAR(255))",
+      "route_type (TINYINT)",
+      "route_url (VARCHAR(255))",
+      "route_color (VARCHAR(50))",
+      "route_text_color (VARCHAR(50))"
+    ],
+    "shapes": [
+      "shape_id (VARCHAR(50))",
+      "shape_pt_lat (DECIMAL(10,2))",
+      "shape_pt_lon (DECIMAL(10,2))",
+      "shape_pt_sequence (INT)",
+      "shape_dist_traveled (DECIMAL(10,2))"
+    ],
+    "stop_times": [
+      "trip_id (VARCHAR(50)) (FK -> trips)",
+      "arrival_time (VARCHAR(50))",
+      "departure_time (VARCHAR(50))",
+      "stop_id (VARCHAR(50)) (FK -> stops)",
+      "stop_sequence (DECIMAL(10,2))",
+      "stop_headsign (VARCHAR(255))",
+      "pickup_type (TINYINT)",
+      "drop_off_type (TINYINT)",
+      "shape_dist_traveled (VARCHAR(255))"
+    ],
+    "stops": [
+      "stop_id (VARCHAR(50))",
+      "stop_code (TINYINT)",
+      "stop_name (VARCHAR(50))",
+      "stop_desc (VARCHAR(50))",
+      "stop_lat (DECIMAL(10,2))",
+      "stop_lon (DECIMAL(10,2))",
+      "zone_id (VARCHAR(255))",
+      "stop_url (VARCHAR(50))",
+      "location_type (TINYINT)",
+      "parent_station (VARCHAR(50))",
+      "stop_timezone (VARCHAR(255))",
+      "wheelchair_boarding (TINYINT)"
+    ],
+    "trips": [
+      "route_id (VARCHAR(50)) (FK -> routes)",
+      "service_id (VARCHAR(50)) (FK -> calendar)",
+      "trip_id (VARCHAR(50))",
+      "trip_headsign (VARCHAR(50))",
+      "trip_short_name (VARCHAR(50))",
+      "direction_id (TINYINT)",
+      "block_id (VARCHAR(255))",
+      "shape_id (VARCHAR(50)) (FK -> shapes)",
+      "wheelchair_accessible (TINYINT)"
+    ]
+  },
+  "ontology": {
+    "Agency": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "Language",
+      "PhoneNumber",
+      "fare URL",
+      "agency -> Agency"
+    ],
+    "Calendar date rule": [
+      "Date",
+      "Exception Type -> Concept, n3-221"
+    ],
+    "GTFS Feed": [
+      "URL",
+      "Language",
+      "StartDate",
+      "EndDate",
+      "Publisher",
+      "Version"
+    ],
+    "Frequency": [
+      "Start Time",
+      "End Time",
+      "Headway Seconds",
+      "Trip -> Trip",
+      "Frecuency type -> Concept, n3-225"
+    ],
+    "Location": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Station": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229",
+      "Wheelchair accesible -> Concept, n3-238"
+    ],
+    "Station Entrance": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229",
+      "Wheelchair accesible -> Concept, n3-238"
+    ],
+    "Generic Node": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Boarding Area": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Location Code",
+      "Parent Station -> Station",
+      "Location Type -> Concept, n3-229"
+    ],
+    "Stop": [
+      "ID",
+      "Name",
+      "URL",
+      "Timezone",
+      "RouteDesc",
+      "Latitude",
+      "Longitude",
+      "Location Code",
+      "Parent Station -> Station",
+      "Stop -> Stop",
+      "Location Type -> Concept, n3-229",
+      "Wheelchair accesible -> Concept, n3-238"
+    ],
+    "Route": [
+      "ID",
+      "URL",
+      "Long name",
+      "Short name",
+      "RouteDesc",
+      "Color",
+      "Text color",
+      "Sort Order",
+      "agency -> Agency",
+      "Continuous Drop Off -> Concept, n3-165",
+      "Continuous Pickup -> Concept, n3-169",
+      "Route -> Route",
+      "Route type -> Concept, n3-186"
+    ],
+    "Service": [
+      "ID",
+      "Service -> Service",
+      "Service rule -> ServiceRule"
+    ],
+    "Service rule": [
+      "Service rule -> ServiceRule"
+    ],
+    "Calendar rule": [
+      "StartDate",
+      "EndDate",
+      "Service rule -> ServiceRule",
+      "Monday -> Concept, n3-193",
+      "Tuesday -> Concept, n3-197",
+      "Wednesday -> Concept, n3-201",
+      "Thursday -> Concept, n3-205",
+      "Friday -> Concept, n3-209",
+      "Saturday -> Concept, n3-213",
+      "Sunday -> Concept, n3-217"
+    ],
+    "Shape": [
+      "ID",
+      "Shape -> Shape",
+      "Shape Point -> ShapePoint"
+    ],
+    "Shape Point": [
+      "Distance Traveled",
+      "Latitude",
+      "Longitude",
+      "Point Sequence",
+      "Shape Point -> ShapePoint"
+    ],
+    "Stop time": [
+      "Distance Traveled",
+      "Arrival time",
+      "Departure time",
+      "Stop sequence",
+      "Headsign",
+      "Drop off type -> Concept, n3-173",
+      "Pickup type -> Concept, n3-182",
+      "Stop -> Stop",
+      "Trip -> Trip",
+      "Timepoint -> Concept, n3-242"
+    ],
+    "Trip": [
+      "ID",
+      "Short name",
+      "Headsign",
+      "Block",
+      "Route -> Route",
+      "Service -> Service",
+      "Shape -> Shape",
+      "Trip -> Trip",
+      "Wheelchair accesible -> Concept, n3-238",
+      "Direction -> Concept, n3-246",
+      "Bikes allowed -> Concept, n3-250"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+Term: # Table: list of outstanding debts
+**Original Name**: ious
+**Description**: This table represents list of outstanding debts
+**Column Count**: 3
+## Columns
+- **first name of person** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name of person** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount owed by person** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.8500
+  Reason 1: The table 'ious' represents a list of outstanding debts, which aligns with the 'Person' ontology class as it includes personal information (first name, last name) and a financial attribute (amount owed). The 'Person' class has data properties for 'firstname', 'lastname', and 'owes', which correspond to the table columns. The similarity score of 0.4008 supports this alignment, and the semantic context of the table suggests it is centered around individuals and their debts, fitting the 'Person' class.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

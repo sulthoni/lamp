@@ -1,0 +1,11 @@
+Term: # Table: student sports
+**Original Name**: student_sport
+**Description**: This table represents student sports
+**Column Count**: 2
+## Columns
+- **student** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+  No candidates selected

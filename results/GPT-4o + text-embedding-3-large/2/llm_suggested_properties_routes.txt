@@ -1,0 +1,9 @@
+{'table_name': 'routes', 'column_name': 'route_id', 'class_name': 'Route', 'properties': 'ID', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_short_name', 'class_name': 'Route', 'properties': 'Short name', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_long_name', 'class_name': 'Route', 'properties': 'Long name', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_desc', 'class_name': 'Route', 'properties': 'RouteDesc', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_url', 'class_name': 'Route', 'properties': 'URL', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_color', 'class_name': 'Route', 'properties': 'Color', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_text_color', 'class_name': 'Route', 'properties': 'Text color', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'agency_id', 'class_name': 'Route', 'properties': 'agency', 'type': 'object', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'route_type', 'class_name': 'Route', 'properties': 'Route type', 'type': 'object', 'new_property': False}

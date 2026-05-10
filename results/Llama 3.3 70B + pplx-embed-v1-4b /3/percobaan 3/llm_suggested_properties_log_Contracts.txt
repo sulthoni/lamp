@@ -1,0 +1,67 @@
+Properties Suggestion Results:
+Total columns processed: 8
+
+Column 1:
+  Table Name: Contracts
+  Column Name: unique contract identifier
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracts
+  Column Name: procurement procedure code
+  Class: Procedure
+  Properties: Has procedure type
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Contracts
+  Column Name: contract duration in years
+  Class: Procedure
+  Properties: duration
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Contracts
+  Column Name: governing legislation
+  Class: Procedure
+  Properties: legislation
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Contracts
+  Column Name: contract link
+  Class: Procedure
+  Properties: link
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Contracts
+  Column Name: contract title
+  Class: Procedure
+  Properties: title
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Contracts
+  Column Name: contract status code
+  Class: Procedure
+  Properties: status
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Contracts
+  Column Name: last updated date
+  Class: Procedure
+  Properties: updated
+  Type: data
+  New Property: True
+

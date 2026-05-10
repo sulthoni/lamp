@@ -1,0 +1,15 @@
+Term: # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 2
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10 (numeric pattern)
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/ID (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.8500
+  Reason 1: The 'student' table contains columns 'students/ID' and 'students/Name', which align well with the 'Person' ontology class. The 'students/ID' column is a unique identifier, similar to the 'id' data property in the 'Person' class. The 'students/Name' column can be mapped to the 'fullname' data property of the 'Person' class. The similarity score for 'Person' is the highest among the candidates, and the semantic context of a student being a type of person supports this mapping. There are no foreign keys in the table, indicating it does not directly relate to other tables, which aligns with the standalone nature of the 'Person' class.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/Name

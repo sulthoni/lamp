@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: Contracting Party
+  Column Name: party_id
+  Class: Identifier
+  Properties: has identifier value
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Contracting Party
+  Column Name: contract_id
+  Class: Result notice
+  Properties: Refer to procedure
+  Type: object
+  New Property: False
+

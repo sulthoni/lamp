@@ -1,0 +1,2 @@
+{'table_name': 'Tender Results', 'column_name': 'result_id', 'class_name': 'Result notice', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'class_name': 'Result notice', 'properties': 'Has dispatch date', 'type': 'data', 'new_property': False}

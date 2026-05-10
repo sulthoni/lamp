@@ -1,0 +1,2 @@
+{'table_name': 'Contracting Party', 'column_name': 'party_id', 'class_name': 'Identifier', 'properties': 'has identifier value', 'type': 'data', 'new_property': False}
+{'table_name': 'Contracting Party', 'column_name': 'contract_id', 'class_name': 'Result notice', 'properties': 'Refer to procedure', 'type': 'object', 'new_property': False}

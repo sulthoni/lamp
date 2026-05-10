@@ -1,0 +1,43 @@
+Properties Suggestion Results:
+Total columns processed: 5
+
+Column 1:
+  Table Name: Winning Party
+  Column Name: winning_party_id
+  Class: Buyer
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Winning Party
+  Column Name: result_id
+  Class: Buyer
+  Properties: Refers to role
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Winning Party
+  Column Name: contract_id
+  Class: Buyer
+  Properties: Played by organisation
+  Type: object
+  New Property: False
+
+Column 4:
+  Table Name: Winning Party
+  Column Name: party_nif
+  Class: Buyer
+  Properties: Has identifier value
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: Winning Party
+  Column Name: party_name
+  Class: Buyer
+  Properties: name
+  Type: data
+  New Property: True
+

@@ -1,0 +1,83 @@
+Properties Suggestion Results:
+Total columns processed: 10
+
+Column 1:
+  Table Name: calendar
+  Column Name: service_id
+  Class: CalendarRule
+  Properties: Service rule
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: calendar
+  Column Name: monday
+  Class: CalendarRule
+  Properties: Monday
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: calendar
+  Column Name: tuesday
+  Class: CalendarRule
+  Properties: Tuesday
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: calendar
+  Column Name: wednesday
+  Class: CalendarRule
+  Properties: Wednesday
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: calendar
+  Column Name: thursday
+  Class: CalendarRule
+  Properties: Thursday
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: calendar
+  Column Name: friday
+  Class: CalendarRule
+  Properties: Friday
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: calendar
+  Column Name: saturday
+  Class: CalendarRule
+  Properties: Saturday
+  Type: data
+  New Property: False
+
+Column 8:
+  Table Name: calendar
+  Column Name: sunday
+  Class: CalendarRule
+  Properties: Sunday
+  Type: data
+  New Property: False
+
+Column 9:
+  Table Name: calendar
+  Column Name: start_date
+  Class: CalendarRule
+  Properties: StartDate
+  Type: data
+  New Property: False
+
+Column 10:
+  Table Name: calendar
+  Column Name: end_date
+  Class: CalendarRule
+  Properties: EndDate
+  Type: data
+  New Property: False
+

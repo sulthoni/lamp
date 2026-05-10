@@ -1,0 +1,123 @@
+Properties Suggestion Results:
+Total columns processed: 15
+
+Column 1:
+  Table Name: Contracts
+  Column Name: contract_id
+  Class: Document
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracts
+  Column Name: entry_id
+  Class: Document
+  Properties: hasEntryIdentifier
+  Type: data
+  New Property: True
+
+Column 3:
+  Table Name: Contracts
+  Column Name: link
+  Class: Document
+  Properties: hasDocumentURI
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Contracts
+  Column Name: title
+  Class: Document
+  Properties: hasTitle
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Contracts
+  Column Name: status_code
+  Class: Document
+  Properties: hasStatus
+  Type: object
+  New Property: True
+
+Column 6:
+  Table Name: Contracts
+  Column Name: updated
+  Class: Document
+  Properties: hasLastUpdatedTimestamp
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Contracts
+  Column Name: contract_type_code
+  Class: Document
+  Properties: hasContractType
+  Type: object
+  New Property: True
+
+Column 8:
+  Table Name: Contracts
+  Column Name: contract_subtype_code
+  Class: Document
+  Properties: hasContractSubtype
+  Type: object
+  New Property: True
+
+Column 9:
+  Table Name: Contracts
+  Column Name: duration_years
+  Class: Document
+  Properties: hasDurationInYears
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Contracts
+  Column Name: procedure_code
+  Class: Procedure
+  Properties: Has procedure type
+  Type: object
+  New Property: False
+
+Column 11:
+  Table Name: Contracts
+  Column Name: urgency_code
+  Class: Document
+  Properties: hasUrgencyLevel
+  Type: object
+  New Property: True
+
+Column 12:
+  Table Name: Contracts
+  Column Name: contracting_system_code
+  Class: Document
+  Properties: hasContractingSystem
+  Type: object
+  New Property: True
+
+Column 13:
+  Table Name: Contracts
+  Column Name: submission_method_code
+  Class: Document
+  Properties: hasSubmissionMethod
+  Type: object
+  New Property: True
+
+Column 14:
+  Table Name: Contracts
+  Column Name: legislation
+  Class: Document
+  Properties: hasApplicableLegislation
+  Type: data
+  New Property: True
+
+Column 15:
+  Table Name: Contracts
+  Column Name: language
+  Class: Document
+  Properties: hasLanguage
+  Type: data
+  New Property: True
+

@@ -1,0 +1,2 @@
+{'table_name': 'sport', 'column_name': 'sports identifier', 'class_name': 'Sport', 'properties': 'sportid', 'type': 'data', 'new_property': False}
+{'table_name': 'sport', 'column_name': 'sports name', 'class_name': 'Sport', 'properties': 'sportname', 'type': 'data', 'new_property': False}

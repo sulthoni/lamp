@@ -1,0 +1,9 @@
+{'table_name': 'Valid Notices', 'column_name': 'notice_id', 'class_name': 'Result notice', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'contract_id', 'class_name': 'Result notice', 'properties': 'Refer to procedure', 'type': 'object', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'notice_type_code', 'class_name': 'Result notice', 'properties': 'hasNoticeType', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'publication_media', 'class_name': 'Result notice', 'properties': 'hasPublicationMedium', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'issue_date', 'class_name': 'Result notice', 'properties': 'Has dispatch date', 'type': 'data', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'document_type_code', 'class_name': 'Result notice', 'properties': 'hasDocumentTypeCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'document_type_name', 'class_name': 'Result notice', 'properties': 'hasDocumentTypeName', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'document_uri', 'class_name': 'Result notice', 'properties': 'hasDocumentURI', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'file_name', 'class_name': 'Result notice', 'properties': 'hasFileName', 'type': 'data', 'new_property': True}

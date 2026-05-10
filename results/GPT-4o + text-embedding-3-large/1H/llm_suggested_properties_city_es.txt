@@ -1,0 +1,2 @@
+{'table_name': 'city_es', 'column_name': 'cities/ID', 'class_name': 'City', 'properties': 'cityid', 'type': 'data', 'new_property': False}
+{'table_name': 'city_es', 'column_name': 'cities/Name', 'class_name': 'City', 'properties': 'cityname', 'type': 'data', 'new_property': False}

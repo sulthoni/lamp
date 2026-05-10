@@ -1,0 +1,57 @@
+Term: # Table: sports
+**Original Name**: sport
+**Description**: This table represents sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9500
+  Reason 1: The table 'sport' contains columns 'sports/ID' (numeric identifier) and 'sports/Description' (sport names like Tennis, Football), which directly align with the ontology class 'Sport' having data properties 'sportid' (integer) and 'sportname' (string). The global schema shows an object property 'practises' with domain 'Person' and range 'Sport', indicating this table represents sports that persons can practice. The similarity score (0.4054) is moderate but the semantic and structural alignment is strong: the table's purpose (representing sports) matches the ontology class 'Sport' exactly. The 'sports/ID' column is a primary key (unique numeric identifier), making it a suitable class ID column for URI construction.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Description
+
+Term: # Table: student sports participation
+**Original Name**: student_sport
+**Description**: This table represents student sports participation
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The table 'student_sport' represents a many-to-many relationship between students and sports, which semantically aligns with the 'practises' object property between 'Person' and 'Sport' in the ontology. The 'student identifier' FK references the 'student' table, which is globally mapped to 'Person' (via Candidate 2's data properties matching student table columns). The 'sport identifier' FK references the 'sport' table, which is globally mapped to 'Sport' (via Candidate 1's data properties matching sport table columns). This table acts as a join table expressing the 'practises' relationship between Person and Sport.
+  Class URI 1: http://example.com/Person/ID_Student
+  Columns for Candidate 1: student identifier
+  Related Columns for Candidate 1: sport identifier
+
+  Selected Candidate 2: Sport | Confidence: 0.9500
+  Reason 2: The table 'student_sport' represents a many-to-many relationship between students and sports, which semantically aligns with the 'practises' object property between 'Person' and 'Sport' in the ontology. The 'sport identifier' FK references the 'sport' table, which is globally mapped to 'Sport' (via Candidate 1's data properties matching sport table columns). This table acts as a join table expressing the 'practises' relationship between Person and Sport.
+  Class URI 2: http://example.com/Sport/ID_Sport
+  Columns for Candidate 2: sport identifier
+  Related Columns for Candidate 2: student identifier
+
+Term: # Table: student
+**Description**: This table represents student
+**Column Count**: 3
+## Columns
+- **student identity** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The table 'student' contains columns that directly align with the 'Person' ontology class data properties: 'students/ID' matches 'id' (integer type), 'students/FirstName' matches 'firstname' (string type), and 'students/LastName' matches 'lastname' (string type). The 'Person' class also includes a 'fullname' property which can be derived from combining 'firstname' and 'lastname'.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/FirstName, students/LastName
+  Related Columns for Candidate 1: students/ID

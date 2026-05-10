@@ -1,0 +1,51 @@
+Properties Suggestion Results:
+Total columns processed: 6
+
+Column 1:
+  Table Name: Locations
+  Column Name: location_id
+  Class: Location
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Locations
+  Column Name: country_subentity
+  Class: Location
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: Locations
+  Column Name: country_subentity_code
+  Class: Location
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: Locations
+  Column Name: country_code
+  Class: Location
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: Locations
+  Column Name: country_name
+  Class: Location
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: Locations
+  Column Name: contract_id
+  Class: Location
+  Properties: Concerns submissions for lot
+  Type: object
+  New Property: False
+

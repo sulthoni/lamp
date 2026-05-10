@@ -1,0 +1,34 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of cities in English
+**Original Name**: city_en
+**Description**: This table represents list of cities in english
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Relationships
+- **city identifier** references **city_es** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+  Candidate 1: City (ID: http://example.org/City) | Similarity: 0.7213
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.6593
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.6394
+
+Term: # Table: list of cities in Spanish
+**Original Name**: city_es
+**Description**: This table represents list of cities in spanish
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Relationships
+- **city identifier** references **city_en** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+  Candidate 1: City (ID: http://example.org/City) | Similarity: 0.7032
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.6443
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.6275

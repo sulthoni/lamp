@@ -1,0 +1,35 @@
+Term: # Table: list of cities in English
+**Original Name**: city_en
+**Description**: This table represents list of cities in english
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Relationships
+- **city identifier** references **city_es** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 1.0000
+  Reason 1: The mapping is strongly supported by multiple signals. Semantically, the table's name 'city_en' and description 'list of cities in english' directly correspond to the 'City' class. Structurally, the table's columns 'cities/ID' and 'cities/Name' align perfectly with the 'City' class's data properties 'cityid' and 'cityname'. The 'cities/ID' column acts as the primary key for the city entity. The global context, which includes a parallel table 'city_es' with a one-to-one relationship, reinforces this mapping. This structure indicates that both tables describe the same set of entities (cities) with localized names, a pattern well-suited for the 'cityname' property of type 'langString' in the ontology. The other candidates are semantically irrelevant.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name
+
+Term: # Table: list of cities in Spanish
+**Original Name**: city_es
+**Description**: This table represents list of cities in spanish
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Relationships
+- **city identifier** references **city_en** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 1.0000
+  Reason 1: The mapping is based on overwhelming semantic and structural evidence. The table's name 'city_es' and its description 'list of cities in spanish' directly align with the 'City' class. The columns 'cities/ID' (primary key) and 'cities/Name' (with Spanish examples like 'Londres', 'Madrid') correspond perfectly to the 'City' class's data properties 'cityid' and 'cityname'. The ontology property 'cityname' being a 'langString' is particularly suitable for this multilingual data. The global schema context is crucial: the table 'city_es' has a 1-to-1 relationship with 'city_en' via the shared primary key 'cities/ID'. This indicates that both tables represent the same set of entities ('City') with names in different languages (Spanish and English). This internationalization pattern strongly supports mapping both tables to the 'City' class for global consistency. The other candidates, 'Person' and 'Sport', are semantically and structurally irrelevant.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name

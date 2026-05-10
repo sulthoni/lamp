@@ -1,0 +1,33 @@
+Term: # Table: english city names
+**Original Name**: city_en
+**Description**: This table represents english city names
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Relationships
+- **city identifier** references **city_es** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.9500
+  Reason 1: The table 'city_en' represents English city names with columns 'cities/ID' (identifier) and 'cities/Name' (name), which directly align with the ontology class 'City' that has data properties 'cityid' and 'cityname'.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: city identifier, city name
+
+Term: # Table: cities in Spanish
+**Original Name**: city_es
+**Description**: This table represents cities in spanish
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.9500
+  Reason 1: The table 'city_es' contains columns that directly correspond to the 'City' ontology class: 'city identifier' (ID) maps to 'cityid' and 'city name' (Name) maps to 'cityname'. The global schema summary confirms that 'City' has exactly these data properties ('cityid', 'cityname').
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: city identifier, city name

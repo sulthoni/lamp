@@ -1,0 +1,1 @@
+{'table_name': 'Parent Organizations', 'column_name': 'party_id', 'class_name': 'Organization', 'properties': 'Played by organisation', 'type': 'object', 'new_property': False}

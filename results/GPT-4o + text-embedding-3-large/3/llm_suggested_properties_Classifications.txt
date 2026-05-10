@@ -1,0 +1,2 @@
+{'table_name': 'Classifications', 'column_name': 'classification_code', 'class_name': 'Procedure', 'properties': 'Has procedure type', 'type': 'object', 'new_property': False}
+{'table_name': 'Classifications', 'column_name': 'classification_system', 'class_name': 'Procedure', 'properties': 'Has procedure type', 'type': 'object', 'new_property': False}

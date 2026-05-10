@@ -1,0 +1,75 @@
+{'table_name': 'agency', 'column_name': 'agency_id', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'agency identifier', 'related_table': None}
+{'table_name': 'agency', 'column_name': 'agency_name', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'name of agency', 'related_table': None}
+{'table_name': 'agency', 'column_name': 'agency_url', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'agency website url', 'related_table': None}
+{'table_name': 'agency', 'column_name': 'agency_timezone', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'agency timezone', 'related_table': None}
+{'table_name': 'agency', 'column_name': 'agency_lang', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'agency language', 'related_table': None}
+{'table_name': 'agency', 'column_name': 'agency_phone', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'agency phone number', 'related_table': None}
+{'table_name': 'agency', 'column_name': 'agency_fare_url', 'improved_table_name': 'list of transportation agencies', 'improved_column_name': 'agency fare information url', 'related_table': None}
+{'table_name': 'calendar_dates', 'column_name': 'service_id', 'improved_table_name': 'calendar date exceptions', 'improved_column_name': 'service identifier', 'related_table': 'calendar'}
+{'table_name': 'calendar_dates', 'column_name': 'date', 'improved_table_name': 'calendar date exceptions', 'improved_column_name': 'date of service', 'related_table': None}
+{'table_name': 'calendar_dates', 'column_name': 'exception_type', 'improved_table_name': 'calendar date exceptions', 'improved_column_name': 'type of exception', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'service_id', 'improved_table_name': 'service calendar', 'improved_column_name': 'service identifier', 'related_table': 'trips'}
+{'table_name': 'calendar', 'column_name': 'monday', 'improved_table_name': 'service calendar', 'improved_column_name': 'monday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'tuesday', 'improved_table_name': 'service calendar', 'improved_column_name': 'tuesday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'wednesday', 'improved_table_name': 'service calendar', 'improved_column_name': 'wednesday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'thursday', 'improved_table_name': 'service calendar', 'improved_column_name': 'thursday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'friday', 'improved_table_name': 'service calendar', 'improved_column_name': 'friday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'saturday', 'improved_table_name': 'service calendar', 'improved_column_name': 'saturday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'sunday', 'improved_table_name': 'service calendar', 'improved_column_name': 'sunday operation', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'start_date', 'improved_table_name': 'service calendar', 'improved_column_name': 'start date of service', 'related_table': None}
+{'table_name': 'calendar', 'column_name': 'end_date', 'improved_table_name': 'service calendar', 'improved_column_name': 'end date of service', 'related_table': None}
+{'table_name': 'feed_info', 'column_name': 'feed_publisher_name', 'improved_table_name': 'feed information', 'improved_column_name': 'name of feed publisher', 'related_table': None}
+{'table_name': 'feed_info', 'column_name': 'feed_publisher_url', 'improved_table_name': 'feed information', 'improved_column_name': 'URL of feed publisher', 'related_table': None}
+{'table_name': 'feed_info', 'column_name': 'feed_lang', 'improved_table_name': 'feed information', 'improved_column_name': 'language of feed', 'related_table': None}
+{'table_name': 'feed_info', 'column_name': 'feed_start_date', 'improved_table_name': 'feed information', 'improved_column_name': 'start date of feed', 'related_table': None}
+{'table_name': 'feed_info', 'column_name': 'feed_end_date', 'improved_table_name': 'feed information', 'improved_column_name': 'end date of feed', 'related_table': None}
+{'table_name': 'feed_info', 'column_name': 'feed_version', 'improved_table_name': 'feed information', 'improved_column_name': 'version of feed', 'related_table': None}
+{'table_name': 'frequencies', 'column_name': 'trip_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'frequencies', 'column_name': 'start_time', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'frequencies', 'column_name': 'end_time', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'frequencies', 'column_name': 'headway_secs', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'frequencies', 'column_name': 'exact_times', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_id', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'unique route identifier', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'agency_id', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'transportation agency identifier', 'related_table': 'agency'}
+{'table_name': 'routes', 'column_name': 'route_short_name', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'short name of the route', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_long_name', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'full name of the route', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_desc', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'description of the route', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_type', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'type of transportation route', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_url', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'uniform resource locator for the route', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_color', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'color associated with the route', 'related_table': None}
+{'table_name': 'routes', 'column_name': 'route_text_color', 'improved_table_name': 'list of transportation routes', 'improved_column_name': 'text color used for the route', 'related_table': None}
+{'table_name': 'shapes', 'column_name': 'shape_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'shapes', 'column_name': 'shape_pt_lat', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'shapes', 'column_name': 'shape_pt_lon', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'shapes', 'column_name': 'shape_pt_sequence', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'shapes', 'column_name': 'shape_dist_traveled', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'trip_id', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'trip identifier', 'related_table': 'trips'}
+{'table_name': 'stop_times', 'column_name': 'arrival_time', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'scheduled arrival time', 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'departure_time', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'scheduled departure time', 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'stop_id', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'stop identifier', 'related_table': 'stops'}
+{'table_name': 'stop_times', 'column_name': 'stop_sequence', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'stop sequence number', 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'stop_headsign', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'stop sign text', 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'pickup_type', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'passenger pickup type', 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'drop_off_type', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'passenger drop off type', 'related_table': None}
+{'table_name': 'stop_times', 'column_name': 'shape_dist_traveled', 'improved_table_name': 'public transportation stop schedules', 'improved_column_name': 'distance traveled along shape', 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_code', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_name', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_desc', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_lat', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_lon', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'zone_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_url', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'location_type', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'parent_station', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'stop_timezone', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'stops', 'column_name': 'wheelchair_boarding', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'route_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'service_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'trip_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'trip_headsign', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'trip_short_name', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'direction_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'block_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'shape_id', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'trips', 'column_name': 'wheelchair_accessible', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}

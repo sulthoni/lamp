@@ -1,0 +1,35 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 1.0000
+  Reason 1: The mapping is strongly supported by multiple lines of evidence. Semantically, the table name 'sport' and its description 'list of sports' are a direct match for the 'Sport' class. Structurally, the table's columns 'sports/ID' and 'sports/Name' align perfectly with the data properties 'sportid' and 'sportname' of the 'Sport' class. The primary key 'sports/ID' serves as the unique identifier for the entity. Globally, the database schema shows that the 'student' table has a foreign key ('students/Sport') that references this table's primary key. This relationship perfectly mirrors the ontology's object property 'practises', which links the 'Person' class (the likely mapping for 'student') to the 'Sport' class. This global consistency confirms that 'sport' represents the 'Sport' entity in the domain model.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Name
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **student sport** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **student sport** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 1.0000
+  Reason 1: The mapping of the 'student' table to the 'Person' class is strongly supported by both semantic and structural evidence. Semantically, a 'student' is a type of 'Person', and the table's description confirms it represents a 'list of students'. Structurally, the table's columns align perfectly with the 'Person' class properties. The primary key 'students/ID' maps to the 'id' data property. The 'students/Name' column, with examples like 'Venus Williams', maps to the 'fullname' data property. Crucially, the foreign key 'students/Sport' which references the 'sport' table directly corresponds to the ontology's object property 'practises -> Sport', where 'Person' is the domain. This creates a globally consistent mapping, as the 'sport' table would logically map to the 'Sport' class, fulfilling the range of the object property.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/Name
+  Related Columns for Candidate 1: students/Sport

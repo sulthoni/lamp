@@ -1,0 +1,2 @@
+{'table_name': 'Classifications', 'column_name': 'classification_id', 'class_name': 'Procurement object', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Classifications', 'column_name': 'classification_code', 'class_name': 'Identifier', 'properties': 'has identifier value', 'type': 'data', 'new_property': False}

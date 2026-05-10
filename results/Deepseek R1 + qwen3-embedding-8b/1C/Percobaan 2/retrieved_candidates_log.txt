@@ -1,0 +1,16 @@
+
+
+===================== Table Results ====================
+Term: # Table: student sports enrollment
+**Original Name**: student_sport
+**Description**: This table represents student sports enrollment
+**Column Count**: 2
+## Columns
+- **student name** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport name** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.4228
+  Candidate 2: Sport (ID: http://example.org/Sport) | Similarity: 0.3350
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.2774

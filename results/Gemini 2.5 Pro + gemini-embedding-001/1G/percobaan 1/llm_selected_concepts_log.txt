@@ -1,0 +1,38 @@
+Term: # Table: list of residences
+**Original Name**: lives
+**Description**: This table represents list of residences
+**Column Count**: 3
+## Columns
+- **first name** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The 'lives' table acts as a relationship table, materializing the connection between a person and a city. It contains columns 'lives/fname' and 'lives/lname' which form a 'Person Information' cluster. These columns directly map to the 'firstname' and 'lastname' data properties of the 'Person' ontology class. The global schema shows another table, 'persons', also containing 'fname' and 'lname', reinforcing that this pair of columns identifies a person. The table's name, 'lives', corresponds to the object property 'lives' in the ontology, which has 'Person' as its domain. Therefore, this table provides instances of the 'Person' class and specifies their 'lives' relationship.
+  Class URI 1: http://example.com/Person/lives/fname
+  Columns for Candidate 1: lives/fname, lives/lname
+  Related Columns for Candidate 1: lives/city
+
+  Selected Candidate 2: City | Confidence: 0.9500
+  Reason 2: The 'lives' table contains the column 'lives/city', which forms a 'Location Information' cluster. This column's data ('London', 'Madrid') clearly represents instances of cities and maps directly to the 'cityname' data property of the 'City' ontology class. The table's purpose is to link people to their residences, making 'City' the target of this relationship. This aligns perfectly with the ontology's object property 'lives', which has 'City' as its range. Therefore, the 'lives' table is used to populate instances of the 'City' class.
+  Class URI 2: http://example.com/City/lives/city
+  Columns for Candidate 2: lives/city
+  Related Columns for Candidate 2: lives/fname, lives/lname
+
+Term: # Table: list of persons
+**Original Name**: persons
+**Description**: This table represents list of persons
+**Column Count**: 3
+## Columns
+- **first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The mapping from the 'persons' table to the 'Person' class is strongly supported by multiple lines of evidence. The table's name ('persons') and description ('This table represents list of persons') are a direct semantic match to the 'Person' class. The columns of the table align well with the data properties of the 'Person' class: 'persons/fname' maps to 'firstname', 'persons/lname' maps to 'lastname', and 'persons/amount' plausibly maps to 'owes'. Although the table lacks a single-column primary key, the combination of 'persons/fname' and 'persons/lname' conceptually represents a person's identity, which is consistent with the 'lives' table in the global schema that uses the same columns. This global context reinforces that both tables describe different aspects of the same 'Person' entity. The other candidates, 'Sport' and 'City', are semantically and structurally irrelevant. The confidence is high but not 1.00 due to the lack of a unique primary key in the source table, which complicates instance-level identification as evidenced by duplicate rows in the sample data.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

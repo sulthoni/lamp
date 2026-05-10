@@ -1,0 +1,3 @@
+{'table_name': 'ious', 'column_name': 'persons/fname', 'improved_table_name': 'Debt Records', 'improved_column_name': 'Debtor First Name', 'related_table': None}
+{'table_name': 'ious', 'column_name': 'persons/lname', 'improved_table_name': 'Debt Records', 'improved_column_name': 'Debtor Last Name', 'related_table': None}
+{'table_name': 'ious', 'column_name': 'persons/amount', 'improved_table_name': 'Debt Records', 'improved_column_name': 'Amount Owed', 'related_table': None}

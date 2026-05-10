@@ -1,0 +1,115 @@
+Properties Suggestion Results:
+Total columns processed: 14
+
+Column 1:
+  Table Name: Contracting Party
+  Column Name: party identifier
+  Class: Agent
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracting Party
+  Column Name: party type code
+  Class: Agent
+  Properties: partyTypeCode
+  Type: data
+  New Property: True
+
+Column 3:
+  Table Name: Contracting Party
+  Column Name: full name
+  Class: Organization
+  Properties: name
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Contracting Party
+  Column Name: website URL
+  Class: Organization
+  Properties: mbox
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Contracting Party
+  Column Name: city
+  Class: Organization
+  Properties: city
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Contracting Party
+  Column Name: postal code
+  Class: Organization
+  Properties: postalCode
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Contracting Party
+  Column Name: address line
+  Class: Organization
+  Properties: address
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Contracting Party
+  Column Name: country code
+  Class: Organization
+  Properties: countryCode
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Contracting Party
+  Column Name: country name
+  Class: Organization
+  Properties: countryName
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Contracting Party
+  Column Name: telephone number
+  Class: Organization
+  Properties: telephone
+  Type: data
+  New Property: True
+
+Column 11:
+  Table Name: Contracting Party
+  Column Name: telefax number
+  Class: Organization
+  Properties: telefax
+  Type: data
+  New Property: True
+
+Column 12:
+  Table Name: Contracting Party
+  Column Name: email address
+  Class: Organization
+  Properties: email
+  Type: data
+  New Property: True
+
+Column 13:
+  Table Name: Contracting Party
+  Column Name: contract identifier
+  Class: Organization
+  Properties: refers to contract -> Contract
+  Type: object
+  New Property: False
+
+Column 14:
+  Table Name: Contracting Party
+  Column Name: contract identifier
+  Class: Agent
+  Properties: refers to contract -> Contract
+  Type: object
+  New Property: False
+

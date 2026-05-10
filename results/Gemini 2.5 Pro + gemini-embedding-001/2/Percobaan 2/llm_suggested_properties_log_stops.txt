@@ -1,0 +1,163 @@
+Properties Suggestion Results:
+Total columns processed: 20
+
+Column 1:
+  Table Name: stops
+  Column Name: stop_id
+  Class: Stop
+  Properties: Stop.ID
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: stops
+  Column Name: stop_id
+  Class: Station
+  Properties: Station.ID
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: stops
+  Column Name: stop_code
+  Class: Stop
+  Properties: Stop.Location Code
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: stops
+  Column Name: stop_code
+  Class: Station
+  Properties: Station.Location Code
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: stops
+  Column Name: stop_name
+  Class: Stop
+  Properties: Stop.Name
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: stops
+  Column Name: stop_name
+  Class: Station
+  Properties: Station.Name
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: stops
+  Column Name: stop_desc
+  Class: Stop
+  Properties: Stop.RouteDesc
+  Type: data
+  New Property: False
+
+Column 8:
+  Table Name: stops
+  Column Name: stop_desc
+  Class: Station
+  Properties: Station.RouteDesc
+  Type: data
+  New Property: False
+
+Column 9:
+  Table Name: stops
+  Column Name: stop_lat
+  Class: Stop
+  Properties: Stop.Latitude
+  Type: data
+  New Property: False
+
+Column 10:
+  Table Name: stops
+  Column Name: stop_lon
+  Class: Stop
+  Properties: Stop.Longitude
+  Type: data
+  New Property: False
+
+Column 11:
+  Table Name: stops
+  Column Name: stop_url
+  Class: Stop
+  Properties: Stop.URL
+  Type: data
+  New Property: False
+
+Column 12:
+  Table Name: stops
+  Column Name: stop_url
+  Class: Station
+  Properties: Station.URL
+  Type: data
+  New Property: False
+
+Column 13:
+  Table Name: stops
+  Column Name: location_type
+  Class: Stop
+  Properties: Stop.Location Type
+  Type: object
+  New Property: False
+
+Column 14:
+  Table Name: stops
+  Column Name: location_type
+  Class: Station
+  Properties: Station.Location Type
+  Type: object
+  New Property: False
+
+Column 15:
+  Table Name: stops
+  Column Name: parent_station
+  Class: Stop
+  Properties: Stop.Parent Station
+  Type: object
+  New Property: False
+
+Column 16:
+  Table Name: stops
+  Column Name: parent_station
+  Class: Station
+  Properties: Station.Parent Station
+  Type: object
+  New Property: False
+
+Column 17:
+  Table Name: stops
+  Column Name: stop_timezone
+  Class: Stop
+  Properties: Stop.Timezone
+  Type: data
+  New Property: False
+
+Column 18:
+  Table Name: stops
+  Column Name: stop_timezone
+  Class: Station
+  Properties: Station.Timezone
+  Type: data
+  New Property: False
+
+Column 19:
+  Table Name: stops
+  Column Name: wheelchair_boarding
+  Class: Stop
+  Properties: Stop.Wheelchair accesible
+  Type: object
+  New Property: False
+
+Column 20:
+  Table Name: stops
+  Column Name: wheelchair_boarding
+  Class: Station
+  Properties: Station.Wheelchair accesible
+  Type: object
+  New Property: False
+

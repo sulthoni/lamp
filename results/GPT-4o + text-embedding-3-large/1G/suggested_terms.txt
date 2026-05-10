@@ -1,0 +1,6 @@
+{'table_name': 'lives', 'column_name': 'lives/fname', 'improved_table_name': 'residences', 'improved_column_name': 'first name of resident', 'related_table': None}
+{'table_name': 'lives', 'column_name': 'lives/lname', 'improved_table_name': 'residences', 'improved_column_name': 'last name of resident', 'related_table': None}
+{'table_name': 'lives', 'column_name': 'lives/city', 'improved_table_name': 'residences', 'improved_column_name': 'city of residence', 'related_table': None}
+{'table_name': 'persons', 'column_name': 'persons/fname', 'improved_table_name': 'list of individuals', 'improved_column_name': 'first name of person', 'related_table': None}
+{'table_name': 'persons', 'column_name': 'persons/lname', 'improved_table_name': 'list of individuals', 'improved_column_name': 'last name of person', 'related_table': None}
+{'table_name': 'persons', 'column_name': 'persons/amount', 'improved_table_name': 'list of individuals', 'improved_column_name': 'amount associated with person', 'related_table': None}

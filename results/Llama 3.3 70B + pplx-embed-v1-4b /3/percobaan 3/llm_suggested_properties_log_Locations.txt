@@ -1,0 +1,11 @@
+Properties Suggestion Results:
+Total columns processed: 1
+
+Column 1:
+  Table Name: Locations
+  Column Name: unique location identifier
+  Class: Lot
+  Properties: Has i d
+  Type: object
+  New Property: False
+

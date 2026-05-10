@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: sport
+  Column Name: sports/ID
+  Class: Sport
+  Properties: sportid
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: sport
+  Column Name: sports/Description
+  Class: Sport
+  Properties: sportname
+  Type: data
+  New Property: False
+

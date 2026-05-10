@@ -1,0 +1,107 @@
+Properties Suggestion Results:
+Total columns processed: 13
+
+Column 1:
+  Table Name: Contracting Party
+  Column Name: party_id
+  Class: Organization
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracting Party
+  Column Name: name
+  Class: Organization
+  Properties: name
+  Type: data
+  New Property: True
+
+Column 3:
+  Table Name: Contracting Party
+  Column Name: website
+  Class: Organization
+  Properties: website
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Contracting Party
+  Column Name: city
+  Class: Organization
+  Properties: location
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Contracting Party
+  Column Name: postal_code
+  Class: Organization
+  Properties: postalCode
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Contracting Party
+  Column Name: address_line
+  Class: Organization
+  Properties: address
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Contracting Party
+  Column Name: country_code
+  Class: Organization
+  Properties: countryCode
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Contracting Party
+  Column Name: country_name
+  Class: Organization
+  Properties: countryName
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Contracting Party
+  Column Name: telephone
+  Class: Organization
+  Properties: telephone
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Contracting Party
+  Column Name: telefax
+  Class: Organization
+  Properties: fax
+  Type: data
+  New Property: True
+
+Column 11:
+  Table Name: Contracting Party
+  Column Name: email
+  Class: Organization
+  Properties: email
+  Type: data
+  New Property: True
+
+Column 12:
+  Table Name: Contracting Party
+  Column Name: contract_id
+  Class: Organization
+  Properties: partOfContract
+  Type: object
+  New Property: True
+
+Column 13:
+  Table Name: Contracting Party
+  Column Name: party_type_code
+  Class: Organization
+  Properties: type
+  Type: data
+  New Property: True
+

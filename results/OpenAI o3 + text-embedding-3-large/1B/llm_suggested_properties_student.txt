@@ -1,0 +1,2 @@
+{'table_name': 'student', 'column_name': 'students/ID', 'class_name': 'Person', 'properties': 'id', 'type': 'data', 'new_property': False}
+{'table_name': 'student', 'column_name': 'students/Name', 'class_name': 'Person', 'properties': 'fullname', 'type': 'data', 'new_property': False}

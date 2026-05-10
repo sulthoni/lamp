@@ -1,0 +1,499 @@
+@prefix : <http://data.europa.eu/a4g/ontology#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://data.europa.eu/a4g/ontology#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#hasTopConcept
+skos:hasTopConcept rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://data.europa.eu/a4g/ontology#address
+:address rdf:type owl:ObjectProperty ;
+         rdfs:comment "Associates any Resource with the corresponding Address."@en ;
+         rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+         rdfs:label "Address"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#concernsSubmissionsForLot
+:concernsSubmissionsForLot rdf:type owl:ObjectProperty ;
+                           rdfs:domain :SubmissionStatisticalInformation ;
+                           rdfs:range :Lot ;
+                           rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                           rdfs:label "Concerns submissions for lot"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#describesLot
+:describesLot rdf:type owl:ObjectProperty ;
+              rdfs:domain :LotAwardOutcome ;
+              rdfs:range :Lot ;
+              rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+              rdfs:label "Describes lot"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasCountryCode
+:hasCountryCode rdf:type owl:ObjectProperty ;
+                rdfs:comment "(locn:Address -> at-voc:country (+epo:hasCountryCode)). The codelist to be used is at-voc:country which is available at http://publications.europa.eu/resource/dataset/country (dct:Location -> at-voc:country (+epo:hasCountryCode)) The codelist to be used is at-voc:country which is available at http://publications.europa.eu/resource/dataset/country (locn:Address -> at-voc:country (+epo:hasCountryCode))"@en ;
+                rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                rdfs:label "Has country code"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasID
+:hasID rdf:type owl:ObjectProperty ;
+       rdfs:domain [ rdf:type owl:Class ;
+                     owl:unionOf ( :Batch
+                                   :CatalogueLine
+                                   :Document
+                                   :Fund
+                                   :ProcurementObject
+                                   <http://data.europa.eu/m8g/InformationConcept>
+                                   foaf:Agent
+                                 )
+                   ] ;
+       rdfs:range [ rdf:type owl:Class ;
+                    owl:unionOf ( :Identifier
+                                )
+                  ] ;
+       rdfs:comment "A unique identifier of the instance of the concept."@en ;
+       rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+       rdfs:label "Has i d"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasProcedureType
+:hasProcedureType rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Procedure ;
+                  rdfs:range skos:ConceptScheme ;
+                  rdfs:comment "Identification of the Procedure used."@en ;
+                  rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                  rdfs:label "Has procedure type"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasProcurementScopeDividedIntoLot
+:hasProcurementScopeDividedIntoLot rdf:type owl:ObjectProperty ;
+                                   rdfs:domain :Procedure ;
+                                   rdfs:range :Lot ;
+                                   rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                                   rdfs:label "Has procurement scope divided into lot"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#playedBy
+:playedBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :AgentInRole ;
+          rdfs:range foaf:Agent ;
+          rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+          rdfs:label "Played by"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#playedByOrganisation
+:playedByOrganisation rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :playedBy ;
+                      rdfs:domain :PrimaryRole ;
+                      rdfs:range org:Organization ;
+                      rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                      rdfs:label "Played by organisation"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#refersToProcedure
+:refersToProcedure rdf:type owl:ObjectProperty ;
+                   rdfs:domain :ResultNotice ;
+                   rdfs:range :Procedure ;
+                   rdfs:isDefinedBy "http://data.europa.eu/a4g/ontology" ;
+                   rdfs:label "Refer to procedure"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#refersToRole
+:refersToRole rdf:type owl:ObjectProperty ;
+              rdfs:domain :ResultNotice ;
+              rdfs:range :Buyer ;
+              rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+              rdfs:label "Refers to role"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#usesTechnique
+:usesTechnique rdf:type owl:ObjectProperty ;
+               rdfs:domain :Procedure ;
+               rdfs:range :FrameworkAgreementTechniqueUsage ;
+               rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+               rdfs:label "Uses technique"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://data.europa.eu/a4g/ontology#hasAwardDecisionDate
+:hasAwardDecisionDate rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :LotAwardOutcome ;
+                      rdfs:range xsd:dateTime ;
+                      rdfs:comment "The official date of the award decision."@en ;
+                      rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                      rdfs:label "Has award decision date"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasDispatchDate
+:hasDispatchDate rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :ResultNotice ;
+                 rdfs:range xsd:dateTime ;
+                 rdfs:comment "Date of transmission of a record to an organisation."@en ;
+                 rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                 rdfs:label "Has dispatch date"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasIdentifierValue
+:hasIdentifierValue rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Identifier ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:comment "The literal identifying an entity, like a person or an object."@en ;
+                    rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                    rdfs:label "Has identifier value"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#hasReceivedTenders
+:hasReceivedTenders rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :SubmissionStatisticalInformation ;
+                    rdfs:range xsd:integer ;
+                    rdfs:comment "The total amount of tenders received."@en ;
+                    rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                    rdfs:label "Has received tenders"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://data.europa.eu/a4g/ontology#AgentInRole
+:AgentInRole rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :playedBy ;
+                               owl:cardinality "1"^^xsd:nonNegativeInteger
+                             ] ;
+             rdfs:comment "Relative concept that ties an agent to a part they play in a given situational context."@en ;
+             rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+             rdfs:label "Agent in role"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#Batch
+:Batch rdf:type owl:Class .
+
+
+###  http://data.europa.eu/a4g/ontology#Buyer
+:Buyer rdf:type owl:Class ;
+       rdfs:subClassOf :PrimaryRole ;
+       rdfs:comment "A role of an agent that awards a contract and/or purchases items."@en ;
+       rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+       rdfs:label "Buyer"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#CatalogueLine
+:CatalogueLine rdf:type owl:Class .
+
+
+###  http://data.europa.eu/a4g/ontology#ContextSpecificDescription
+:ContextSpecificDescription rdf:type owl:Class ;
+                            rdfs:comment "A description concerning a procurement object or a notice in a specific situation context."@en ;
+                            rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                            rdfs:label "Context specific description"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#ContextualProjection
+:ContextualProjection rdf:type owl:Class ;
+                      rdfs:comment "Projection of an entity and all of its properties that hold in a given situation context."@en ;
+                      rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                      rdfs:label "Contextual projection"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#Document
+:Document rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDispatchDate ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ;
+          rdfs:comment "A set of interrelated Business Information representing the business facts and associated metadata. The information may be conveyed in any language, medium or form, including textual, numerical, graphic, cartographic, audio-visual forms, etc."@en ;
+          rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+          rdfs:label "Document"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#FrameworkAgreementTechniqueUsage
+:FrameworkAgreementTechniqueUsage rdf:type owl:Class ;
+                                  rdfs:subClassOf :TechniqueUsage ;
+                                  rdfs:comment "Technique that establishes the terms governing contracts to be awarded during a given period, in particular with regard to price and, where appropriate, the quantity envisaged."@en ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                                  rdfs:label "Framework agreement technique usage"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#Fund
+:Fund rdf:type owl:Class .
+
+
+###  http://data.europa.eu/a4g/ontology#Identifier
+:Identifier rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasIdentifierValue ;
+                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                            ] ;
+            rdfs:comment "A character string to identify and distinguish uniquely, one instance of an object in an identification scheme from all other objects in the same scheme together with relevant supplementary information."@en ;
+            rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+            rdfs:label "Identifier"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#Lot
+:Lot rdf:type owl:Class ;
+     rdfs:subClassOf :ProcurementObject ;
+     owl:disjointWith :Procedure ;
+     rdfs:comment "A qualitative, quantitative or strategic subdivision of the goods, services or works to be procured, allowing the award of one or more contracts."@en ;
+     rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+     rdfs:label "Lot"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#LotAwardOutcome
+:LotAwardOutcome rdf:type owl:Class ;
+                 rdfs:subClassOf :ContextualProjection ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasAwardDecisionDate ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ;
+                 rdfs:comment "Result concerning the Lot attributed by the awarder."@en ;
+                 rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                 rdfs:label "Lot award outcome"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#Notice
+:Notice rdf:type owl:Class ;
+        rdfs:subClassOf :Document ;
+        rdfs:comment "Document published by the buyer about market opportunities and results."@en ;
+        rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+        rdfs:label "Notice"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#PrimaryRole
+:PrimaryRole rdf:type owl:Class ;
+             rdfs:subClassOf :AgentInRole ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :playedByOrganisation ;
+                               owl:cardinality "1"^^xsd:nonNegativeInteger
+                             ] ;
+             rdfs:comment "A primary role within the procurement process that ties an agent to a part they play in a given situation."@en ;
+             rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+             rdfs:label "Primary role"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#Procedure
+:Procedure rdf:type owl:Class ;
+           rdfs:subClassOf :ProcurementObject ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasProcurementScopeDividedIntoLot ;
+                             owl:minCardinality "1"^^xsd:nonNegativeInteger
+                           ] ;
+           rdfs:comment "A legally defined set of administrative activities conducted  to conclude one or more contracts."@en ;
+           rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+           rdfs:label "Procedure"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#ProcurementObject
+:ProcurementObject rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasID ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ;
+                   rdfs:comment "A procurement component."@en ;
+                   rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                   rdfs:label "Procurement object"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#ResultNotice
+:ResultNotice rdf:type owl:Class ;
+              rdfs:subClassOf :Notice ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :refersToRole ;
+                                owl:minCardinality "1"^^xsd:nonNegativeInteger
+                              ] ;
+              rdfs:comment "An announcement of the award or non-award of a contract by a buyer."@en ;
+              rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+              rdfs:label "Result notice"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#StatisticalInformation
+:StatisticalInformation rdf:type owl:Class ;
+                        rdfs:subClassOf :ContextSpecificDescription ;
+                        rdfs:comment "Statistical data on the procedure and the lot."@en ;
+                        rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                        rdfs:label "Statistical information"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#SubmissionStatisticalInformation
+:SubmissionStatisticalInformation rdf:type owl:Class ;
+                                  rdfs:subClassOf :StatisticalInformation ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :concernsSubmissionsForLot ;
+                                                    owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                  ] ;
+                                  rdfs:comment "Statistical information about submissions on a given Lot."@en ;
+                                  rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                                  rdfs:label "Submission statistical information"@en .
+
+
+###  http://data.europa.eu/a4g/ontology#System
+:System rdf:type owl:Class ;
+        owl:disjointWith org:Organization .
+
+
+###  http://data.europa.eu/a4g/ontology#TechniqueUsage
+:TechniqueUsage rdf:type owl:Class ;
+                rdfs:comment "Methods used for conducting procurement procedure."@en ;
+                rdfs:isDefinedBy <http://data.europa.eu/a4g/ontology> ;
+                rdfs:label "Technique usage"@en .
+
+
+###  http://data.europa.eu/m8g/InformationConcept
+<http://data.europa.eu/m8g/InformationConcept> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+skos:ConceptScheme rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/org#Organization
+org:Organization rdf:type owl:Class ;
+                 rdfs:subClassOf foaf:Agent ;
+                 owl:disjointWith foaf:Person ;
+                 rdfs:comment "A collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it and can act as an Agent. Organisations are often decomposable into hierarchical structures."@en ;
+                 rdfs:label "Organization"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://publications.europa.eu/resource/authority/buyer-legal-type
+<http://publications.europa.eu/resource/authority/buyer-legal-type> rdf:type owl:NamedIndividual ,
+                                                                             skos:ConceptScheme ;
+                                                                    skos:hasTopConcept <http://publications.europa.eu/resource/authority/buyer-legal-type/OP_DATPRO> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/body-pl> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/body-pl-cga> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/body-pl-la> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/body-pl-ra> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/cga> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/def-cont> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/eu-ins-bod-ag> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/eu-int-org> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/grp-p-aut> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/int-org> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/la> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/org-sub> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/org-sub-cga> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/org-sub-la> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/org-sub-ra> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/pub-undert> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/pub-undert-cga> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/pub-undert-la> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/pub-undert-ra> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/ra> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/rl-aut> ,
+                                                                                       <http://publications.europa.eu/resource/authority/buyer-legal-type/spec-rights-entity> .
+
+
+###  http://publications.europa.eu/resource/authority/country
+<http://publications.europa.eu/resource/authority/country> rdf:type owl:NamedIndividual ,
+                                                                    skos:ConceptScheme ;
+                                                           skos:hasTopConcept <http://publications.europa.eu/resource/authority/country/ALB> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/AND> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/ARM> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/AUT> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/AZE> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/BEL> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/BGR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/BIH> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/BLR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/CHE> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/CYP> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/CZE> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/DDR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/DEU> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/DNK> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/ESP> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/EST> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/FIN> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/FRA> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/FXX> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/GBR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/GEO> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/GRC> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/HRV> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/HUN> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/IRL> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/ISL> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/ITA> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/LIE> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/LTU> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/LUX> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/LVA> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/MCO> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/MDA> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/MKD> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/MLT> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/MNE> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/NLD> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/NOR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/POL> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/PRT> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/ROU> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/RUS> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/SCG> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/SMR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/SRB> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/SVK> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/SVN> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/SWE> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/UKR> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/VAT> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/XKX> ,
+                                                                              <http://publications.europa.eu/resource/authority/country/YUG> .
+
+
+###  http://publications.europa.eu/resource/authority/procurement-procedure-type
+<http://publications.europa.eu/resource/authority/procurement-procedure-type> rdf:type owl:NamedIndividual ,
+                                                                                       skos:ConceptScheme ;
+                                                                              skos:hasTopConcept <http://publications.europa.eu/resource/authority/procurement-procedure-type/OP_DATPRO> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/comp-dial> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/comp-tend> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/exp-int-rail> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/innovation> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/neg-w-call> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/neg-wo-call> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/open> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/oth-mult> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/oth-single> ,
+                                                                                                 <http://publications.europa.eu/resource/authority/procurement-procedure-type/restricted> .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi

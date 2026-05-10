@@ -1,0 +1,30 @@
+{
+  "tables": {
+    "ious": [
+      "persons/fname (VARCHAR(50))",
+      "persons/lname (VARCHAR(50))",
+      "persons/amount (VARCHAR(50))"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

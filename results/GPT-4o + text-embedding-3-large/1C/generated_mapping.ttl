@@ -1,0 +1,40 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.org/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix : <http://example.com/> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@base <http://example.com/> .
+
+<#LogicalTable_student_sport_Person>
+  rml:logicalSource [ rml:source "student_sport.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://example.com/Person/student_sport/{students/Student}" ;
+    rr:class <http://example.com/Person/students/Student>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :fullname ;
+    rr:objectMap [
+      rml:reference "students/Student" ;
+      rr:datatype xsd:string
+    ]  ] .
+
+
+<#LogicalTable_student_sport_Sport>
+  rml:logicalSource [ rml:source "student_sport.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://example.com/Sport/student_sport/{students/Student}" ;
+    rr:class <http://example.com/Sport/students/Sport>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :sportname ;
+    rr:objectMap [
+      rml:reference "students/Sport" ;
+      rr:datatype xsd:string
+    ]  ] .

@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: contract_issue_date
+  Class: Result notice
+  Properties: Has dispatch date
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: received_tender_quantity
+  Class: Submission statistical information
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: contract_id
+  Class: Result notice
+  Properties: Refer to procedure
+  Type: object
+  New Property: False
+

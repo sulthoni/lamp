@@ -1,0 +1,5 @@
+{'table_name': 'Budget Amounts', 'column_name': 'estimated_overall_amount', 'class_name': 'Procedure', 'properties': 'Has budget amount', 'type': 'data', 'new_property': False}
+{'table_name': 'Budget Amounts', 'column_name': 'total_amount', 'class_name': 'Procedure', 'properties': 'Total budget amount', 'type': 'data', 'new_property': False}
+{'table_name': 'Budget Amounts', 'column_name': 'tax_exclusive_amount', 'class_name': 'Procedure', 'properties': 'Tax exclusive budget amount', 'type': 'data', 'new_property': False}
+{'table_name': 'Budget Amounts', 'column_name': 'currency', 'class_name': 'Procedure', 'properties': 'Budget currency', 'type': 'data', 'new_property': False}
+{'table_name': 'Budget Amounts', 'column_name': 'contract_id', 'class_name': 'Lot', 'properties': 'Concerns submissions for lot', 'type': 'object', 'new_property': False}

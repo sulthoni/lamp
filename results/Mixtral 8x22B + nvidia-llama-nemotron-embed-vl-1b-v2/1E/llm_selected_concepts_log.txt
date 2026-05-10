@@ -1,0 +1,34 @@
+Term: # Table: sport
+**Description**: This table represents sport
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9500
+  Reason 1: The 'sport' table contains columns 'sports/ID' (TINYINT) and 'sports/Name' (VARCHAR(50)), which directly align with the ontology class 'Sport' data properties 'sportid' (integer) and 'sportname' (string). The table's purpose ('This table represents sport') matches the 'Sport' class label and description. The similarity score (0.4443) is lower than ideal but is overridden by strong semantic and structural alignment. The global schema shows a 'Sport' class with no conflicting relationships, and the table's columns are consistent with the ontology's data properties. No foreign keys are present, indicating this is a standalone entity table. The 'Sport' class is the only candidate that directly matches the table's purpose and structure.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Name
+
+Term: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport designation** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport designation** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The 'student' table contains columns that align well with the 'Person' ontology class: 'students/ID' (numeric identifier) maps to 'id' in Person, 'students/Name' (full name) maps to 'fullname' in Person, and 'students/Sport' (foreign key to sport table) aligns with the 'practises' object property in Person (domain: Person, range: Sport). The global schema shows that Person has a 'practises' relationship with Sport, which matches the FK relationship in the student table. The similarity score (0.3188) is lower than Sport's (0.3831), but structural and semantic alignment with Person is stronger due to the name field and the sport relationship. The sport table is already mapped to Sport in the ontology, and the student table's FK to sport aligns with Person's 'practises' property.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/Sport, students/Name
+  Related Columns for Candidate 1: students/Sport

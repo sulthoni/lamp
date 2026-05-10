@@ -1,0 +1,6 @@
+{'table_name': 'Budget Amounts', 'column_name': 'budget_id', 'class_name': 'Fund', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Budget Amounts', 'column_name': 'contract_id', 'class_name': 'Fund', 'properties': 'Refers to contract -> Contract', 'type': 'object', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'estimated total amount', 'class_name': 'Fund', 'properties': 'Has estimated amount', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'total amount', 'class_name': 'Fund', 'properties': 'Has total amount', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'amount excluding tax', 'class_name': 'Fund', 'properties': 'Has tax-exclusive amount', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'currency code', 'class_name': 'Fund', 'properties': 'Has currency', 'type': 'data', 'new_property': True}

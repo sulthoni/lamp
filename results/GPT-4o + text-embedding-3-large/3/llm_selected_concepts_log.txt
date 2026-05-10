@@ -1,0 +1,233 @@
+Term: # Table: Detailed Budget Amounts
+**Original Name**: Budget Amounts
+**Description**: This table represents detailed budget amounts
+**Column Count**: 6
+## Columns
+- **Budget Identifier** (original: budget_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **Estimated Overall Amount** (original: estimated_overall_amount) - Type: DECIMAL(10,2) - Examples: 115989.14
+- **Total Amount** (original: total_amount) - Type: DECIMAL(10,2) - Examples: 116955.72
+- **Tax Exclusive Amount** (original: tax_exclusive_amount) - Type: DECIMAL(10,2) - Examples: 96657.62
+- **Currency** (original: currency) - Type: VARCHAR(50) - Examples: EUR
+## Relationships
+- **Contract Identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: budget_id (all unique), contract_id (all unique), estimated_overall_amount (all unique), total_amount (all unique), tax_exclusive_amount (all unique), currency (all unique)
+
+  Selected Candidate 1: Fund | Confidence: 0.8000
+  Reason 1: The 'Budget Amounts' table contains financial data related to contracts, which aligns with the concept of a 'Fund' in the ontology. The columns such as 'estimated_overall_amount', 'total_amount', and 'tax_exclusive_amount' are indicative of financial figures typically associated with a fund. The 'currency' column further supports this alignment. The 'contract_id' column serves as a foreign key linking to the 'Contracts' table, which is consistent with the ontology's object properties that relate funds to other entities. The global schema context shows that financial data is often mapped to the 'Fund' class, ensuring consistency across the schema.
+  Class URI 1: http://example.com/Fund/budget_id
+  Columns for Candidate 1: budget_id, estimated_overall_amount, total_amount, tax_exclusive_amount, currency
+  Related Columns for Candidate 1: contract_id
+
+Term: # Table: List of Classifications
+**Original Name**: Classifications
+**Description**: This table represents list of classifications
+**Column Count**: 4
+## Columns
+- **Classification Identifier** (original: classification_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **Classification Code** (original: classification_code) - Type: INT - Examples: 31681000 (numeric pattern)
+- **Classification System** (original: classification_system) - Type: VARCHAR(50) - Examples: CPV2007
+## Relationships
+- **Contract Identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: classification_id (all unique), contract_id (all unique), classification_code (all unique), classification_system (all unique)
+
+  Selected Candidate 1: Procedure | Confidence: 0.8000
+  Reason 1: The 'Classifications' table contains a 'classification_code' and 'classification_system', which align with the concept of a 'Procedure' having a 'Has procedure type' property linked to 'ConceptScheme'. The 'classification_code' can be seen as a specific type within a classification system, similar to how a procedure type is defined within a concept scheme. The 'contract_id' foreign key links this table to the 'Contracts' table, which is likely related to 'Procedure' as contracts are often the result of procurement procedures. This mapping maintains global consistency as the 'Contracts' table is central to procurement processes, which are represented by the 'Procedure' class in the ontology.
+  Class URI 1: http://example.com/Procedure/classification_id
+  Columns for Candidate 1: classification_id, classification_code, classification_system
+  Related Columns for Candidate 1: contract_id
+
+Term: # Table: List of Contracting Parties
+**Original Name**: Contracting Party
+**Description**: This table represents list of contracting parties
+**Column Count**: 13
+## Columns
+- **party identifier** (original: party_id) - Type: VARCHAR(50) - Examples: A07000029
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **party type code** (original: party_type_code) - Type: TINYINT - Examples: 5 (numeric pattern)
+- **name** - Type: VARCHAR(50) - Examples: Gerencia de EMAYA
+- **website** - Type: VARCHAR(50) - Examples:  Empresa Municipal d'Aig�es i Clavegueram (identifier pattern)
+- **city** - Type: VARCHAR(50) - Examples:  S.A.
+- **postal code** (original: postal_code) - Type: VARCHAR(50) - Examples: http://www.emaya.es
+- **address line** (original: address_line) - Type: VARCHAR(50) - Examples: Palma
+- **country code** (original: country_code) - Type: SMALLINT - Examples: 7010 (numeric pattern)
+- **country name** (original: country_name) - Type: DATE - Examples: Camino de los Reyes 400 (identifier pattern)
+- **telephone** - Type: VARCHAR(50) - Examples:  Edificio Central de Son Pacs (identifier pattern)
+- **telefax** - Type: VARCHAR(50) - Examples: ES
+- **email** - Type: VARCHAR(50) - Examples: Espa�a
+## Relationships
+- **contract identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: party_id (all unique), contract_id (all unique), party_type_code (all unique), name (all unique), website (all unique), city (all unique), postal_code (all unique), address_line (all unique), country_code (all unique), country_name (all unique), telephone (all unique), telefax (all unique), email (all unique)
+
+  Selected Candidate 1: Organization | Confidence: 0.9000
+  Reason 1: The 'Contracting Party' table represents entities that are involved in contracts, which aligns with the concept of 'Organization' as a collection of people organized for a common purpose. The columns such as 'party_id', 'name', 'website', 'city', 'postal_code', 'address_line', 'country_code', 'country_name', 'telephone', 'telefax', and 'email' are typical attributes of an organization. The foreign key 'contract_id' linking to the 'Contracts' table suggests that these parties are involved in contractual agreements, further supporting the mapping to 'Organization'. The ontology class 'Organization' has object properties that align with the role of an organization in a procurement process, such as being 'Played by organisation'.
+  Class URI 1: http://example.com/Organization/party_id
+  Columns for Candidate 1: party_id, name, website, city, postal_code, address_line, country_code, country_name, telephone, telefax, email
+  Related Columns for Candidate 1: contract_id
+
+Term: # Table: Contract Details
+**Original Name**: Contracts
+**Description**: This table represents contract details
+**Column Count**: 15
+## Columns
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **Entry Identifier** (original: entry_id) - Type: VARCHAR(255) - Examples: https://contrataciondelestado.es/sindicacion/licitacionesPerfilContratante/6854467 (identifier pattern)
+- **Link** (original: link) - Type: VARCHAR(255) - Examples: https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fol9j9H4t%2F0BPRBxZ4nJ%2Fg%3D%3D (identifier pattern)
+- **Title** (original: title) - Type: VARCHAR(255) - Examples: Suministro de piezas de recambio originales para equipos mec�nicos y el�ctricos de EMAYA. (identifier pattern)
+- **Status Code** (original: status_code) - Type: VARCHAR(50) - Examples: RES
+- **Last Updated** (original: updated) - Type: DATETIME - Examples: 2021-01-07T10:47:01.782+01:00 (identifier pattern)
+- **Contract Type Code** (original: contract_type_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Contract Subtype Code** (original: contract_subtype_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Duration in Years** (original: duration_years) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Procedure Code** (original: procedure_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Urgency Code** (original: urgency_code) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Contracting System Code** (original: contracting_system_code) - Type: TINYINT - Examples: 3 (numeric pattern)
+- **Submission Method Code** (original: submission_method_code) - Type: TINYINT - Examples: 2 (numeric pattern)
+- **Legislation** (original: legislation) - Type: VARCHAR(50) - Examples: 2014/24/EU
+- **Language** (original: language) - Type: VARCHAR(50) - Examples: es
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: contract_id (all unique), entry_id (all unique), link (all unique), title (all unique), status_code (all unique), updated (all unique), contract_type_code (all unique), contract_subtype_code (all unique), duration_years (all unique), procedure_code (all unique), urgency_code (all unique), contracting_system_code (all unique), submission_method_code (all unique), legislation (all unique), language (all unique)
+
+  Selected Candidate 1: Procedure | Confidence: 0.9000
+  Reason 1: The 'Contracts' table primarily represents details about contracts, which aligns with the 'Procedure' ontology class. The 'Procedure' class is defined as a legally defined set of administrative activities conducted to conclude one or more contracts, which matches the purpose of the 'Contracts' table. The presence of columns like 'procedure_code', 'contract_type_code', and 'contract_subtype_code' further supports this mapping as they relate to procedural aspects of contract management. Additionally, the 'Procedure' class has object properties that align with the table's foreign key relationships, such as 'Has procurement scope divided into lot', which can relate to other tables like 'Lot'. The global schema context shows that related tables like 'Tender Results' and 'Valid Notices' also connect to 'Contracts', supporting the mapping to 'Procedure'.
+  Class URI 1: http://example.com/Procedure/contract_id
+  Columns for Candidate 1: contract_id, entry_id, link, title, status_code, updated, contract_type_code, contract_subtype_code, duration_years, procedure_code, urgency_code, contracting_system_code, submission_method_code, legislation, language
+  Related Columns for Candidate 1: procedure_code
+
+Term: # Table: Geographical Locations
+**Original Name**: Locations
+**Description**: This table represents geographical locations
+**Column Count**: 6
+## Columns
+- **Location Identifier** (original: location_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **Country Subentity** (original: country_subentity) - Type: VARCHAR(50) - Examples: Mallorca
+- **Country Subentity Code** (original: country_subentity_code) - Type: VARCHAR(50) - Examples: ES532
+- **Country Code** (original: country_code) - Type: VARCHAR(50) - Examples: ES
+- **Country Name** (original: country_name) - Type: VARCHAR(50) - Examples: Espa�a
+## Relationships
+- **Contract Identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: location_id (all unique), contract_id (all unique), country_subentity (all unique), country_subentity_code (all unique), country_code (all unique), country_name (all unique)
+
+  Selected Candidate 1: Lot | Confidence: 0.8000
+  Reason 1: The 'Locations' table represents geographical locations associated with contracts, which aligns with the concept of 'Lot' in the ontology. The 'Lot' class in the ontology is associated with procurement scope and subdivisions, which can include geographical considerations. The 'Contract Identifier' column in the 'Locations' table references the 'Contracts' table, suggesting a relationship with procurement activities. The 'Lot' class has object properties related to procurement scope, which aligns with the table's purpose. The columns 'Country Subentity', 'Country Subentity Code', 'Country Code', and 'Country Name' provide geographical details that can be part of a 'Lot' in procurement terms.
+  Class URI 1: http://example.com/Lot/location_id
+  Columns for Candidate 1: location_id, country_subentity, country_subentity_code, country_code, country_name
+  Related Columns for Candidate 1: contract_id
+
+Term: # Table: List of Parent Organizations
+**Original Name**: Parent Organizations
+**Description**: This table represents list of parent organizations
+**Column Count**: 5
+## Columns
+- **Parent Organization Identifier** (original: parent_id) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **Party Identifier** (original: party_id) - Type: VARCHAR(50) - Examples: A07000029, A07000029, A07000029
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2, 942P LOTE 2, 942P LOTE 2
+- **Organizational Level** (original: level) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **Organization Name** (original: name) - Type: VARCHAR(50) - Examples: EMAYA, Palma, Baleares
+## Relationships
+- **Party Identifier** references **Contracting Party** table
+- **Contract Identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 6 rows
+**Uniqueness**: parent_id (all unique), party_id (constant), contract_id (constant), level (all unique), name (all unique)
+
+  Selected Candidate 1: Organization | Confidence: 0.9000
+  Reason 1: The 'Parent Organizations' table represents hierarchical structures of organizations, which aligns with the ontology class 'Organization'. The table's columns such as 'Parent Organization Identifier', 'Organization Name', and 'Organizational Level' are indicative of organizational entities and their hierarchical levels. The 'Organization' class in the ontology is described as a collection of people organized into a structure, often decomposable into hierarchical structures, which matches the table's purpose. The 'party_id' column references the 'Contracting Party' table, which is likely mapped to an 'Agent' or 'Organization', supporting the mapping to 'Organization'.
+  Class URI 1: http://example.com/Organization/parent_id
+  Columns for Candidate 1: parent_id, name, level
+  Related Columns for Candidate 1: party_id, contract_id
+
+Term: # Table: Tender Outcome Details
+**Original Name**: Tender Results
+**Description**: This table represents tender outcome details
+**Column Count**: 11
+## Columns
+- **result identifier** (original: result_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **result code** (original: result_code) - Type: TINYINT - Examples: 8 (numeric pattern)
+- **detailed description** (original: description) - Type: DATE - Examples: Se prorroga el contrato inicial con ID 1715 (identifier pattern)
+- **date of award** (original: award_date) - Type: DATE - Examples: 04/01/21
+- **quantity of tenders received** (original: received_tender_quantity) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract issue identifier** (original: contract_issue_id) - Type: VARCHAR(50) - Examples: ID 2534
+- **date of contract issue** (original: contract_issue_date) - Type: DATE - Examples: 07/01/21
+- **awarded amount excluding tax** (original: awarded_tax_exclusive) - Type: DECIMAL(10,2) - Examples: 96657.62
+- **awarded payable amount** (original: awarded_payable_amount) - Type: DECIMAL(10,2) - Examples: 116955.72
+- **currency type** (original: currency) - Type: VARCHAR(50) - Examples: EUR
+## Relationships
+- **contract identifier** references **Contracts** table
+- **contract issue identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: result_id (all unique), contract_id (all unique), result_code (all unique), description (all unique), award_date (all unique), received_tender_quantity (all unique), contract_issue_id (all unique), contract_issue_date (all unique), awarded_tax_exclusive (all unique), awarded_payable_amount (all unique), currency (all unique)
+
+  Selected Candidate 1: Result notice | Confidence: 0.8500
+  Reason 1: The 'Tender Results' table aligns well with the 'Result notice' ontology class due to its focus on the outcome of tenders, which is semantically similar to the announcement of contract awards. The table's columns such as 'date of award', 'awarded amount excluding tax', and 'awarded payable amount' correspond to the concept of a result notice. The foreign key relationships with the 'Contracts' table suggest a connection to procedures, aligning with the 'Refer to procedure' object property of the 'Result notice' class. The 'quantity of tenders received' column also supports this mapping, as it provides statistical information relevant to the outcome notice. The global schema context shows that related tables like 'Contracts' are mapped to classes that interact with 'Result notice', ensuring consistency.
+  Class URI 1: http://example.com/ResultNotice/result_id
+  Columns for Candidate 1: result_id, result_code, award_date, received_tender_quantity, awarded_tax_exclusive, awarded_payable_amount, currency
+  Related Columns for Candidate 1: contract_id, contract_issue_id
+
+Term: # Table: List of Valid Notices
+**Original Name**: Valid Notices
+**Description**: This table represents list of valid notices
+**Column Count**: 9
+## Columns
+- **Notice Identifier** (original: notice_id) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2, 942P LOTE 2
+- **Notice Type Code** (original: notice_type_code) - Type: VARCHAR(50) - Examples: DOC_CAN_ADJ, DOC_FORM (identifier pattern)
+- **Publication Media** (original: publication_media) - Type: VARCHAR(50) - Examples: Perfil del Contratante, Perfil del Contratante (identifier pattern)
+- **Issue Date** (original: issue_date) - Type: DATE - Examples: 07/01/21, 07/01/21
+- **Document Type Code** (original: document_type_code) - Type: VARCHAR(50) - Examples: ACTA_ADJ (identifier pattern)
+- **Document Type Name** (original: document_type_name) - Type: VARCHAR(50) - Examples: Documento de Acta de Adjudicaci�n (identifier pattern)
+- **Document URI** (original: document_uri) - Type: VARCHAR(255) - Examples: https://contrataciondelestado.es/wps/wcm/connect/PLACE_es/Site/area/docAccCmpnt?srv=cmpnt&cmpntname=GetDocumentsById&source=library&DocumentIdParam=fb481d3e-9aa4-4032-bebf-33912ffaaeaf (identifier pattern)
+- **File Name** (original: file_name) - Type: VARCHAR(50) - Examples: Resolucion prorroga exp 942.pdf (identifier pattern)
+## Relationships
+- **Contract Identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: notice_id (all unique), contract_id (constant), notice_type_code (all unique), publication_media (constant), issue_date (constant), document_type_code (all unique), document_type_name (all unique), document_uri (all unique), file_name (all unique)
+
+  Selected Candidate 1: Notice | Confidence: 0.9000
+  Reason 1: The 'Valid Notices' table aligns well with the 'Notice' ontology class due to its focus on documents published by the buyer about market opportunities and results. The columns such as 'Notice Identifier', 'Notice Type Code', 'Publication Media', and 'Issue Date' are consistent with the properties expected in a 'Notice'. The 'Contract Identifier' column, which references the 'Contracts' table, supports the mapping to 'Notice' as it indicates a relationship with procurement activities.
+  Class URI 1: http://example.com/Notice/notice_id
+  Columns for Candidate 1: notice_id, notice_type_code, publication_media, issue_date
+  Related Columns for Candidate 1: contract_id
+
+  Selected Candidate 2: Result notice | Confidence: 0.8000
+  Reason 2: The 'Result notice' class is also a suitable match because the table includes columns like 'Document Type Code', 'Document Type Name', and 'Document URI', which are indicative of announcements related to contract awards. The 'Issue Date' aligns with the 'Has dispatch date' data property of 'Result notice'. The 'Contract Identifier' column further supports this mapping by linking to the 'Contracts' table, suggesting a relationship with contract results.
+  Class URI 2: http://example.com/ResultNotice/notice_id
+  Columns for Candidate 2: notice_id, document_type_code, document_type_name, document_uri, file_name
+  Related Columns for Candidate 2: contract_id
+
+Term: # Table: List of Winning Parties
+**Original Name**: Winning Party
+**Description**: This table represents list of winning parties
+**Column Count**: 5
+## Columns
+- **Winning Party Identifier** (original: winning_party_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Result Identifier** (original: result_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **Contract Identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **Party National Identification Number** (original: party_nif) - Type: VARCHAR(50) - Examples: A28388023
+- **Party Name** (original: party_name) - Type: VARCHAR(50) - Examples: SULZER PUMPS WASTEWATER SPAIN S.A. (identifier pattern)
+## Relationships
+- **Result Identifier** references **Tender Results** table
+- **Contract Identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: winning_party_id (all unique), result_id (all unique), contract_id (all unique), party_nif (all unique), party_name (all unique)
+
+  Selected Candidate 1: Lot award outcome | Confidence: 0.8000
+  Reason 1: The 'Winning Party' table represents entities that are awarded contracts, which aligns with the concept of 'Lot award outcome' as it concerns the result of awarding a contract. The 'Result Identifier' column references the 'Tender Results' table, which is likely related to the outcome of a lot award. The 'Contract Identifier' column references the 'Contracts' table, indicating a relationship with the contract being awarded. The 'Party National Identification Number' and 'Party Name' columns provide information about the winning party, which fits the context of a lot award outcome. The ontology class 'Lot award outcome' has object properties that describe a lot, which aligns with the awarding process. The global schema context supports this mapping as the 'Tender Results' table is likely mapped to a related class, maintaining consistency.
+  Class URI 1: http://example.com/LotAwardOutcome/winning_party_id
+  Columns for Candidate 1: winning_party_id, party_nif, party_name
+  Related Columns for Candidate 1: result_id, contract_id

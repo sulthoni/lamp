@@ -1,0 +1,33 @@
+{
+  "tables": {
+    "city_en": [
+      "cities/ID (TINYINT) (FK -> city_es)",
+      "cities/Name (VARCHAR(50))"
+    ],
+    "city_es": [
+      "cities/ID (TINYINT)",
+      "cities/Name (VARCHAR(50))"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

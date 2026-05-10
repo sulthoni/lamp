@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: calendar
+  Column Name: monday
+  Class: Calendar rule
+  Properties: Monday
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: calendar
+  Column Name: tuesday
+  Class: Calendar rule
+  Properties: Tuesday
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: calendar
+  Column Name: wednesday
+  Class: Calendar rule
+  Properties: Wednesday
+  Type: object
+  New Property: False
+
+Column 4:
+  Table Name: calendar
+  Column Name: thursday
+  Class: Calendar rule
+  Properties: Thursday
+  Type: object
+  New Property: False
+
+Column 5:
+  Table Name: calendar
+  Column Name: friday
+  Class: Calendar rule
+  Properties: Friday
+  Type: object
+  New Property: False
+
+Column 6:
+  Table Name: calendar
+  Column Name: saturday
+  Class: Calendar rule
+  Properties: Saturday
+  Type: object
+  New Property: False
+
+Column 7:
+  Table Name: calendar
+  Column Name: sunday
+  Class: Calendar rule
+  Properties: Sunday
+  Type: object
+  New Property: False
+
+Column 8:
+  Table Name: calendar
+  Column Name: start_date
+  Class: Calendar rule
+  Properties: StartDate
+  Type: data
+  New Property: False
+
+Column 9:
+  Table Name: calendar
+  Column Name: end_date
+  Class: Calendar rule
+  Properties: EndDate
+  Type: data
+  New Property: False
+

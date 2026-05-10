@@ -1,0 +1,34 @@
+Term: # Table: list of cities (English)
+**Original Name**: city_en
+**Description**: This table represents list of cities (english)
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name (English)** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Relationships
+- **city identifier** references **city_es** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.7800
+  Reason 1: The table is explicitly a list of cities in English – both the name 'city_en' and the description confirm this. The ontology already provides a City class with data properties (cityid, cityname) that align perfectly with the two columns present. Column cities/ID is a unique identifier and matches ontology data property cityid (integer). Column cities/Name holds the English label and maps naturally to ontology's cityname (langString). The FK to city_es merely shows a 1-to-1 link to the same real-world city already captured elsewhere, so no new independent class is introduced; instead, this table provides an alternative language representation for the same City individuals. Competing candidates Person and Sport have no semantic or structural alignment. Mapping to City keeps global consistency—any Person.lives→City object property will resolve to the same City individuals regardless of language table used.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name
+  Related Columns for Candidate 1: cities/ID
+
+Term: # Table: Spanish localization of cities
+**Original Name**: city_es
+**Description**: This table represents spanish localization of cities
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name in Spanish** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.9000
+  Reason 1: The table represents a list of cities (Spanish localisation). Primary key cities/ID matches ontology data property cityid (integer). Column cities/Name corresponds to cityname (langString). There are no outbound FKs, but other tables (city_en) reference this table, reinforcing that it is the authoritative City entity. No evidence for additional or bridging entities. Mapping to ontology class City keeps global consistency, as People can live in City via object property lives -> City.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name

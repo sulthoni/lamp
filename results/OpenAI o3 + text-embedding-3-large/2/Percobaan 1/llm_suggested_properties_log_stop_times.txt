@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: stop_times
+  Column Name: stop_times.trip_id
+  Class: Stop time
+  Properties: Stop time.Trip
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: stop_times
+  Column Name: stop_times.arrival_time
+  Class: Stop time
+  Properties: Stop time.Arrival time
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: stop_times
+  Column Name: stop_times.departure_time
+  Class: Stop time
+  Properties: Stop time.Departure time
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: stop_times
+  Column Name: stop_times.stop_id
+  Class: Stop time
+  Properties: Stop time.Stop
+  Type: object
+  New Property: False
+
+Column 5:
+  Table Name: stop_times
+  Column Name: stop_times.stop_sequence
+  Class: Stop time
+  Properties: Stop time.Stop sequence
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: stop_times
+  Column Name: stop_times.stop_headsign
+  Class: Stop time
+  Properties: Stop time.Headsign
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: stop_times
+  Column Name: stop_times.pickup_type
+  Class: Stop time
+  Properties: Stop time.Pickup type
+  Type: object
+  New Property: False
+
+Column 8:
+  Table Name: stop_times
+  Column Name: stop_times.drop_off_type
+  Class: Stop time
+  Properties: Stop time.Drop off type
+  Type: object
+  New Property: False
+
+Column 9:
+  Table Name: stop_times
+  Column Name: stop_times.shape_dist_traveled
+  Class: Stop time
+  Properties: Stop time.Distance Traveled
+  Type: data
+  New Property: False
+

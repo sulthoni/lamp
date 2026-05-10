@@ -1,0 +1,37 @@
+Term: # Table: person locations
+**Original Name**: lives
+**Description**: This table represents person locations
+**Column Count**: 3
+## Columns
+- **first name** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city of residence** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The table 'lives' contains personal information (first name, last name) which directly aligns with the 'Person' ontology class's data properties (firstname, lastname). The 'city of residence' column semantically matches the 'lives' object property in the 'Person' class, which has a range of 'City'. This establishes a clear relationship where each person lives in a city. The global schema shows that 'Person' has an object property 'lives' with range 'City', and the 'City' class exists in the ontology with a 'cityname' data property that matches the 'city of residence' column. The table acts as a bridge between Person and City, but the primary semantic focus is on Person records with their associated City.
+  Class URI 1: http://example.com/Person/lname
+  Columns for Candidate 1: lives/fname, lives/lname, lives/city
+  Related Columns for Candidate 1: lives/city
+
+  Selected Candidate 2: City | Confidence: 0.9200
+  Reason 2: The 'city of residence' column directly corresponds to the 'cityname' data property in the 'City' ontology class. The global schema confirms that 'City' has a 'cityname' property, and the table's 'city of residence' column contains city names (e.g., London, Madrid). While the table primarily represents person-location relationships, the city values themselves are instances of the 'City' class. The presence of city names in the table and their alignment with the 'City' class's data property justifies this mapping.
+  Class URI 2: http://example.com/City/city
+  Columns for Candidate 2: lives/city
+
+Term: # Table: list of individuals
+**Original Name**: persons
+**Description**: This table represents list of individuals
+**Column Count**: 3
+## Columns
+- **first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **total amount** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The table 'persons' contains columns 'fname' (first name) and 'lname' (last name) which directly align with the ontology class 'Person' data properties 'firstname' and 'lastname'. The presence of 'amount' (total amount) could potentially map to the 'owes' property in the Person class, though the exact semantic match is less clear. The similarity score (0.3137) is a starting point but not definitive. The global schema shows that 'Person' is the only class with direct data properties matching the table's columns (firstname, lastname). The other candidates (City, Sport) do not align with the table's content (personal names and an amount). The table does not reference other tables via FKs in the global schema, so no object property relationships are implied here. The mapping is primarily based on data property alignment and the table's description as a list of individuals.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: first name, last name, total amount

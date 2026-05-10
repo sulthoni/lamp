@@ -1,0 +1,563 @@
+################################################################################
+# PROMPT LOG - Property Suggestion - Parent Organizations
+# Started: 2026-04-22 09:00:04
+# Provider: openrouter
+# Model: mistralai/mixtral-8x22b-instruct
+# Table: Parent Organizations
+################################################################################
+
+================================================================================
+[2026-04-22 09uman:00:06] PROCESS: PropertySuggestion - Parent Organizations | Step 1/1
+Provider: openrouter | Model: mistralai/mixtral-8x22b-instruct
+table_name: Parent Organizations
+column_count: 5
+suggested_classes: ['Organization']
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [global_schema_summary]: {
+  "ontology": {
+    "Agent": [
+      "Has i d -> Identifier",
+      "Played by -> Agent"
+    ],
+    "Agent in role": [
+      "Played by -> Agent"
+    ],
+    "Batch": [
+      "Has i d -> Identifier"
+    ],
+    "Buyer": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization",
+      "Refers to role -> Buyer"
+    ],
+    "CatalogueLine": [
+      "Has i d -> Identifier"
+    ],
+    "ConceptScheme": [
+      "Has procedure type -> ConceptScheme"
+    ],
+    "Document": [
+      "Has ... [truncated, total 7406 chars]
+  [table_name]: Parent Organizations
+  [improved_table_name]: parent organizations
+  [columns_text]: 1. Column: parent_id (improved: parent organization identifier)
+2. Column: party_id (improved: party identifier)
+3. Column: contract_id (improved: contract identifier)
+4. Column: level (improved: organizational level)
+5. Column: name (improved: organization name)
+  [term]: # Table: parent organizations
+**Original Name**: Parent Organizations
+**Description**: This table represents parent organizations
+**Column Count**: 5
+## Columns
+- **parent organization identifier** (original: parent_id) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **party identifier** (original: party_id) - Type: VARCHAR(50) - Examples: A07000029, A07000029, A07000029
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2, 942P LOTE 2, 942P LOTE ... [truncated, total 1080 chars]
+  [suggested_classes_count]: 1
+  [suggested_classes_from_first_step]: 1. Class: Organization
+  [suggested_classes_iri_from_first_step]: 1. Class IRI: http://example.com/Organization/parent_id
+  [suggested_columns_text]: Suggested Columns for Class - Organization:
+1. Column: parent organization identifier
+2. Column: organizational level
+3. Column: organization name
+
+
+  [data_properties_text]: Organization: No data properties available
+  [object_properties_text]: Organization - Object Properties:
+  1. Has i d (Domain: Batch, CatalogueLine, Document, Fund, ProcurementObject, InformationConcept, Agent [http://data.europa.eu/a4g/ontology#Batch, http://data.europa.eu/a4g/ontology#CatalogueLine, http://data.europa.eu/a4g/ontology#Document, http://data.europa.eu/a4g/ontology#Fund, http://data.europa.eu/a4g/ontology#ProcurementObject, http://data.europa.eu/m8g/InformationConcept, http://xmlns.com/foaf/0.1/Agent], Range: Identifier [http://data.europa.eu/a4g/ont... [truncated, total 812 chars]
+  [related_columns_text]: Related Columns for Class - Organization:
+1. Column: party identifier
+2. Column: contract identifier
+
+
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+                IMPORTANT CONSTRAINT:
+                - ONLY include columns that have a valid mapping in the final output.
+                - DO NOT include any column that cannot be mapped.
+                - DO NOT output unmapped columns with null, empty, or placeholder values.
+                - If a column has no suitable property, simply EXCLUDE it from the result.
+
+            ---
+
+            ### Input Context
+                **Global_Schema_Summary:**
+                {
+  "ontology": {
+    "Agent": [
+      "Has i d -> Identifier",
+      "Played by -> Agent"
+    ],
+    "Agent in role": [
+      "Played by -> Agent"
+    ],
+    "Batch": [
+      "Has i d -> Identifier"
+    ],
+    "Buyer": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization",
+      "Refers to role -> Buyer"
+    ],
+    "CatalogueLine": [
+      "Has i d -> Identifier"
+    ],
+    "ConceptScheme": [
+      "Has procedure type -> ConceptScheme"
+    ],
+    "Document": [
+      "Has i d -> Identifier"
+    ],
+    "Framework agreement technique usage": [
+      "Uses technique -> FrameworkAgreementTechniqueUsage"
+    ],
+    "Fund": [
+      "Has i d -> Identifier"
+    ],
+    "Identifier": [
+      "Has identifier value",
+      "Has i d -> Identifier"
+    ],
+    "InformationConcept": [
+      "Has i d -> Identifier"
+    ],
+    "Lot": [
+      "Concerns submissions for lot -> Lot",
+      "Describes lot -> Lot",
+      "Has i d -> Identifier",
+      "Has procurement scope divided into lot -> Lot"
+    ],
+    "Lot award outcome": [
+      "Has award decision date",
+      "Describes lot -> Lot"
+    ],
+    "Notice": [
+      "Has i d -> Identifier"
+    ],
+    "Organization": [
+      "Has i d -> Identifier",
+      "Played by -> Agent",
+      "Played by organisation -> Organization"
+    ],
+    "Primary role": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization"
+    ],
+    "Procedure": [
+      "Has i d -> Identifier",
+      "Has procedure type -> ConceptScheme",
+      "Has procurement scope divided into lot -> Lot",
+      "Refer to procedure -> Procedure",
+      "Uses technique -> FrameworkAgreementTechniqueUsage"
+    ],
+    "Procurement object": [
+      "Has i d -> Identifier"
+    ],
+    "Result notice": [
+      "Has dispatch date",
+      "Has i d -> Identifier",
+      "Refer to procedure -> Procedure",
+      "Refers to role -> Buyer"
+    ],
+    "Submission statistical information": [
+      "Has received tenders",
+      "Concerns submissions for lot -> Lot"
+    ]
+  },
+  "tables": {
+    "Budget Amounts": [
+      "budget_id (FK -> Classifications)",
+      "contract_id (FK -> Contracts)",
+      "estimated_overall_amount",
+      "total_amount",
+      "tax_exclusive_amount",
+      "currency"
+    ],
+    "Classifications": [
+      "classification_id",
+      "contract_id (FK -> Contracts)",
+      "classification_code",
+      "classification_system"
+    ],
+    "Contracting Party": [
+      "party_id (FK -> Parent Organizations)",
+      "contract_id (FK -> Contracts)",
+      "party_type_code",
+      "name",
+      "website",
+      "city",
+      "postal_code",
+      "address_line",
+      "country_code",
+      "country_name",
+      "telephone",
+      "telefax",
+      "email"
+    ],
+    "Contracts": [
+      "contract_id (FK -> Valid Notices)",
+      "entry_id (FK -> Valid Notices)",
+      "link",
+      "title",
+      "status_code (FK -> Classifications)",
+      "updated",
+      "contract_type_code (FK -> Classifications)",
+      "contract_subtype_code (FK -> Classifications)",
+      "duration_years",
+      "procedure_code (FK -> Classifications)",
+      "urgency_code (FK -> Classifications)",
+      "contracting_system_code (FK -> Contracting Party)",
+      "submission_method_code (FK -> Classifications)",
+      "legislation (FK -> Parent Organizations)",
+      "language (FK -> Classifications)"
+    ],
+    "Locations": [
+      "location_id",
+      "contract_id (FK -> Contracts)",
+      "country_subentity",
+      "country_subentity_code",
+      "country_code",
+      "country_name"
+    ],
+    "Parent Organizations": [
+      "parent_id (FK -> Parent Organizations)",
+      "party_id (FK -> Classifications)",
+      "contract_id (FK -> Contracts)",
+      "level",
+      "name"
+    ],
+    "Tender Results": [
+      "result_id",
+      "contract_id (FK -> Contracts)",
+      "result_code",
+      "description",
+      "award_date",
+      "received_tender_quantity",
+      "contract_issue_id (FK -> Contracts)",
+      "contract_issue_date",
+      "awarded_tax_exclusive",
+      "awarded_payable_amount",
+      "currency (FK -> Classifications)"
+    ],
+    "Valid Notices": [
+      "notice_id (FK -> Contracts)",
+      "contract_id (FK -> Contracts)",
+      "notice_type_code (FK -> Classifications)",
+      "publication_media",
+      "issue_date",
+      "document_type_code (FK -> Classifications)",
+      "document_type_name",
+      "document_uri",
+      "file_name"
+    ],
+    "Winning Party": [
+      "winning_party_id (FK -> Tender Results)",
+      "result_id (FK -> Tender Results)",
+      "contract_id (FK -> Contracts)",
+      "party_nif",
+      "party_name"
+    ]
+  },
+  "previous_mappings": [
+    {
+      "Budget Amounts": {
+        "Budget Amounts.budget_id": "Fund.Has i d",
+        "Budget Amounts.contract_id": "Fund.Has i d",
+        "Budget Amounts.estimated_overall_amount": "Fund.Has i d",
+        "Budget Amounts.total_amount": "Fund.Has i d",
+        "Budget Amounts.tax_exclusive_amount": "Fund.Has i d",
+        "Budget Amounts.currency": "Fund.Has i d"
+      }
+    },
+    {
+      "Classifications": {
+        "Classifications.classification_id": "Identifier.Has i d",
+        "Classifications.classification_code": "Identifier.Has identifier value",
+        "Classifications.classification_system": "Identifier.Has identifier value"
+      }
+    },
+    {
+      "Contracting Party": {
+        "Contracting Party.party_id": "Agent.Has i d",
+        "Contracting Party.name": "Organization.Has i d",
+        "Contracting Party.website": "Organization.Has i d",
+        "Contracting Party.city": "Organization.Has i d",
+        "Contracting Party.postal_code": "Organization.Has i d",
+        "Contracting Party.address_line": "Organization.Has i d",
+        "Contracting Party.country_code": "Organization.Has i d",
+        "Contracting Party.country_name": "Organization.Has i d",
+        "Contracting Party.telephone": "Organization.Has i d",
+        "Contracting Party.telefax": "Organization.Has i d",
+        "Contracting Party.email": "Organization.Has i d",
+        "Contracting Party.party_type_code": "Agent.Has i d",
+        "Contracting Party.contract_id": "Agent.Has i d"
+      }
+    },
+    {
+      "Contracts": {
+        "Contracts.contract_id": "Procedure.Has i d",
+        "Contracts.entry_id": "Procedure.Has i d",
+        "Contracts.title": "Procedure.Has i d",
+        "Contracts.status_code": "Procedure.Has i d",
+        "Contracts.updated": "Procedure.Has i d",
+        "Contracts.contract_type_code": "Procedure.Has i d",
+        "Contracts.contract_subtype_code": "Procedure.Has i d",
+        "Contracts.duration_years": "Procedure.Has i d",
+        "Contracts.procedure_code": "Procedure.Has i d",
+        "Contracts.urgency_code": "Procedure.Has i d",
+        "Contracts.contracting_system_code": "Procedure.Has i d",
+        "Contracts.submission_method_code": "Procedure.Has i d",
+        "Contracts.legislation": "Procedure.Has i d",
+        "Contracts.language": "Procedure.Has i d"
+      }
+    },
+    {
+      "Locations": {
+        "Locations.location_id": "Location.Has i d",
+        "Locations.country_subentity": "Location.Has i d",
+        "Locations.country_subentity_code": "Location.Has i d",
+        "Locations.country_code": "Location.Has i d",
+        "Locations.country_name": "Location.Has i d",
+        "Locations.contract_id": "Location.Concerns submissions for lot"
+      }
+    }
+  ]
+}
+
+                **Table:** Parent Organizations
+
+                **Improved Table Name:** parent organizations
+
+                **Columns:**
+                1. Column: parent_id (improved: parent organization identifier)
+2. Column: party_id (improved: party identifier)
+3. Column: contract_id (improved: contract identifier)
+4. Column: level (improved: organizational level)
+5. Column: name (improved: organization name)
+
+                **Additional Context of table:**
+                # Table: parent organizations
+**Original Name**: Parent Organizations
+**Description**: This table represents parent organizations
+**Column Count**: 5
+## Columns
+- **parent organization identifier** (original: parent_id) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **party identifier** (original: party_id) - Type: VARCHAR(50) - Examples: A07000029, A07000029, A07000029
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2, 942P LOTE 2, 942P LOTE 2
+- **organizational level** (original: level) - Type: TINYINT - Examples: 1, 2, 3 (numeric pattern)
+- **organization name** (original: name) - Type: VARCHAR(50) - Examples: EMAYA, Palma, Baleares
+## Relationships
+- **parent organization identifier** references **Parent Organizations** table
+- **party identifier** references **Classifications** table
+- **contract identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 6 rows
+**Uniqueness**: parent_id (all unique), party_id (constant), contract_id (constant), level (all unique), name (all unique)
+
+                **Total Classes Suggested for This Table:**
+                1
+
+                **Suggested Classes:**
+                1. Class: Organization
+
+                **Suggested Classes IRI:**
+                1. Class IRI: http://example.com/Organization/parent_id
+
+                **Suggested Columns for Each Class (from step 1):**
+                Suggested Columns for Class - Organization:
+1. Column: parent organization identifier
+2. Column: organizational level
+3. Column: organization name
+
+
+
+                **Available Data Properties:**
+                Organization: No data properties available
+
+                **Available Object Properties:**
+                Organization - Object Properties:
+  1. Has i d (Domain: Batch, CatalogueLine, Document, Fund, ProcurementObject, InformationConcept, Agent [http://data.europa.eu/a4g/ontology#Batch, http://data.europa.eu/a4g/ontology#CatalogueLine, http://data.europa.eu/a4g/ontology#Document, http://data.europa.eu/a4g/ontology#Fund, http://data.europa.eu/a4g/ontology#ProcurementObject, http://data.europa.eu/m8g/InformationConcept, http://xmlns.com/foaf/0.1/Agent], Range: Identifier [http://data.europa.eu/a4g/ontology#Identifier])
+  2. Played by (Domain: AgentInRole [http://data.europa.eu/a4g/ontology#AgentInRole], Range: Agent [http://xmlns.com/foaf/0.1/Agent])
+  3. Played by organisation (Domain: PrimaryRole [http://data.europa.eu/a4g/ontology#PrimaryRole], Range: Organization [http://www.w3.org/ns/org#Organization])
+
+                **Related Columns (cross-table relationships):**
+                Related Columns for Class - Organization:
+1. Column: party identifier
+2. Column: contract identifier
+
+
+
+            ---
+
+            ### 1. Global Context Awareness
+
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+
+            Example format:
+            {
+                "tables": {
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                },
+                "ontology": {
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                },
+                "previous_mappings": [{
+                    "author": {
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    },
+                    "book": {
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }]
+                }
+            }
+
+            ---
+
+            ### 2. Mapping Principles
+
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - You MUST ONLY use properties from:
+                    - `Available Data Properties`
+                    - `Available Object Properties`
+                - DO NOT create, infer, or propose any new properties under any circumstances.
+                - If no suitable property exists:
+                    - DO NOT include the column in the output
+                    - Provide a clear and concise justification explaining why no existing property is semantically appropriate.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+
+            ---
+
+            ### 3. Mapping Logic Details
+
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+
+            ---
+
+            ### 4. Completeness and Global Validation
+
+            1. Compare your mappings against `previous_mapping_summary` to avoid duplication..
+            2. Validate that:
+                - Each mapping is globally consistent.
+                - Relationships between tables (via FKs) align with ontology object properties.
+                - No conflicting or circular mappings exist.
+                - Cross-class mappings maintain ontology domain-range correctness.
+            3. FINAL FILTERING STEP (MANDATORY):
+                - Remove ALL unmapped columns before producing output.
+                - Ensure every column in the output has a valid mapped property.
+
+
+            ---
+
+            ### 5. Output Format
+
+            Follow these output formatting rules exactly:
+
+            The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+```
+
+            STRICT OUTPUT RULES:
+            - Output MUST contain ONLY mapped columns.
+            - Every column MUST have a valid property mapping.
+            - DO NOT include any column without a mapping.
+            - DO NOT include empty fields.
+
+            ---
+
+            ### 6. Final Instructions
+
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+````.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+            - Be semantically precise and avoid weak mappings.
+            - Prefer excluding a column rather than forcing incorrect mappings.
+            - NEVER include unmapped columns in the output under any condition.
+
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+mappings=[PropertySuggestion(table_name='Parent Organizations', column_name='parent_id', class_name='Organization', properties='Has i d', type='object', new_property=False), PropertySuggestion(table_name='Parent Organizations', column_name='level', class_name='Organization', properties='Has i d', type='object', new_property=False), PropertySuggestion(table_name='Parent Organizations', column_name='name', class_name='Organization', properties='Has i d', type='object', new_property=False)]
+================================================================================

@@ -1,0 +1,15 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 1
+## Columns
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Name (all unique)
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.2108
+  Candidate 2: City (ID: http://example.org/City) | Similarity: 0.1584
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.1335

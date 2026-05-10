@@ -1,0 +1,7 @@
+{'table_name': 'agency', 'column_name': 'agency_id', 'class_name': 'Agency', 'properties': 'ID', 'type': 'data', 'new_property': False}
+{'table_name': 'agency', 'column_name': 'agency_name', 'class_name': 'Agency', 'properties': 'Name', 'type': 'data', 'new_property': False}
+{'table_name': 'agency', 'column_name': 'agency_url', 'class_name': 'Agency', 'properties': 'URL', 'type': 'data', 'new_property': False}
+{'table_name': 'agency', 'column_name': 'agency_timezone', 'class_name': 'Agency', 'properties': 'Timezone', 'type': 'data', 'new_property': False}
+{'table_name': 'agency', 'column_name': 'agency_lang', 'class_name': 'Agency', 'properties': 'Language', 'type': 'data', 'new_property': False}
+{'table_name': 'agency', 'column_name': 'agency_phone', 'class_name': 'Agency', 'properties': 'PhoneNumber', 'type': 'data', 'new_property': False}
+{'table_name': 'agency', 'column_name': 'agency_fare_url', 'class_name': 'Agency', 'properties': 'fare URL', 'type': 'data', 'new_property': False}

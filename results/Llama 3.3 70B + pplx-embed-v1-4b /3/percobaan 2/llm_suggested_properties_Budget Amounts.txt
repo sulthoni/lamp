@@ -1,0 +1,1 @@
+{'table_name': 'Budget Amounts', 'column_name': 'unique budget identifier', 'class_name': 'Procedure', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

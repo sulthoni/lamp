@@ -1,0 +1,46 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 1.0000
+  Reason 1: The mapping decision is based on strong semantic and structural alignment. The table's name 'sport' and its description 'This table represents list of sports' directly correspond to the ontology class 'Sport'. The table's columns 'sport identifier' and 'sport description' map perfectly to the data properties 'sportid' and 'sportname' of the 'Sport' class. The 'sport identifier' column is a clear primary key for the sport entity. The other candidates, 'Person' and 'City', are semantically and structurally irrelevant. Mapping to 'Sport' is also consistent with the provided ontology structure, where 'Sport' is the range of the 'practises' object property, indicating that other entities (like 'Person') can be related to it. This table acts as a simple reference/lookup table for the 'Sport' entity.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sport identifier, sport description
+
+Term: # Table: student sport relationship
+**Original Name**: student_sport
+**Description**: This table represents student sport relationship
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+  No candidates selected
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9800
+  Reason 1: The mapping from the 'student' table to the 'Person' class is highly confident. The semantic match is strong, as a student is a type of person. The structural alignment is excellent: the table's columns 'student identifier', 'student first name', and 'student last name' directly correspond to the 'Person' class's data properties 'id', 'firstname', and 'lastname'. The 'student identifier' column serves as a clear primary key for identifying individual person instances. The other candidates, 'Sport' and 'City', are semantically and structurally irrelevant. Although a 'Student' class would be more specific, 'Person' is the correct and available superclass in the provided ontology. The absence of a global schema prevents cross-table validation, but the local evidence is overwhelmingly in favor of this mapping.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: student identifier, student first name, student last name

@@ -1,0 +1,91 @@
+Properties Suggestion Results:
+Total columns processed: 11
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: result_id
+  Class: Submission statistical information
+  Properties: hasResultIdentifier
+  Type: data
+  New Property: True
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: contract_id
+  Class: Submission statistical information
+  Properties: relatedToContract
+  Type: object
+  New Property: True
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: result_code
+  Class: Submission statistical information
+  Properties: hasResultType
+  Type: object
+  New Property: True
+
+Column 4:
+  Table Name: Tender Results
+  Column Name: description
+  Class: Submission statistical information
+  Properties: hasDescription
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Tender Results
+  Column Name: award_date
+  Class: Submission statistical information
+  Properties: hasAwardDate
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Tender Results
+  Column Name: received_tender_quantity
+  Class: Submission statistical information
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: Tender Results
+  Column Name: contract_issue_id
+  Class: Submission statistical information
+  Properties: referencesValidNotice
+  Type: object
+  New Property: True
+
+Column 8:
+  Table Name: Tender Results
+  Column Name: contract_issue_date
+  Class: Submission statistical information
+  Properties: hasContractIssueDate
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Tender Results
+  Column Name: awarded_tax_exclusive
+  Class: Submission statistical information
+  Properties: hasAwardedTaxExclusiveAmount
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Tender Results
+  Column Name: awarded_payable_amount
+  Class: Submission statistical information
+  Properties: hasAwardedPayableAmount
+  Type: data
+  New Property: True
+
+Column 11:
+  Table Name: Tender Results
+  Column Name: currency
+  Class: Submission statistical information
+  Properties: hasCurrency
+  Type: data
+  New Property: True
+

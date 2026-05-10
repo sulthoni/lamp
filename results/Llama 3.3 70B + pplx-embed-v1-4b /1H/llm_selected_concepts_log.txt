@@ -1,0 +1,27 @@
+Term: # Table: list of city names in English
+**Original Name**: city_en
+**Description**: This table represents list of city names in english
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+
+  Selected Candidate 1: City | Confidence: 0.9500
+  Reason 1: The table's structure and content directly match the City ontology class, with cities/ID and cities/Name aligning with cityid and cityname data properties.
+  Class URI 1: http://example.com/City/cities/ID
+  Columns for Candidate 1: cities/ID, cities/Name
+
+Term: # Table: list of cities in Spanish
+**Original Name**: city_es
+**Description**: This table represents list of cities in spanish
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+  No candidates selected

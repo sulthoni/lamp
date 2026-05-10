@@ -1,0 +1,6 @@
+{'table_name': 'feed_info', 'column_name': 'name of feed publisher', 'class_name': 'GTFS Feed', 'properties': 'Publisher', 'type': 'data', 'new_property': False}
+{'table_name': 'feed_info', 'column_name': 'URL of feed publisher', 'class_name': 'GTFS Feed', 'properties': 'URL', 'type': 'data', 'new_property': False}
+{'table_name': 'feed_info', 'column_name': 'language of feed', 'class_name': 'GTFS Feed', 'properties': 'Language', 'type': 'data', 'new_property': False}
+{'table_name': 'feed_info', 'column_name': 'start date of feed', 'class_name': 'GTFS Feed', 'properties': 'StartDate', 'type': 'data', 'new_property': False}
+{'table_name': 'feed_info', 'column_name': 'end date of feed', 'class_name': 'GTFS Feed', 'properties': 'EndDate', 'type': 'data', 'new_property': False}
+{'table_name': 'feed_info', 'column_name': 'version of feed', 'class_name': 'GTFS Feed', 'properties': 'Version', 'type': 'data', 'new_property': False}

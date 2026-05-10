@@ -1,0 +1,5 @@
+{'table_name': 'Winning Party', 'column_name': 'winning_party_id', 'class_name': 'Buyer', 'properties': 'Has i d', 'type': 'data', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'result_id', 'class_name': 'Buyer', 'properties': 'Refers to role', 'type': 'object', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'contract_id', 'class_name': 'Buyer', 'properties': 'Played by organisation', 'type': 'object', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'party_nif', 'class_name': 'Buyer', 'properties': 'Has identifier value', 'type': 'data', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'party_name', 'class_name': 'Buyer', 'properties': 'name', 'type': 'data', 'new_property': True}

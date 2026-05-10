@@ -1,0 +1,9 @@
+{'table_name': 'routes', 'column_name': 'unique route identifier', 'class_name': 'Route', 'properties': 'ID', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'transportation agency identifier', 'class_name': 'Route', 'properties': 'agency', 'type': 'object', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'short name of the route', 'class_name': 'Route', 'properties': 'Short name', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'full name of the route', 'class_name': 'Route', 'properties': 'Long name', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'description of the route', 'class_name': 'Route', 'properties': 'RouteDesc', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'type of transportation route', 'class_name': 'Route', 'properties': 'Route type', 'type': 'object', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'uniform resource locator for the route', 'class_name': 'Route', 'properties': 'URL', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'color associated with the route', 'class_name': 'Route', 'properties': 'Color', 'type': 'data', 'new_property': False}
+{'table_name': 'routes', 'column_name': 'text color used for the route', 'class_name': 'Route', 'properties': 'Text color', 'type': 'data', 'new_property': False}

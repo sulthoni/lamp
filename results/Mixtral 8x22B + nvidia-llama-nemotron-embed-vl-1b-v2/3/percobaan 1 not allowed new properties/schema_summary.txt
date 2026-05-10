@@ -1,0 +1,177 @@
+{
+  "tables": {
+    "Budget Amounts": [
+      "budget_id (FK -> Classifications)",
+      "contract_id (FK -> Contracts)",
+      "estimated_overall_amount",
+      "total_amount",
+      "tax_exclusive_amount",
+      "currency"
+    ],
+    "Classifications": [
+      "classification_id",
+      "contract_id (FK -> Contracts)",
+      "classification_code",
+      "classification_system"
+    ],
+    "Contracting Party": [
+      "party_id (FK -> Parent Organizations)",
+      "contract_id (FK -> Contracts)",
+      "party_type_code",
+      "name",
+      "website",
+      "city",
+      "postal_code",
+      "address_line",
+      "country_code",
+      "country_name",
+      "telephone",
+      "telefax",
+      "email"
+    ],
+    "Contracts": [
+      "contract_id (FK -> Valid Notices)",
+      "entry_id (FK -> Valid Notices)",
+      "link",
+      "title",
+      "status_code (FK -> Classifications)",
+      "updated",
+      "contract_type_code (FK -> Classifications)",
+      "contract_subtype_code (FK -> Classifications)",
+      "duration_years",
+      "procedure_code (FK -> Classifications)",
+      "urgency_code (FK -> Classifications)",
+      "contracting_system_code (FK -> Contracting Party)",
+      "submission_method_code (FK -> Classifications)",
+      "legislation (FK -> Parent Organizations)",
+      "language (FK -> Classifications)"
+    ],
+    "Locations": [
+      "location_id",
+      "contract_id (FK -> Contracts)",
+      "country_subentity",
+      "country_subentity_code",
+      "country_code",
+      "country_name"
+    ],
+    "Parent Organizations": [
+      "parent_id (FK -> Parent Organizations)",
+      "party_id (FK -> Classifications)",
+      "contract_id (FK -> Contracts)",
+      "level",
+      "name"
+    ],
+    "Tender Results": [
+      "result_id",
+      "contract_id (FK -> Contracts)",
+      "result_code",
+      "description",
+      "award_date",
+      "received_tender_quantity",
+      "contract_issue_id (FK -> Contracts)",
+      "contract_issue_date",
+      "awarded_tax_exclusive",
+      "awarded_payable_amount",
+      "currency (FK -> Classifications)"
+    ],
+    "Valid Notices": [
+      "notice_id (FK -> Contracts)",
+      "contract_id (FK -> Contracts)",
+      "notice_type_code (FK -> Classifications)",
+      "publication_media",
+      "issue_date",
+      "document_type_code (FK -> Classifications)",
+      "document_type_name",
+      "document_uri",
+      "file_name"
+    ],
+    "Winning Party": [
+      "winning_party_id (FK -> Tender Results)",
+      "result_id (FK -> Tender Results)",
+      "contract_id (FK -> Contracts)",
+      "party_nif",
+      "party_name"
+    ]
+  },
+  "ontology": {
+    "Agent": [
+      "Has i d -> Identifier",
+      "Played by -> Agent"
+    ],
+    "Organization": [
+      "Has i d -> Identifier",
+      "Played by -> Agent",
+      "Played by organisation -> Organization"
+    ],
+    "Agent in role": [
+      "Played by -> Agent"
+    ],
+    "Primary role": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization"
+    ],
+    "Buyer": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization",
+      "Refers to role -> Buyer"
+    ],
+    "Batch": [
+      "Has i d -> Identifier"
+    ],
+    "CatalogueLine": [
+      "Has i d -> Identifier"
+    ],
+    "ConceptScheme": [
+      "Has procedure type -> ConceptScheme"
+    ],
+    "Submission statistical information": [
+      "Has received tenders",
+      "Concerns submissions for lot -> Lot"
+    ],
+    "Lot award outcome": [
+      "Has award decision date",
+      "Describes lot -> Lot"
+    ],
+    "Document": [
+      "Has i d -> Identifier"
+    ],
+    "Notice": [
+      "Has i d -> Identifier"
+    ],
+    "Result notice": [
+      "Has dispatch date",
+      "Has i d -> Identifier",
+      "Refer to procedure -> Procedure",
+      "Refers to role -> Buyer"
+    ],
+    "Fund": [
+      "Has i d -> Identifier"
+    ],
+    "Identifier": [
+      "Has identifier value",
+      "Has i d -> Identifier"
+    ],
+    "InformationConcept": [
+      "Has i d -> Identifier"
+    ],
+    "Procurement object": [
+      "Has i d -> Identifier"
+    ],
+    "Lot": [
+      "Concerns submissions for lot -> Lot",
+      "Describes lot -> Lot",
+      "Has i d -> Identifier",
+      "Has procurement scope divided into lot -> Lot"
+    ],
+    "Procedure": [
+      "Has i d -> Identifier",
+      "Has procedure type -> ConceptScheme",
+      "Has procurement scope divided into lot -> Lot",
+      "Refer to procedure -> Procedure",
+      "Uses technique -> FrameworkAgreementTechniqueUsage"
+    ],
+    "Framework agreement technique usage": [
+      "Uses technique -> FrameworkAgreementTechniqueUsage"
+    ]
+  }
+}

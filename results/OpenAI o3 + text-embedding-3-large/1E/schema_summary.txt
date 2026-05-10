@@ -1,0 +1,34 @@
+{
+  "tables": {
+    "sport": [
+      "sports/ID",
+      "sports/Name"
+    ],
+    "student": [
+      "students/ID",
+      "students/Sport (FK -> sport)",
+      "students/Name"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

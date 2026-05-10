@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: calendar_dates
+  Column Name: date
+  Class: Calendar date rule
+  Properties: Date
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: calendar_dates
+  Column Name: exception_type
+  Class: Calendar date rule
+  Properties: Exception Type
+  Type: object
+  New Property: False
+

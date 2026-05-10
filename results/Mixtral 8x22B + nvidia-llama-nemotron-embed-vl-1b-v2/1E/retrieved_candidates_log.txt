@@ -1,0 +1,32 @@
+
+
+===================== Table Results ====================
+Term: # Table: sport
+**Description**: This table represents sport
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+  Candidate 1: Sport (ID: http://example.org/Sport) | Similarity: 0.4443
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.3052
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.2522
+
+Term: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport designation** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport designation** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+  Candidate 1: Sport (ID: http://example.org/Sport) | Similarity: 0.3831
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.3188
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.2406

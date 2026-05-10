@@ -1,0 +1,100 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix : <http://data.europa.eu/a4g/ontology#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@base <http://data.europa.eu/a4g/ontology#> .
+
+<#LogicalTable_Contracts_Document>
+  rml:logicalSource [ rml:source "Contracts.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Document/Contracts/{contract_id}" ;
+    rr:class <http://example.com/Document/contract_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{contract_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] .
+
+
+<#LogicalTable_Parent Organizations_Organization>
+  rml:logicalSource [ rml:source "Parent Organizations.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Organization/Parent Organizations/{parent_id}" ;
+    rr:class <http://example.com/Organization/parent_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{parent_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] .
+
+
+<#LogicalTable_Tender Results_Submission_statistical_information>
+  rml:logicalSource [ rml:source "Tender Results.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Submission_statistical_information/Tender Results/{result_id}" ;
+    rr:class <http://example.com/Submission statistical information/result_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has received tenders ;
+    rr:objectMap [
+      rml:reference "received_tender_quantity" ;
+      rr:datatype xsd:integer
+    ]  ] .
+
+
+<#LogicalTable_Valid Notices_Result_notice>
+  rml:logicalSource [ rml:source "Valid Notices.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Result_notice/Valid Notices/{notice_id}" ;
+    rr:class <http://example.com/Result notice/notice_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{notice_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Refer to procedure ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Procedure/{contract_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Procedure>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has dispatch date ;
+    rr:objectMap [
+      rml:reference "issue_date" ;
+      rr:datatype xsd:dateTime
+    ]  ] .

@@ -1,0 +1,16 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of students participating in sports
+**Original Name**: student_sport
+**Description**: This table represents list of students participating in sports
+**Column Count**: 2
+## Columns
+- **student name** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport name** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+  Candidate 1: Sport (ID: http://example.org/Sport) | Similarity: 0.3493
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.2215
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.1176

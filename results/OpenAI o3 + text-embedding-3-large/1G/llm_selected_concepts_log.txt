@@ -1,0 +1,38 @@
+Term: # Table: resident records
+**Original Name**: lives
+**Description**: This table represents resident records
+**Column Count**: 3
+## Columns
+- **first name** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.7000
+  Reason 1: Global reasoning: In the ontology a Person “lives” in a City (object property Person.lives→City).  The current table’s name (“lives”) and column set (firstname, lastname, city) exactly mirrors that semantic pattern: personal identification data plus the city they reside in.
+Data-model signals: The only entity-descriptive columns are first and last name; the ‘city’ column functions as a reference to another concept (City).  Thus the rows most naturally represent individual persons, not cities themselves.
+Column clustering: personal_info = {lives/fname, lives/lname} aligns with Person data properties firstname and lastname; reference_info = {lives/city} aligns with the object property lives→City, making it a related (FK-like) column, not part of the Person’s intrinsic data.
+Global consistency: The other table “persons” is also expected to map to Person.  Having multiple physical tables describing the same logical Person class is acceptable so long as their column semantics are consistent, which they are (both contain firstname/lastname).  Mapping the present table to City would conflict with the ontology, because the table clearly stores person names, not city identifiers.
+Candidate comparison: Person matches two data properties (firstname, lastname) and the ‘lives’ object property; City matches none of the data columns and would treat first/last name columns as unrelated.  Therefore Person is the superior fit.
+Primary key: No explicit PK exists; a composite (fname,lname) is the best surrogate.  Because the output format requires a single column, lives/fname is chosen as the identifier with the caveat that uniqueness relies on the implicit composite key.
+  Class URI 1: http://example.com/Person/lives/fname
+  Columns for Candidate 1: lives/fname, lives/lname
+  Related Columns for Candidate 1: lives/city
+
+Term: # Table: person information
+**Original Name**: persons
+**Description**: This table represents person information
+**Column Count**: 3
+## Columns
+- **first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **monetary amount** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.8000
+  Reason 1: Global context shows another table (lives) that uses the same fname/lname pair to link a person to a city, indicating that the tables together model the Person entity and its relationships. The ontology already contains a Person class with data properties firstname, lastname and owes, which align directly with columns persons/fname, persons/lname and persons/amount (amount ≈ owes). No other ontology class matches these three personal-level attributes. Although the table lacks a dedicated surrogate key, the composite (fname,lname) pair functions as the local identifier; we select persons/fname as the single URI element, noting the limitation. There are no explicit FK columns in this table itself, but fname/lname act as bridge columns used by the ‘lives’ table, maintaining global consistency with the Person → City object property defined in the ontology.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount
+  Related Columns for Candidate 1: persons/fname, persons/lname

@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: result_id
+  Class: Result notice
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: award_date
+  Class: Result notice
+  Properties: Has dispatch date
+  Type: data
+  New Property: False
+

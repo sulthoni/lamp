@@ -1,0 +1,59 @@
+Properties Suggestion Results:
+Total columns processed: 7
+
+Column 1:
+  Table Name: agency
+  Column Name: agency identifier
+  Class: Agency
+  Properties: ID
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: agency
+  Column Name: name of agency
+  Class: Agency
+  Properties: Name
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: agency
+  Column Name: agency website url
+  Class: Agency
+  Properties: URL
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: agency
+  Column Name: agency timezone
+  Class: Agency
+  Properties: Timezone
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: agency
+  Column Name: agency language
+  Class: Agency
+  Properties: Language
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: agency
+  Column Name: agency phone number
+  Class: Agency
+  Properties: PhoneNumber
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: agency
+  Column Name: agency fare information url
+  Class: Agency
+  Properties: fare URL
+  Type: data
+  New Property: False
+

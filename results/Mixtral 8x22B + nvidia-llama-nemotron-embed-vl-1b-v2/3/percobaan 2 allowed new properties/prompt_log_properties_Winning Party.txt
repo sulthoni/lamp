@@ -1,0 +1,530 @@
+################################################################################
+# PROMPT LOG - Property Suggestion - Winning Party
+# Started: 2026-04-22 09:05:07
+# Provider: openrouter
+# Model: mistralai/mixtral-8x22b-instruct
+# Table: Winning Party
+################################################################################
+
+================================================================================
+[2026-04-22 09uman:05:10] PROCESS: PropertySuggestion - Winning Party | Step 1/1
+Provider: openrouter | Model: mistralai/mixtral-8x22b-instruct
+table_name: Winning Party
+column_count: 5
+suggested_classes: ['LotAwardOutcome']
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [global_schema_summary]: {
+  "tables": {
+    "budget allocations": [
+      "budget identifier (FK -> Classifications)",
+      "contract identifier (FK -> Contracts)",
+      "estimated total amount",
+      "total amount",
+      "amount excluding tax",
+      "currency code"
+    ],
+    "list of classification categories": [
+      "unique identifier of the classification",
+      "unique identifier of the associated contract (FK -> Contracts)",
+      "code representing the classification",
+      "system or framework used for... [truncated, total 10930 chars]
+  [table_name]: Winning Party
+  [improved_table_name]: winning parties
+  [columns_text]: 1. Column: winning_party_id (improved: winning party identifier)
+2. Column: result_id (improved: tender result identifier)
+3. Column: contract_id (improved: contract identifier)
+4. Column: party_nif (improved: party tax identification number)
+5. Column: party_name (improved: party name)
+  [term]: # Table: winning parties
+**Original Name**: Winning Party
+**Description**: This table represents winning parties
+**Column Count**: 5
+## Columns
+- **winning party identifier** (original: winning_party_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **tender result identifier** (original: result_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **party tax identification number** (original: part... [truncated, total 1077 chars]
+  [suggested_classes_count]: 1
+  [suggested_classes_from_first_step]: 1. Class: LotAwardOutcome
+  [suggested_classes_iri_from_first_step]: 1. Class IRI: http://example.com/LotAwardOutcome/winning_party_id
+  [suggested_columns_text]: Suggested Columns for Class - LotAwardOutcome:
+1. Column: winning party identifier
+2. Column: tender result identifier
+3. Column: contract identifier
+4. Column: party tax identification number
+5. Column: party name
+
+
+  [data_properties_text]: LotAwardOutcome: No data properties available
+  [object_properties_text]: LotAwardOutcome: No object properties available
+  [related_columns_text]: Related Columns for Class - LotAwardOutcome:
+1. Column: tender result identifier
+2. Column: contract identifier
+
+
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+            ---
+            ### Input Context
+                **Global_Schema_Summary:**
+                {
+  "tables": {
+    "budget allocations": [
+      "budget identifier (FK -> Classifications)",
+      "contract identifier (FK -> Contracts)",
+      "estimated total amount",
+      "total amount",
+      "amount excluding tax",
+      "currency code"
+    ],
+    "list of classification categories": [
+      "unique identifier of the classification",
+      "unique identifier of the associated contract (FK -> Contracts)",
+      "code representing the classification",
+      "system or framework used for classification"
+    ],
+    "contracting parties": [
+      "party identifier (FK -> Parent Organizations)",
+      "contract identifier (FK -> Contracts)",
+      "party type code",
+      "full name",
+      "website URL",
+      "city",
+      "postal code",
+      "address line",
+      "country code",
+      "country name",
+      "telephone number",
+      "telefax number",
+      "email address"
+    ],
+    "contract records": [
+      "contract identifier (FK -> Valid Notices)",
+      "entry identifier (FK -> Valid Notices)",
+      "related link",
+      "contract title",
+      "status code (FK -> Classifications)",
+      "last updated timestamp",
+      "contract type code (FK -> Classifications)",
+      "contract subtype code (FK -> Classifications)",
+      "duration in years",
+      "procurement procedure code (FK -> Classifications)",
+      "urgency code (FK -> Classifications)",
+      "contracting system code (FK -> Contracting Party)",
+      "submission method code (FK -> Classifications)",
+      "legislative reference (FK -> Parent Organizations)",
+      "primary language (FK -> Classifications)"
+    ],
+    "geographic locations": [
+      "unique location identifier",
+      "contract reference identifier (FK -> Contracts)",
+      "subnational geographic entity",
+      "subnational geographic entity code",
+      "country code",
+      "country name"
+    ],
+    "parent organizations": [
+      "parent organization identifier (FK -> Parent Organizations)",
+      "party identifier (FK -> Classifications)",
+      "contract identifier (FK -> Contracts)",
+      "organizational level",
+      "organization name"
+    ],
+    "tender award outcomes": [
+      "tender award identifier",
+      "contract identifier (FK -> Contracts)",
+      "award result code",
+      "detailed description of the award outcome",
+      "date when the award was granted",
+      "quantity of tenders received",
+      "contract issuance identifier (FK -> Contracts)",
+      "date when the contract was issued",
+      "awarded amount excluding tax",
+      "total awarded amount payable",
+      "currency of the awarded amount (FK -> Classifications)"
+    ],
+    "list of valid notices": [
+      "notice identifier (FK -> Contracts)",
+      "contract identifier (FK -> Contracts)",
+      "notice type code (FK -> Classifications)",
+      "publication medium",
+      "issue date",
+      "document type code (FK -> Classifications)",
+      "document type name",
+      "document uniform resource identifier",
+      "file name"
+    ],
+    "winning parties": [
+      "winning party identifier (FK -> Tender Results)",
+      "tender result identifier (FK -> Tender Results)",
+      "contract identifier (FK -> Contracts)",
+      "party tax identification number",
+      "party name"
+    ]
+  },
+  "ontology": {
+    "Agent": [
+      "Has i d -> Identifier",
+      "Played by -> Agent"
+    ],
+    "Organization": [
+      "Has i d -> Identifier",
+      "Played by -> Agent",
+      "Played by organisation -> Organization"
+    ],
+    "Agent in role": [
+      "Played by -> Agent"
+    ],
+    "Primary role": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization"
+    ],
+    "Buyer": [
+      "Played by -> Agent",
+      "Played by organisation -> Organization",
+      "Refers to role -> Buyer"
+    ],
+    "Batch": [
+      "Has i d -> Identifier"
+    ],
+    "CatalogueLine": [
+      "Has i d -> Identifier"
+    ],
+    "ConceptScheme": [
+      "Has procedure type -> ConceptScheme"
+    ],
+    "Submission statistical information": [
+      "Has received tenders",
+      "Concerns submissions for lot -> Lot"
+    ],
+    "Lot award outcome": [
+      "Has award decision date",
+      "Describes lot -> Lot"
+    ],
+    "Document": [
+      "Has i d -> Identifier"
+    ],
+    "Notice": [
+      "Has i d -> Identifier"
+    ],
+    "Result notice": [
+      "Has dispatch date",
+      "Has i d -> Identifier",
+      "Refer to procedure -> Procedure",
+      "Refers to role -> Buyer"
+    ],
+    "Fund": [
+      "Has i d -> Identifier"
+    ],
+    "Identifier": [
+      "Has identifier value",
+      "Has i d -> Identifier"
+    ],
+    "InformationConcept": [
+      "Has i d -> Identifier"
+    ],
+    "Procurement object": [
+      "Has i d -> Identifier"
+    ],
+    "Lot": [
+      "Concerns submissions for lot -> Lot",
+      "Describes lot -> Lot",
+      "Has i d -> Identifier",
+      "Has procurement scope divided into lot -> Lot"
+    ],
+    "Procedure": [
+      "Has i d -> Identifier",
+      "Has procedure type -> ConceptScheme",
+      "Has procurement scope divided into lot -> Lot",
+      "Refer to procedure -> Procedure",
+      "Uses technique -> FrameworkAgreementTechniqueUsage"
+    ],
+    "Framework agreement technique usage": [
+      "Uses technique -> FrameworkAgreementTechniqueUsage"
+    ]
+  },
+  "previous_mappings": [
+    {
+      "Budget Amounts": {
+        "Budget Amounts.budget_id": "Fund.Has i d",
+        "Budget Amounts.contract_id": "Fund.Refers to contract -> Contract",
+        "Budget Amounts.estimated total amount": "Fund.Has estimated amount",
+        "Budget Amounts.total amount": "Fund.Has total amount",
+        "Budget Amounts.amount excluding tax": "Fund.Has tax-exclusive amount",
+        "Budget Amounts.currency code": "Fund.Has currency"
+      }
+    },
+    {
+      "Classifications": {
+        "Classifications.unique identifier of the classification": "Identifier.Has identifier value",
+        "Classifications.code representing the classification": "Identifier.Has identifier value",
+        "Classifications.system or framework used for classification": "Identifier.Has identifier value",
+        "Classifications.unique identifier of the associated contract": "Identifier.Has i d"
+      }
+    },
+    {
+      "Contracting Party": {
+        "Contracting Party.party identifier": "Agent.Has i d",
+        "Contracting Party.party type code": "Agent.partyTypeCode",
+        "Contracting Party.full name": "Organization.name",
+        "Contracting Party.website URL": "Organization.mbox",
+        "Contracting Party.city": "Organization.city",
+        "Contracting Party.postal code": "Organization.postalCode",
+        "Contracting Party.address line": "Organization.address",
+        "Contracting Party.country code": "Organization.countryCode",
+        "Contracting Party.country name": "Organization.countryName",
+        "Contracting Party.telephone number": "Organization.telephone",
+        "Contracting Party.telefax number": "Organization.telefax",
+        "Contracting Party.email address": "Organization.email",
+        "Contracting Party.contract identifier": "Agent.refers to contract -> Contract"
+      }
+    },
+    {
+      "Contracts": {
+        "Contracts.contract_id": "Procedure.Has i d",
+        "Contracts.entry_id": "Procedure.Has i d",
+        "Contracts.link": "Procedure.Has related link",
+        "Contracts.title": "Procedure.Has title",
+        "Contracts.status_code": "Procedure.Has status code",
+        "Contracts.updated": "Procedure.Has last updated timestamp",
+        "Contracts.contract_type_code": "Procedure.Has contract type code",
+        "Contracts.contract_subtype_code": "Procedure.Has contract subtype code",
+        "Contracts.duration_years": "Procedure.Has duration in years",
+        "Contracts.procedure_code": "Procedure.Has procedure type",
+        "Contracts.urgency_code": "Procedure.Has urgency code",
+        "Contracts.contracting_system_code": "Procedure.Has contracting system code",
+        "Contracts.submission_method_code": "Procedure.Has submission method code",
+        "Contracts.legislation": "Procedure.Has legislative reference",
+        "Contracts.language": "Procedure.Has primary language"
+      }
+    },
+    {
+      "Locations": {
+        "Locations.location_id": "Location.hasLocationId",
+        "Locations.contract_id": "Location.refersToContract",
+        "Locations.country_subentity": "Location.hasCountrySubentity",
+        "Locations.country_subentity_code": "Location.hasCountrySubentityCode",
+        "Locations.country_code": "Location.hasCountryCode",
+        "Locations.country_name": "Location.hasCountryName"
+      }
+    },
+    {
+      "Parent Organizations": {
+        "Parent Organizations.parent organization identifier": "Organization.Has i d",
+        "Parent Organizations.party identifier": "Organization.refers to party -> Identifier",
+        "Parent Organizations.contract identifier": "Organization.refers to contract -> Contract",
+        "Parent Organizations.organizational level": "Organization.hasOrganizationalLevel",
+        "Parent Organizations.organization name": "Organization.name"
+      }
+    },
+    {
+      "Tender Results": {
+        "Tender Results.tender award identifier": "LotAwardOutcome.hasAwardOutcomeId",
+        "Tender Results.contract identifier": "LotAwardOutcome.refersToContract",
+        "Tender Results.award result code": "LotAwardOutcome.hasAwardResultCode",
+        "Tender Results.detailed description of the award outcome": "LotAwardOutcome.hasAwardOutcomeDescription",
+        "Tender Results.date when the award was granted": "LotAwardOutcome.hasAwardDecisionDate",
+        "Tender Results.quantity of tenders received": "LotAwardOutcome.hasReceivedTenders",
+        "Tender Results.contract issuance identifier": "LotAwardOutcome.refersToContractIssuance",
+        "Tender Results.date when the contract was issued": "LotAwardOutcome.hasContractIssueDate",
+        "Tender Results.awarded amount excluding tax": "LotAwardOutcome.hasAwardedAmountExcludingTax",
+        "Tender Results.total awarded amount payable": "LotAwardOutcome.hasTotalAwardedAmountPayable",
+        "Tender Results.currency of the awarded amount": "LotAwardOutcome.hasCurrency"
+      }
+    },
+    {
+      "Valid Notices": {
+        "Valid Notices.notice identifier": "Notice.Has i d",
+        "Valid Notices.contract identifier": "Notice.Refers to contract -> Contract",
+        "Valid Notices.notice type code": "Notice.Has notice type code",
+        "Valid Notices.publication medium": "Notice.Has publication medium",
+        "Valid Notices.issue date": "Notice.Has issue date",
+        "Valid Notices.document type code": "Notice.Has document type code",
+        "Valid Notices.document type name": "Notice.Has document type name",
+        "Valid Notices.document uniform resource identifier": "Document.Has i d",
+        "Valid Notices.file name": "Document.Has file name"
+      }
+    }
+  ]
+}
+                **Table:** Winning Party
+                **Improved Table Name:** winning parties
+                **Columns:**
+                1. Column: winning_party_id (improved: winning party identifier)
+2. Column: result_id (improved: tender result identifier)
+3. Column: contract_id (improved: contract identifier)
+4. Column: party_nif (improved: party tax identification number)
+5. Column: party_name (improved: party name)
+                **Additional Context of table:**
+                # Table: winning parties
+**Original Name**: Winning Party
+**Description**: This table represents winning parties
+**Column Count**: 5
+## Columns
+- **winning party identifier** (original: winning_party_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **tender result identifier** (original: result_id) - Type: TINYINT - Examples: 1 (numeric pattern)
+- **contract identifier** (original: contract_id) - Type: VARCHAR(50) - Examples: 942P LOTE 2
+- **party tax identification number** (original: party_nif) - Type: VARCHAR(50) - Examples: A28388023
+- **party name** (original: party_name) - Type: VARCHAR(50) - Examples: SULZER PUMPS WASTEWATER SPAIN S.A. (identifier pattern)
+## Relationships
+- **winning party identifier** references **Tender Results** table
+- **tender result identifier** references **Tender Results** table
+- **contract identifier** references **Contracts** table
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: winning_party_id (all unique), result_id (all unique), contract_id (all unique), party_nif (all unique), party_name (all unique)
+                **Total Classes Suggested for This Table:**
+                1
+                **Suggested Classes:**
+                1. Class: LotAwardOutcome
+                **Suggested Classes IRI:**
+                1. Class IRI: http://example.com/LotAwardOutcome/winning_party_id
+                **Suggested Columns for Each Class (from step 1):**
+                Suggested Columns for Class - LotAwardOutcome:
+1. Column: winning party identifier
+2. Column: tender result identifier
+3. Column: contract identifier
+4. Column: party tax identification number
+5. Column: party name
+
+
+                **Available Data Properties:**
+                LotAwardOutcome: No data properties available
+                **Available Object Properties:**
+                LotAwardOutcome: No object properties available
+                **Related Columns (cross-table relationships):**
+                Related Columns for Class - LotAwardOutcome:
+1. Column: tender result identifier
+2. Column: contract identifier
+
+
+            ---
+            ### 1. Global Context Awareness
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+            Example format:
+            {
+                "tables": {
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                },
+                "ontology": {
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                },
+                "previous_mappings": [{
+                    "author": {
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    },
+                    "book": {
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }]
+                }
+            }
+            ---
+            ### 2. Mapping Principles
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - If no suitable property exists, propose a new one with `new_property = true`.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+            ---
+            ### 3. Mapping Logic Details
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+            ---
+            ### 4. Completeness and Global Validation
+            1. Ensure every column (except PK-only identity columns) has a mapping to either a property or a newly proposed property.
+            2. Compare your mappings against `previous_mapping_summary` to avoid duplication.
+            3. Check total number of mappings equals the `expected_column_count`.
+            4. Validate that:
+            - Each mapping is globally consistent.
+            - Relationships between tables (via FKs) align with ontology object properties.
+            - No conflicting or circular mappings exist.
+            - Cross-class mappings maintain ontology domain-range correctness.
+            If any column cannot be mapped meaningfully, include it in the result with `"mapped": false` and a reason.
+            ---
+            ### 5. Output Format
+            Follow these output formatting rules exactly:
+            The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+```
+            ---
+            ### 6. Final Instructions
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+````.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+mappings=[PropertySuggestion(table_name='winning parties', column_name='winning party identifier', class_name='LotAwardOutcome', properties='hasWinningPartyId', type='data', new_property=True), PropertySuggestion(table_name='winning parties', column_name='tender result identifier', class_name='LotAwardOutcome', properties='refersToTenderResult -> TenderResults', type='object', new_property=True), PropertySuggestion(table_name='winning parties', column_name='contract identifier', class_name='LotAwardOutcome', properties='refersToContract -> Contract', type='object', new_property=False), PropertySuggestion(table_name='winning parties', column_name='party tax identification number', class_name='LotAwardOutcome', properties='hasPartyTaxIdentificationNumber', type='data', new_property=True), PropertySuggestion(table_name='winning parties', column_name='party name', class_name='LotAwardOutcome', properties='hasPartyName', type='data', new_property=True)]
+================================================================================

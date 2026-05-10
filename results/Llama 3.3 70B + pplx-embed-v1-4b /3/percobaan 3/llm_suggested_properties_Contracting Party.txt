@@ -1,0 +1,13 @@
+{'table_name': 'Contracting Party', 'column_name': 'party_id', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'contract_id', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'party_type_code', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'name', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'website', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'city', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'postal_code', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'address_line', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'country_code', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'country_name', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'telephone', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'telefax', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'Contracting Party', 'column_name': 'email', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}

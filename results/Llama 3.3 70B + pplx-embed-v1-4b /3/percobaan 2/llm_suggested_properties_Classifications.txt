@@ -1,0 +1,1 @@
+{'table_name': 'Classifications', 'column_name': 'unique classification identifier', 'class_name': 'Lot', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

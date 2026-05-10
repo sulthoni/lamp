@@ -1,0 +1,32 @@
+Term: # Table: person details
+**Original Name**: lives
+**Description**: This table represents person details
+**Column Count**: 3
+## Columns
+- **first name** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9000
+  Reason 1: The table 'person details' (original name 'lives') has columns for first name (lives/fname) and last name (lives/lname), which semantically align with the data properties 'firstname' and 'lastname' of the Person ontology class. The city column (lives/city) corresponds to the 'lives' object property in Person, which has range City, indicating a relationship. The table's description 'represents person details' strongly supports mapping to Person. Globally, the ontology includes Person with a 'lives' relationship to City, and the database schema has a 'persons' table with similar person attributes, suggesting consistency. No explicit primary key is detected; first name and last name together may form a composite key, but for the class URI, 'lives/fname' is chosen as the identifier column, though it may not be unique, reflecting a limitation in the data.
+  Class URI 1: http://example.com/Person/lives/fname
+  Columns for Candidate 1: lives/fname, lives/lname
+  Related Columns for Candidate 1: lives/city
+
+Term: # Table: list of persons
+**Original Name**: persons
+**Description**: This table represents list of persons
+**Column Count**: 3
+## Columns
+- **first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **monetary amount** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.8500
+  Reason 1: The table 'persons' maps directly to the ontology class Person based on strong semantic and structural alignment. The table's purpose (list of persons) matches the class label. Columns 'persons/fname' and 'persons/lname' align with data properties 'firstname' and 'lastname' of Person, while 'persons/amount' aligns with 'owes' (monetary amount). The global schema shows a related table 'lives' that likely represents the 'lives' object property between Person and City, but the current table lacks explicit foreign keys. No primary key column exists; 'persons/fname' is chosen as the class ID column with the limitation that it is not unique—a composite key with 'persons/lname' would be more appropriate for entity identity. The mapping maintains global consistency as the ontology expects Person entities with these properties.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

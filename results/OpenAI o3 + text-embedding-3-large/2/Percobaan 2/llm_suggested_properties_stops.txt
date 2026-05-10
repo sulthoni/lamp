@@ -1,0 +1,12 @@
+{'table_name': 'stops', 'column_name': 'stops.stop_id', 'class_name': 'Stop', 'properties': 'Stop.ID', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_code', 'class_name': 'Stop', 'properties': 'Stop.Location Code', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_name', 'class_name': 'Stop', 'properties': 'Stop.Name', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_desc', 'class_name': 'Stop', 'properties': 'Stop.RouteDesc', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_lat', 'class_name': 'Stop', 'properties': 'Stop.Latitude', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_lon', 'class_name': 'Stop', 'properties': 'Stop.Longitude', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.zone_id', 'class_name': 'Stop', 'properties': 'Stop.Location Code', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_url', 'class_name': 'Stop', 'properties': 'Stop.URL', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.location_type', 'class_name': 'Stop', 'properties': 'Stop.Location Type', 'type': 'object', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.parent_station', 'class_name': 'Stop', 'properties': 'Stop.Parent Station', 'type': 'object', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.stop_timezone', 'class_name': 'Stop', 'properties': 'Stop.Timezone', 'type': 'data', 'new_property': False}
+{'table_name': 'stops', 'column_name': 'stops.wheelchair_boarding', 'class_name': 'Stop', 'properties': 'Stop.Wheelchair accesible', 'type': 'object', 'new_property': False}

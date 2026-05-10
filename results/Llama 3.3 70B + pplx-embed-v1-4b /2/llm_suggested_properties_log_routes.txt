@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: routes
+  Column Name: unique route identifier
+  Class: Route
+  Properties: ID
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: routes
+  Column Name: transportation agency identifier
+  Class: Route
+  Properties: agency
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: routes
+  Column Name: short name of the route
+  Class: Route
+  Properties: Short name
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: routes
+  Column Name: full name of the route
+  Class: Route
+  Properties: Long name
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: routes
+  Column Name: description of the route
+  Class: Route
+  Properties: RouteDesc
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: routes
+  Column Name: type of transportation route
+  Class: Route
+  Properties: Route type
+  Type: object
+  New Property: False
+
+Column 7:
+  Table Name: routes
+  Column Name: uniform resource locator for the route
+  Class: Route
+  Properties: URL
+  Type: data
+  New Property: False
+
+Column 8:
+  Table Name: routes
+  Column Name: color associated with the route
+  Class: Route
+  Properties: Color
+  Type: data
+  New Property: False
+
+Column 9:
+  Table Name: routes
+  Column Name: text color used for the route
+  Class: Route
+  Properties: Text color
+  Type: data
+  New Property: False
+

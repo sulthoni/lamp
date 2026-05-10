@@ -1,0 +1,91 @@
+Properties Suggestion Results:
+Total columns processed: 11
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: result_id
+  Class: ResultNotice
+  Properties: Has i d -> Identifier
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: contract_id
+  Class: ResultNotice
+  Properties: Refer to procedure -> Procedure
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: result_code
+  Class: ResultNotice
+  Properties: status
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Tender Results
+  Column Name: description
+  Class: ResultNotice
+  Properties: description
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Tender Results
+  Column Name: award_date
+  Class: Lot award outcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: Tender Results
+  Column Name: received_tender_quantity
+  Class: Submission statistical information
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: Tender Results
+  Column Name: contract_issue_id
+  Class: ResultNotice
+  Properties: Refer to contract issuance -> Procedure
+  Type: object
+  New Property: True
+
+Column 8:
+  Table Name: Tender Results
+  Column Name: contract_issue_date
+  Class: ResultNotice
+  Properties: contract_issue_date
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Tender Results
+  Column Name: awarded_tax_exclusive
+  Class: ResultNotice
+  Properties: awarded_amount
+  Type: data
+  New Property: True
+
+Column 10:
+  Table Name: Tender Results
+  Column Name: awarded_payable_amount
+  Class: ResultNotice
+  Properties: payable_amount
+  Type: data
+  New Property: True
+
+Column 11:
+  Table Name: Tender Results
+  Column Name: currency
+  Class: ResultNotice
+  Properties: currency
+  Type: data
+  New Property: True
+

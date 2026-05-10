@@ -1,0 +1,16 @@
+
+
+===================== Table Results ====================
+Term: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 2
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/ID (all unique), students/Name (all unique)
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.3146
+  Candidate 2: Sport (ID: http://example.org/Sport) | Similarity: 0.2597
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.2478

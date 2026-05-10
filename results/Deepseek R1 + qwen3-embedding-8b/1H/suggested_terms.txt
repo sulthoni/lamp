@@ -1,0 +1,4 @@
+{'table_name': 'city_en', 'column_name': 'cities/ID', 'improved_table_name': 'City data in English language', 'improved_column_name': 'city identifier', 'related_table': 'city_es'}
+{'table_name': 'city_en', 'column_name': 'cities/Name', 'improved_table_name': 'City data in English language', 'improved_column_name': 'city name', 'related_table': None}
+{'table_name': 'city_es', 'column_name': 'cities/ID', 'improved_table_name': 'list of cities in Spanish', 'improved_column_name': 'identifier of the city', 'related_table': 'city_en'}
+{'table_name': 'city_es', 'column_name': 'cities/Name', 'improved_table_name': 'list of cities in Spanish', 'improved_column_name': 'name of the city', 'related_table': None}

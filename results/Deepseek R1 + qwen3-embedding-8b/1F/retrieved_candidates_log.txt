@@ -1,0 +1,47 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.4253
+  Candidate 2: Sport (ID: http://example.org/Sport) | Similarity: 0.3397
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.3049
+
+Term: # Table: student sport associations
+**Original Name**: student_sport
+**Description**: This table represents student sport associations
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.3422
+  Candidate 2: Sport (ID: http://example.org/Sport) | Similarity: 0.2780
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.2316
+
+Term: # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.4593
+  Candidate 2: Sport (ID: http://example.org/Sport) | Similarity: 0.3620
+  Candidate 3: City (ID: http://example.org/City) | Similarity: 0.3341

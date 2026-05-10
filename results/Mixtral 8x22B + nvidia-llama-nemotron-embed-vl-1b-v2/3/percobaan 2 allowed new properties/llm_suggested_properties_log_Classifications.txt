@@ -1,0 +1,35 @@
+Properties Suggestion Results:
+Total columns processed: 4
+
+Column 1:
+  Table Name: Classifications
+  Column Name: unique identifier of the classification
+  Class: Identifier
+  Properties: Has identifier value
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Classifications
+  Column Name: code representing the classification
+  Class: Identifier
+  Properties: Has identifier value
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: Classifications
+  Column Name: system or framework used for classification
+  Class: Identifier
+  Properties: Has identifier value
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: Classifications
+  Column Name: unique identifier of the associated contract
+  Class: Identifier
+  Properties: Has i d
+  Type: object
+  New Property: False
+

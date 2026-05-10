@@ -1,0 +1,26 @@
+Term: # Table: student sport participation
+**Original Name**: student_sport
+**Description**: This table represents student sport participation
+**Column Count**: 2
+## Columns
+- **student identifier** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport name** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.6400
+  Reason 1: The table is a classic many-to-many (join) table connecting a student (human agent) with a sport.  Globally, the ontology already models this relationship with the object property Person‒practises‒>Sport.  Therefore each row instantiates (at minimum) one Person and one Sport and records the practises relationship between them.  
+• PK/FK analysis: both columns together form a composite primary key; each column is also a foreign-key surrogate to its respective entity.  
+• Column clustering:   – identity_person = {students/Student}   – identity_sport = {students/Sport}.  No other attributes exist.  
+• Candidate inspection:   – Candidate “Person” semantically matches the notion of a student; although only a single string identifier is present, that is sufficient to create Person resources and later enrich them from other tables.   – Candidate “Sport” directly matches the second column; its datatype (string) lines up with ontology data property sportname.  
+• Global consistency: choosing Person and Sport preserves the practises object property declared in the ontology; the join table simply materialises that link.  Mapping the table itself to a standalone class would duplicate ontology structure, so we instead expose the two participating classes and keep the bridge columns as ‘related’.
+  Class URI 1: http://example.com/Person/students/Student
+  Columns for Candidate 1: students/Student
+  Related Columns for Candidate 1: students/Sport
+
+  Selected Candidate 2: Sport | Confidence: 0.5500
+  Reason 2: Same justification as above but from the Sport perspective: students/Sport column provides instances of Sport, while the related students/Student column connects back to the Person who practises it.  The mapping is consistent with the ontology’s Sport class and its role as the range of the practises property.
+  Class URI 2: http://example.com/Sport/students/Sport
+  Columns for Candidate 2: students/Sport
+  Related Columns for Candidate 2: students/Student

@@ -1,0 +1,153 @@
+################################################################################
+# PROMPT LOG - LLM Concept Selection
+# Started: 2026-04-22 23:41:36
+# Provider: openrouter
+# Model: deepseek/deepseek-r1
+# Total Candidates: 0
+################################################################################
+
+================================================================================
+[2026-04-22 23uman:43:27] PROCESS: ConceptSelection - Table | Step 1/1
+Provider: openrouter | Model: deepseek/deepseek-r1
+term: # Table: student sports enrollment
+**Original Name**: student_sport
+**Description**: This table represents student sports enrollment
+**Column Count**: 2
+## Columns
+- **student name** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport name** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+candidate_count: 3
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [term]: # Table: student sports enrollment
+**Original Name**: student_sport
+**Description**: This table represents student sports enrollment
+**Column Count**: 2
+## Columns
+- **student name** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport name** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+  [candidates_text]: 
+                Candidate 1:
+                - ID: http://example.org/Person
+                - Label: Person
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.4228
+                - Data Properties: [{"dataType": "integer", "name": "id", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "firstname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataTy... [truncated, total 2512 chars]
+  [global_schema_summary]: {'ontology': {'City': ['cityid', 'cityname', 'lives -> City'], 'Person': ['id', 'firstname', 'lastname', 'fullname', 'owes', 'practises -> Sport', 'lives -> City'], 'Sport': ['sportid', 'sportname', 'practises -> Sport']}, 'tables': {'student_sport': ['students/Student', 'students/Sport']}}
+  [base_uri]: http://example.com/
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and semantic data integration.
+
+            Goal:
+                Your task is to map a table to one or more ontology classes.
+                You must analyze the source table in the context of the entire database schema and ontology, using both local (table-level) and global (schema-level) reasoning.
+
+            Global Context:
+               You are provided with a global schema summary that includes:
+                - All ontology classes, with their data properties and object properties
+                - All tables in the data source
+
+            Input:
+                Global_Schema_Summary:
+                    {'ontology': {'City': ['cityid', 'cityname', 'lives -> City'], 'Person': ['id', 'firstname', 'lastname', 'fullname', 'owes', 'practises -> Sport', 'lives -> City'], 'Sport': ['sportid', 'sportname', 'practises -> Sport']}, 'tables': {'student_sport': ['students/Student', 'students/Sport']}}
+
+                Table (source):
+                    # Table: student sports enrollment
+**Original Name**: student_sport
+**Description**: This table represents student sports enrollment
+**Column Count**: 2
+## Columns
+- **student name** (original: students/Student) - Type: VARCHAR(50) - Examples: Venus
+- **sport name** (original: students/Sport) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Student (all unique), students/Sport (all unique)
+
+                Candidates:
+                    
+                Candidate 1:
+                - ID: http://example.org/Person
+                - Label: Person
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.4228
+                - Data Properties: [{"dataType": "integer", "name": "id", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "firstname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "string", "name": "lastname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "string", "name": "fullname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "double", "name": "owes", "uriDataType": "http://www.w3.org/2001/XMLSchema#double"}]
+                - Object Properties: [{"domain": "Person", "name": "practises", "range": "Sport", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/Sport"}, {"domain": "Person", "name": "lives", "range": "City", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/City"}]
+                
+
+                Candidate 2:
+                - ID: http://example.org/Sport
+                - Label: Sport
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.3350
+                - Data Properties: [{"dataType": "integer", "name": "sportid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "sportname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}]
+                - Object Properties: [{"domain": "Person", "name": "practises", "range": "Sport", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/Sport"}]
+                
+
+                Candidate 3:
+                - ID: http://example.org/City
+                - Label: City
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.2774
+                - Data Properties: [{"dataType": "integer", "name": "cityid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "langString", "name": "cityname", "uriDataType": "http://www.w3.org/2001/XMLSchema#langString"}]
+                - Object Properties: [{"domain": "Person", "name": "lives", "range": "City", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/City"}]
+                
+
+                Base_URI:
+                    http://example.com/
+
+            Formatting rules:
+                - Return strictly valid JSON that matches  The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for concept selection.", "properties": {"term": {"description": "The original term", "title": "Term", "type": "string"}, "selected_candidates": {"description": "The class names of the selected candidate(s) concept", "items": {"type": "string"}, "title": "Selected Candidates", "type": "array"}, "confidence_scores": {"description": "Confidence score between 0.0 and 1.0", "items": {"type": "number"}, "title": "Confidence Scores", "type": "array"}, "reasons": {"description": "Explanation for the selections", "items": {"type": "string"}, "title": "Reasons", "type": "array"}, "class_uris": {"items": {"type": "string"}, "title": "Class Uris", "type": "array"}, "columns": {"description": "List of column lists, where each inner list contains columns associated with the corresponding selected candidate concept. For example, if there are 2 selected candidates, this should be [[columns_for_candidate_1], [columns_for_candidate_2]]. The index of each column list matches the index of the selected candidate.", "items": {"items": {"type": "string"}, "type": "array"}, "title": "Columns", "type": "array"}, "related_columns": {"description": "List of related column lists, where each inner list contains columns that connect to other concepts for the corresponding selected candidate. For example, if there are 2 selected candidates, this should be [[related_cols_for_candidate_1], [related_cols_for_candidate_2]]. The index of each related column list matches the index of the selected candidate.", "items": {"items": {"type": "string"}, "type": "array"}, "title": "Related Columns", "type": "array"}}, "required": ["term", "selected_candidates", "confidence_scores", "reasons", "columns", "related_columns"]}
+```.
+                - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
+                - Example Output Structure:
+                    If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
+                    {
+                        "selected_candidates": ["Order", "Customer"],
+                        "confidence_scores": [0.85, 0.75],
+                        "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
+                        "columns": [
+                            ["id", "order_date", "amount"],  // Columns for "Order" candidate
+                            ["customer_id", "name"]          // Columns for "Customer" candidate
+                        ],
+                        "related_columns": [
+                            ["customer_id"],  // Related columns for "Order" candidate
+                            []                // Related columns for "Customer" candidate
+                        ]
+                    }
+
+             Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+term='student_sport' selected_candidates=['Person', 'Sport'] confidence_scores=[0.9, 0.9] reasons=["The 'student name' column directly maps to the Person class, representing individuals with properties like name, and the table models sports enrollment via the 'practises' object property from Person to Sport, consistent with the ontology.", "The 'sport name' column directly maps to the Sport class, representing sports activities with properties like sportname, and the table links persons to sports through the 'practises' relationship, aligning with global schema consistency."] class_uris=['http://example.org/Person', 'http://example.org/Sport'] columns=[['student name'], ['sport name']] related_columns=[['sport name'], ['student name']]
+================================================================================

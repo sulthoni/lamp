@@ -1,0 +1,258 @@
+
+
+===================== Table Results ====================
+Term: # Table: transit agencies
+**Original Name**: agency
+**Description**: This table represents transit agencies
+**Column Count**: 7
+## Columns
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM
+- **agency name** (original: agency_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **agency website URL** (original: agency_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **agency timezone** (original: agency_timezone) - Type: VARCHAR(50) - Examples: Europe/Madrid
+- **agency language** (original: agency_lang) - Type: VARCHAR(50) - Examples: es
+- **agency phone number** (original: agency_phone) - Type: TINYINT - Examples: 012 (numeric pattern)
+- **agency fare information URL** (original: agency_fare_url) - Type: VARCHAR(50) - Examples: https://www.crtm.es/billetes-y-tarifas (identifier pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: agency_id (all unique), agency_name (all unique), agency_url (all unique), agency_timezone (all unique), agency_lang (all unique), agency_phone (all unique), agency_fare_url (all unique)
+  Candidate 1: Agency (ID: http://vocab.gtfs.org/terms#Agency) | Similarity: 0.8351
+  Candidate 2: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.7272
+  Candidate 3: Station (ID: http://vocab.gtfs.org/terms#Station) | Similarity: 0.7243
+  Candidate 4: GTFS Feed (ID: http://vocab.gtfs.org/terms#Feed) | Similarity: 0.7131
+  Candidate 5: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.7096
+  Candidate 6: Location (ID: http://vocab.gtfs.org/terms#Location) | Similarity: 0.7042
+  Candidate 7: Boarding Area (ID: http://vocab.gtfs.org/terms#BoardingArea) | Similarity: 0.7007
+
+Term: # Table: service date exceptions
+**Original Name**: calendar_dates
+**Description**: This table represents service date exceptions
+**Column Count**: 3
+## Columns
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **exception date** (original: date) - Type: DATE - Examples: 2017-01-06, 2017-03-20, 2017-04-13 (date pattern)
+- **exception type** (original: exception_type) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **service identifier** references **calendar** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), date (all unique), exception_type (constant)
+**Domain**: temporal data, transportation service, exception handling
+  Candidate 1: Calendar date rule (ID: http://vocab.gtfs.org/terms#CalendarDateRule) | Similarity: 0.7936
+  Candidate 2: Service (ID: http://vocab.gtfs.org/terms#Service) | Similarity: 0.7369
+  Candidate 3: Calendar rule (ID: http://vocab.gtfs.org/terms#CalendarRule) | Similarity: 0.7359
+  Candidate 4: Service rule (ID: http://vocab.gtfs.org/terms#ServiceRule) | Similarity: 0.7126
+  Candidate 5: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.6841
+  Candidate 6: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.6753
+  Candidate 7: Stop time (ID: http://vocab.gtfs.org/terms#StopTime) | Similarity: 0.6750
+
+Term: # Table: service availability schedule
+**Original Name**: calendar
+**Description**: This table represents service availability schedule
+**Column Count**: 10
+## Columns
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I13, 4_I14 (identifier pattern)
+- **service active on monday** (original: monday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **service active on tuesday** (original: tuesday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **service active on wednesday** (original: wednesday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **service active on thursday** (original: thursday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **service active on friday** (original: friday) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **service active on saturday** (original: saturday) - Type: TINYINT - Examples: 1, 0, 0 (numeric pattern)
+- **service active on sunday** (original: sunday) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **service validity start date** (original: start_date) - Type: DATE - Examples: 2017-06-29, 2017-06-29, 2017-06-29 (date pattern)
+- **service validity end date** (original: end_date) - Type: DATE - Examples: 2018-06-29, 2018-06-29, 2018-06-29 (date pattern)
+## Relationships
+- **service identifier** references **calendar_dates** table
+## Data Characteristics
+**Sample Size**: 5 rows
+**Uniqueness**: service_id (all unique), start_date (constant), end_date (constant)
+**Domain**: temporal data, transportation service
+  Candidate 1: Calendar rule (ID: http://vocab.gtfs.org/terms#CalendarRule) | Similarity: 0.7934
+  Candidate 2: Service (ID: http://vocab.gtfs.org/terms#Service) | Similarity: 0.7738
+  Candidate 3: Calendar date rule (ID: http://vocab.gtfs.org/terms#CalendarDateRule) | Similarity: 0.7156
+  Candidate 4: Service rule (ID: http://vocab.gtfs.org/terms#ServiceRule) | Similarity: 0.7136
+  Candidate 5: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.6991
+  Candidate 6: Frequency (ID: http://vocab.gtfs.org/terms#Frequency) | Similarity: 0.6888
+  Candidate 7: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.6879
+
+Term: # Table: feed information
+**Original Name**: feed_info
+**Description**: This table represents feed information
+**Column Count**: 6
+## Columns
+- **name of the feed publisher** (original: feed_publisher_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **URL of the feed publisher** (original: feed_publisher_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **language of the feed** (original: feed_lang) - Type: VARCHAR(50) - Examples: es
+- **start date of the feed** (original: feed_start_date) - Type: VARCHAR(255)
+- **end date of the feed** (original: feed_end_date) - Type: VARCHAR(255)
+- **version of the feed** (original: feed_version) - Type: INT - Examples: 20170629 (numeric pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: feed_publisher_name (all unique), feed_publisher_url (all unique), feed_lang (all unique), feed_version (all unique)
+  Candidate 1: GTFS Feed (ID: http://vocab.gtfs.org/terms#Feed) | Similarity: 0.7995
+  Candidate 2: Agency (ID: http://vocab.gtfs.org/terms#Agency) | Similarity: 0.7084
+  Candidate 3: Station (ID: http://vocab.gtfs.org/terms#Station) | Similarity: 0.7011
+  Candidate 4: Station Entrance (ID: http://vocab.gtfs.org/terms#StationEntrance) | Similarity: 0.6948
+  Candidate 5: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.6947
+  Candidate 6: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.6930
+  Candidate 7: Calendar rule (ID: http://vocab.gtfs.org/terms#CalendarRule) | Similarity: 0.6907
+
+Term: # Table: service frequencies
+**Original Name**: frequencies
+**Description**: This table represents service frequencies
+**Column Count**: 5
+## Columns
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___ (identifier pattern)
+- **start time** (original: start_time) - Type: VARCHAR(50) - Examples: 00:00:00, 01:00:00, 06:05:00
+- **end time** (original: end_time) - Type: VARCHAR(50) - Examples: 01:00:00, 02:00:00, 07:00:00
+- **headway in seconds** (original: headway_secs) - Type: SMALLINT - Examples: 600, 900, 540 (numeric pattern)
+- **exact times indicator** (original: exact_times) - Type: VARCHAR(255)
+## Relationships
+- **trip identifier** references **trips** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Domain**: transportation service
+  Candidate 1: Frequency (ID: http://vocab.gtfs.org/terms#Frequency) | Similarity: 0.8011
+  Candidate 2: Stop time (ID: http://vocab.gtfs.org/terms#StopTime) | Similarity: 0.7302
+  Candidate 3: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.7292
+  Candidate 4: Service (ID: http://vocab.gtfs.org/terms#Service) | Similarity: 0.7292
+  Candidate 5: Calendar rule (ID: http://vocab.gtfs.org/terms#CalendarRule) | Similarity: 0.7118
+  Candidate 6: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.7062
+  Candidate 7: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.6979
+
+Term: # Table: transit routes
+**Original Name**: routes
+**Description**: This table represents transit routes
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__10___, 4__11___ (identifier pattern)
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM, CRTM, CRTM
+- **route short name** (original: route_short_name) - Type: TINYINT - Examples: 1, 10, 11 (numeric pattern)
+- **route long name** (original: route_long_name) - Type: VARCHAR(50) - Examples: Pinar de Chamartín-Valdecarros, Hospital del Norte-Puerta del Sur, Plaza Elíptica-La Fortuna (identifier pattern)
+- **route description** (original: route_desc) - Type: VARCHAR(255)
+- **route type** (original: route_type) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+- **route uniform resource locator** (original: route_url) - Type: VARCHAR(255) - Examples: http://www.crtm.es/tu-transporte-publico/metro/lineas/4__1___.aspx, http://www.crtm.es/tu-transporte-publico/metro/lineas/4__10___.aspx, http://www.crtm.es/tu-transporte-publico/metro/lineas/4__11___.aspx (identifier pattern)
+- **route display color** (original: route_color) - Type: VARCHAR(50) - Examples: 2DBEF0, 005AA9, 009B3A
+- **route text color** (original: route_text_color) - Type: VARCHAR(50) - Examples: FFFFFF, FFFFFF, FFFFFF
+## Relationships
+- **agency identifier** references **agency** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: route_id (all unique), agency_id (constant), route_short_name (all unique), route_long_name (all unique), route_type (constant), route_url (all unique), route_color (all unique)
+**Domain**: transportation service
+  Candidate 1: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.8181
+  Candidate 2: Agency (ID: http://vocab.gtfs.org/terms#Agency) | Similarity: 0.7479
+  Candidate 3: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.7206
+  Candidate 4: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.7169
+  Candidate 5: Station (ID: http://vocab.gtfs.org/terms#Station) | Similarity: 0.7149
+  Candidate 6: Location (ID: http://vocab.gtfs.org/terms#Location) | Similarity: 0.7118
+  Candidate 7: Station Entrance (ID: http://vocab.gtfs.org/terms#StationEntrance) | Similarity: 0.7023
+
+Term: # Table: transit route shapes
+**Original Name**: shapes
+**Description**: This table represents transit route shapes
+**Column Count**: 5
+## Columns
+- **shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____1__IT_1, 4__1____1__IT_1 (identifier pattern)
+- **shape point latitude** (original: shape_pt_lat) - Type: DECIMAL(10,2) - Examples: 40.4802624278576, 40.4803769678597, 40.4804232925184
+- **shape point longitude** (original: shape_pt_lon) - Type: DECIMAL(10,2) - Examples: -3.66723744236574, -3.66777650933287, -3.66820786216953
+- **shape point sequence** (original: shape_pt_sequence) - Type: INT - Examples: 1000001, 1000002, 1000003 (numeric pattern)
+- **distance traveled along shape** (original: shape_dist_traveled) - Type: DECIMAL(10,2) - Examples: 0.0, 0.047428346568, 0.131778797501
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: shape_id (constant), shape_pt_sequence (all unique)
+**Domain**: transportation service
+  Candidate 1: Shape Point (ID: http://vocab.gtfs.org/terms#ShapePoint) | Similarity: 0.7971
+  Candidate 2: Shape (ID: http://vocab.gtfs.org/terms#Shape) | Similarity: 0.7609
+  Candidate 3: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.7405
+  Candidate 4: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.7352
+  Candidate 5: Stop time (ID: http://vocab.gtfs.org/terms#StopTime) | Similarity: 0.7310
+  Candidate 6: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.7211
+  Candidate 7: Location (ID: http://vocab.gtfs.org/terms#Location) | Similarity: 0.7154
+
+Term: # Table: scheduled stop times for trips
+**Original Name**: stop_times
+**Description**: This table represents scheduled stop times for trips
+**Column Count**: 9
+## Columns
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___ (identifier pattern)
+- **scheduled arrival time** (original: arrival_time) - Type: VARCHAR(50) - Examples: 00:08:19, 00:22:04, 00:23:53
+- **scheduled departure time** (original: departure_time) - Type: VARCHAR(50) - Examples: 00:08:19, 00:22:04, 00:23:53
+- **stop identifier** (original: stop_id) - Type: VARCHAR(50) - Examples: par_4_1, par_4_10, par_4_11 (identifier pattern)
+- **sequence of stop in trip** (original: stop_sequence) - Type: DECIMAL(10,2) - Examples: 3.0, 12.0, 13.0
+- **stop-specific headsign** (original: stop_headsign) - Type: VARCHAR(255)
+- **passenger pickup type** (original: pickup_type) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **passenger drop-off type** (original: drop_off_type) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **distance traveled along shape** (original: shape_dist_traveled) - Type: VARCHAR(255)
+## Relationships
+- **trip identifier** references **trips** table
+- **stop identifier** references **stops** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: trip_id (constant), arrival_time (all unique), departure_time (all unique), stop_id (all unique), stop_sequence (all unique), pickup_type (constant), drop_off_type (constant)
+**Domain**: temporal data, transportation service
+  Candidate 1: Stop time (ID: http://vocab.gtfs.org/terms#StopTime) | Similarity: 0.8452
+  Candidate 2: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.7579
+  Candidate 3: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.7465
+  Candidate 4: Frequency (ID: http://vocab.gtfs.org/terms#Frequency) | Similarity: 0.7418
+  Candidate 5: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.7241
+  Candidate 6: Shape Point (ID: http://vocab.gtfs.org/terms#ShapePoint) | Similarity: 0.7142
+  Candidate 7: Station Entrance (ID: http://vocab.gtfs.org/terms#StationEntrance) | Similarity: 0.7095
+
+Term: # Table: list of transit stops
+**Original Name**: stops
+**Description**: This table represents list of transit stops
+**Column Count**: 12
+## Columns
+- **stop identifier** (original: stop_id) - Type: VARCHAR(50) - Examples: acc_4_1_1, acc_4_1_1040, acc_4_1_1043 (identifier pattern)
+- **stop code** (original: stop_code) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+- **stop name** (original: stop_name) - Type: VARCHAR(50) - Examples: Plaza de Castilla, Ascensor, Intercambiador Superficie (identifier pattern)
+- **stop description** (original: stop_desc) - Type: VARCHAR(50) - Examples: Paseo de la Castellana 189, Plaza de Castilla 9, Paseo de la Castellana 191 B (identifier pattern)
+- **stop latitude** (original: stop_lat) - Type: DECIMAL(10,2) - Examples: 40.46682, 40.46555, 40.46728
+- **stop longitude** (original: stop_lon) - Type: DECIMAL(10,2) - Examples: -3.68918, -3.68877, -3.68915
+- **zone identifier** (original: zone_id) - Type: VARCHAR(255)
+- **stop URL** (original: stop_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es, http://www.crtm.es, http://www.crtm.es
+- **location type** (original: location_type) - Type: TINYINT - Examples: 2, 2, 2 (numeric pattern)
+- **parent station identifier** (original: parent_station) - Type: VARCHAR(50) - Examples: est_90_21, est_90_21, est_90_21 (identifier pattern)
+- **stop timezone** (original: stop_timezone) - Type: VARCHAR(255)
+- **wheelchair boarding availability** (original: wheelchair_boarding) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: stop_id (all unique), stop_lat (all unique), stop_url (constant), location_type (constant), wheelchair_boarding (constant)
+  Candidate 1: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.8330
+  Candidate 2: Station (ID: http://vocab.gtfs.org/terms#Station) | Similarity: 0.7739
+  Candidate 3: Location (ID: http://vocab.gtfs.org/terms#Location) | Similarity: 0.7597
+  Candidate 4: Station Entrance (ID: http://vocab.gtfs.org/terms#StationEntrance) | Similarity: 0.7537
+  Candidate 5: Boarding Area (ID: http://vocab.gtfs.org/terms#BoardingArea) | Similarity: 0.7502
+  Candidate 6: Generic Node (ID: http://vocab.gtfs.org/terms#GenericNode) | Similarity: 0.7379
+  Candidate 7: Stop time (ID: http://vocab.gtfs.org/terms#StopTime) | Similarity: 0.7355
+
+Term: # Table: transit trips
+**Original Name**: trips
+**Description**: This table represents transit trips
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__1___, 4__2___ (identifier pattern)
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_2_1_4__1___, 4_I12-002_2016I12_1_1_4__2___ (identifier pattern)
+- **trip headsign text** (original: trip_headsign) - Type: VARCHAR(50) - Examples: VALDECARROS, PINAR DE CHAMARTIN, CUATRO CAMINOS
+- **trip short name** (original: trip_short_name) - Type: VARCHAR(50) - Examples: PINAR DE CHAMARTIN-VALDECARROS, VALDECARROS-PINAR DE CHAMARTIN, LA ELIPA-CUATRO CAMINOS (identifier pattern)
+- **direction identifier** (original: direction_id) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **block identifier** (original: block_id) - Type: VARCHAR(255)
+- **shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____2__IT_1, 4__2____1__IT_1 (identifier pattern)
+- **wheelchair accessibility status** (original: wheelchair_accessible) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **route identifier** references **routes** table
+- **service identifier** references **calendar** table
+- **shape identifier** references **shapes** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), trip_id (all unique), trip_short_name (all unique), shape_id (all unique), wheelchair_accessible (constant)
+**Domain**: transportation service
+  Candidate 1: Trip (ID: http://vocab.gtfs.org/terms#Trip) | Similarity: 0.8278
+  Candidate 2: Route (ID: http://vocab.gtfs.org/terms#Route) | Similarity: 0.7491
+  Candidate 3: Stop time (ID: http://vocab.gtfs.org/terms#StopTime) | Similarity: 0.7447
+  Candidate 4: Stop (ID: http://vocab.gtfs.org/terms#Stop) | Similarity: 0.7392
+  Candidate 5: Service (ID: http://vocab.gtfs.org/terms#Service) | Similarity: 0.7331
+  Candidate 6: Station Entrance (ID: http://vocab.gtfs.org/terms#StationEntrance) | Similarity: 0.7245
+  Candidate 7: Station (ID: http://vocab.gtfs.org/terms#Station) | Similarity: 0.7233

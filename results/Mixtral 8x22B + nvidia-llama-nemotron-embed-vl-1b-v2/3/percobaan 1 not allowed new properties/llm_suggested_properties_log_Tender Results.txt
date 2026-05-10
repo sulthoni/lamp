@@ -1,0 +1,91 @@
+Properties Suggestion Results:
+Total columns processed: 11
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: result_id
+  Class: LotAwardOutcome
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: contract_id
+  Class: LotAwardOutcome
+  Properties: Describes lot -> Lot
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: result_code
+  Class: LotAwardOutcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: Tender Results
+  Column Name: description
+  Class: LotAwardOutcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: Tender Results
+  Column Name: award_date
+  Class: LotAwardOutcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: Tender Results
+  Column Name: received_tender_quantity
+  Class: LotAwardOutcome
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: Tender Results
+  Column Name: contract_issue_id
+  Class: LotAwardOutcome
+  Properties: Describes lot -> Lot
+  Type: object
+  New Property: False
+
+Column 8:
+  Table Name: Tender Results
+  Column Name: contract_issue_date
+  Class: LotAwardOutcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+
+Column 9:
+  Table Name: Tender Results
+  Column Name: awarded_tax_exclusive
+  Class: LotAwardOutcome
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+
+Column 10:
+  Table Name: Tender Results
+  Column Name: awarded_payable_amount
+  Class: LotAwardOutcome
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+
+Column 11:
+  Table Name: Tender Results
+  Column Name: currency
+  Class: LotAwardOutcome
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+

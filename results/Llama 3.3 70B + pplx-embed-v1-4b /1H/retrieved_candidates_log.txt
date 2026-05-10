@@ -1,0 +1,30 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of city names in English
+**Original Name**: city_en
+**Description**: This table represents list of city names in english
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: London, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+  Candidate 1: City (ID: http://example.org/City) | Similarity: 0.4237
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.1996
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.0971
+
+Term: # Table: list of cities in Spanish
+**Original Name**: city_es
+**Description**: This table represents list of cities in spanish
+**Column Count**: 2
+## Columns
+- **city identifier** (original: cities/ID) - Type: TINYINT - Examples: 1, 2 (numeric pattern)
+- **city name** (original: cities/Name) - Type: VARCHAR(50) - Examples: Londres, Madrid
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: cities/ID (all unique), cities/Name (all unique)
+  Candidate 1: City (ID: http://example.org/City) | Similarity: 0.4360
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.2446
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.1288

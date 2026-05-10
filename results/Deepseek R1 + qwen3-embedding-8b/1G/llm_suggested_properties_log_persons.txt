@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: persons
+  Column Name: persons/fname
+  Class: Person
+  Properties: firstname
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: persons
+  Column Name: persons/lname
+  Class: Person
+  Properties: lastname
+  Type: data
+  New Property: False
+

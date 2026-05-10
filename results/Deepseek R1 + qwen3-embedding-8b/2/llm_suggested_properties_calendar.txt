@@ -1,0 +1,2 @@
+{'table_name': 'calendar', 'column_name': 'start_date', 'class_name': 'Calendar rule', 'properties': 'StartDate', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar', 'column_name': 'end_date', 'class_name': 'Calendar rule', 'properties': 'EndDate', 'type': 'data', 'new_property': False}

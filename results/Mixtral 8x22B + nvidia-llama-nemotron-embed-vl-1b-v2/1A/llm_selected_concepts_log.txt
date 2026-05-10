@@ -1,0 +1,13 @@
+Term: # Table: student
+**Description**: This table represents student
+**Column Count**: 1
+## Columns
+- **full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.8500
+  Reason 1: The table 'student' with a single column 'full name' semantically aligns best with the 'Person' ontology class, which includes a 'fullname' data property. The similarity score (0.2866) is the highest among candidates, though low, but semantic alignment is stronger. The 'Person' class also includes 'firstname' and 'lastname' properties, which could correspond to parts of 'full name' in the table. The global schema shows 'Person' as a central class with relationships to 'City' and 'Sport', which is consistent with a student entity that would logically have these relationships. The table's description ('represents student') further supports this mapping, as a student is a type of person. No foreign keys or relationships are present in the table, so it maps directly to a single class without needing bridge columns.
+  Class URI 1: http://example.com/Person/full name
+  Columns for Candidate 1: full name

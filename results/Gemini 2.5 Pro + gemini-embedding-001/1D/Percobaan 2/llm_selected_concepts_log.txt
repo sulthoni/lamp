@@ -1,0 +1,15 @@
+Term: # Table: list of I owe yous
+**Original Name**: ious
+**Description**: This table represents list of i owe yous
+**Column Count**: 3
+## Columns
+- **person's first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **person's last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount owed** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The table 'ious' (I owe yous) contains columns for a person's first name ('persons/fname'), last name ('persons/lname'), and an amount owed ('persons/amount'). These columns directly and completely map to the data properties 'firstname', 'lastname', and 'owes' of the 'Person' class. The table's name and description further confirm that it represents persons and their debts, which is a core aspect of the 'Person' class in the provided ontology.
+  Class URI 1: http://example.org/Person
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

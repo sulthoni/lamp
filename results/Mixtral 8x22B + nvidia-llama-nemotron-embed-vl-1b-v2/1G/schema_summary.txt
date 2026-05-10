@@ -1,0 +1,35 @@
+{
+  "tables": {
+    "lives": [
+      "lives/fname (VARCHAR(50))",
+      "lives/lname (VARCHAR(50))",
+      "lives/city (VARCHAR(50))"
+    ],
+    "persons": [
+      "persons/fname (VARCHAR(50))",
+      "persons/lname (VARCHAR(50))",
+      "persons/amount (TINYINT)"
+    ]
+  },
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  }
+}

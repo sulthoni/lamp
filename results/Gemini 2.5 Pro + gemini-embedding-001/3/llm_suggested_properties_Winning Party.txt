@@ -1,0 +1,1 @@
+{'table_name': 'Winning Party', 'column_name': 'contract_id', 'class_name': 'Lot award outcome', 'properties': 'Describes lot', 'type': 'object', 'new_property': False}

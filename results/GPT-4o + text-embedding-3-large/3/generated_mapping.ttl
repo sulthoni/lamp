@@ -1,0 +1,278 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix : <http://data.europa.eu/a4g/ontology#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@base <http://data.europa.eu/a4g/ontology#> .
+
+<#LogicalTable_Budget Amounts_Fund>
+  rml:logicalSource [ rml:source "Budget Amounts.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Fund/Budget Amounts/{budget_id}" ;
+    rr:class <http://example.com/Fund/budget_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{budget_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] .
+
+
+<#LogicalTable_Classifications_Procedure>
+  rml:logicalSource [ rml:source "Classifications.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Procedure/Classifications/{classification_id}" ;
+    rr:class <http://example.com/Procedure/classification_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{classification_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has procedure type ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#ConceptScheme/{classification_code}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#ConceptScheme>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has procedure type ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#ConceptScheme/{classification_system}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#ConceptScheme>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Refer to procedure ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Procedure/{contract_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Procedure>
+    ]
+  ] .
+
+
+<#LogicalTable_Contracting Party_Organization>
+  rml:logicalSource [ rml:source "Contracting Party.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Organization/Contracting Party/{party_id}" ;
+    rr:class <http://example.com/Organization/party_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{party_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] .
+
+
+<#LogicalTable_Contracts_Procedure>
+  rml:logicalSource [ rml:source "Contracts.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Procedure/Contracts/{contract_id}" ;
+    rr:class <http://example.com/Procedure/contract_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{contract_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has procedure type ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#ConceptScheme/{procedure_code}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#ConceptScheme>
+    ]
+  ] .
+
+
+<#LogicalTable_Locations_Lot>
+  rml:logicalSource [ rml:source "Locations.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Lot/Locations/{location_id}" ;
+    rr:class <http://example.com/Lot/location_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Lot.Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#None/{location_id}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Lot.Describes lot ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#None/{contract_id}" ;
+    ]
+  ] .
+
+
+<#LogicalTable_Parent Organizations_Organization>
+  rml:logicalSource [ rml:source "Parent Organizations.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Organization/Parent Organizations/{parent_id}" ;
+    rr:class <http://example.com/Organization/parent_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{parent_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Played by organisation ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Organization/{party_id}" ;
+      rr:class <http://www.w3.org/ns/org#Organization>
+    ]
+  ] .
+
+
+<#LogicalTable_Tender Results_Result_notice>
+  rml:logicalSource [ rml:source "Tender Results.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Result_notice/Tender Results/{result_id}" ;
+    rr:class <http://example.com/ResultNotice/result_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{result_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Refers to role ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Buyer/{result_code}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Buyer>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Refer to procedure ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Procedure/{contract_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Procedure>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Refer to procedure ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Procedure/{contract_issue_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Procedure>
+    ]
+  ] .
+
+
+<#LogicalTable_Valid Notices_Notice>
+  rml:logicalSource [ rml:source "Valid Notices.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Notice/Valid Notices/{notice_id}" ;
+    rr:class <http://example.com/Notice/notice_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has i d ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Identifier/{notice_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Identifier>
+    ]
+  ] .
+
+
+<#LogicalTable_Valid Notices_Result_notice>
+  rml:logicalSource [ rml:source "Valid Notices.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Result_notice/Valid Notices/{notice_id}" ;
+    rr:class <http://example.com/ResultNotice/notice_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Refer to procedure ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#Procedure/{contract_id}" ;
+      rr:class <http://data.europa.eu/a4g/ontology#Procedure>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Has dispatch date ;
+    rr:objectMap [
+      rml:reference "issue_date" ;
+      rr:datatype xsd:dateTime
+    ]  ] .
+
+
+<#LogicalTable_Winning Party_Lot_award_outcome>
+  rml:logicalSource [ rml:source "Winning Party.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://data.europa.eu/a4g/ontology#Lot_award_outcome/Winning Party/{winning_party_id}" ;
+    rr:class <http://example.com/LotAwardOutcome/winning_party_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Lot award outcome.Has i d ;
+    rr:objectMap [
+      rml:reference "winning_party_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Lot award outcome.Describes lot ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#None/{result_id}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Lot award outcome.Refer to procedure ;
+    rr:objectMap [
+      rr:template "http://data.europa.eu/a4g/ontology#None/{contract_id}" ;
+    ]
+  ] .

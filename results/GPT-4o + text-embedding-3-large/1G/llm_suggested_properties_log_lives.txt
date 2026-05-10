@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: lives
+  Column Name: lives/fname
+  Class: Person
+  Properties: firstname
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: lives
+  Column Name: lives/lname
+  Class: Person
+  Properties: lastname
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: lives
+  Column Name: lives/city
+  Class: City
+  Properties: cityname
+  Type: data
+  New Property: False
+

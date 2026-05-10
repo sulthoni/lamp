@@ -1,0 +1,43 @@
+Properties Suggestion Results:
+Total columns processed: 5
+
+Column 1:
+  Table Name: Winning Party
+  Column Name: winning party identifier
+  Class: LotAwardOutcome
+  Properties: hasWinningPartyId
+  Type: data
+  New Property: True
+
+Column 2:
+  Table Name: Winning Party
+  Column Name: tender result identifier
+  Class: LotAwardOutcome
+  Properties: refersToTenderResult -> TenderResults
+  Type: object
+  New Property: True
+
+Column 3:
+  Table Name: Winning Party
+  Column Name: contract identifier
+  Class: LotAwardOutcome
+  Properties: refersToContract -> Contract
+  Type: object
+  New Property: False
+
+Column 4:
+  Table Name: Winning Party
+  Column Name: party tax identification number
+  Class: LotAwardOutcome
+  Properties: hasPartyTaxIdentificationNumber
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Winning Party
+  Column Name: party name
+  Class: LotAwardOutcome
+  Properties: hasPartyName
+  Type: data
+  New Property: True
+

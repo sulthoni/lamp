@@ -1,0 +1,51 @@
+Properties Suggestion Results:
+Total columns processed: 6
+
+Column 1:
+  Table Name: Budget Amounts
+  Column Name: budget_id
+  Class: Fund
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Budget Amounts
+  Column Name: contract_id
+  Class: Fund
+  Properties: Refers to contract -> Contract
+  Type: object
+  New Property: True
+
+Column 3:
+  Table Name: Budget Amounts
+  Column Name: estimated total amount
+  Class: Fund
+  Properties: Has estimated amount
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Budget Amounts
+  Column Name: total amount
+  Class: Fund
+  Properties: Has total amount
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Budget Amounts
+  Column Name: amount excluding tax
+  Class: Fund
+  Properties: Has tax-exclusive amount
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Budget Amounts
+  Column Name: currency code
+  Class: Fund
+  Properties: Has currency
+  Type: data
+  New Property: True
+

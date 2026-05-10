@@ -1,0 +1,11 @@
+Properties Suggestion Results:
+Total columns processed: 1
+
+Column 1:
+  Table Name: Parent Organizations
+  Column Name: party_id
+  Class: Organization
+  Properties: Played by organisation
+  Type: object
+  New Property: False
+

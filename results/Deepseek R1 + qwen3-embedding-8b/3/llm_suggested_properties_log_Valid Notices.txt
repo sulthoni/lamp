@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: Valid Notices
+  Column Name: notice_id
+  Class: Result notice
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Valid Notices
+  Column Name: contract_id
+  Class: Result notice
+  Properties: Refer to procedure
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Valid Notices
+  Column Name: notice_type_code
+  Class: Result notice
+  Properties: hasNoticeType
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Valid Notices
+  Column Name: publication_media
+  Class: Result notice
+  Properties: hasPublicationMedium
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Valid Notices
+  Column Name: issue_date
+  Class: Result notice
+  Properties: Has dispatch date
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: Valid Notices
+  Column Name: document_type_code
+  Class: Result notice
+  Properties: hasDocumentTypeCode
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Valid Notices
+  Column Name: document_type_name
+  Class: Result notice
+  Properties: hasDocumentTypeName
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Valid Notices
+  Column Name: document_uri
+  Class: Result notice
+  Properties: hasDocumentURI
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Valid Notices
+  Column Name: file_name
+  Class: Result notice
+  Properties: hasFileName
+  Type: data
+  New Property: True
+

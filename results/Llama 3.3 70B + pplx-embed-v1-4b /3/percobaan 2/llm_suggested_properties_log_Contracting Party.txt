@@ -1,0 +1,11 @@
+Properties Suggestion Results:
+Total columns processed: 1
+
+Column 1:
+  Table Name: Contracting Party
+  Column Name: unique party identifier
+  Class: Organization
+  Properties: Has i d
+  Type: object
+  New Property: False
+

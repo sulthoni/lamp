@@ -1,0 +1,51 @@
+Properties Suggestion Results:
+Total columns processed: 6
+
+Column 1:
+  Table Name: Locations
+  Column Name: location_id
+  Class: Location
+  Properties: hasLocationId
+  Type: data
+  New Property: True
+
+Column 2:
+  Table Name: Locations
+  Column Name: contract_id
+  Class: Location
+  Properties: refersToContract
+  Type: object
+  New Property: True
+
+Column 3:
+  Table Name: Locations
+  Column Name: country_subentity
+  Class: Location
+  Properties: hasCountrySubentity
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Locations
+  Column Name: country_subentity_code
+  Class: Location
+  Properties: hasCountrySubentityCode
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Locations
+  Column Name: country_code
+  Class: Location
+  Properties: hasCountryCode
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Locations
+  Column Name: country_name
+  Class: Location
+  Properties: hasCountryName
+  Type: data
+  New Property: True
+

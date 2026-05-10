@@ -1,0 +1,5 @@
+{'table_name': 'Parent Organizations', 'column_name': 'parent_id', 'class_name': 'Organization', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Parent Organizations', 'column_name': 'party_id', 'class_name': 'Organization', 'properties': 'Played by organisation', 'type': 'object', 'new_property': False}
+{'table_name': 'Parent Organizations', 'column_name': 'contract_id', 'class_name': 'Organization', 'properties': 'partOfContract', 'type': 'object', 'new_property': True}
+{'table_name': 'Parent Organizations', 'column_name': 'level', 'class_name': 'Organization', 'properties': 'organizationalLevel', 'type': 'data', 'new_property': True}
+{'table_name': 'Parent Organizations', 'column_name': 'name', 'class_name': 'Organization', 'properties': 'name', 'type': 'data', 'new_property': False}

@@ -1,0 +1,91 @@
+Properties Suggestion Results:
+Total columns processed: 11
+
+Column 1:
+  Table Name: stops
+  Column Name: stop_id
+  Class: Stop
+  Properties: ID
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: stops
+  Column Name: stop_code
+  Class: Stop
+  Properties: Location Code
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: stops
+  Column Name: stop_name
+  Class: Stop
+  Properties: Name
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: stops
+  Column Name: stop_desc
+  Class: Stop
+  Properties: RouteDesc
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: stops
+  Column Name: stop_lat
+  Class: Stop
+  Properties: Latitude
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: stops
+  Column Name: stop_lon
+  Class: Stop
+  Properties: Longitude
+  Type: data
+  New Property: False
+
+Column 7:
+  Table Name: stops
+  Column Name: stop_url
+  Class: Stop
+  Properties: URL
+  Type: data
+  New Property: False
+
+Column 8:
+  Table Name: stops
+  Column Name: location_type
+  Class: Stop
+  Properties: Location Type
+  Type: object
+  New Property: False
+
+Column 9:
+  Table Name: stops
+  Column Name: parent_station
+  Class: Stop
+  Properties: Parent Station
+  Type: object
+  New Property: False
+
+Column 10:
+  Table Name: stops
+  Column Name: stop_timezone
+  Class: Stop
+  Properties: Timezone
+  Type: data
+  New Property: False
+
+Column 11:
+  Table Name: stops
+  Column Name: wheelchair_boarding
+  Class: Stop
+  Properties: Wheelchair accesible
+  Type: object
+  New Property: False
+

@@ -1,0 +1,247 @@
+Term: # Table: list of transit agencies
+**Original Name**: agency
+**Description**: This table represents list of transit agencies
+**Column Count**: 7
+## Columns
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM
+- **agency name** (original: agency_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **agency website URL** (original: agency_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **agency time zone** (original: agency_timezone) - Type: VARCHAR(50) - Examples: Europe/Madrid
+- **agency default language** (original: agency_lang) - Type: VARCHAR(50) - Examples: es
+- **agency contact phone number** (original: agency_phone) - Type: TINYINT - Examples: 012 (numeric pattern)
+- **agency fare information URL** (original: agency_fare_url) - Type: VARCHAR(50) - Examples: https://www.crtm.es/billetes-y-tarifas (identifier pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: agency_id (all unique), agency_name (all unique), agency_url (all unique), agency_timezone (all unique), agency_lang (all unique), agency_phone (all unique), agency_fare_url (all unique)
+
+  Selected Candidate 1: Agency | Confidence: 0.9700
+  Reason 1: All columns in the source table match 1-to-1 with the data properties declared for gtfs:Agency (ID, Name, URL, Timezone, Language, PhoneNumber, fare URL). The global schema shows other tables (routes) referring to this table through the object property agency → Agency, which further confirms the role of this table as the master list of transit agencies.
+  Class URI 1: http://vocab.gtfs.org/terms#Agency
+  Columns for Candidate 1: agency identifier, agency name, agency website URL, agency time zone, agency default language, agency contact phone number, agency fare information URL
+  Related Columns for Candidate 1: agency identifier
+
+Term: # Table: service calendar exceptions
+**Original Name**: calendar_dates
+**Description**: This table represents service calendar exceptions
+**Column Count**: 3
+## Columns
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **exception date** (original: date) - Type: DATE - Examples: 2017-01-06, 2017-03-20, 2017-04-13 (date pattern)
+- **exception type** (original: exception_type) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **service identifier** references **calendar** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), date (all unique), exception_type (constant)
+**Domain**: temporal data, transportation service, exception handling
+
+  Selected Candidate 1: Calendar date rule | Confidence: 0.9000
+  Reason 1: The table captures exceptions to the regular service calendar, exactly matching the GTFS concept of CalendarDateRule which ‘defines exceptions for the services’. Column ‘exception date’ maps to the Date data property, and ‘exception type’ maps to the Exception Type object property (Concept). The foreign-key ‘service identifier’ links each exception to its parent service/calendar, fitting the ontology’s expectation that CalendarDateRule is associated to a Service (handled as a related column rather than a direct data property).
+  Class URI 1: http://vocab.gtfs.org/terms#CalendarDateRule
+  Columns for Candidate 1: exception date, exception type
+  Related Columns for Candidate 1: service identifier
+
+Term: # Table: service operating calendar
+**Original Name**: calendar
+**Description**: This table represents service operating calendar
+**Column Count**: 10
+## Columns
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I13, 4_I14 (identifier pattern)
+- **operates on Monday flag** (original: monday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **operates on Tuesday flag** (original: tuesday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **operates on Wednesday flag** (original: wednesday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **operates on Thursday flag** (original: thursday) - Type: TINYINT - Examples: 0, 0, 1 (numeric pattern)
+- **operates on Friday flag** (original: friday) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **operates on Saturday flag** (original: saturday) - Type: TINYINT - Examples: 1, 0, 0 (numeric pattern)
+- **operates on Sunday flag** (original: sunday) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **service start date** (original: start_date) - Type: DATE - Examples: 2017-06-29, 2017-06-29, 2017-06-29 (date pattern)
+- **service end date** (original: end_date) - Type: DATE - Examples: 2018-06-29, 2018-06-29, 2018-06-29 (date pattern)
+## Data Characteristics
+**Sample Size**: 5 rows
+**Uniqueness**: service_id (all unique), start_date (constant), end_date (constant)
+**Domain**: temporal data, transportation service
+
+  Selected Candidate 1: Calendar rule | Confidence: 0.8500
+  Reason 1: The row contains the full set of day-of-week flags (Monday–Sunday) together with a validity period (start_date, end_date), exactly matching the definition of gtfs:CalendarRule which "defines on which days of the week for a certain period the service is available."
+  Class URI 1: http://vocab.gtfs.org/terms#CalendarRule
+  Columns for Candidate 1: operates on Monday flag, operates on Tuesday flag, operates on Wednesday flag, operates on Thursday flag, operates on Friday flag, operates on Saturday flag, operates on Sunday flag, service start date, service end date
+  Related Columns for Candidate 1: service identifier
+
+  Selected Candidate 2: Service | Confidence: 0.6500
+  Reason 2: The column service_id is the primary key that is referenced from trips and calendar_dates tables and represents the abstract service that is operated. In the ontology this identifier corresponds to gtfs:Service whose only intrinsic data property is the ID and which links to its scheduling rules (CalendarRule / ServiceRule).
+  Class URI 2: http://vocab.gtfs.org/terms#Service
+  Columns for Candidate 2: service identifier
+
+Term: # Table: public transit feed metadata
+**Original Name**: feed_info
+**Description**: This table represents public transit feed metadata
+**Column Count**: 6
+## Columns
+- **data feed publisher name** (original: feed_publisher_name) - Type: VARCHAR(50) - Examples: Consorcio Regional de Transportes de Madrid (identifier pattern)
+- **data feed publisher URL** (original: feed_publisher_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es
+- **data feed language code** (original: feed_lang) - Type: VARCHAR(50) - Examples: es
+- **data feed start date** (original: feed_start_date) - Type: VARCHAR(255)
+- **data feed end date** (original: feed_end_date) - Type: VARCHAR(255)
+- **data feed version** (original: feed_version) - Type: INT - Examples: 20170629 (numeric pattern)
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: feed_publisher_name (all unique), feed_publisher_url (all unique), feed_lang (all unique), feed_version (all unique)
+
+  Selected Candidate 1: GTFS Feed | Confidence: 0.9300
+  Reason 1: The table contains metadata about the data feed itself (publisher, URL, language, validity dates, version). These attributes correspond exactly to the data properties defined for the ontology class “GTFS Feed” (URL, Language, StartDate, EndDate, Publisher, Version). No foreign-key relations to operational GTFS entities exist, supporting the interpretation that each row is one feed descriptor rather than an operational object like Trip or Frequency.
+  Class URI 1: http://vocab.gtfs.org/terms#Feed
+  Columns for Candidate 1: data feed publisher name, data feed publisher URL, data feed language code, data feed start date, data feed end date, data feed version
+
+Term: # Table: trip frequency schedules
+**Original Name**: frequencies
+**Description**: This table represents trip frequency schedules
+**Column Count**: 5
+## Columns
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___ (identifier pattern)
+- **service start time** (original: start_time) - Type: VARCHAR(50) - Examples: 00:00:00, 01:00:00, 06:05:00
+- **service end time** (original: end_time) - Type: VARCHAR(50) - Examples: 01:00:00, 02:00:00, 07:00:00
+- **headway interval in seconds** (original: headway_secs) - Type: SMALLINT - Examples: 600, 900, 540 (numeric pattern)
+- **exact times indicator** (original: exact_times) - Type: VARCHAR(255)
+## Relationships
+- **trip identifier** references **trips** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Domain**: temporal data, transportation service
+
+  Selected Candidate 1: Frequency | Confidence: 0.9300
+  Reason 1: The table exactly matches the GTFS Frequency specification: columns for start_time, end_time and headway_secs map one-to-one to the ontology data properties "Start Time", "End Time" and "Headway Seconds" of class Frequency. The foreign-key column trip_id corresponds to the object property "Trip" linking a Frequency to a Trip. The column exact_times represents the categorical value described in the ontology as "Frecuency type". No other ontology class fits all these characteristics, and all columns are explainable within the Frequency concept, giving high confidence.
+  Class URI 1: http://vocab.gtfs.org/terms#Frequency
+  Columns for Candidate 1: service start time, service end time, headway interval in seconds, exact times indicator
+  Related Columns for Candidate 1: trip identifier
+
+Term: # Table: public transportation routes
+**Original Name**: routes
+**Description**: This table represents public transportation routes
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__10___, 4__11___ (identifier pattern)
+- **agency identifier** (original: agency_id) - Type: VARCHAR(50) - Examples: CRTM, CRTM, CRTM
+- **short route name** (original: route_short_name) - Type: TINYINT - Examples: 1, 10, 11 (numeric pattern)
+- **long route name** (original: route_long_name) - Type: VARCHAR(50) - Examples: Pinar de Chamartín-Valdecarros, Hospital del Norte-Puerta del Sur, Plaza Elíptica-La Fortuna (identifier pattern)
+- **route description** (original: route_desc) - Type: VARCHAR(255)
+- **route type** (original: route_type) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+- **route URL** (original: route_url) - Type: VARCHAR(255) - Examples: http://www.crtm.es/tu-transporte-publico/metro/lineas/4__1___.aspx, http://www.crtm.es/tu-transporte-publico/metro/lineas/4__10___.aspx, http://www.crtm.es/tu-transporte-publico/metro/lineas/4__11___.aspx (identifier pattern)
+- **route color** (original: route_color) - Type: VARCHAR(50) - Examples: 2DBEF0, 005AA9, 009B3A
+- **route text color** (original: route_text_color) - Type: VARCHAR(50) - Examples: FFFFFF, FFFFFF, FFFFFF
+## Relationships
+- **agency identifier** references **agency** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: route_id (all unique), agency_id (constant), route_short_name (all unique), route_long_name (all unique), route_type (constant), route_url (all unique), route_color (all unique)
+**Domain**: transportation service
+
+  Selected Candidate 1: Route | Confidence: 0.9000
+  Reason 1: All descriptive columns in the table (identifier, short/long name, description, type, URL, color fields) match the data properties defined for the ontology class Route.  The foreign-key column agency_id aligns with the Route → Agency object property, confirming that the table’s rows are instances of Route that reference an Agency.  No other ontology class covers the full set of attributes, and the Agency class is already represented by a separate table, so the mapping to the single class Route is most coherent with both local evidence and the global schema.
+  Class URI 1: http://vocab.gtfs.org/terms#Route
+  Columns for Candidate 1: route identifier, short route name, long route name, route description, route type, route URL, route color, route text color
+  Related Columns for Candidate 1: agency identifier
+
+Term: # Table: geospatial route shape points
+**Original Name**: shapes
+**Description**: This table represents geospatial route shape points
+**Column Count**: 5
+## Columns
+- **shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____1__IT_1, 4__1____1__IT_1 (identifier pattern)
+- **shape point latitude** (original: shape_pt_lat) - Type: DECIMAL(10,2) - Examples: 40.4802624278576, 40.4803769678597, 40.4804232925184
+- **shape point longitude** (original: shape_pt_lon) - Type: DECIMAL(10,2) - Examples: -3.66723744236574, -3.66777650933287, -3.66820786216953
+- **shape point sequence number** (original: shape_pt_sequence) - Type: INT - Examples: 1000001, 1000002, 1000003 (numeric pattern)
+- **cumulative distance traveled along shape** (original: shape_dist_traveled) - Type: DECIMAL(10,2) - Examples: 0.0, 0.047428346568, 0.131778797501
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: shape_id (constant), shape_pt_sequence (all unique)
+**Domain**: transportation service
+
+  Selected Candidate 1: Shape Point | Confidence: 0.9000
+  Reason 1: Each row in the shapes table represents a single geographic point that belongs to a GTFS shape. The ontology class gtfs:ShapePoint has data properties that align one-to-one with the table’s columns: Latitude (shape_pt_lat), Longitude (shape_pt_lon), Point Sequence (shape_pt_sequence), and Distance Traveled (shape_dist_traveled). The remaining column shape_id is not an attribute of a point itself but a foreign key that connects the point to the enclosing gtfs:Shape and to trips; therefore it is treated as a related/linking column. No row describes an entire Shape entity, so gtfs:Shape is not selected as a primary mapping for this table.
+  Class URI 1: http://vocab.gtfs.org/terms#ShapePoint
+  Columns for Candidate 1: shape_pt_lat, shape_pt_lon, shape_pt_sequence, shape_dist_traveled
+  Related Columns for Candidate 1: shape_id
+
+Term: # Table: scheduled stop times
+**Original Name**: stop_times
+**Description**: This table represents scheduled stop times
+**Column Count**: 9
+## Columns
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_1_1_4__1___ (identifier pattern)
+- **scheduled arrival time** (original: arrival_time) - Type: VARCHAR(50) - Examples: 00:08:19, 00:22:04, 00:23:53
+- **scheduled departure time** (original: departure_time) - Type: VARCHAR(50) - Examples: 00:08:19, 00:22:04, 00:23:53
+- **stop identifier** (original: stop_id) - Type: VARCHAR(50) - Examples: par_4_1, par_4_10, par_4_11 (identifier pattern)
+- **stop sequence number** (original: stop_sequence) - Type: DECIMAL(10,2) - Examples: 3.0, 12.0, 13.0
+- **stop headsign text** (original: stop_headsign) - Type: VARCHAR(255)
+- **pickup type code** (original: pickup_type) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **drop-off type code** (original: drop_off_type) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+- **cumulative distance traveled along shape** (original: shape_dist_traveled) - Type: VARCHAR(255)
+## Relationships
+- **trip identifier** references **trips** table
+- **stop identifier** references **stops** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: trip_id (constant), arrival_time (all unique), departure_time (all unique), stop_id (all unique), stop_sequence (all unique), pickup_type (constant), drop_off_type (constant)
+**Domain**: temporal data
+
+  Selected Candidate 1: Stop time | Confidence: 0.9500
+  Reason 1: The table corresponds exactly to the GTFS ‘stop_times.txt’ specification, whose semantic representation in the ontology is the class StopTime. All core data properties of StopTime (Arrival time, Departure time, Stop sequence, Headsign, Distance Traveled) are present as columns, and the foreign-key links to trips and stops match the object properties Trip and Stop. The code columns pickup_type and drop_off_type map to the enumerated object properties Pickup type and Drop off type. No other ontology class covers the full set of attributes, therefore StopTime is the single, most appropriate mapping.
+  Class URI 1: http://vocab.gtfs.org/terms#StopTime
+  Columns for Candidate 1: arrival_time, departure_time, stop_sequence, stop_headsign, shape_dist_traveled
+  Related Columns for Candidate 1: trip_id, stop_id, pickup_type, drop_off_type
+
+Term: # Table: public transit stops
+**Original Name**: stops
+**Description**: This table represents public transit stops
+**Column Count**: 12
+## Columns
+- **stop identifier** (original: stop_id) - Type: VARCHAR(50) - Examples: acc_4_1_1, acc_4_1_1040, acc_4_1_1043 (identifier pattern)
+- **stop code** (original: stop_code) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+- **stop name** (original: stop_name) - Type: VARCHAR(50) - Examples: Plaza de Castilla, Ascensor, Intercambiador Superficie (identifier pattern)
+- **stop description** (original: stop_desc) - Type: VARCHAR(50) - Examples: Paseo de la Castellana 189, Plaza de Castilla 9, Paseo de la Castellana 191 B (identifier pattern)
+- **stop latitude** (original: stop_lat) - Type: DECIMAL(10,2) - Examples: 40.46682, 40.46555, 40.46728
+- **stop longitude** (original: stop_lon) - Type: DECIMAL(10,2) - Examples: -3.68918, -3.68877, -3.68915
+- **zone identifier** (original: zone_id) - Type: VARCHAR(255)
+- **stop website URL** (original: stop_url) - Type: VARCHAR(50) - Examples: http://www.crtm.es, http://www.crtm.es, http://www.crtm.es
+- **location type** (original: location_type) - Type: TINYINT - Examples: 2, 2, 2 (numeric pattern)
+- **parent station identifier** (original: parent_station) - Type: VARCHAR(50) - Examples: est_90_21, est_90_21, est_90_21 (identifier pattern)
+- **stop time zone** (original: stop_timezone) - Type: VARCHAR(255)
+- **wheelchair boarding indicator** (original: wheelchair_boarding) - Type: TINYINT - Examples: 0, 0, 0 (numeric pattern)
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: stop_id (all unique), stop_lat (all unique), stop_url (constant), location_type (constant), wheelchair_boarding (constant)
+
+  Selected Candidate 1: Stop | Confidence: 0.9000
+  Reason 1: The table corresponds to GTFS stops.txt which the ontology models with the class gtfs:Stop. All core stop attributes (ID, Name, URL, Timezone, Latitude, Longitude, Location Code) appear in the table. The table is referenced by stop_times via stop_id, matching the ontology object property StopTime → Stop, confirming the global-schema role. Columns such as location_type and wheelchair_boarding are handled in the ontology as object properties linked to controlled-vocabulary concepts, while parent_station matches the Parent Station object property. Therefore, mapping the whole table to the class Stop is semantically consistent with both the local column set and its usage across the database.
+  Class URI 1: http://vocab.gtfs.org/terms#Stop
+  Columns for Candidate 1: stop_id, stop_code, stop_name, stop_desc, stop_lat, stop_lon, zone_id, stop_url, stop_timezone
+  Related Columns for Candidate 1: location_type, parent_station, wheelchair_boarding
+
+Term: # Table: list of scheduled trips
+**Original Name**: trips
+**Description**: This table represents list of scheduled trips
+**Column Count**: 9
+## Columns
+- **route identifier** (original: route_id) - Type: VARCHAR(50) - Examples: 4__1___, 4__1___, 4__2___ (identifier pattern)
+- **service identifier** (original: service_id) - Type: VARCHAR(50) - Examples: 4_I12, 4_I12, 4_I12 (identifier pattern)
+- **trip identifier** (original: trip_id) - Type: VARCHAR(50) - Examples: 4_I12-001_2016I12_1_1_4__1___, 4_I12-001_2016I12_2_1_4__1___, 4_I12-002_2016I12_1_1_4__2___ (identifier pattern)
+- **trip headsign text** (original: trip_headsign) - Type: VARCHAR(50) - Examples: VALDECARROS, PINAR DE CHAMARTIN, CUATRO CAMINOS
+- **trip short name** (original: trip_short_name) - Type: VARCHAR(50) - Examples: PINAR DE CHAMARTIN-VALDECARROS, VALDECARROS-PINAR DE CHAMARTIN, LA ELIPA-CUATRO CAMINOS (identifier pattern)
+- **direction indicator** (original: direction_id) - Type: TINYINT - Examples: 0, 1, 0 (numeric pattern)
+- **block identifier** (original: block_id) - Type: VARCHAR(255)
+- **geospatial shape identifier** (original: shape_id) - Type: VARCHAR(50) - Examples: 4__1____1__IT_1, 4__1____2__IT_1, 4__2____1__IT_1 (identifier pattern)
+- **wheelchair accessibility flag** (original: wheelchair_accessible) - Type: TINYINT - Examples: 1, 1, 1 (numeric pattern)
+## Relationships
+- **route identifier** references **routes** table
+- **service identifier** references **calendar** table
+- **geospatial shape identifier** references **shapes** table
+## Data Characteristics
+**Sample Size**: 10 rows
+**Uniqueness**: service_id (constant), trip_id (all unique), trip_short_name (all unique), shape_id (all unique), wheelchair_accessible (constant)
+**Domain**: temporal data, transportation service
+
+  Selected Candidate 1: Trip | Confidence: 0.9300
+  Reason 1: The table stores scheduled vehicle journeys exactly as defined for the GTFS ‘Trip’ entity. Core columns (trip_id, headsign, short_name, block_id) map to Trip data properties; direction_id and wheelchair_accessible correspond to Trip categorical properties. Foreign-key columns (route_id, service_id, shape_id) connect this Trip to Route, Service and Shape, matching the ontology’s object properties. No other ontology class fits the table’s semantics as closely or completely.
+  Class URI 1: http://vocab.gtfs.org/terms#Trip
+  Columns for Candidate 1: trip identifier, trip headsign text, trip short name, block identifier, direction indicator, wheelchair accessibility flag
+  Related Columns for Candidate 1: route identifier, service identifier, geospatial shape identifier

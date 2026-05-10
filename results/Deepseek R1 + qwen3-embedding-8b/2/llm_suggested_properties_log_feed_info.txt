@@ -1,0 +1,51 @@
+Properties Suggestion Results:
+Total columns processed: 6
+
+Column 1:
+  Table Name: feed_info
+  Column Name: feed_publisher_name
+  Class: GTFS Feed
+  Properties: Publisher
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: feed_info
+  Column Name: feed_publisher_url
+  Class: GTFS Feed
+  Properties: URL
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: feed_info
+  Column Name: feed_lang
+  Class: GTFS Feed
+  Properties: Language
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: feed_info
+  Column Name: feed_start_date
+  Class: GTFS Feed
+  Properties: StartDate
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: feed_info
+  Column Name: feed_end_date
+  Class: GTFS Feed
+  Properties: EndDate
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: feed_info
+  Column Name: feed_version
+  Class: GTFS Feed
+  Properties: Version
+  Type: data
+  New Property: False
+

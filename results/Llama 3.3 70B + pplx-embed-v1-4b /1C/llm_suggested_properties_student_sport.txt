@@ -1,0 +1,2 @@
+{'table_name': 'student_sport', 'column_name': 'student name', 'class_name': 'Person', 'properties': 'fullname', 'type': 'data', 'new_property': False}
+{'table_name': 'student_sport', 'column_name': 'sport name', 'class_name': 'Sport', 'properties': 'sportname', 'type': 'data', 'new_property': False}

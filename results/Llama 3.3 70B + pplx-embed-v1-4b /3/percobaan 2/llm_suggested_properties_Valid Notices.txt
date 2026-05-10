@@ -1,0 +1,9 @@
+{'table_name': 'Valid Notices', 'column_name': 'unique notice identifier', 'class_name': 'ResultNotice', 'properties': 'Has i d -> Identifier', 'type': 'data', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'contract identifier', 'class_name': 'ResultNotice', 'properties': 'Refer to procedure -> Procedure', 'type': 'object', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'notice type classification code', 'class_name': 'ResultNotice', 'properties': 'status', 'type': 'data', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'medium of publication', 'class_name': 'ResultNotice', 'properties': 'No direct property available', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'date of issue', 'class_name': 'ResultNotice', 'properties': 'Has dispatch date', 'type': 'data', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'document type classification code', 'class_name': 'ResultNotice', 'properties': 'No direct property available', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'document type name', 'class_name': 'ResultNotice', 'properties': 'No direct property available', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'uniform resource identifier of the document', 'class_name': 'ResultNotice', 'properties': 'No direct property available', 'type': 'data', 'new_property': True}
+{'table_name': 'Valid Notices', 'column_name': 'file name', 'class_name': 'ResultNotice', 'properties': 'No direct property available', 'type': 'data', 'new_property': True}

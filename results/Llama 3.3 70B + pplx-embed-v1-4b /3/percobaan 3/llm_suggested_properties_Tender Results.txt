@@ -1,0 +1,3 @@
+{'table_name': 'Tender Results', 'column_name': 'result_id', 'class_name': 'ResultNotice', 'properties': 'Has i d', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'class_name': 'ResultNotice', 'properties': 'Has dispatch date', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_date', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}

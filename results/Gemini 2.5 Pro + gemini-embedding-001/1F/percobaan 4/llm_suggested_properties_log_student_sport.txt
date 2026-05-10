@@ -1,0 +1,11 @@
+Properties Suggestion Results:
+Total columns processed: 1
+
+Column 1:
+  Table Name: student_sport
+  Column Name: links/ID_Sport
+  Class: Person
+  Properties: practises
+  Type: object
+  New Property: False
+

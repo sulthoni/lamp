@@ -1,0 +1,6 @@
+{'table_name': 'Locations', 'column_name': 'location_id', 'class_name': 'Location', 'properties': 'hasLocationId', 'type': 'data', 'new_property': True}
+{'table_name': 'Locations', 'column_name': 'contract_id', 'class_name': 'Location', 'properties': 'refersToContract', 'type': 'object', 'new_property': True}
+{'table_name': 'Locations', 'column_name': 'country_subentity', 'class_name': 'Location', 'properties': 'hasCountrySubentity', 'type': 'data', 'new_property': True}
+{'table_name': 'Locations', 'column_name': 'country_subentity_code', 'class_name': 'Location', 'properties': 'hasCountrySubentityCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Locations', 'column_name': 'country_code', 'class_name': 'Location', 'properties': 'hasCountryCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Locations', 'column_name': 'country_name', 'class_name': 'Location', 'properties': 'hasCountryName', 'type': 'data', 'new_property': True}

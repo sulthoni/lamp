@@ -1,0 +1,2 @@
+{'table_name': 'Valid Notices', 'column_name': 'issue_date', 'class_name': 'Result notice', 'properties': 'Has dispatch date', 'type': 'data', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'contract_id', 'class_name': 'Result notice', 'properties': 'Refer to procedure', 'type': 'object', 'new_property': False}

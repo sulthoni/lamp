@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: Valid Notices
+  Column Name: notice identifier
+  Class: Notice
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Valid Notices
+  Column Name: contract identifier
+  Class: Notice
+  Properties: Refers to contract -> Contract
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Valid Notices
+  Column Name: notice type code
+  Class: Notice
+  Properties: Has notice type code
+  Type: data
+  New Property: True
+
+Column 4:
+  Table Name: Valid Notices
+  Column Name: publication medium
+  Class: Notice
+  Properties: Has publication medium
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Valid Notices
+  Column Name: issue date
+  Class: Notice
+  Properties: Has issue date
+  Type: data
+  New Property: True
+
+Column 6:
+  Table Name: Valid Notices
+  Column Name: document type code
+  Class: Notice
+  Properties: Has document type code
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Valid Notices
+  Column Name: document type name
+  Class: Notice
+  Properties: Has document type name
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Valid Notices
+  Column Name: document uniform resource identifier
+  Class: Document
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 9:
+  Table Name: Valid Notices
+  Column Name: file name
+  Class: Document
+  Properties: Has file name
+  Type: data
+  New Property: True
+

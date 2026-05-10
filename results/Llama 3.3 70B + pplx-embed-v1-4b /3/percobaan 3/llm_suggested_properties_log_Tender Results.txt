@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: result_id
+  Class: ResultNotice
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: award_date
+  Class: ResultNotice
+  Properties: Has dispatch date
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: contract_issue_date
+  Class: LotAwardOutcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+

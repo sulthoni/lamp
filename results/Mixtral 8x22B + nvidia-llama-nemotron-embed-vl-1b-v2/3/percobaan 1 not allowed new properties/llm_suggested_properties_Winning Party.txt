@@ -1,0 +1,5 @@
+{'table_name': 'Winning Party', 'column_name': 'winning_party_id', 'class_name': 'LotAwardOutcome', 'properties': 'Has i d', 'type': 'data', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'result_id', 'class_name': 'LotAwardOutcome', 'properties': 'Describes lot -> Lot', 'type': 'object', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'contract_id', 'class_name': 'LotAwardOutcome', 'properties': 'Describes lot -> Lot', 'type': 'object', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'party_nif', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'party_name', 'class_name': 'LotAwardOutcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}

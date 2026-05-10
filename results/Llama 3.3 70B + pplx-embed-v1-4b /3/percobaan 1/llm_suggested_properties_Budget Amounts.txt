@@ -1,0 +1,6 @@
+{'table_name': 'Budget Amounts', 'column_name': 'budget_id', 'class_name': 'Procedure', 'properties': 'hasBudgetId', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'contract_id', 'class_name': 'Procedure', 'properties': 'hasContract', 'type': 'object', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'estimated_overall_amount', 'class_name': 'Procedure', 'properties': 'estimatedOverallBudgetAmount', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'total_amount', 'class_name': 'Procedure', 'properties': 'totalBudgetAmount', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'tax_exclusive_amount', 'class_name': 'Procedure', 'properties': 'taxExclusiveBudgetAmount', 'type': 'data', 'new_property': True}
+{'table_name': 'Budget Amounts', 'column_name': 'currency', 'class_name': 'Procedure', 'properties': 'budgetCurrency', 'type': 'data', 'new_property': True}

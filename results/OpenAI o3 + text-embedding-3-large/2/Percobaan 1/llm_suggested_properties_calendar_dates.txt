@@ -1,0 +1,2 @@
+{'table_name': 'calendar_dates', 'column_name': 'date', 'class_name': 'Calendar date rule', 'properties': 'Date', 'type': 'data', 'new_property': False}
+{'table_name': 'calendar_dates', 'column_name': 'exception_type', 'class_name': 'Calendar date rule', 'properties': 'Exception Type', 'type': 'object', 'new_property': False}

@@ -1,0 +1,16 @@
+
+
+===================== Table Results ====================
+Term: # Table: list of IOU debt records
+**Original Name**: ious
+**Description**: This table represents list of iou debt records
+**Column Count**: 3
+## Columns
+- **person first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **person last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount owed** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.4119
+  Candidate 2: City (ID: http://example.org/City) | Similarity: 0.2735
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.2570

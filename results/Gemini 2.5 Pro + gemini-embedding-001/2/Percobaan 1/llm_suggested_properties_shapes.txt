@@ -1,0 +1,5 @@
+{'table_name': 'shapes', 'column_name': 'shape_id', 'class_name': 'Shape', 'properties': 'ID', 'type': 'data', 'new_property': False}
+{'table_name': 'shapes', 'column_name': 'shape_pt_lat', 'class_name': 'Shape Point', 'properties': 'Latitude', 'type': 'data', 'new_property': False}
+{'table_name': 'shapes', 'column_name': 'shape_pt_lon', 'class_name': 'Shape Point', 'properties': 'Longitude', 'type': 'data', 'new_property': False}
+{'table_name': 'shapes', 'column_name': 'shape_pt_sequence', 'class_name': 'Shape Point', 'properties': 'Point Sequence', 'type': 'data', 'new_property': False}
+{'table_name': 'shapes', 'column_name': 'shape_dist_traveled', 'class_name': 'Shape Point', 'properties': 'Distance Traveled', 'type': 'data', 'new_property': False}

@@ -1,0 +1,2 @@
+{'table_name': 'student_sport', 'column_name': 'students/Student', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}
+{'table_name': 'student_sport', 'column_name': 'students/Sport', 'improved_table_name': None, 'improved_column_name': None, 'related_table': None}

@@ -1,0 +1,2 @@
+{'table_name': 'Valid Notices', 'column_name': 'date of issue', 'class_name': 'ResultNotice', 'properties': 'Has dispatch date', 'type': 'data', 'new_property': False}
+{'table_name': 'Valid Notices', 'column_name': 'unique notice identifier', 'class_name': 'Notice', 'properties': 'Has i d', 'type': 'object', 'new_property': False}

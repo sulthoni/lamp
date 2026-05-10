@@ -1,0 +1,1 @@
+{'table_name': 'student', 'column_name': 'students/Name', 'improved_table_name': 'student information', 'improved_column_name': 'student name', 'related_table': None}

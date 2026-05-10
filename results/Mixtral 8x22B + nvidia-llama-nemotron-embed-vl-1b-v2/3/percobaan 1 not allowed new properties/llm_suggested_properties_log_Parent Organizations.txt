@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: Parent Organizations
+  Column Name: parent_id
+  Class: Organization
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Parent Organizations
+  Column Name: level
+  Class: Organization
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Parent Organizations
+  Column Name: name
+  Class: Organization
+  Properties: Has i d
+  Type: object
+  New Property: False
+

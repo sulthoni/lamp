@@ -1,0 +1,5 @@
+{'table_name': 'Parent Organizations', 'column_name': 'parent organization identifier', 'class_name': 'Organization', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Parent Organizations', 'column_name': 'party identifier', 'class_name': 'Organization', 'properties': 'refers to party -> Identifier', 'type': 'object', 'new_property': True}
+{'table_name': 'Parent Organizations', 'column_name': 'contract identifier', 'class_name': 'Organization', 'properties': 'refers to contract -> Contract', 'type': 'object', 'new_property': True}
+{'table_name': 'Parent Organizations', 'column_name': 'organizational level', 'class_name': 'Organization', 'properties': 'hasOrganizationalLevel', 'type': 'data', 'new_property': True}
+{'table_name': 'Parent Organizations', 'column_name': 'organization name', 'class_name': 'Organization', 'properties': 'name', 'type': 'data', 'new_property': False}

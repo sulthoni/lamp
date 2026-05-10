@@ -1,0 +1,11 @@
+{'table_name': 'Tender Results', 'column_name': 'result_id', 'class_name': 'ResultNotice', 'properties': 'resultNoticeId', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'contract_id', 'class_name': 'ResultNotice', 'properties': 'refersToProcedure', 'type': 'object', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'result_code', 'class_name': 'ResultNotice', 'properties': 'resultStatusCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'description', 'class_name': 'ResultNotice', 'properties': 'resultDescription', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'class_name': 'ResultNotice', 'properties': 'awardDate', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'received_tender_quantity', 'class_name': 'ResultNotice', 'properties': 'tenderQuantityReceived', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_id', 'class_name': 'ResultNotice', 'properties': 'contractIssuanceProcedure', 'type': 'object', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'contract_issue_date', 'class_name': 'ResultNotice', 'properties': 'contractIssuanceDate', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'awarded_tax_exclusive', 'class_name': 'ResultNotice', 'properties': 'awardedAmountExcludingTax', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'awarded_payable_amount', 'class_name': 'ResultNotice', 'properties': 'awardedPayableAmount', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'currency', 'class_name': 'ResultNotice', 'properties': 'transactionCurrency', 'type': 'data', 'new_property': True}

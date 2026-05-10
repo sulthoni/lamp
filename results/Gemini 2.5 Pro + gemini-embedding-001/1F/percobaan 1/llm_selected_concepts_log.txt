@@ -1,0 +1,46 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 1.0000
+  Reason 1: The mapping of the `sport` table to the `Sport` class is strongly supported by multiple lines of evidence. Firstly, there is a direct semantic match between the table's name (`sport`), its description ('list of sports'), and the candidate class label `Sport`. Secondly, the table's columns align perfectly with the data properties of the `Sport` class: `sports/ID` (the primary key) maps to `sportid`, and `sports/Description` maps to `sportname`. Finally, the global schema context provides crucial structural validation. The `sport` table is referenced by the `student_sport` join table via the foreign key `links/ID_Sport`. This structure perfectly implements the many-to-many relationship defined in the ontology by the object property `practises`, which links the `Person` class (represented by the `student` table) to the `Sport` class. The other candidates, `Person` and `City`, are semantically and structurally irrelevant.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Description
+
+Term: # Table: student sport relationship
+**Original Name**: student_sport
+**Description**: This table represents student sport relationship
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+  No candidates selected
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9800
+  Reason 1: The mapping of the 'student' table to the 'Person' class is strongly supported by both local and global evidence. Semantically, a 'student' is a type of 'Person'. At the local level, the table's columns 'students/ID', 'students/FirstName', and 'students/LastName' directly correspond to the 'Person' class's data properties 'id', 'firstname', and 'lastname'. The column 'students/ID' serves as the primary key for the entity. Globally, the schema shows a join table 'student_sport' that links 'student' (via 'ID_Student') to the 'sport' table. This structure perfectly mirrors the object property 'practises' which links the 'Person' class to the 'Sport' class in the ontology. This global consistency confirms that 'student' represents the 'Person' entity in this relationship.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/FirstName, students/LastName

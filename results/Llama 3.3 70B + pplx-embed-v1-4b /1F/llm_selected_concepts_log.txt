@@ -1,0 +1,42 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9500
+  Reason 1: The table 'sport' has two columns: 'sports/ID' and 'sports/Description', which align with the data properties 'sportid' and 'sportname' in the 'Sport' ontology class. The table's purpose is to list sports, which matches the 'Sport' class's description. The 'Sport' class has an object property 'practises' that relates to the 'Person' class, but this table does not contain any foreign keys to the 'Person' table. However, the 'student_sport' table has foreign keys to both 'sport' and 'student', indicating a relationship between 'Sport' and 'Person' through the 'practises' object property.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Description
+
+Term: # Table: Student Sports Participation
+**Original Name**: student_sport
+**Description**: This table represents student sports participation
+**Column Count**: 2
+## Columns
+- **Student Identification Link** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **Sport Identification Link** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **Student Identification Link** references **student** table
+- **Sport Identification Link** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+  No candidates selected
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+  No candidates selected

@@ -1,0 +1,35 @@
+Properties Suggestion Results:
+Total columns processed: 4
+
+Column 1:
+  Table Name: Tender Results
+  Column Name: contract_id
+  Class: Lot award outcome
+  Properties: Describes lot
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Tender Results
+  Column Name: contract_id
+  Class: Submission statistical information
+  Properties: Concerns submissions for lot
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Tender Results
+  Column Name: award_date
+  Class: Lot award outcome
+  Properties: Has award decision date
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: Tender Results
+  Column Name: received_tender_quantity
+  Class: Submission statistical information
+  Properties: Has received tenders
+  Type: data
+  New Property: False
+

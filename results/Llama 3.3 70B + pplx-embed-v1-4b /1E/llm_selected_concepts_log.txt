@@ -1,0 +1,35 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sports identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sports name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.8500
+  Reason 1: The Sport candidate has the highest similarity score and its data properties align well with the table's columns.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports identifier, sports name
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport participated in** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport participated in** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.8000
+  Reason 1: The table's columns align with properties in the Person class, and the relationship with Sport is established through the 'practises' object property.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: student identifier, student name, sport participated in
+  Related Columns for Candidate 1: sport participated in

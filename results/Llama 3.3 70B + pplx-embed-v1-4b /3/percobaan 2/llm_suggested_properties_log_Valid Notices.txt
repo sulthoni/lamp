@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: Valid Notices
+  Column Name: unique notice identifier
+  Class: ResultNotice
+  Properties: Has i d -> Identifier
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Valid Notices
+  Column Name: contract identifier
+  Class: ResultNotice
+  Properties: Refer to procedure -> Procedure
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Valid Notices
+  Column Name: notice type classification code
+  Class: ResultNotice
+  Properties: status
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: Valid Notices
+  Column Name: medium of publication
+  Class: ResultNotice
+  Properties: No direct property available
+  Type: data
+  New Property: True
+
+Column 5:
+  Table Name: Valid Notices
+  Column Name: date of issue
+  Class: ResultNotice
+  Properties: Has dispatch date
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: Valid Notices
+  Column Name: document type classification code
+  Class: ResultNotice
+  Properties: No direct property available
+  Type: data
+  New Property: True
+
+Column 7:
+  Table Name: Valid Notices
+  Column Name: document type name
+  Class: ResultNotice
+  Properties: No direct property available
+  Type: data
+  New Property: True
+
+Column 8:
+  Table Name: Valid Notices
+  Column Name: uniform resource identifier of the document
+  Class: ResultNotice
+  Properties: No direct property available
+  Type: data
+  New Property: True
+
+Column 9:
+  Table Name: Valid Notices
+  Column Name: file name
+  Class: ResultNotice
+  Properties: No direct property available
+  Type: data
+  New Property: True
+

@@ -1,0 +1,9 @@
+{'table_name': 'stop_times', 'column_name': 'stop_times.trip_id', 'class_name': 'Stop time', 'properties': 'Stop time.Trip', 'type': 'object', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.arrival_time', 'class_name': 'Stop time', 'properties': 'Stop time.Arrival time', 'type': 'data', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.departure_time', 'class_name': 'Stop time', 'properties': 'Stop time.Departure time', 'type': 'data', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.stop_id', 'class_name': 'Stop time', 'properties': 'Stop time.Stop', 'type': 'object', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.stop_sequence', 'class_name': 'Stop time', 'properties': 'Stop time.Stop sequence', 'type': 'data', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.stop_headsign', 'class_name': 'Stop time', 'properties': 'Stop time.Headsign', 'type': 'data', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.pickup_type', 'class_name': 'Stop time', 'properties': 'Stop time.Pickup type', 'type': 'object', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.drop_off_type', 'class_name': 'Stop time', 'properties': 'Stop time.Drop off type', 'type': 'object', 'new_property': False}
+{'table_name': 'stop_times', 'column_name': 'stop_times.shape_dist_traveled', 'class_name': 'Stop time', 'properties': 'Stop time.Distance Traveled', 'type': 'data', 'new_property': False}

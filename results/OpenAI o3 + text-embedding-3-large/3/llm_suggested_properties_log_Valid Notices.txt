@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: Valid Notices
+  Column Name: issue_date
+  Class: Result notice
+  Properties: Has dispatch date
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Valid Notices
+  Column Name: contract_id
+  Class: Result notice
+  Properties: Refer to procedure
+  Type: object
+  New Property: False
+

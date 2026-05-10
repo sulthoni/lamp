@@ -1,0 +1,39 @@
+Term: # Table: sports catalog
+**Original Name**: sport
+**Description**: This table represents sports catalog
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9300
+  Reason 1: Global schema shows the table 'sport' is the catalogue referenced by student.Sport FK, matching ontology object property Person.practises -> Sport, indicating it is an entity class not a join table. Column sports/ID is a unique numeric identifier, aligning with ontology data property sportid; sports/Name aligns with ontology data property sportname. No outgoing FK columns exist, so no related columns inside this table. Semantic label 'Sport' is identical to table description, providing a direct mapping. This keeps global consistency because students table will map to Person and link via practises object property to this Sport class.
+  Class URI 1: http://example.com/Sport/sports/ID
+  Columns for Candidate 1: sports/ID, sports/Name
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport reference** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport reference** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.8000
+  Reason 1: 1. PK/FK detection: column students/ID is unique → natural primary key for each row. Column students/Sport is a foreign-key to table sport, establishing a Person–Sport relationship.
+2. Column clustering: (a) identity_info → students/ID; (b) personal_info → students/Name; (c) reference_info → students/Sport. These align with Person’s data properties (id, fullname) and the object property practises (Person → Sport).
+3. Global consistency: the sport table is expected to map to ontology class Sport (it contains sportid/sportname). Mapping this table to Person lets the FK express the practises object property exactly as defined in the ontology, yielding coherent cross-table semantics.
+4. Candidate analysis: Person label semantically matches "student" (a student is a human person). Data-property overlap (id ↔ students/ID, fullname/name ↔ students/Name) and object-property overlap (practises ↔ students/Sport FK) both hold. The Sport candidate lacks name/id columns here and would duplicate the sport table’s role, so Person is preferred.
+5. No evidence of join-table semantics (students/ID is not an FK) → table represents a standalone entity class rather than a bridge.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/Name
+  Related Columns for Candidate 1: students/Sport

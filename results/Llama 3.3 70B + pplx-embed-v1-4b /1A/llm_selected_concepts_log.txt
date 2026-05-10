@@ -1,0 +1,14 @@
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 1
+## Columns
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.8500
+  Reason 1: The table's single column 'student name' aligns well with the 'Person' ontology class, considering it as a personal detail or identifier.
+  Class URI 1: http://example.com/Person/students/Name
+  Columns for Candidate 1: students/Name

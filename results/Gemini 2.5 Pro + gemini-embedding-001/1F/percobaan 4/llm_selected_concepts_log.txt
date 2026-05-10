@@ -1,0 +1,57 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 1.0000
+  Reason 1: The table name 'sport' and its description 'This table represents list of sports' directly align with the 'Sport' class label. The columns 'sports/ID' and 'sports/Description' are a strong match for the 'Sport' class data properties 'sportid' and 'sportname'. Furthermore, the global schema shows a linking table 'student_sport' with a foreign key 'links/ID_Sport' referencing this table, which perfectly models the 'practises' object property where a 'Person' 'practises' a 'Sport', confirming this table's role as the master list of sports.
+  Class URI 1: http://example.org/Sport
+  Columns for Candidate 1: sports/ID, sports/Description
+
+Term: # Table: student sport associations
+**Original Name**: student_sport
+**Description**: This table represents student sport associations
+**Column Count**: 2
+## Columns
+- **student identifier** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **sport identifier** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **student identifier** references **student** table
+- **sport identifier** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+
+  Selected Candidate 1: Person | Confidence: 0.9500
+  Reason 1: The 'student_sport' table is a classic linking table (or association table) designed to represent a many-to-many relationship. It contains a foreign key 'links/ID_Student' that references the 'student' table. The 'student' table, based on its columns ('FirstName', 'LastName'), clearly maps to the 'Person' ontology class. Therefore, this table provides one side of a relationship involving the 'Person' class.
+  Class URI 1: http://example.org/Person
+  Columns for Candidate 1: links/ID_Student
+  Related Columns for Candidate 1: links/ID_Sport
+
+  Selected Candidate 2: Sport | Confidence: 0.9500
+  Reason 2: The 'student_sport' table contains a foreign key 'links/ID_Sport' that references the 'sport' table. The 'sport' table maps to the 'Sport' ontology class. The 'student_sport' table's structure, linking students to sports, directly corresponds to the 'practises' object property in the ontology, which has 'Person' as its domain and 'Sport' as its range. Thus, the table represents the connection between 'Person' and 'Sport' entities.
+  Class URI 2: http://example.org/Sport
+  Columns for Candidate 2: links/ID_Sport
+  Related Columns for Candidate 2: links/ID_Student
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9800
+  Reason 1: The table name 'student' is a hyponym of 'Person'. The table's columns 'students/ID', 'students/FirstName', and 'students/LastName' directly map to the data properties 'id', 'firstname', and 'lastname' of the 'Person' class. This mapping is further confirmed by the global schema context: the database contains a linking table 'student_sport' which connects the 'student' table to the 'sport' table. This structure perfectly mirrors the object property 'practises' which links the 'Person' class to the 'Sport' class in the ontology ('Person --practises--> Sport').
+  Class URI 1: http://example.org/Person
+  Columns for Candidate 1: students/ID, students/FirstName, students/LastName

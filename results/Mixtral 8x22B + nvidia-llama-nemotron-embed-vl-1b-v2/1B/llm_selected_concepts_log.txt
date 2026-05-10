@@ -1,0 +1,15 @@
+Term: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 2
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10 (numeric pattern)
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/ID (all unique), students/Name (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9200
+  Reason 1: The table 'student' with columns 'ID' (TINYINT) and 'Name' (VARCHAR) semantically aligns with the 'Person' ontology class, which includes data properties 'id' (integer) and 'firstname'/'lastname'/'fullname' (string). The 'Name' column can be interpreted as a full name or first name, matching the 'Person' class's string properties. The similarity score (0.2468) is lower than others but semantic alignment is stronger when considering the global schema context where 'Person' is the only class that can logically represent individuals with names and identifiers. The 'City' and 'Sport' classes are not suitable as they represent locations and activities, not individuals. The global schema shows 'Person' has relationships with 'City' and 'Sport', but this table lacks foreign keys to represent those relationships, suggesting it represents a standalone entity (Person). The 'ID' column is a clear primary key candidate, matching the 'id' data property in 'Person'.
+  Class URI 1: http://example.com/Person/students/ID
+  Columns for Candidate 1: students/ID, students/Name

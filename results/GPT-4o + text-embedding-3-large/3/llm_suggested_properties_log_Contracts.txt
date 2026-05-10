@@ -1,0 +1,11 @@
+Properties Suggestion Results:
+Total columns processed: 1
+
+Column 1:
+  Table Name: Contracts
+  Column Name: procedure_code
+  Class: Procedure
+  Properties: Has procedure type
+  Type: object
+  New Property: False
+

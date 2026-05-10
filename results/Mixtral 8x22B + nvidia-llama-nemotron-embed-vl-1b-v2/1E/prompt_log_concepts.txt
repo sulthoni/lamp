@@ -1,0 +1,464 @@
+################################################################################
+# PROMPT LOG - LLM Concept Selection
+# Started: 2026-04-22 09:30:18
+# Provider: openrouter
+# Model: mistralai/mixtral-8x22b-instruct
+# Total Candidates: 0
+################################################################################
+
+================================================================================
+[2026-04-22 09uman:30:20] PROCESS: ConceptSelection - Table | Step 1/1
+Provider: openrouter | Model: mistralai/mixtral-8x22b-instruct
+term: # Table: sport
+**Description**: This table represents sport
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+candidate_count: 3
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [term]: # Table: sport
+**Description**: This table represents sport
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+  [candidates_text]: 
+                Candidate 1:
+                - ID: http://example.org/Sport
+                - Label: Sport
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.4443
+                - Data Properties: [{"dataType": "integer", "name": "sportid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "sportname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}]
+     ... [truncated, total 2512 chars]
+  [global_schema_summary]: {'ontology': {'City': ['cityid', 'cityname', 'lives -> City'], 'Person': ['id', 'firstname', 'lastname', 'fullname', 'owes', 'practises -> Sport', 'lives -> City'], 'Sport': ['sportid', 'sportname', 'practises -> Sport']}, 'tables': {'sport': ['sports/ID (TINYINT)', 'sports/Name (VARCHAR(50))'], 'student': ['students/ID (TINYINT)', 'students/Sport (TINYINT) (FK -> sport)', 'students/Name (VARCHAR(50))']}}
+  [base_uri]: http://example.com/
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and semantic data integration.
+
+            Goal:
+                Your task is to map a single database table to one or more ontology classes.
+                You must analyze this table in the context of the entire database schema and ontology,
+                using both local (table-level) and global (schema-level) reasoning.
+
+            Global Context:
+                You are provided with a global schema summary that includes:
+                - All tables in the data source, with their columns and relationships (PK/FK)
+                - All ontology classes, with their data properties and object properties
+
+            Input:
+                Global_Schema_Summary: {'ontology': {'City': ['cityid', 'cityname', 'lives -> City'], 'Person': ['id', 'firstname', 'lastname', 'fullname', 'owes', 'practises -> Sport', 'lives -> City'], 'Sport': ['sportid', 'sportname', 'practises -> Sport']}, 'tables': {'sport': ['sports/ID (TINYINT)', 'sports/Name (VARCHAR(50))'], 'student': ['students/ID (TINYINT)', 'students/Sport (TINYINT) (FK -> sport)', 'students/Name (VARCHAR(50))']}}
+                Term: # Table: sport
+**Description**: This table represents sport
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)
+                Candidates: 
+                Candidate 1:
+                - ID: http://example.org/Sport
+                - Label: Sport
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.4443
+                - Data Properties: [{"dataType": "integer", "name": "sportid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "sportname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}]
+                - Object Properties: [{"domain": "Person", "name": "practises", "range": "Sport", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/Sport"}]
+                
+
+                Candidate 2:
+                - ID: http://example.org/Person
+                - Label: Person
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.3052
+                - Data Properties: [{"dataType": "integer", "name": "id", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "firstname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "string", "name": "lastname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "string", "name": "fullname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "double", "name": "owes", "uriDataType": "http://www.w3.org/2001/XMLSchema#double"}]
+                - Object Properties: [{"domain": "Person", "name": "practises", "range": "Sport", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/Sport"}, {"domain": "Person", "name": "lives", "range": "City", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/City"}]
+                
+
+                Candidate 3:
+                - ID: http://example.org/City
+                - Label: City
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.2522
+                - Data Properties: [{"dataType": "integer", "name": "cityid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "langString", "name": "cityname", "uriDataType": "http://www.w3.org/2001/XMLSchema#langString"}]
+                - Object Properties: [{"domain": "Person", "name": "lives", "range": "City", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/City"}]
+                
+                Base_URI: http://example.com/
+
+            Instructions:
+                Use the following structured reasoning process:
+
+                1. **Global Awareness & Contextualization**
+                    - Study the Global_Schema_Summary first.
+                    - Identify how the current table (# Table: sport
+**Description**: This table represents sport
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **sport name** (original: sports/Name) - Type: VARCHAR(50) - Examples: Tennis
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: sports/ID (all unique), sports/Name (all unique)) connects to other tables (via PK/FK).
+                    - Identify which ontology classes might already align with related tables.
+                    - Use this context to maintain semantic and structural consistency with the global mapping logic.
+                    - If the table references another table, consider how object properties in ontology express this relationship.
+
+                2. **Quick Overview**
+                    - Read the Term and Candidates carefully.
+                    - Treat similarity scores as a useful prior, but validate using semantic and structural evidence.
+                    - Note any global clues that help refine interpretation (e.g., FK links to another table already mapped to a specific ontology class).
+
+                3. **Data-Model Signals**
+                    - Infer likely primary key(s) and foreign key(s) using column patterns and the global schema.
+                    - Explicitly mention detected PK(s) and FK(s) and how they indicate entity identity or relationships.
+                    - If a table has multiple FKs or composite PKs, consider multi-entity mapping or join-table semantics.
+
+                4. **Column Clustering**
+                    - Group columns by semantic themes (e.g., personal_info, transaction_info, reference_info).
+                    - Name each cluster and list its columns.
+                    - Identify how these clusters correspond to ontology data or object properties.
+                    - Use global schema information to validate whether similar clusters in other tables are mapped consistently.
+
+                5. **Class-Mapping Logic**
+                    - Decide whether the table maps to a single ontology class or multiple classes.
+                    - If multiple, determine and justify the bridge columns (e.g., FK columns) connecting them.
+                    - Explain how this bridging aligns with ontology object properties.
+                    - Reference global schema context to maintain consistency: if related tables are mapped to certain classes, ensure logical alignment (e.g., “order” table mapped to `Order` → “customer_id” FK implies mapping to `Customer`).
+
+                6. **Candidate Analysis**
+                    For each candidate ontology class:
+                        • Compare semantic match between label and table term.
+                        • Evaluate how description, synonyms, and explanatory_text align with table purpose.
+                        • Check data property alignment (column names ↔ ontology data properties).
+                        • Check object property alignment (FKs ↔ ontology relationships).
+                        • Consider cosine similarity but override it if semantic or structural alignment differs.
+                        • Use the global schema to detect indirect signals — for example, if another table’s mapping implies a class relationship via object properties.
+
+                7. **Global Consistency Check**
+                    - Before final selection, ensure mappings are globally coherent:
+                        • Do not map two related tables to ontology classes with incompatible relationships.
+                        • If table A → class A, and this table references A, prefer mapping to a class related to A via ontology object properties.
+                        • Maintain naming and relationship consistency across the entire schema.
+
+                8. **Selection and Output**
+                    - Select the most appropriate ontology class(es).
+                    - For each selected candidate, provide:
+                        • Confidence score (0.00–1.00, two decimals)
+                        • Detailed reasoning with references to:
+                            - PK/FK detection
+                            - Column clusters
+                            - Mixed-entity findings (if any)
+                            - Bridge columns (if applicable)
+                            - Global schema consistency
+                            - Property alignment (data + object)
+                            - Candidate analysis outcome
+                        • Columns associated with the term and selected candidate concept.
+
+                9. **Class URI Instruction (Base URI is provided)**
+                    - You MUST output a recommended class URI for EACH selected ontology class.
+                    - First, choose exactly ONE table column to act as that class's identifier (the "class ID column").
+                      Prefer a true primary key for that entity/class. If multiple classes are selected, each class may use a different ID column.
+                      If only composite keys exist, choose the single most stable/unique column and explain the limitation in the corresponding reason.
+                    - Then construct the class URI using this exact format:
+                        `<Base_URI>/<ClassLabel>/<class_id_column>`
+                      where:
+                        • `Base_URI` is exactly the provided Base_URI (do not invent one)
+                        • `ClassLabel` is exactly the selected candidate label string you output
+                        • `class_id_column` is exactly the chosen table column original name
+                    - Do NOT output any other URI patterns.
+
+                    - If no suitable class exists, return empty lists and justify using structural and semantic reasoning (e.g., “table acts as a join table only; no standalone class match”).
+
+            Formatting rules:
+                - Return strictly valid JSON that matches  The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for concept selection.", "properties": {"term": {"description": "The original term", "title": "Term", "type": "string"}, "selected_candidates": {"description": "The class names of the selected candidate(s) concept", "items": {"type": "string"}, "title": "Selected Candidates", "type": "array"}, "confidence_scores": {"description": "Confidence score between 0.0 and 1.0", "items": {"type": "number"}, "title": "Confidence Scores", "type": "array"}, "reasons": {"description": "Explanation for the selections", "items": {"type": "string"}, "title": "Reasons", "type": "array"}, "class_uris": {"items": {"type": "string"}, "title": "Class Uris", "type": "array"}, "columns": {"description": "List of column lists, where each inner list contains columns associated with the corresponding selected candidate concept. For example, if there are 2 selected candidates, this should be [[columns_for_candidate_1], [columns_for_candidate_2]]. The index of each column list matches the index of the selected candidate.", "items": {"items": {"type": "string"}, "type": "array"}, "title": "Columns", "type": "array"}, "related_columns": {"description": "List of related column lists, where each inner list contains columns that connect to other concepts for the corresponding selected candidate. For example, if there are 2 selected candidates, this should be [[related_cols_for_candidate_1], [related_cols_for_candidate_2]]. The index of each related column list matches the index of the selected candidate.", "items": {"items": {"type": "string"}, "type": "array"}, "title": "Related Columns", "type": "array"}}, "required": ["term", "selected_candidates", "confidence_scores", "reasons", "columns", "related_columns"]}
+```.
+                - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
+                - Example Output Structure:
+                    If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
+                    {
+                        "selected_candidates": ["Order", "Customer"],
+                        "confidence_scores": [0.85, 0.75],
+                        "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
+                        "columns": [
+                            ["id", "order_date", "amount"],  // Columns for "Order" candidate
+                            ["customer_id", "name"]          // Columns for "Customer" candidate
+                        ],
+                        "related_columns": [
+                            ["customer_id"],  // Related columns for "Order" candidate
+                            []                // Related columns for "Customer" candidate
+                        ]
+                    }
+
+            Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+term='Table: sport' selected_candidates=['Sport'] confidence_scores=[0.95] reasons=["The 'sport' table contains columns 'sports/ID' (TINYINT) and 'sports/Name' (VARCHAR(50)), which directly align with the ontology class 'Sport' data properties 'sportid' (integer) and 'sportname' (string). The table's purpose ('This table represents sport') matches the 'Sport' class label and description. The similarity score (0.4443) is lower than ideal but is overridden by strong semantic and structural alignment. The global schema shows a 'Sport' class with no conflicting relationships, and the table's columns are consistent with the ontology's data properties. No foreign keys are present, indicating this is a standalone entity table. The 'Sport' class is the only candidate that directly matches the table's purpose and structure."] class_uris=['http://example.com/Sport/sports/ID'] columns=[['sports/ID', 'sports/Name']] related_columns=[[]]
+================================================================================
+
+================================================================================
+[2026-04-22 09uman:30:23] PROCESS: ConceptSelection - Table | Step 1/1
+Provider: openrouter | Model: mistralai/mixtral-8x22b-instruct
+term: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport designation** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport designation** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+candidate_count: 3
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [term]: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport designation** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport designation** referen... [truncated, total 665 chars]
+  [candidates_text]: 
+                Candidate 1:
+                - ID: http://example.org/Sport
+                - Label: Sport
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.3831
+                - Data Properties: [{"dataType": "integer", "name": "sportid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "sportname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}]
+     ... [truncated, total 2512 chars]
+  [global_schema_summary]: {'ontology': {'City': ['cityid', 'cityname', 'lives -> City'], 'Person': ['id', 'firstname', 'lastname', 'fullname', 'owes', 'practises -> Sport', 'lives -> City'], 'Sport': ['sportid', 'sportname', 'practises -> Sport']}, 'tables': {'sport': ['sports/ID (TINYINT)', 'sports/Name (VARCHAR(50))'], 'student': ['students/ID (TINYINT)', 'students/Sport (TINYINT) (FK -> sport)', 'students/Name (VARCHAR(50))']}}
+  [base_uri]: http://example.com/
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and semantic data integration.
+
+            Goal:
+                Your task is to map a single database table to one or more ontology classes.
+                You must analyze this table in the context of the entire database schema and ontology,
+                using both local (table-level) and global (schema-level) reasoning.
+
+            Global Context:
+                You are provided with a global schema summary that includes:
+                - All tables in the data source, with their columns and relationships (PK/FK)
+                - All ontology classes, with their data properties and object properties
+
+            Input:
+                Global_Schema_Summary: {'ontology': {'City': ['cityid', 'cityname', 'lives -> City'], 'Person': ['id', 'firstname', 'lastname', 'fullname', 'owes', 'practises -> Sport', 'lives -> City'], 'Sport': ['sportid', 'sportname', 'practises -> Sport']}, 'tables': {'sport': ['sports/ID (TINYINT)', 'sports/Name (VARCHAR(50))'], 'student': ['students/ID (TINYINT)', 'students/Sport (TINYINT) (FK -> sport)', 'students/Name (VARCHAR(50))']}}
+                Term: # Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport designation** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport designation** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)
+                Candidates: 
+                Candidate 1:
+                - ID: http://example.org/Sport
+                - Label: Sport
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.3831
+                - Data Properties: [{"dataType": "integer", "name": "sportid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "sportname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}]
+                - Object Properties: [{"domain": "Person", "name": "practises", "range": "Sport", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/Sport"}]
+                
+
+                Candidate 2:
+                - ID: http://example.org/Person
+                - Label: Person
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.3188
+                - Data Properties: [{"dataType": "integer", "name": "id", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "string", "name": "firstname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "string", "name": "lastname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "string", "name": "fullname", "uriDataType": "http://www.w3.org/2001/XMLSchema#string"}, {"dataType": "double", "name": "owes", "uriDataType": "http://www.w3.org/2001/XMLSchema#double"}]
+                - Object Properties: [{"domain": "Person", "name": "practises", "range": "Sport", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/Sport"}, {"domain": "Person", "name": "lives", "range": "City", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/City"}]
+                
+
+                Candidate 3:
+                - ID: http://example.org/City
+                - Label: City
+                - Description: 
+                - Explanatory Text: 
+                - Synonyms: None
+                - Similarity Score: 0.2406
+                - Data Properties: [{"dataType": "integer", "name": "cityid", "uriDataType": "http://www.w3.org/2001/XMLSchema#integer"}, {"dataType": "langString", "name": "cityname", "uriDataType": "http://www.w3.org/2001/XMLSchema#langString"}]
+                - Object Properties: [{"domain": "Person", "name": "lives", "range": "City", "uriDomain": "http://example.org/Person", "uriRange": "http://example.org/City"}]
+                
+                Base_URI: http://example.com/
+
+            Instructions:
+                Use the following structured reasoning process:
+
+                1. **Global Awareness & Contextualization**
+                    - Study the Global_Schema_Summary first.
+                    - Identify how the current table (# Table: student records
+**Original Name**: student
+**Description**: This table represents student records
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 20 (numeric pattern)
+- **sport designation** (original: students/Sport) - Type: TINYINT - Examples: 100 (numeric pattern)
+- **student full name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus Williams, Demi Moore
+## Relationships
+- **sport designation** references **sport** table
+## Data Characteristics
+**Sample Size**: 2 rows
+**Uniqueness**: students/ID (all unique), students/Sport (all unique), students/Name (all unique)) connects to other tables (via PK/FK).
+                    - Identify which ontology classes might already align with related tables.
+                    - Use this context to maintain semantic and structural consistency with the global mapping logic.
+                    - If the table references another table, consider how object properties in ontology express this relationship.
+
+                2. **Quick Overview**
+                    - Read the Term and Candidates carefully.
+                    - Treat similarity scores as a useful prior, but validate using semantic and structural evidence.
+                    - Note any global clues that help refine interpretation (e.g., FK links to another table already mapped to a specific ontology class).
+
+                3. **Data-Model Signals**
+                    - Infer likely primary key(s) and foreign key(s) using column patterns and the global schema.
+                    - Explicitly mention detected PK(s) and FK(s) and how they indicate entity identity or relationships.
+                    - If a table has multiple FKs or composite PKs, consider multi-entity mapping or join-table semantics.
+
+                4. **Column Clustering**
+                    - Group columns by semantic themes (e.g., personal_info, transaction_info, reference_info).
+                    - Name each cluster and list its columns.
+                    - Identify how these clusters correspond to ontology data or object properties.
+                    - Use global schema information to validate whether similar clusters in other tables are mapped consistently.
+
+                5. **Class-Mapping Logic**
+                    - Decide whether the table maps to a single ontology class or multiple classes.
+                    - If multiple, determine and justify the bridge columns (e.g., FK columns) connecting them.
+                    - Explain how this bridging aligns with ontology object properties.
+                    - Reference global schema context to maintain consistency: if related tables are mapped to certain classes, ensure logical alignment (e.g., “order” table mapped to `Order` → “customer_id” FK implies mapping to `Customer`).
+
+                6. **Candidate Analysis**
+                    For each candidate ontology class:
+                        • Compare semantic match between label and table term.
+                        • Evaluate how description, synonyms, and explanatory_text align with table purpose.
+                        • Check data property alignment (column names ↔ ontology data properties).
+                        • Check object property alignment (FKs ↔ ontology relationships).
+                        • Consider cosine similarity but override it if semantic or structural alignment differs.
+                        • Use the global schema to detect indirect signals — for example, if another table’s mapping implies a class relationship via object properties.
+
+                7. **Global Consistency Check**
+                    - Before final selection, ensure mappings are globally coherent:
+                        • Do not map two related tables to ontology classes with incompatible relationships.
+                        • If table A → class A, and this table references A, prefer mapping to a class related to A via ontology object properties.
+                        • Maintain naming and relationship consistency across the entire schema.
+
+                8. **Selection and Output**
+                    - Select the most appropriate ontology class(es).
+                    - For each selected candidate, provide:
+                        • Confidence score (0.00–1.00, two decimals)
+                        • Detailed reasoning with references to:
+                            - PK/FK detection
+                            - Column clusters
+                            - Mixed-entity findings (if any)
+                            - Bridge columns (if applicable)
+                            - Global schema consistency
+                            - Property alignment (data + object)
+                            - Candidate analysis outcome
+                        • Columns associated with the term and selected candidate concept.
+
+                9. **Class URI Instruction (Base URI is provided)**
+                    - You MUST output a recommended class URI for EACH selected ontology class.
+                    - First, choose exactly ONE table column to act as that class's identifier (the "class ID column").
+                      Prefer a true primary key for that entity/class. If multiple classes are selected, each class may use a different ID column.
+                      If only composite keys exist, choose the single most stable/unique column and explain the limitation in the corresponding reason.
+                    - Then construct the class URI using this exact format:
+                        `<Base_URI>/<ClassLabel>/<class_id_column>`
+                      where:
+                        • `Base_URI` is exactly the provided Base_URI (do not invent one)
+                        • `ClassLabel` is exactly the selected candidate label string you output
+                        • `class_id_column` is exactly the chosen table column original name
+                    - Do NOT output any other URI patterns.
+
+                    - If no suitable class exists, return empty lists and justify using structural and semantic reasoning (e.g., “table acts as a join table only; no standalone class match”).
+
+            Formatting rules:
+                - Return strictly valid JSON that matches  The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"description": "Structured output for concept selection.", "properties": {"term": {"description": "The original term", "title": "Term", "type": "string"}, "selected_candidates": {"description": "The class names of the selected candidate(s) concept", "items": {"type": "string"}, "title": "Selected Candidates", "type": "array"}, "confidence_scores": {"description": "Confidence score between 0.0 and 1.0", "items": {"type": "number"}, "title": "Confidence Scores", "type": "array"}, "reasons": {"description": "Explanation for the selections", "items": {"type": "string"}, "title": "Reasons", "type": "array"}, "class_uris": {"items": {"type": "string"}, "title": "Class Uris", "type": "array"}, "columns": {"description": "List of column lists, where each inner list contains columns associated with the corresponding selected candidate concept. For example, if there are 2 selected candidates, this should be [[columns_for_candidate_1], [columns_for_candidate_2]]. The index of each column list matches the index of the selected candidate.", "items": {"items": {"type": "string"}, "type": "array"}, "title": "Columns", "type": "array"}, "related_columns": {"description": "List of related column lists, where each inner list contains columns that connect to other concepts for the corresponding selected candidate. For example, if there are 2 selected candidates, this should be [[related_cols_for_candidate_1], [related_cols_for_candidate_2]]. The index of each related column list matches the index of the selected candidate.", "items": {"items": {"type": "string"}, "type": "array"}, "title": "Related Columns", "type": "array"}}, "required": ["term", "selected_candidates", "confidence_scores", "reasons", "columns", "related_columns"]}
+```.
+                - Do not include additional commentary outside the JSON.
+                - Output must include `class_uris` aligned 1:1 with `selected_candidates`.
+                - Example Output Structure:
+                    If selecting 2 candidates for a table with columns [id, name, customer_id, order_date, amount]:
+                    {
+                        "selected_candidates": ["Order", "Customer"],
+                        "confidence_scores": [0.85, 0.75],
+                        "reasons": ["Reason for Order mapping", "Reason for Customer mapping"],
+                        "class_uris": [
+                            "http://example.com/Order/id",
+                            "http://example.com/Customer/customer_id"
+                        ],
+                        "columns": [
+                            ["id", "order_date", "amount"],  // Columns for "Order" candidate
+                            ["customer_id", "name"]          // Columns for "Customer" candidate
+                        ],
+                        "related_columns": [
+                            ["customer_id"],  // Related columns for "Order" candidate
+                            []                // Related columns for "Customer" candidate
+                        ]
+                    }
+
+            Be thorough, global-aware, and justify each decision using both local table evidence and global schema consistency.
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+term='student records' selected_candidates=['Person'] confidence_scores=[0.95] reasons=["The 'student' table contains columns that align well with the 'Person' ontology class: 'students/ID' (numeric identifier) maps to 'id' in Person, 'students/Name' (full name) maps to 'fullname' in Person, and 'students/Sport' (foreign key to sport table) aligns with the 'practises' object property in Person (domain: Person, range: Sport). The global schema shows that Person has a 'practises' relationship with Sport, which matches the FK relationship in the student table. The similarity score (0.3188) is lower than Sport's (0.3831), but structural and semantic alignment with Person is stronger due to the name field and the sport relationship. The sport table is already mapped to Sport in the ontology, and the student table's FK to sport aligns with Person's 'practises' property.", "The 'Sport' candidate (0.3831 similarity) is not selected because the student table does not represent a sport entity itself but rather a student who practices a sport. The student table is about individuals (students), not sports, and the sport designation is a relationship (practises) rather than an entity attribute.", "The 'City' candidate (0.2406 similarity) is irrelevant as there is no city-related data in the student table."] class_uris=['http://example.com/Person/students/ID'] columns=[['students/ID', 'students/Sport', 'students/Name']] related_columns=[['students/Sport']]
+================================================================================

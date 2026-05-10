@@ -1,0 +1,51 @@
+Term: # Table: list of sports
+**Original Name**: sport
+**Description**: This table represents list of sports
+**Column Count**: 2
+## Columns
+- **sport identifier** (original: sports/ID) - Type: TINYINT - Examples: 110, 111, 112 (numeric pattern)
+- **sport description** (original: sports/Description) - Type: VARCHAR(50) - Examples: Tennis, Football, Formula1
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: sports/ID (all unique), sports/Description (all unique)
+
+  Selected Candidate 1: Sport | Confidence: 0.9000
+  Reason 1: The table's structure and content directly align with the Sport class, especially considering the data properties and the lack of foreign keys indicating a standalone entity.
+  Class URI 1: http://example.com/Sport/sport identifier
+  Columns for Candidate 1: sport identifier, sport description
+
+Term: # Table: Student Sports Participation
+**Original Name**: student_sport
+**Description**: This table represents student sports participation
+**Column Count**: 2
+## Columns
+- **Student Identification Link** (original: links/ID_Student) - Type: TINYINT - Examples: 10, 11, 11 (numeric pattern)
+- **Sport Identification Link** (original: links/ID_Sport) - Type: TINYINT - Examples: 110, 111, 112
+## Relationships
+- **Student Identification Link** references **student** table
+- **Sport Identification Link** references **sport** table
+## Data Characteristics
+**Sample Size**: 4 rows
+
+  Selected Candidate 1: Sport | Confidence: 0.8000
+  Reason 1: The table represents a many-to-many relationship between students and sports, with a focus on participation. The 'Sport Identification Link' column directly references the sport entity, aligning with the 'Sport' ontology class.
+  Class URI 1: http://example.com/Sport/links/ID_Sport
+  Columns for Candidate 1: Student Identification Link, Sport Identification Link
+  Related Columns for Candidate 1: Student Identification Link
+
+Term: # Table: list of students
+**Original Name**: student
+**Description**: This table represents list of students
+**Column Count**: 3
+## Columns
+- **student identifier** (original: students/ID) - Type: TINYINT - Examples: 10, 11, 12 (numeric pattern)
+- **student first name** (original: students/FirstName) - Type: VARCHAR(50) - Examples: Venus, Fernando, David
+- **student last name** (original: students/LastName) - Type: VARCHAR(50) - Examples: Williams, Alonso, Villa
+## Data Characteristics
+**Sample Size**: 3 rows
+**Uniqueness**: students/ID (all unique), students/FirstName (all unique), students/LastName (all unique)
+
+  Selected Candidate 1: Person | Confidence: 0.9000
+  Reason 1: The table's columns align well with the Person class's data properties, and the semantic meaning of the table matches the Person class.
+  Class URI 1: http://example.com/Person/student identifier
+  Columns for Candidate 1: student identifier, student first name, student last name

@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: routes
+  Column Name: route_id
+  Class: Route
+  Properties: Route.ID
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: routes
+  Column Name: agency_id
+  Class: Route
+  Properties: Route.agency
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: routes
+  Column Name: route_short_name
+  Class: Route
+  Properties: Route.Short name
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: routes
+  Column Name: route_long_name
+  Class: Route
+  Properties: Route.Long name
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: routes
+  Column Name: route_desc
+  Class: Route
+  Properties: Route.RouteDesc
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: routes
+  Column Name: route_type
+  Class: Route
+  Properties: Route.Route type
+  Type: object
+  New Property: False
+
+Column 7:
+  Table Name: routes
+  Column Name: route_url
+  Class: Route
+  Properties: Route.URL
+  Type: data
+  New Property: False
+
+Column 8:
+  Table Name: routes
+  Column Name: route_color
+  Class: Route
+  Properties: Route.Color
+  Type: data
+  New Property: False
+
+Column 9:
+  Table Name: routes
+  Column Name: route_text_color
+  Class: Route
+  Properties: Route.Text color
+  Type: data
+  New Property: False
+

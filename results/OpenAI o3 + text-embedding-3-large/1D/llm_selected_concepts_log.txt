@@ -1,0 +1,15 @@
+Term: # Table: list of IOU debt records
+**Original Name**: ious
+**Description**: This table represents list of iou debt records
+**Column Count**: 3
+## Columns
+- **person first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **person last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **amount owed** (original: persons/amount) - Type: VARCHAR(50) - Examples: 30.0E0, 20.0E0, 30.0E0
+## Data Characteristics
+**Sample Size**: 3 rows
+
+  Selected Candidate 1: Person | Confidence: 0.8300
+  Reason 1: The table stores personal attributes (first name, last name) plus a monetary value owed. In the global ontology, class Person has data properties firstname, lastname and owes (double), matching all three columns. No other ontology class provides a semantically coherent match (City and Sport lack name-split properties and money fields). The table contains no foreign-key style columns, so it represents the Person entity itself rather than a join table. Although no single primary-key column exists, the persons/fname column is the most stable per-row identifier available; we acknowledge its non-uniqueness but select it to fulfil URI construction requirements. Mapping is globally consistent because no other tables or relationships are defined that would conflict with linking this data to the Person class.
+  Class URI 1: http://example.com/Person/persons/fname
+  Columns for Candidate 1: persons/fname, persons/lname, persons/amount

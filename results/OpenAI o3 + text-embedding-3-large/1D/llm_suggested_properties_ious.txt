@@ -1,0 +1,3 @@
+{'table_name': 'ious', 'column_name': 'persons/fname', 'class_name': 'Person', 'properties': 'firstname', 'type': 'data', 'new_property': False}
+{'table_name': 'ious', 'column_name': 'persons/lname', 'class_name': 'Person', 'properties': 'lastname', 'type': 'data', 'new_property': False}
+{'table_name': 'ious', 'column_name': 'persons/amount', 'class_name': 'Person', 'properties': 'owes', 'type': 'data', 'new_property': False}

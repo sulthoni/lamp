@@ -1,0 +1,640 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gtfs: <http://vocab.gtfs.org/terms#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <http://schema.org/> .
+@prefix status: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix : <http://vocab.gtfs.org/terms#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@base <http://vocab.gtfs.org/terms#> .
+
+<#LogicalTable_agency_Agency>
+  rml:logicalSource [ rml:source "agency.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Agency/agency/{agency_id}" ;
+    rr:class <http://example.com/Agency/agency_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :ID ;
+    rr:objectMap [
+      rml:reference "agency_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Name ;
+    rr:objectMap [
+      rml:reference "agency_name" ;
+      rr:datatype xsd:name
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :URL ;
+    rr:objectMap [
+      rml:reference "agency_url" ;
+      rr:datatype xsd:page
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Timezone ;
+    rr:objectMap [
+      rml:reference "agency_timezone" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Language ;
+    rr:objectMap [
+      rml:reference "agency_lang" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :PhoneNumber ;
+    rr:objectMap [
+      rml:reference "agency_phone" ;
+      rr:datatype xsd:phone
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :fare URL ;
+    rr:objectMap [
+      rml:reference "agency_fare_url" ;
+      rr:datatype xsd:page
+    ]  ] .
+
+
+<#LogicalTable_calendar_dates_Calendar_date_rule>
+  rml:logicalSource [ rml:source "calendar_dates.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Calendar_date_rule/calendar_dates/{service_id}" ;
+    rr:class <http://example.com/Calendar date rule/date>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Date ;
+    rr:objectMap [
+      rml:reference "date" ;
+      rr:datatype xsd:date
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Exception Type ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-221/{exception_type}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-221>
+    ]
+  ] .
+
+
+<#LogicalTable_calendar_Calendar_rule>
+  rml:logicalSource [ rml:source "calendar.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Calendar_rule/calendar/{service_id}" ;
+    rr:class <http://example.com/Calendar rule/service_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Service rule ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#ServiceRule/{service_id}" ;
+      rr:class <http://vocab.gtfs.org/terms#ServiceRule>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Monday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-193/{monday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-193>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Tuesday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-197/{tuesday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-197>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Wednesday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-201/{wednesday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-201>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Thursday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-205/{thursday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-205>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Friday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-209/{friday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-209>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Saturday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-213/{saturday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-213>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Sunday ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-217/{sunday}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-217>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :StartDate ;
+    rr:objectMap [
+      rml:reference "start_date" ;
+      rr:datatype xsd:startDate
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :EndDate ;
+    rr:objectMap [
+      rml:reference "end_date" ;
+      rr:datatype xsd:endDate
+    ]  ] .
+
+
+<#LogicalTable_feed_info_GTFS_Feed>
+  rml:logicalSource [ rml:source "feed_info.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#GTFS_Feed/feed_info/{feed_publisher_name}" ;
+    rr:class <http://example.com/GTFS Feed/feed_version>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Publisher ;
+    rr:objectMap [
+      rml:reference "feed_publisher_name" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :URL ;
+    rr:objectMap [
+      rml:reference "feed_publisher_url" ;
+      rr:datatype xsd:page
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Language ;
+    rr:objectMap [
+      rml:reference "feed_lang" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :StartDate ;
+    rr:objectMap [
+      rml:reference "feed_start_date" ;
+      rr:datatype xsd:startDate
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :EndDate ;
+    rr:objectMap [
+      rml:reference "feed_end_date" ;
+      rr:datatype xsd:endDate
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Version ;
+    rr:objectMap [
+      rml:reference "feed_version" ;
+      rr:datatype xsd:version
+    ]  ] .
+
+
+<#LogicalTable_frequencies_Frequency>
+  rml:logicalSource [ rml:source "frequencies.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Frequency/frequencies/{trip_id}" ;
+    rr:class <http://example.com/Frequency/start_time>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Trip ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Trip/{trip_id}" ;
+      rr:class <http://vocab.gtfs.org/terms#Trip>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Start Time ;
+    rr:objectMap [
+      rml:reference "start_time" ;
+      rr:datatype xsd:startTime
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :End Time ;
+    rr:objectMap [
+      rml:reference "end_time" ;
+      rr:datatype xsd:endTime
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Headway Seconds ;
+    rr:objectMap [
+      rml:reference "headway_secs" ;
+      rr:datatype xsd:positiveInteger
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Frecuency type ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-225/{exact_times}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-225>
+    ]
+  ] .
+
+
+<#LogicalTable_routes_Route>
+  rml:logicalSource [ rml:source "routes.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Route/routes/{route_id}" ;
+    rr:class <http://example.com/Route/route_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :ID ;
+    rr:objectMap [
+      rml:reference "route_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :agency ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Agency/{agency_id}" ;
+      rr:class <http://vocab.gtfs.org/terms#Agency>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Short name ;
+    rr:objectMap [
+      rml:reference "route_short_name" ;
+      rr:datatype xsd:n3-275
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Long name ;
+    rr:objectMap [
+      rml:reference "route_long_name" ;
+      rr:datatype xsd:n3-272
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :RouteDesc ;
+    rr:objectMap [
+      rml:reference "route_desc" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Route type ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-186/{route_type}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-186>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :URL ;
+    rr:objectMap [
+      rml:reference "route_url" ;
+      rr:datatype xsd:page
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Color ;
+    rr:objectMap [
+      rml:reference "route_color" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Text color ;
+    rr:objectMap [
+      rml:reference "route_text_color" ;
+      rr:datatype xsd:string
+    ]  ] .
+
+
+<#LogicalTable_shapes_Shape_Point>
+  rml:logicalSource [ rml:source "shapes.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Shape_Point/shapes/{shape_id}" ;
+    rr:class <http://example.com/Shape Point/shape_pt_sequence>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Latitude ;
+    rr:objectMap [
+      rml:reference "shape_pt_lat" ;
+      rr:datatype xsd:lat
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Longitude ;
+    rr:objectMap [
+      rml:reference "shape_pt_lon" ;
+      rr:datatype xsd:long
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Point Sequence ;
+    rr:objectMap [
+      rml:reference "shape_pt_sequence" ;
+      rr:datatype xsd:nonNegativeInteger
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Distance Traveled ;
+    rr:objectMap [
+      rml:reference "shape_dist_traveled" ;
+      rr:datatype xsd:nonNegativeFloat
+    ]  ] .
+
+
+<#LogicalTable_stop_times_Stop_time>
+  rml:logicalSource [ rml:source "stop_times.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Stop_time/stop_times/{trip_id}" ;
+    rr:class <http://example.com/Stop time/arrival_time>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Trip ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stop_times.trip_id}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Arrival time ;
+    rr:objectMap [
+      rml:reference "stop_times.arrival_time" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Departure time ;
+    rr:objectMap [
+      rml:reference "stop_times.departure_time" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Stop ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stop_times.stop_id}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Stop sequence ;
+    rr:objectMap [
+      rml:reference "stop_times.stop_sequence" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Headsign ;
+    rr:objectMap [
+      rml:reference "stop_times.stop_headsign" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Pickup type ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stop_times.pickup_type}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Drop off type ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stop_times.drop_off_type}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop time.Distance Traveled ;
+    rr:objectMap [
+      rml:reference "stop_times.shape_dist_traveled" ;
+      rr:datatype xsd:string
+    ]  ] .
+
+
+<#LogicalTable_stops_Stop>
+  rml:logicalSource [ rml:source "stops.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Stop/stops/{stop_id}" ;
+    rr:class <http://example.com/Stop/stop_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.ID ;
+    rr:objectMap [
+      rml:reference "stops.stop_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Location Code ;
+    rr:objectMap [
+      rml:reference "stops.stop_code" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Name ;
+    rr:objectMap [
+      rml:reference "stops.stop_name" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.RouteDesc ;
+    rr:objectMap [
+      rml:reference "stops.stop_desc" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Latitude ;
+    rr:objectMap [
+      rml:reference "stops.stop_lat" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Longitude ;
+    rr:objectMap [
+      rml:reference "stops.stop_lon" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Location Code ;
+    rr:objectMap [
+      rml:reference "stops.zone_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.URL ;
+    rr:objectMap [
+      rml:reference "stops.stop_url" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Location Type ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stops.location_type}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Parent Station ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stops.parent_station}" ;
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Timezone ;
+    rr:objectMap [
+      rml:reference "stops.stop_timezone" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Stop.Wheelchair accesible ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#None/{stops.wheelchair_boarding}" ;
+    ]
+  ] .
+
+
+<#LogicalTable_trips_Trip>
+  rml:logicalSource [ rml:source "trips.csv" ; rml:referenceFormulation ql:CSV ] ;
+
+  rr:subjectMap [
+    rr:template "http://vocab.gtfs.org/terms#Trip/trips/{route_id}" ;
+    rr:class <http://example.com/Trip/trip_id>
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Route ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Route/{route_id}" ;
+      rr:class <http://vocab.gtfs.org/terms#Route>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Service ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Service/{service_id}" ;
+      rr:class <http://vocab.gtfs.org/terms#Service>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :ID ;
+    rr:objectMap [
+      rml:reference "trip_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Headsign ;
+    rr:objectMap [
+      rml:reference "trip_headsign" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Short name ;
+    rr:objectMap [
+      rml:reference "trip_short_name" ;
+      rr:datatype xsd:n3-275
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Direction ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-246/{direction_id}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-246>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Block ;
+    rr:objectMap [
+      rml:reference "block_id" ;
+      rr:datatype xsd:string
+    ]  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Shape ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Shape/{shape_id}" ;
+      rr:class <http://vocab.gtfs.org/terms#Shape>
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate :Wheelchair accesible ;
+    rr:objectMap [
+      rr:template "http://vocab.gtfs.org/terms#Concept, n3-238/{wheelchair_accessible}" ;
+      rr:class <http://www.w3.org/2004/02/skos/core#Concept, n3-238>
+    ]
+  ] .

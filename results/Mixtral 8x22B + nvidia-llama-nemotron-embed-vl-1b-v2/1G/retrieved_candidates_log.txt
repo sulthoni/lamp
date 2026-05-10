@@ -1,0 +1,30 @@
+
+
+===================== Table Results ====================
+Term: # Table: person locations
+**Original Name**: lives
+**Description**: This table represents person locations
+**Column Count**: 3
+## Columns
+- **first name** (original: lives/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: lives/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **city of residence** (original: lives/city) - Type: VARCHAR(50) - Examples: London, Madrid, London
+## Data Characteristics
+**Sample Size**: 3 rows
+  Candidate 1: City (ID: http://example.org/City) | Similarity: 0.4766
+  Candidate 2: Person (ID: http://example.org/Person) | Similarity: 0.4059
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.2573
+
+Term: # Table: list of individuals
+**Original Name**: persons
+**Description**: This table represents list of individuals
+**Column Count**: 3
+## Columns
+- **first name** (original: persons/fname) - Type: VARCHAR(50) - Examples: Bob, Sue, Bob
+- **last name** (original: persons/lname) - Type: VARCHAR(50) - Examples: Smith, Jones, Smith
+- **total amount** (original: persons/amount) - Type: TINYINT - Examples: 30, 20, 30
+## Data Characteristics
+**Sample Size**: 3 rows
+  Candidate 1: Person (ID: http://example.org/Person) | Similarity: 0.3137
+  Candidate 2: City (ID: http://example.org/City) | Similarity: 0.2596
+  Candidate 3: Sport (ID: http://example.org/Sport) | Similarity: 0.2462

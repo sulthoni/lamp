@@ -1,0 +1,19 @@
+Properties Suggestion Results:
+Total columns processed: 2
+
+Column 1:
+  Table Name: city_en
+  Column Name: cities/ID
+  Class: City
+  Properties: cityid
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: city_en
+  Column Name: cities/Name
+  Class: City
+  Properties: cityname
+  Type: data
+  New Property: False
+

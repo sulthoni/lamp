@@ -1,0 +1,27 @@
+Properties Suggestion Results:
+Total columns processed: 3
+
+Column 1:
+  Table Name: Winning Party
+  Column Name: unique identifier of the winning party
+  Class: Buyer
+  Properties: Has i d
+  Type: data
+  New Property: False
+
+Column 2:
+  Table Name: Winning Party
+  Column Name: name of the winning party
+  Class: Buyer
+  Properties: name
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: Winning Party
+  Column Name: tax identification number of the party
+  Class: Identifier
+  Properties: identifier value
+  Type: data
+  New Property: False
+

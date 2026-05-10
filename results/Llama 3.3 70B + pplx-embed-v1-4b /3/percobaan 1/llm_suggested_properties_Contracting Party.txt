@@ -1,0 +1,13 @@
+{'table_name': 'Contracting Party', 'column_name': 'party_id', 'class_name': 'Organization', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracting Party', 'column_name': 'name', 'class_name': 'Organization', 'properties': 'name', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'website', 'class_name': 'Organization', 'properties': 'website', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'city', 'class_name': 'Organization', 'properties': 'location', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'postal_code', 'class_name': 'Organization', 'properties': 'postalCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'address_line', 'class_name': 'Organization', 'properties': 'address', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'country_code', 'class_name': 'Organization', 'properties': 'countryCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'country_name', 'class_name': 'Organization', 'properties': 'countryName', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'telephone', 'class_name': 'Organization', 'properties': 'telephone', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'telefax', 'class_name': 'Organization', 'properties': 'fax', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'email', 'class_name': 'Organization', 'properties': 'email', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'contract_id', 'class_name': 'Organization', 'properties': 'partOfContract', 'type': 'object', 'new_property': True}
+{'table_name': 'Contracting Party', 'column_name': 'party_type_code', 'class_name': 'Organization', 'properties': 'type', 'type': 'data', 'new_property': True}

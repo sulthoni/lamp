@@ -1,0 +1,9 @@
+{'table_name': 'trips', 'column_name': 'route_id', 'class_name': 'Trip', 'properties': 'Trip.Route', 'type': 'object', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'service_id', 'class_name': 'Trip', 'properties': 'Trip.Service', 'type': 'object', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'trip_id', 'class_name': 'Trip', 'properties': 'Trip.ID', 'type': 'data', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'trip_headsign', 'class_name': 'Trip', 'properties': 'Trip.Headsign', 'type': 'data', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'trip_short_name', 'class_name': 'Trip', 'properties': 'Trip.Short name', 'type': 'data', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'direction_id', 'class_name': 'Trip', 'properties': 'Trip.Direction', 'type': 'object', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'block_id', 'class_name': 'Trip', 'properties': 'Trip.Block', 'type': 'data', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'shape_id', 'class_name': 'Trip', 'properties': 'Trip.Shape', 'type': 'object', 'new_property': False}
+{'table_name': 'trips', 'column_name': 'wheelchair_accessible', 'class_name': 'Trip', 'properties': 'Trip.Wheelchair accesible', 'type': 'object', 'new_property': False}

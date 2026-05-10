@@ -1,0 +1,35 @@
+Properties Suggestion Results:
+Total columns processed: 4
+
+Column 1:
+  Table Name: frequencies
+  Column Name: trip identifier
+  Class: Frequency
+  Properties: Trip
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: frequencies
+  Column Name: start time of trip
+  Class: Frequency
+  Properties: Start Time
+  Type: data
+  New Property: False
+
+Column 3:
+  Table Name: frequencies
+  Column Name: end time of trip
+  Class: Frequency
+  Properties: End Time
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: frequencies
+  Column Name: time interval between trips in seconds
+  Class: Frequency
+  Properties: Headway Seconds
+  Type: data
+  New Property: False
+

@@ -1,0 +1,3 @@
+{'table_name': 'lives', 'column_name': 'lives/fname', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'lives', 'column_name': 'lives/lname', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}
+{'table_name': 'lives', 'column_name': 'lives/city', 'class_name': None, 'properties': None, 'type': None, 'new_property': None}

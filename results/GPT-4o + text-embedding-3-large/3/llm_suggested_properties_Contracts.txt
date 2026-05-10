@@ -1,0 +1,1 @@
+{'table_name': 'Contracts', 'column_name': 'procedure_code', 'class_name': 'Procedure', 'properties': 'Has procedure type', 'type': 'object', 'new_property': False}

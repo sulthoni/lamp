@@ -1,0 +1,11 @@
+{'table_name': 'Tender Results', 'column_name': 'tender award identifier', 'class_name': 'LotAwardOutcome', 'properties': 'hasAwardOutcomeId', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'contract identifier', 'class_name': 'LotAwardOutcome', 'properties': 'refersToContract', 'type': 'object', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'award result code', 'class_name': 'LotAwardOutcome', 'properties': 'hasAwardResultCode', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'detailed description of the award outcome', 'class_name': 'LotAwardOutcome', 'properties': 'hasAwardOutcomeDescription', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'date when the award was granted', 'class_name': 'LotAwardOutcome', 'properties': 'hasAwardDecisionDate', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'quantity of tenders received', 'class_name': 'LotAwardOutcome', 'properties': 'hasReceivedTenders', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract issuance identifier', 'class_name': 'LotAwardOutcome', 'properties': 'refersToContractIssuance', 'type': 'object', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'date when the contract was issued', 'class_name': 'LotAwardOutcome', 'properties': 'hasContractIssueDate', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'awarded amount excluding tax', 'class_name': 'LotAwardOutcome', 'properties': 'hasAwardedAmountExcludingTax', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'total awarded amount payable', 'class_name': 'LotAwardOutcome', 'properties': 'hasTotalAwardedAmountPayable', 'type': 'data', 'new_property': True}
+{'table_name': 'Tender Results', 'column_name': 'currency of the awarded amount', 'class_name': 'LotAwardOutcome', 'properties': 'hasCurrency', 'type': 'object', 'new_property': False}

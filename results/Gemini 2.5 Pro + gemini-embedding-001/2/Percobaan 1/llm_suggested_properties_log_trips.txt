@@ -1,0 +1,75 @@
+Properties Suggestion Results:
+Total columns processed: 9
+
+Column 1:
+  Table Name: trips
+  Column Name: route_id
+  Class: Trip
+  Properties: Trip.Route
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: trips
+  Column Name: service_id
+  Class: Trip
+  Properties: Trip.Service
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: trips
+  Column Name: trip_id
+  Class: Trip
+  Properties: Trip.ID
+  Type: data
+  New Property: False
+
+Column 4:
+  Table Name: trips
+  Column Name: trip_headsign
+  Class: Trip
+  Properties: Trip.Headsign
+  Type: data
+  New Property: False
+
+Column 5:
+  Table Name: trips
+  Column Name: trip_short_name
+  Class: Trip
+  Properties: Trip.Short name
+  Type: data
+  New Property: False
+
+Column 6:
+  Table Name: trips
+  Column Name: direction_id
+  Class: Trip
+  Properties: Trip.Direction
+  Type: object
+  New Property: False
+
+Column 7:
+  Table Name: trips
+  Column Name: block_id
+  Class: Trip
+  Properties: Trip.Block
+  Type: data
+  New Property: False
+
+Column 8:
+  Table Name: trips
+  Column Name: shape_id
+  Class: Trip
+  Properties: Trip.Shape
+  Type: object
+  New Property: False
+
+Column 9:
+  Table Name: trips
+  Column Name: wheelchair_accessible
+  Class: Trip
+  Properties: Trip.Wheelchair accesible
+  Type: object
+  New Property: False
+

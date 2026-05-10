@@ -1,0 +1,342 @@
+################################################################################
+# PROMPT LOG - Property Suggestion - student
+# Started: 2026-04-21 23:21:45
+# Provider: openrouter
+# Model: deepseek/deepseek-r1
+# Table: student
+################################################################################
+
+================================================================================
+[2026-04-21 23uman:21:51] PROCESS: PropertySuggestion - student | Step 1/1
+Provider: openrouter | Model: deepseek/deepseek-r1
+table_name: student
+column_count: 1
+suggested_classes: ['Person']
+----------------------------------------
+>>> PROMPT INPUT VARIABLES:
+  [global_schema_summary]: {
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  },
+  "tables": {
+    "student": [
+      "students/Name (VARCHAR(50))"
+    ]
+  },
+  "previous_mappings": []
+}
+  [table_name]: student
+  [improved_table_name]: student information
+  [columns_text]: 1. Column: students/Name (improved: student name)
+  [term]: # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 1
+## Columns
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Name (all unique)
+  [suggested_classes_count]: 1
+  [suggested_classes_from_first_step]: 1. Class: Person
+  [suggested_classes_iri_from_first_step]: 1. Class IRI: http://example.com/Person/students/Name
+  [suggested_columns_text]: Suggested Columns for Class - Person:
+1. Column: students/Name
+
+
+  [data_properties_text]: Person - Data Properties:
+  1. id (Type: integer, URI: http://www.w3.org/2001/XMLSchema#integer)
+  2. firstname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  3. lastname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  4. fullname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  5. owes (Type: double, URI: http://www.w3.org/2001/XMLSchema#double)
+  [object_properties_text]: Person - Object Properties:
+  1. practises (Domain: Person [http://example.org/Person], Range: Sport [http://example.org/Sport])
+  2. lives (Domain: Person [http://example.org/Person], Range: City [http://example.org/City])
+  [related_columns_text]: Related Columns for Class - Person:
+
+
+----------------------------------------
+>>> FULL PROMPT SENT TO LLM:
+
+            Role:
+                You are an expert in ontology engineering and ontology-based data integration (OBDI).
+                You specialize in schema alignment between relational data sources and ontology classes.
+
+            Task:
+                Your job is to map each database column to the most semantically relevant **data property** or **object property**
+                from the provided ontology.
+                You must consider both local table context and the global schema-level relationships
+                to ensure globally consistent, complete, and non-redundant mappings.
+                IMPORTANT CONSTRAINT:
+                - ONLY include columns that have a valid mapping in the final output.
+                - DO NOT include any column that cannot be mapped.
+                - DO NOT output unmapped columns with null, empty, or placeholder values.
+                - If a column has no suitable property, simply EXCLUDE it from the result.
+
+            ---
+
+            ### Input Context
+                **Global_Schema_Summary:**
+                {
+  "ontology": {
+    "City": [
+      "cityid",
+      "cityname",
+      "lives -> City"
+    ],
+    "Person": [
+      "id",
+      "firstname",
+      "lastname",
+      "fullname",
+      "owes",
+      "practises -> Sport",
+      "lives -> City"
+    ],
+    "Sport": [
+      "sportid",
+      "sportname",
+      "practises -> Sport"
+    ]
+  },
+  "tables": {
+    "student": [
+      "students/Name (VARCHAR(50))"
+    ]
+  },
+  "previous_mappings": []
+}
+
+                **Table:** student
+
+                **Improved Table Name:** student information
+
+                **Columns:**
+                1. Column: students/Name (improved: student name)
+
+                **Additional Context of table:**
+                # Table: student information
+**Original Name**: student
+**Description**: This table represents student information
+**Column Count**: 1
+## Columns
+- **student name** (original: students/Name) - Type: VARCHAR(50) - Examples: Venus
+## Data Characteristics
+**Sample Size**: 1 rows
+**Uniqueness**: students/Name (all unique)
+
+                **Total Classes Suggested for This Table:**
+                1
+
+                **Suggested Classes:**
+                1. Class: Person
+
+                **Suggested Classes IRI:**
+                1. Class IRI: http://example.com/Person/students/Name
+
+                **Suggested Columns for Each Class (from step 1):**
+                Suggested Columns for Class - Person:
+1. Column: students/Name
+
+
+
+                **Available Data Properties:**
+                Person - Data Properties:
+  1. id (Type: integer, URI: http://www.w3.org/2001/XMLSchema#integer)
+  2. firstname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  3. lastname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  4. fullname (Type: string, URI: http://www.w3.org/2001/XMLSchema#string)
+  5. owes (Type: double, URI: http://www.w3.org/2001/XMLSchema#double)
+
+                **Available Object Properties:**
+                Person - Object Properties:
+  1. practises (Domain: Person [http://example.org/Person], Range: Sport [http://example.org/Sport])
+  2. lives (Domain: Person [http://example.org/Person], Range: City [http://example.org/City])
+
+                **Related Columns (cross-table relationships):**
+                Related Columns for Class - Person:
+
+
+
+            ---
+
+            ### 1. Global Context Awareness
+
+            You are provided with a **Global Schema Summary** that contains:
+            - All database tables, their columns, and PK/FK relationships.
+            - All ontology classes, their data properties and object properties.
+            - Previously mapped columns and their associated ontology properties (from earlier iterations).
+
+            Use this summary to maintain global consistency, detect overlaps, and ensure full mapping coverage.
+
+            Example format:
+            {
+                "tables": {
+                    "author": ["author_id (PK)", "name", "email"],
+                    "book": ["book_id (PK)", "title", "author_id (FK -> author)"]
+                },
+                "ontology": {
+                    "Author": ["name", "email", "hasWritten -> Book"],
+                    "Book": ["title", "writtenBy -> Author"]
+                },
+                "previous_mappings": [{
+                    "author": {
+                        "author.name": "Author.name",
+                        "author.email": "Author.email"
+                    },
+                    "book": {
+                        "book.title": "Book.title",
+                        "book.author_id": "Book.writtenBy -> Author"
+                    }]
+                }
+            }
+
+            ---
+
+            ### 2. Mapping Principles
+
+            1. **Dual Input Understanding**
+                - Interpret each column using both `column_name` and `improved_column_name`.
+                - Consider how the column semantically fits into the global schema and ontology.
+
+            2. **Global Awareness**
+                - Review the `Global_Schema_Summary` to see:
+                    - How this table connects to others (PK/FK relations).
+                    - Which ontology classes are already aligned with related tables.
+                    - Which properties have been mapped already to prevent duplication.
+                - Avoid re-mapping columns already covered in previous steps, unless justified by semantic overlap.
+
+            3. **Multi-Class Targeting**
+                - Although columns originate from one table, they may map to properties in multiple ontology classes.
+                - Use `suggested_columns_for_each_class` from step 1 as context for assigning columns to classes.
+                - Explain clearly which class each property belongs to and why.
+
+            4. **Property Selection**
+                - Map each column to **either**:
+                    - a `data property` (for intrinsic attributes)
+                    - an `object property` (for relational or reference columns)
+                - You MUST ONLY use properties from:
+                    - `Available Data Properties`
+                    - `Available Object Properties`
+                - DO NOT create, infer, or propose any new properties under any circumstances.
+                - If no suitable property exists:
+                    - DO NOT include the column in the output
+                    - Provide a clear and concise justification explaining why no existing property is semantically appropriate.
+                - Only map when there is clear semantic correlation — do **not** force weak mappings.
+
+            5. **Composite / Combined Columns**
+                - If a property logically represents a combination of columns (e.g., `fullname` = `firstName` + `lastName`),
+                explicitly identify the columns involved and justify the composition.
+                - Composite mappings should be semantically meaningful and well-aligned with the ontology.
+
+            6. **Reusing Columns**
+                - A single column may participate in multiple mappings if semantically justified
+                (e.g., `author_id` → `hasAuthor` and also used as part of `createdBy` if conceptually valid).
+
+            ---
+
+            ### 3. Mapping Logic Details
+
+            #### A. Foreign Keys and Object Properties
+            - Detect FKs based on naming patterns (`*_id`, `*_ref`, `*_code`, etc.) and `Global_Schema_Summary` links.
+            - For each potential object property:
+            - Check if the **domain and range** align semantically with the related ontology classes.
+            - Use related columns (suggested in step 1) to confirm possible two-way mapping.
+            - Consider both directions:
+                - Column → object property
+                - Object property → potential column(s)
+            - If both make sense, confirm with evidence (naming, semantic meaning, and ontology relationships).
+            - Validate that domain–range class relationships are consistent with the ontology (e.g., if `Book` → `Author`, then `book.author_id` → `writtenBy`).
+
+            #### B. Data Properties
+            - Map intrinsic columns (e.g., `name`, `date`, `amount`) to ontology data properties belonging to the most relevant class.
+            - For tables mapped to multiple classes, group columns by semantic class context.
+            - Avoid cross-class confusion (e.g., “customer_email” should not map to an order-level property).
+            - Validate that the mapping does not duplicate existing property mappings from `previous_mappings`.
+
+            ---
+
+            ### 4. Completeness and Global Validation
+
+            1. Compare your mappings against `previous_mapping_summary` to avoid duplication..
+            2. Validate that:
+                - Each mapping is globally consistent.
+                - Relationships between tables (via FKs) align with ontology object properties.
+                - No conflicting or circular mappings exist.
+                - Cross-class mappings maintain ontology domain-range correctness.
+            3. FINAL FILTERING STEP (MANDATORY):
+                - Remove ALL unmapped columns before producing output.
+                - Ensure every column in the output has a valid mapped property.
+
+
+            ---
+
+            ### 5. Output Format
+
+            Follow these output formatting rules exactly:
+
+            The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+```
+
+            STRICT OUTPUT RULES:
+            - Output MUST contain ONLY mapped columns.
+            - Every column MUST have a valid property mapping.
+            - DO NOT include any column without a mapping.
+            - DO NOT include empty fields.
+
+            ---
+
+            ### 6. Final Instructions
+
+            - Ensure reasoning references:
+                - FK and PK analysis
+                - Suggested classes and columns from step 1
+                - Domain–range semantic correlation for object properties
+                - Composite mappings where applicable
+                - Global schema and previous mappings for consistency
+            - Only include valid JSON output, following `The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"$defs": {"PropertySuggestion": {"description": "Structured output for property suggestion.", "properties": {"table_name": {"description": "Original table name", "title": "Table Name", "type": "string"}, "column_name": {"description": "Original name of the column", "title": "Column Name", "type": "string"}, "class_name": {"description": "Suggested mapping class name", "title": "Class Name", "type": "string"}, "properties": {"type": "string", "description": "Suggested mapping property name", "title": "Properties"}, "type": {"description": "Type of property: 'data' or 'object'", "title": "Type", "type": "string"}, "new_property": {"description": "Whether this is a new property to be created", "title": "New Property", "type": "boolean"}}, "required": ["table_name", "column_name", "class_name", "properties", "type", "new_property"], "title": "PropertySuggestion", "type": "object"}}, "description": "Schema for list of property mappings", "properties": {"mappings": {"description": "List of property mappings", "items": {"$ref": "#/$defs/PropertySuggestion"}, "title": "Mappings", "type": "array"}}, "required": ["mappings"]}
+````.
+            - Be globally coherent, semantically precise, and avoid over-mapping.
+            - Be semantically precise and avoid weak mappings.
+            - Prefer excluding a column rather than forcing incorrect mappings.
+            - NEVER include unmapped columns in the output under any condition.
+
+
+            
+----------------------------------------
+>>> LLM RESPONSE:
+mappings=[PropertySuggestion(table_name='student', column_name='students/Name', class_name='Person', properties='fullname', type='data', new_property=False)]
+================================================================================

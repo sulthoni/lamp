@@ -1,0 +1,11 @@
+Properties Suggestion Results:
+Total columns processed: 1
+
+Column 1:
+  Table Name: Winning Party
+  Column Name: result_id
+  Class: Lot award outcome
+  Properties: Describes lot
+  Type: object
+  New Property: False
+

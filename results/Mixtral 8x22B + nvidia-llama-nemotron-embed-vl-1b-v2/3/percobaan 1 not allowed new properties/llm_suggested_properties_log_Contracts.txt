@@ -1,0 +1,115 @@
+Properties Suggestion Results:
+Total columns processed: 14
+
+Column 1:
+  Table Name: Contracts
+  Column Name: contract_id
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 2:
+  Table Name: Contracts
+  Column Name: entry_id
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 3:
+  Table Name: Contracts
+  Column Name: title
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 4:
+  Table Name: Contracts
+  Column Name: status_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 5:
+  Table Name: Contracts
+  Column Name: updated
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 6:
+  Table Name: Contracts
+  Column Name: contract_type_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 7:
+  Table Name: Contracts
+  Column Name: contract_subtype_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 8:
+  Table Name: Contracts
+  Column Name: duration_years
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 9:
+  Table Name: Contracts
+  Column Name: procedure_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 10:
+  Table Name: Contracts
+  Column Name: urgency_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 11:
+  Table Name: Contracts
+  Column Name: contracting_system_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 12:
+  Table Name: Contracts
+  Column Name: submission_method_code
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 13:
+  Table Name: Contracts
+  Column Name: legislation
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+
+Column 14:
+  Table Name: Contracts
+  Column Name: language
+  Class: Procedure
+  Properties: Has i d
+  Type: object
+  New Property: False
+

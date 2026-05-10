@@ -1,0 +1,5 @@
+{'table_name': 'Winning Party', 'column_name': 'winning party identifier', 'class_name': 'LotAwardOutcome', 'properties': 'hasWinningPartyId', 'type': 'data', 'new_property': True}
+{'table_name': 'Winning Party', 'column_name': 'tender result identifier', 'class_name': 'LotAwardOutcome', 'properties': 'refersToTenderResult -> TenderResults', 'type': 'object', 'new_property': True}
+{'table_name': 'Winning Party', 'column_name': 'contract identifier', 'class_name': 'LotAwardOutcome', 'properties': 'refersToContract -> Contract', 'type': 'object', 'new_property': False}
+{'table_name': 'Winning Party', 'column_name': 'party tax identification number', 'class_name': 'LotAwardOutcome', 'properties': 'hasPartyTaxIdentificationNumber', 'type': 'data', 'new_property': True}
+{'table_name': 'Winning Party', 'column_name': 'party name', 'class_name': 'LotAwardOutcome', 'properties': 'hasPartyName', 'type': 'data', 'new_property': True}

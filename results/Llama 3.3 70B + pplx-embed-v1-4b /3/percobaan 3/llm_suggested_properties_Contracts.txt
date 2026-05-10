@@ -1,0 +1,8 @@
+{'table_name': 'Contracts', 'column_name': 'unique contract identifier', 'class_name': 'Procedure', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'procurement procedure code', 'class_name': 'Procedure', 'properties': 'Has procedure type', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'contract duration in years', 'class_name': 'Procedure', 'properties': 'duration', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'governing legislation', 'class_name': 'Procedure', 'properties': 'legislation', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'contract link', 'class_name': 'Procedure', 'properties': 'link', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'contract title', 'class_name': 'Procedure', 'properties': 'title', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'contract status code', 'class_name': 'Procedure', 'properties': 'status', 'type': 'data', 'new_property': True}
+{'table_name': 'Contracts', 'column_name': 'last updated date', 'class_name': 'Procedure', 'properties': 'updated', 'type': 'data', 'new_property': True}

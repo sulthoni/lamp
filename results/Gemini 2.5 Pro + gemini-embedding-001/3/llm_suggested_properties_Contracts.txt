@@ -1,0 +1,4 @@
+{'table_name': 'Contracts', 'column_name': 'contract_id', 'class_name': 'Lot', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'entry_id', 'class_name': 'Procedure', 'properties': 'Has i d', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'procedure_code', 'class_name': 'Procedure', 'properties': 'Has procedure type', 'type': 'object', 'new_property': False}
+{'table_name': 'Contracts', 'column_name': 'contract_id', 'class_name': 'Procedure', 'properties': 'Has procurement scope divided into lot', 'type': 'object', 'new_property': False}

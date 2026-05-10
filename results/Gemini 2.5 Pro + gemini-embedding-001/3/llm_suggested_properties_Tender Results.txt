@@ -1,0 +1,4 @@
+{'table_name': 'Tender Results', 'column_name': 'contract_id', 'class_name': 'Lot award outcome', 'properties': 'Describes lot', 'type': 'object', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'contract_id', 'class_name': 'Submission statistical information', 'properties': 'Concerns submissions for lot', 'type': 'object', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'award_date', 'class_name': 'Lot award outcome', 'properties': 'Has award decision date', 'type': 'data', 'new_property': False}
+{'table_name': 'Tender Results', 'column_name': 'received_tender_quantity', 'class_name': 'Submission statistical information', 'properties': 'Has received tenders', 'type': 'data', 'new_property': False}
