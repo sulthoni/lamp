@@ -148,8 +148,12 @@ def save_embedding_logic(json_data: List[Dict], collection_name: str = None):
 
         # Check if collection exists and delete if it does
         if collection_exists(collection_name):
-            print(f"Collection '{collection_name}' exists. Deleting records...")
-            delete_all_records_in_collection(collection_name)
+            # print(f"Collection '{collection_name}' exists. Deleting records...")
+            # delete_all_records_in_collection(collection_name)
+            # exit
+            print(f"Collection '{collection_name}' exists. Using existing collection.")
+            return f"Collection '{collection_name}' already exists. No new collection created."
+
         else:
             print(f"Collection '{collection_name}' does not exist.")
 
