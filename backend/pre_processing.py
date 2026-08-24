@@ -4,6 +4,7 @@ Module for Pre-processing functions using LangChain.
 """
 import json
 import os
+import ast
 from typing import List, Dict, Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
@@ -607,3 +608,86 @@ def create_enriched_table_embedding(table: dict) -> str:
         embedding_parts.append(f"**Domain**: {', '.join(domain_indicators)}")
 
     return "\n".join(embedding_parts)
+
+def update_suggested_terms_file(suggested_term: Any) -> Dict[str, Any]:
+    """
+    Update SUGGESTED_TERMS_FILE with new suggested term(s).
+
+    Behavior:
+    - If file does not exist: do not create it, return a message.
+    - If file exists: read existing entries, then upsert by
+      (table_name, column_name) when possible, otherwise append.
+    """
+    improvement_chain = TermImprovementChain()
+    suggested_terms_file = improvement_chain.config.SUGGESTED_TERMS_FILE
+
+    print(f"Updating suggested terms file: {suggested_terms_file}")
+
+    if not os.path.exists(suggested_terms_file):
+        return {
+            "updated": False,
+            "message": f"File not found: {suggested_terms_file}"
+        }
+
+    try:
+        # Normalize input into list
+        incoming_items = suggested_term if isinstance(suggested_term, list) else [suggested_term]
+
+        # Read existing entries
+        existing_items: List[Any] = []
+        with open(suggested_terms_file, "r") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                parsed = None
+                try:
+                    parsed = json.loads(line)
+                except Exception:
+                    try:
+                        parsed = ast.literal_eval(line)
+                    except Exception:
+                        parsed = line
+                existing_items.append(parsed)
+
+        # Build index for dict entries that have table_name + column_name
+        index_map: Dict[tuple, int] = {}
+        for idx, item in enumerate(existing_items):
+            if isinstance(item, dict) and "table_name" in item and "column_name" in item:
+                index_map[(item["table_name"], item["column_name"])] = idx
+
+        # Upsert incoming entries
+        replaced_count = 0
+        appended_count = 0
+        for item in incoming_items:
+            if isinstance(item, dict) and "table_name" in item and "column_name" in item:
+                key = (item["table_name"], item["column_name"])
+                if key in index_map:
+                    existing_items[index_map[key]] = item
+                    replaced_count += 1
+                else:
+                    existing_items.append(item)
+                    index_map[key] = len(existing_items) - 1
+                    appended_count += 1
+            else:
+                existing_items.append(item)
+                appended_count += 1
+
+        # Write back
+        with open(suggested_terms_file, "w") as f:
+            for item in existing_items:
+                f.write(f"{item}\n")
+
+        return {
+            "updated": True,
+            "message": "SUGGESTED_TERMS_FILE updated successfully",
+            "replaced": replaced_count,
+            "appended": appended_count,
+            "total": len(existing_items),
+        }
+
+    except Exception as e:
+        return {
+            "updated": False,
+            "message": f"Failed to update file: {str(e)}"
+        }

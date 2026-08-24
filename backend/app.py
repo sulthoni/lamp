@@ -279,6 +279,53 @@ def terms_suggestion():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/update-term-suggestion', methods=['POST'])
+def update_term_suggestion():
+    """API endpoint to update suggested_terms file using helper"""
+    try:
+        content_type = request.content_type or ""
+        suggested_term = None
+
+        if content_type.startswith('multipart/form-data'):
+            # Read from form-data
+            suggested_term_raw = request.form.get('suggested_term')
+            if suggested_term_raw is None:
+                return jsonify({'error': 'suggested_term is required in form data.'}), 400
+
+            # Try parse JSON payload (dict/list), fallback to plain string
+            try:
+                suggested_term = json.loads(suggested_term_raw)
+            except Exception:
+                suggested_term = suggested_term_raw
+
+        elif content_type == 'application/json':
+            # Read from JSON body
+            request_json = request.get_json()
+            if not request_json:
+                return jsonify({'error': 'JSON data is required.'}), 400
+
+            suggested_term = request_json.get('suggested_term')
+            if suggested_term is None:
+                return jsonify({'error': 'suggested_term is required in JSON data.'}), 400
+
+        else:
+            return jsonify({'error': 'Content-Type must be application/json or multipart/form-data'}), 415
+
+        result = pre_processing.update_suggested_terms_file(suggested_term)
+
+        # Map helper result to status code
+        if result.get('updated'):
+            return jsonify(result), 200
+
+        message = str(result.get('message', ''))
+        if message.startswith('File not found'):
+            return jsonify(result), 404
+
+        return jsonify(result), 400
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/check-suggested-terms', methods=['GET'])
 def check_suggested_terms():
     """API endpoint to check and get suggested_terms.txt content"""

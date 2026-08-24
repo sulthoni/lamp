@@ -251,3 +251,16 @@ export interface SchemaSummaryResponse {
     ontology: OntologyClassSummary;
   };
 }
+
+export type TermSuggestionUpdate = Pick<
+  Term,
+  'table_name' | 'column_name' | 'improved_table_name' | 'improved_column_name'
+>;
+
+export interface UpdateTermSuggestionResponse {
+  updated: boolean;
+  message: string;
+  replaced?: number;
+  appended?: number;
+  total?: number;
+}

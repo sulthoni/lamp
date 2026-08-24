@@ -816,9 +816,30 @@ export class AutoMappingComponent implements OnInit {
       case 'improved_column_name':
         term.improved_column_name = value;
         break;
+      // case 'related_table':
+      //   term.related_table = value;
+      //   console.log('Updated termsSuggestion:', this.termsSuggestion);
+      //   return; // do not send related_table to backend
       default:
         console.warn('Unknown field:', field);
+        return;
     }
+
+    const payload = {
+      table_name: term.table_name,
+      column_name: term.column_name,
+      improved_table_name: term.improved_table_name,
+      improved_column_name: term.improved_column_name,
+    };
+
+    this.autoMappingService.updateTermSuggestion(payload).subscribe({
+      next: (res) => {
+        console.log('Term suggestion updated in backend:', res);
+      },
+      error: (err) => {
+        console.error('Failed to update term suggestion in backend:', err);
+      },
+    });
 
     console.log('Updated termsSuggestion:', this.termsSuggestion);
   }

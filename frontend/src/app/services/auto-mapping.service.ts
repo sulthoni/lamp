@@ -20,7 +20,9 @@ import {
   SuggestedTermsResponse,
   TableSummaryStructure,
   Term,
+  TermSuggestionUpdate,
   TermTable,
+  UpdateTermSuggestionResponse,
 } from '../models/automapping';
 
 // Interface for the API response
@@ -958,5 +960,19 @@ export class AutoMappingService {
         'Content-Type': 'application/json',
       },
     });
+  }
+
+  /**
+   * Helper method for updating term suggestions in the backend
+   * @param suggestedTerm - The term suggestion update object
+   * @returns Observable with the update response
+   */
+  updateTermSuggestion(
+    suggestedTerm: TermSuggestionUpdate,
+  ): Observable<UpdateTermSuggestionResponse> {
+    return this.http.post<UpdateTermSuggestionResponse>(
+      `${environment.application.backendAdminUrl}/update-term-suggestion`,
+      { suggested_term: suggestedTerm },
+    );
   }
 }
