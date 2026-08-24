@@ -24,6 +24,7 @@ class Config:
         self.LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")
         self.LLM_MODEL = os.getenv("LLM_MODEL", "gemini-2.5-flash")
         self.COLLECTION_NAME = os.getenv("COLLECTION_NAME", "ontology_collection_gemini_blinkg")
+        self.EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "openrouter")
 
         # Save Output Configuration
         self.SAVE_OUTPUT = os.getenv("SAVE_OUTPUT", "False").lower() in ("true", "1", "t")
@@ -57,6 +58,7 @@ class Config:
         self.GROQ_API_KEY = os.getenv("GROQ_API_KEY")
         self.OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
         self.OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+        self.GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
         # Prompt Log Files
         self.PROMPT_LOG_TERMS_FILE = os.getenv('PROMPT_LOG_TERMS_FILE', './data/prompt_log_terms.txt')
@@ -256,7 +258,7 @@ def count_tokens(text: str, provider: str = None, model: str = None) -> int:
 
     try:
         # For OpenAI models, use tiktoken if available
-        if provider == "openai":
+        if provider == "openai" or provider == "groq":
             try:
                 import tiktoken
                 # Map model names to tiktoken encoding

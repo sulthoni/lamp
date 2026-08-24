@@ -422,7 +422,7 @@ def embedding_and_save_as_text_file_logic(embedding_json_str, embedding_table_js
 
     for j, table in enumerate(embedding_table_json, 1):
         # Apply rate limiting check before each embedding request
-        improvement_chain.rate_limit_check("gemini")  # Assuming Gemini provider
+        improvement_chain.rate_limit_check(improvement_chain.config.EMBEDDING_PROVIDER, True)  # Assuming Gemini provider
 
         #### CHANGE IN THIS PART FOR EACH EXPERIMENT
         # Experiment 2: Embedding with table name and all column names

@@ -72,6 +72,8 @@ AVAILABLE_MODELS = {
             {"id": "openai/o3", "name": "OpenAI o3(via OpenRouter)"},
             {"id": "google/gemini-2.5-pro", "name": "Google Gemini 2.5 Pro (via OpenRouter)"},
             {"id": "openai/gpt-oss-120b:free", "name": "OpenAI GPT-OSS 120B (via OpenRouter)"},
+            {"id": "nvidia/nemotron-3-ultra-550b-a55b:free", "name": "NVIDIA Nemotron 3 Ultra 550B (via OpenRouter)"},
+            {"id": "nvidia/nemotron-3.5-lightning:free", "name": "NVIDIA Nemotron 3.5 Lightning (via OpenRouter)"},
         ],
         "embedding": [
             {"id": "models/gemini-embedding-001", "name": "Gemini Embedding 001"},
@@ -82,6 +84,15 @@ AVAILABLE_MODELS = {
             {"id": "google/gemini-embedding-001", "name": "Gemini Embedding 001"},
             {"id": "nvidia/llama-nemotron-embed-vl-1b-v2:free", "name": "NVIDIA LLaMA Nemotron Embed VL 1B v2"},
         ]  # OpenRouter doesn't provide embeddings through their API
+    },
+    "groq": {
+        "llm": [
+            {"id": "openai/gpt-oss-120b", "name": "GPT OSS 120B"},
+            {"id": "openai/gpt-oss-20b", "name": "GPT OSS 20B"},
+            {"id": "qwen/qwen3.6-27b", "name": "Qwen 3.6 27B"},
+        ],
+        "embedding": [
+        ]
     }
 }
 
@@ -204,7 +215,7 @@ class LangChainManager:
 
     def rate_limit_check(self, provider: str = "gemini", embeddings: bool = False):
         """Check and handle rate limiting for LLM and embedding requests"""
-        if provider == "gemini":
+        if provider == "gemini" or provider == "groq":
             current_time = time.time()
 
             # Remove timestamps older than 60 seconds
@@ -214,7 +225,7 @@ class LangChainManager:
             # Check if we've reached the limit
             # Embeddings: 100 per minute (use 95 to be safe)
             # Chat/LLM: 5 per minute (use 5 to be safe)
-            limit = 95 if embeddings else 5
+            limit = 95 if embeddings else 3
 
             if len(self.request_times) >= limit:
                 sleep_time = 60 - (current_time - self.request_times[0]) + 1
@@ -279,6 +290,16 @@ class LangChainManager:
                 timeout=None,
                 max_retries=2,
             )
+        elif provider == "groq":
+            llm = ChatOpenAI(
+                model=model,
+                api_key=self.config.GROQ_API_KEY,
+                base_url=self.config.GROQ_BASE_URL,
+                temperature=0,
+                max_tokens=None,
+                timeout=None,
+                max_retries=2,
+            )
         elif provider == "ollama":
             # Fix: Ensure proper URL format for Ollama
             ollama_host = self.config.OLLAMA_HOST or "http://localhost:11434"
@@ -304,7 +325,7 @@ class LangChainManager:
     def get_embeddings(self, model: str = None, provider: str = None) -> Any:
         """Get embeddings instance with caching."""
         model = model or self.config.EMBEDDING_MODEL
-        provider = provider or self.config.LLM_PROVIDER
+        provider = provider or self.config.EMBEDDING_PROVIDER
 
         cache_key = f"{provider}:{model}"
         if cache_key in self.embedding_cache:
